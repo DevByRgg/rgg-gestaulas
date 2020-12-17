@@ -32,8 +32,27 @@
 
     <div id="selectorFiltrosReservas">
 
-      <button>Mes</button>
-      <button>Sede</button>
+      <label for="meses">Elegir Mes:</label>
+      <select name="mese" id="months">
+        <option value="enero">Enero</option>
+        <option value="febrero">Febrero</option>
+        <option value="marzo">Marzo</option>
+        <option value="abril">Abril</option>
+        <option value="mayo">Mayo</option>
+        <option value="junio">Junio</option>
+        <option value="julio">Julio</option>
+        <option value="agosto">Agosto</option>
+        <option value="septiembre">Septiembre</option>
+        <option value="octubre">Octubre</option>
+        <option value="noviembre">Noviembre</option>
+        <option value="diciembre">Diciembre</option>
+      </select>
+
+      <label for="sedes">Elegir Sede:</label>
+      <select name="sedes" id="sedes">
+        <option value="sede1">Sede 1</option>
+        <option value="sede2">Sede 2</option>
+      </select>
       <button>Aula</button>
 
     </div>
