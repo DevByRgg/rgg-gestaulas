@@ -20,6 +20,26 @@
       color:black;
       background-color: aquamarine;
     }
+
+    #leyendaColores{
+      width: 5%;
+      padding: 1em;
+      font-size: 1em;
+    }
+
+    .festivo {
+      background-color: coral;
+    }
+
+    .libre{
+      background-color: chartreuse;
+
+    }
+
+    .ocupado{
+      background-color: crimson;
+
+    }
   </style>
   <title>Mostrar Reservas</title>
 </head>
@@ -43,6 +63,12 @@
       <label for="morning">Mañana</label><br>
       <input type="radio" id="afternoon" name="horario" value="afternoon">
       <label for="afternoon">Tarde</label><br>
+    </div>
+
+    <div id="leyendaColores"><h3>Leyenda de Colores</h3> 
+      <div class="festivo">Festivos</div>
+      <div class="libre">Libres</div>
+      <div class="ocupado">Ocupados</div>
     </div>
 
     <div id="tablaResultados">
