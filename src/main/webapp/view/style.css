@@ -1,0 +1,10 @@
+th {
+    background-color: aquamarine;
+    width: 1em;
+  }
+
+  td {
+    background-color: bisque;
+    width: 3em;
+    height: 2em;
+  }
