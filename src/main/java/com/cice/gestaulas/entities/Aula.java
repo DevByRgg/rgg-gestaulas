@@ -17,6 +17,7 @@ import lombok.NonNull;
 @NoArgsConstructor
 
 public class Aula {
+	
 	@Id
 	@Column(name = "id")
 	@NonNull
@@ -29,14 +30,5 @@ public class Aula {
 	@Column(name = "puestos")
 	@NonNull
 	private int numeroPuestos;
-	
-	@Column(name = "id_equipos")
-	@NonNull
-	private String idEquipos;
-	
-	@Column(name = "id_equipamiento")
-	@NonNull
-	private String idEquipamiento;
-
-	
+		
 }
