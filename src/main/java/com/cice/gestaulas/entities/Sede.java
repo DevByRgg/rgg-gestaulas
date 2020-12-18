@@ -25,21 +25,17 @@ public class Sede {
 	@Column(name = "nombre")
 	@NonNull
 	private String nombre;
-	
-	@Column(name = "codigo_postal")
-	@NonNull
-	private String codigoPostal;
-	
+		
 	@Column(name = "direccion")
 	@NonNull
 	private String direccion;
 	
+	@Column(name = "cp")
+	@NonNull
+	private String codigoPostal;
+	
 	@Column(name = "tlf")
 	@NonNull
 	private String telefono;
-	
-	@Column(name = "numero_aulas")
-	@NonNull
-	private int numeroAulas;
 	
 }

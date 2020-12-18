@@ -13,11 +13,15 @@
 
 </head>
 <body>
+
+<c:import url="../common/navbarAdmin.jsp"/>
 	
 	<div class="container-md w-50">
+		<div class="pt-5"></div>
+		
 		<!-- Titulo -->
-		<h2 class="paddingTop20">
-			Sedes <span class="badge badge-secondary bg-info text-white">CREAR</span>
+		<h2 class="pt-3">
+			Sedes <span class="badge badge-secondary text-white" style="background-color: #ff00f7;">CREAR</span>
 		</h2>
 		
 		<!-- Forumulario -->
@@ -36,19 +40,19 @@
 			</div>
 			
 			<!-- Codigo postal de la Sede -->
-			<div class="form-group mt-4">
+			<div class="form-group w-50 mt-4">
 				<label class="text-secondary font-weight-bold" for="codigoPostal">Codigo postal</label>
 				<input type="text" class="form-control" name="codigoPostal" id="codigoPostal" placeholder="Codigo postal" required>
 			</div>
 			
 			<!-- Telefono de la Sede -->
-			<div class="form-group mt-4">
+			<div class="form-group w-25 mt-4">
 				<label class="text-secondary font-weight-bold" for="telefono">Telefono</label>
 				<input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono" required>
 			</div>
 			
 			<!-- Numero Aulas de la Sede -->
-			<div class="form-group mt-4">
+			<div class="form-group w-25 mt-4">
 				<label class="text-secondary font-weight-bold" for="numeroAulas">Numero de aulas</label>
 				<input type="number" class="form-control" name="numeroAulas" id="numeroAulas" placeholder="Numero de aulas" required>
 			</div>
@@ -56,7 +60,7 @@
 			
 			<!-- Boton enviar formulario -->
 			<div class="botonEnviar mt-4">
-				<button type="submit" class="btn btn-outline-info btn-lg font-weight-bold">Crear</button>
+				<button type="submit" class="btn btn-outline-secondary btn-lg font-weight-bold">Crear</button>
 			</div>
 		</form>
 	</div>

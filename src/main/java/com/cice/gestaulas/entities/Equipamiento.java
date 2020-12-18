@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Entity
-@Table(name = "ordenadores")
+@Table(name = "equipamientos")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,5 +30,6 @@ public class Equipamiento {
 	@Column(name = "descripcion")
 	@NonNull
 	private String descripcion;
-		
+	
+	
 }

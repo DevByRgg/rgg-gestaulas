@@ -16,14 +16,16 @@ public class OrdenadorController {
 	
 	@GetMapping("/admin/crearOrdenadorControl")
 	public String crearOrdenador(
-			@RequestParam (name = "tipo", required = true) String tipo,
+			@RequestParam (name = "nombre", required = true) String nombre,
 			@RequestParam (name = "sistemaOperativo", required = true) String sistemaOperativo,
 			@RequestParam (name = "dimensionPantalla", required = true) int dimensionPantalla,
 			@RequestParam (name = "cpu", required = true) String cpu,
 			@RequestParam (name = "ram", required = true) int ram,
-			@RequestParam (name = "tarjetaGrafica", required = true) String tarjetaGrafica) {
+			@RequestParam (name = "hdd", required = true) String hdd,
+			@RequestParam (name = "tarjetaGrafica", required = true) String tarjetaGrafica,
+			@RequestParam (name = "observaciones", required = true) String observaciones) {
 		
-		Ordenador o = new Ordenador(0, tipo, sistemaOperativo, dimensionPantalla, cpu, ram, tarjetaGrafica);
+		Ordenador o = new Ordenador(0, nombre, sistemaOperativo, dimensionPantalla, cpu, ram, hdd, tarjetaGrafica, observaciones);
 		
 		ordenadorService.create(o);
 		

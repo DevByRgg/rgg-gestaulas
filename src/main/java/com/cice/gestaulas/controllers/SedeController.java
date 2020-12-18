@@ -17,12 +17,11 @@ public class SedeController {
 	@GetMapping("/admin/crearSedeControl")
 	public String crearSede (
 			@RequestParam (name = "nombre") String nombre,
-			@RequestParam (name = "codigoPostal", required = true) String codigoPostal,
 			@RequestParam (name = "direccion", required = true) String direccion,
-			@RequestParam (name = "telefono", required = true) String telefono,
-			@RequestParam (name = "numeroAulas", required = true) int numeroAulas) {
+			@RequestParam (name = "codigoPostal", required = true) String codigoPostal,
+			@RequestParam (name = "telefono", required = true) String telefono) {
 		
-		Sede s = new Sede(0, nombre, codigoPostal, direccion, telefono, numeroAulas);
+		Sede s = new Sede(0, nombre, direccion, codigoPostal, telefono);
 		
 		sedeService.create(s);
 		

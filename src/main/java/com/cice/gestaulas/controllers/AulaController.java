@@ -16,10 +16,13 @@ public class AulaController {
 	
 	@GetMapping("/admin/crearAulaControl")
 	public String crearOrdenador(
-			@RequestParam (name = "idTipoAula", required = true) int idTipoAula,
-			@RequestParam (name = "numeroPuestos", required = true) int numeroPuestos) {
+			@RequestParam (name = "idSede", required = true) int idSede,
+			@RequestParam (name = "capacidad", required = true) int capacidad,
+			@RequestParam (name = "equipoProfesor", required = true) int equipoProfesor,
+			@RequestParam (name = "equipoAlumno", required = true) int equipoAlumno,
+			@RequestParam (name = "equipamiento", required = true) int equipamiento) {
 		
-		Aula a = new Aula (0, idTipoAula, numeroPuestos);
+		Aula a = new Aula(0, idSede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
 		
 		aulaService.create(a);
 		

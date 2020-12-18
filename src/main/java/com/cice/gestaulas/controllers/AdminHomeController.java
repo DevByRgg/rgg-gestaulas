@@ -10,23 +10,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cice.gestaulas.entities.Equipamiento;
 import com.cice.gestaulas.entities.Ordenador;
-import com.cice.gestaulas.entities.TipoAula;
-import com.cice.gestaulas.services.impl.OrdenadorServiceImpl;
+import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.services.interfaces.IEquipamientoService;
 import com.cice.gestaulas.services.interfaces.IOrdenadorService;
-import com.cice.gestaulas.services.interfaces.ITipoAulaService;
+import com.cice.gestaulas.services.interfaces.ISedeService;
 
 @Controller
 public class AdminHomeController {
 
+	@Autowired
+	ISedeService sedeService;
+	
 	@Autowired
 	IOrdenadorService ordenadorService;
 	
 	@Autowired
 	IEquipamientoService equipamientoService;
 	
-	@Autowired
-	ITipoAulaService tipoAulaService;
 	
 	@GetMapping("/admin")
 	public ModelAndView mostrarAdminPage() {
@@ -45,23 +45,16 @@ public class AdminHomeController {
 	@GetMapping("/admin/crearAula")
 	public ModelAndView crearAulaPage() {
 		ModelAndView mav = new ModelAndView();
-		List<TipoAula> listaTipoAula = tipoAulaService.findAll();
-		mav.addObject("tipoAulas", listaTipoAula);
+		List<Sede> listaSedes = sedeService.findAll();
+		List<Ordenador> listaOrdenadores = ordenadorService.findAll();
+		List<Equipamiento> listaEquipamientos = equipamientoService.findAll();
+		mav.addObject("sedes", listaSedes);
+		mav.addObject("ordenadores", listaOrdenadores);
+		mav.addObject("equipamientos", listaEquipamientos);
 		mav.setViewName("admin/crearAula");
 		return mav;
 	}
 
-	@GetMapping("/admin/crearTipoAula")
-	public ModelAndView crearTipoAulaPage() {
-		ModelAndView mav = new ModelAndView();
-		List<Ordenador> listaOrdenadores = ordenadorService.findAll();
-		List<Equipamiento> listaEquipamientos = equipamientoService.findAll();
-		mav.addObject("ordenadores", listaOrdenadores);
-		mav.addObject("equipamientos", listaEquipamientos);
-		mav.setViewName("admin/crearTipoAula");
-		return mav;
-	}
-	
 	@GetMapping("/admin/crearOrdenador")
 	public ModelAndView crearOrdenadorPage() {
 		ModelAndView mav = new ModelAndView();
@@ -74,5 +67,7 @@ public class AdminHomeController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/crearEquipamiento");
 		return mav;
+	
 	}
+	
 }

@@ -23,12 +23,25 @@ public class Aula {
 	@NonNull
 	private int id;
 	
-	@Column(name = "id_tipo_aula")
+	@Column(name = "id_sede")
 	@NonNull
-	private int idTipoAula;
+	private int idSede;
 	
-	@Column(name = "puestos")
+	@Column(name = "capacidad")
 	@NonNull
-	private int numeroPuestos;
-		
+	private int capacidad;
+	
+	@Column(name = "equipo_profe")
+	@NonNull
+	private int equipoProfesor;
+	
+	@Column(name = "equipo_alumno")
+	@NonNull
+	private int equipoAlumno;
+	
+	@Column(name = "equipamiento")
+	@NonNull
+	private int equipamiento;
+	
+			
 }

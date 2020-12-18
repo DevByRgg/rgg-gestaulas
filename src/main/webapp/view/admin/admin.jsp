@@ -11,10 +11,14 @@
 </head>
 <body>
 	
-	<div class="container-md w-75">
+<c:import url="../common/navbarAdmin.jsp"/>
+	
+	<div class="container-md w-50">
+		<div class="pt-5"></div>
+		
 		<!-- Titulo -->
-		<h2 class="paddingTop20">
-			Administration <span class="badge badge-secondary bg-info text-white">ZONE</span>
+		<h2 class="pt-3">
+			Administration <span class="badge badge-secondary text-white" style="background-color: #ff00f7;">ZONE</span>
 		</h2>
 			
     </div>
