@@ -21,18 +21,18 @@
 		</h2>
 		
 		<!-- Forumulario -->
-		<form action="crearAulaControl" method="GET">
+		<form action="crearEquipamientoControl" method="GET">
 			
 			<!-- Id del Aula -->
 			<div class="form-group mt-4">
-				<label class="text-secondary font-weight-bold" for="id">Nombre</label>
-				<input type="text" class="form-control" name="id" id="id" placeholder="Id del aula" required>
+				<label class="text-secondary font-weight-bold" for="nombre">Nombre</label>
+				<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
 			</div>
 			
 			<!-- Tipo de Aula -->
 			<div class="form-group mt-4">
-				<label class="text-secondary font-weight-bold" for="tipo">Tipo</label>
-				<input type="text" class="form-control" name="tipo" id="tipo" placeholder="Tipo de aula" required>
+				<label class="text-secondary font-weight-bold" for="descripcion">Descripcion</label>
+				<input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripcion" required>
 			</div>
 			
 			

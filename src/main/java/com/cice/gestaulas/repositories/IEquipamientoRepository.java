@@ -1,5 +1,9 @@
 package com.cice.gestaulas.repositories;
 
-public interface IEquipamientoRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cice.gestaulas.entities.Equipamiento;
+
+public interface IEquipamientoRepository extends JpaRepository<Equipamiento, Integer>{
 
 }
