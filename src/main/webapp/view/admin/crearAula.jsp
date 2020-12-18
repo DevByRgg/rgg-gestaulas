@@ -30,9 +30,19 @@
 			</div>
 			
 			<!-- Tipo de Aula -->
+			<div class="form-group w-25 mt-1">
+				<label class="text-secondary font-weight-bold" for="idTipoAula">Tipo de Aula</label>
+				<select	class="form-control" id="idTipoAula" name="idTipoAula">
+					<c:forEach items="${tipoAulas}" var="tipoAula">
+						<option value="${tipoAula.id}">${tipoAula.nombre}</option>
+					</c:forEach>
+				</select>
+			</div>
+			
+			<!-- Numero de puestos -->
 			<div class="form-group mt-4">
-				<label class="text-secondary font-weight-bold" for="tipo">Tipo</label>
-				<input type="text" class="form-control" name="tipo" id="tipo" placeholder="Tipo de aula" required>
+				<label class="text-secondary font-weight-bold" for="numeroPuestos">Numero de puestos</label>
+				<input type="text" class="form-control" name="numeroPuestos" id="numeroPuestos" placeholder="Numero de puestos" required>
 			</div>
 			
 			

@@ -16,19 +16,23 @@ import lombok.NonNull;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Aula {
-	
+public class TipoAula {
+
 	@Id
 	@Column(name = "id")
 	@NonNull
 	private int id;
 	
-	@Column(name = "id_tipo_aula")
+	@Column(name = "nombre")
 	@NonNull
-	private int idTipoAula;
+	private String nombre;
 	
-	@Column(name = "puestos")
+	@Column(name = "id_ordenador")
 	@NonNull
-	private int numeroPuestos;
-		
+	private int idOrdenador;
+	
+	@Column(name = "id_equipamiento")
+	@NonNull
+	private int idEquipamiento;
+	
 }
