@@ -1,5 +1,9 @@
 package com.cice.gestaulas.repositories;
 
-public interface IAulaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cice.gestaulas.entities.Aula;
+
+public interface IAulaRepository extends JpaRepository<Aula, Integer>{
 
 }

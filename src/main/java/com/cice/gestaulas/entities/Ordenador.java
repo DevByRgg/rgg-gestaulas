@@ -11,35 +11,41 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Entity
-@Table(name = "sedes")
+@Table(name = "ordenadores")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Sede {
+public class Ordenador {
+
 	@Id
 	@Column(name = "id")
 	@NonNull
 	private int id;
 	
-	@Column(name = "nombre")
+	@Column(name = "tipo")
 	@NonNull
-	private String nombre;
+	private String tipo;
 	
-	@Column(name = "codigo_postal")
+	@Column(name = "sistema_operativo")
 	@NonNull
-	private String codigoPostal;
+	private String sistemaOperativo;
 	
-	@Column(name = "direccion")
+	@Column(name = "pantalla")
 	@NonNull
-	private String direccion;
+	private int dimensionPantalla;
 	
-	@Column(name = "tlf")
+	@Column(name = "cpu")
 	@NonNull
-	private String telefono;
+	private String cpu;
 	
-	@Column(name = "numero_aulas")
+	@Column(name = "ram")
 	@NonNull
-	private int numeroAulas;
+	private int ram;
+
+	@Column(name = "tarjeta_grafica")
+	@NonNull
+	private String tarjetaGrafica;
+
 	
 }

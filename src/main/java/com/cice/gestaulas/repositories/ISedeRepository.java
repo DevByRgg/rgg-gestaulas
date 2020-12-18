@@ -1,5 +1,9 @@
 package com.cice.gestaulas.repositories;
 
-public interface ISedeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cice.gestaulas.entities.Sede;
+
+public interface ISedeRepository extends JpaRepository<Sede, Integer>{
 
 }
