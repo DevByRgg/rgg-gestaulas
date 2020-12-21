@@ -6,7 +6,7 @@
 
 <c:import url="../common/head.jsp"/>
 
-<script src="/aulas/js/borrarSede.js"></script>
+<script src="/aulas/js/borrarAula.js"></script>
 
 <title>Zona Administracion</title>
 
@@ -30,26 +30,26 @@
 				<thead>
 					<tr tr class="thead-dark">
 						<th class="align-middle text-center" scope="col">Id</th>
-						<th class="align-middle text-left" scope="col">Nombre</th>
-						<th class="align-middle text-left" scope="col">Direccion</th>
-						<th class="align-middle text-right" scope="col">Codigo postal</th>
-						<th class="align-middle text-right" scope="col">Telefono</th>
+						<th class="align-middle text-left" scope="col">Sede</th>
+						<th class="align-middle text-left" scope="col">Capacidad</th>
+						<th class="align-middle text-right" scope="col">Equipo Profesor</th>
+						<th class="align-middle text-right" scope="col">Equipo Alumnos</th>
 						<th class="align-middle text-center" scope="col">Borrar</th>
 						<th class="align-middle text-center" scope="col">Update</th>					
 					</tr>
 				</thead>
 				
 				<tbody>
-					<c:forEach items="${sedes}" var="sede">
+					<c:forEach items="${aulas}" var="aula">
 					<tr>
-	      				<th scope="row" class="align-middle text-center">${sede.id}</th>
-						<td class="align-middle text-left">${sede.nombre}</td>
-						<td class="align-middle text-left">${sede.direccion}</td>
-						<td class="align-middle text-right">${sede.codigoPostal}</td>
-						<td class="align-middle text-right">${sede.telefono}</td>
+	      				<th scope="row" class="align-middle text-center">${aula.id}</th>
+						<td class="align-middle text-right">${aula.idSede}</td>
+						<td class="align-middle text-right">${aula.capacidad}</td>
+						<td class="align-middle text-right">${aula.equipoProfesor}</td>
+						<td class="align-middle text-right">${aula.equipoAlumno}</td>
 						<td class="align-middle text-center">
 							<button type="button" class="btn bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
-							onclick="configurarBorrado('${sede.id}')">
+							onclick="configurarBorrado('${aula.id}')">
 								Borrar
 							</button>
 						</td>
@@ -65,7 +65,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-cice">
-					<h5 class="modal-title text-white" id="exampleModalLongTitle">Borrar Sede</h5>
+					<h5 class="modal-title text-white" id="exampleModalLongTitle">Borrar Aula</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>

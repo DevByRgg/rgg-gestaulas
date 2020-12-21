@@ -1,11 +1,15 @@
 package com.cice.gestaulas.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cice.gestaulas.entities.Aula;
+import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.services.interfaces.IAulaService;
 
 @Controller
@@ -29,5 +33,25 @@ public class AulaController {
 		return "redirect:crearAula";
 	
 	}
+	
+	@GetMapping("/admin/mostrarAula")
+	public ModelAndView findAllSedes() {
+		List<Aula> listaAulas = aulaService.findAll();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("aulas", listaAulas);
+		mav.setViewName("/admin/mostrarAula");
+		return mav;
+	}
+	
+	@GetMapping("admin/borrarAula")
+	public String borrarAula(
+			@RequestParam(required = true) int id){
+		aulaService.delete(id);
+		
+		return "redirect:mostrarAula";
+	}
+	
+	
+	
 		
 }

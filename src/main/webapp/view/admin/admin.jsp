@@ -18,7 +18,7 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Administration <span class="badge badge-secondary text-white" style="background-color: #ff00f7;">ZONE</span>
+			Administration <span class="badge text-white bg-cice">ZONE</span>
 		</h2>
 			
     </div>

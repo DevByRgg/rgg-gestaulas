@@ -21,7 +21,7 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Sedes <span class="badge badge-secondary text-white" style="background-color: #ff00f7;">CREAR</span>
+			Sedes <span class="badge text-white bg-cice">CREAR</span>
 		</h2>
 		
 		<!-- Forumulario -->
@@ -60,7 +60,7 @@
 			
 			<!-- Boton enviar formulario -->
 			<div class="botonEnviar mt-4">
-				<button type="submit" class="btn btn-outline-secondary btn-lg font-weight-bold">Crear</button>
+				<button type="submit" class="btn btn-outline-secondary btn-lg font-weight-bold text-white bg-cice">Crear</button>
 			</div>
 		</form>
 	</div>

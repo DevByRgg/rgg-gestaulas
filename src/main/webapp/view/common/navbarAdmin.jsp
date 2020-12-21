@@ -17,7 +17,7 @@
 			
 			<li class="nav-item dropdown mr-3">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sedes</a>
-				<div class="dropdown-menu" style="background-color: #ff00f7;" aria-labelledby="navbarDropdown">
+				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-white" href="/aulas/admin/crearSede">Crear Sede</a>
                     <a class="dropdown-item text-white" href="/aulas/admin/mostrarSede">Listado Sedes</a>
                 </div>
@@ -25,7 +25,7 @@
 
 			<li class="nav-item dropdown mr-3">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aulas</a>
-				<div class="dropdown-menu" style="background-color: #ff00f7;" aria-labelledby="navbarDropdown">
+				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-white" href="/aulas/admin/crearAula">Crear Aula</a>
                     <a class="dropdown-item text-white" href="/aulas/admin/mostrarAula">Listado Aulas</a>
                 </div>
@@ -33,7 +33,7 @@
 
             <li class="nav-item dropdown mr-3">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Equipos</a>
-				<div class="dropdown-menu" style="background-color: #ff00f7;" aria-labelledby="navbarDropdown">
+				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-white" href="/aulas/admin/crearOrdenador">Crear Equipo</a>
                     <a class="dropdown-item text-white" href="/aulas/admin/mostrarOrdenador">Listado Equipos</a>
                 </div>
@@ -41,7 +41,7 @@
 
             <li class="nav-item dropdown mr-3">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Equipamientos</a>
-				<div class="dropdown-menu" style="background-color: #ff00f7;" aria-labelledby="navbarDropdown">
+				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-white" href="/aulas/admin/crearEquipamiento">Crear Equipamiento</a>
                     <a class="dropdown-item text-white" href="/aulas/admin/mostrarEquipamiento">Listado Equipamientos</a>
                 </div>

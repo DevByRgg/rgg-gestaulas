@@ -23,7 +23,7 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Aulas <span class="badge badge-secondary text-white" style="background-color: #ff00f7;">CREAR</span>
+			Aulas <span class="badge text-white bg-cice">CREAR</span>
 		</h2>
 		
 		<!-- Forumulario -->
@@ -68,7 +68,7 @@
 			<!-- Equipamiento -->
 			<div class="form-group mt-1">
 				<label class="text-secondary font-weight-bold" for="equipamiento">Equipamiento</label>
-				<select	class="form-control " id=""equipamiento"" name=""equipamiento"">
+				<select	class="form-control " id="equipamiento" name="equipamiento">
 					<c:forEach items="${equipamientos}" var="equipamiento">
 						<option value="${equipamiento.id}">${equipamiento.nombre}</option>
 					</c:forEach>
@@ -77,7 +77,7 @@
 			
 			<!-- Boton enviar formulario -->
 			<div class="botonEnviar mt-4">
-				<button type="submit" class="btn btn-outline-secondary btn-lg font-weight-bold">Crear</button>
+				<button type="submit" class="btn btn-outline-secondary btn-lg font-weight-bold text-white bg-cice">Crear</button>
 			</div>
 		</form>
 	</div>

@@ -1,10 +1,14 @@
 package com.cice.gestaulas.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.cice.gestaulas.entities.Aula;
 import com.cice.gestaulas.entities.Ordenador;
 import com.cice.gestaulas.services.interfaces.IOrdenadorService;
 
@@ -32,4 +36,23 @@ public class OrdenadorController {
 		return "redirect:crearOrdenador";
 	
 	}
+	
+	@GetMapping("/admin/mostrarOrdenador")
+	public ModelAndView findAllOrdenadores() {
+		List<Ordenador> listaOrdenadores = ordenadorService.findAll();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("ordenadores", listaOrdenadores);
+		mav.setViewName("/admin/mostrarOrdenador");
+		return mav;
+	}
+	
+	@GetMapping("admin/borrarOrdenador")
+	public String borrarOrdenador(
+			@RequestParam(required = true) int id){
+		ordenadorService.delete(id);
+		
+		return "redirect:mostrarOrdenador";
+	}
+	
+	
 }
