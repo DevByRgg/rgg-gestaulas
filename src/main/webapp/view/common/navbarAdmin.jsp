@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #ff00f7;">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-cice">
 	<a class="navbar-brand text-white" href="#"> 
         <img src="/aulas/images/logo_blanco_total.svg" height="25"	class="d-inline-block align-top" alt="">
         
@@ -19,7 +19,7 @@
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sedes</a>
 				<div class="dropdown-menu" style="background-color: #ff00f7;" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-white" href="/aulas/admin/crearSede">Crear Sede</a>
-                    <a class="dropdown-item text-white" href="/admin/mostrarSede">Listado Sedes</a>
+                    <a class="dropdown-item text-white" href="/aulas/admin/mostrarSede">Listado Sedes</a>
                 </div>
             </li>
 
