@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-  <!DOCTYPE html>
-  <html lang="es">
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="ES">
+<head>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
+<c:import url="../common/head.jsp"/>
+
+<style>
       th {
         background-color: aquamarine;
         width: 1em;
@@ -22,12 +23,26 @@
         background-color: aquamarine;
       }
     </style>
-    <title>Mostrar Reservas</title>
-  </head>
 
-  <body>
-    <h1>RESERVAS AULAS CICE</h1>
+<title>Reservas</title>
 
+</head>
+<body>
+	
+<c:import url="../common/navbarAdmin.jsp"/>
+	
+	<div class="container-md w-50">
+		<div class="pt-5"></div>
+		
+		<!-- Titulo -->
+		<h2 class="pt-3">
+			Administration <span class="badge text-white bg-cice">ZONE</span>
+		</h2>
+		
+		
+			
+    </div>
+    
     <div id="reservas_container">
 
       <div id="selectorFiltrosReservas">
@@ -67,6 +82,47 @@
         </select>
 
       </div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+  <!DOCTYPE html>
+  <html lang="es">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      th {
+        background-color: aquamarine;
+        width: 1em;
+      }
+
+      td {
+        background-color: bisque;
+        width: 3em;
+        height: 2em;
+      }
+
+      .diaMes {
+        color: black;
+        background-color: aquamarine;
+      }
+    </style>
+    <title>Mostrar Reservas</title>
+  </head>
+
+  <body>
+    <h1>RESERVAS AULAS CICE</h1>
+
+    
 
       <div>
         <p>Mostrar horario:</p>
