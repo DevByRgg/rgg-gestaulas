@@ -19,7 +19,6 @@ import lombok.NonNull;
 @NoArgsConstructor
 public class Reserva {
 
-	//id	id_aula	id_admin	dia_inicio	dia_fin	hora_inicio	hora_fin
 	@Id
 	@Column(name="id")
 	private int id;
