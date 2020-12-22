@@ -16,12 +16,28 @@
 		<ul class="navbar-nav ml-auto mr-auto">
 
 			<li class="nav-item active mr-3"><a class="nav-link text-white"
-				href="/aulas/">Public</a></li>
+				href="/aulas/">Reservas aulas CICE </a></li>
+				
+				
+			<li class="nav-item dropdown mr-3"><a
+				class="nav-link dropdown-toggle text-white" href="#"
+				id="navbarDropdown" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">Elegir Sede</a>
+				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
+
+
+					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Sede 1</a>
+					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Sede 2</a>
+					
+
+
+				</div>
+			</li>
 
 			<li class="nav-item dropdown mr-3"><a
 				class="nav-link dropdown-toggle text-white" href="#"
 				id="navbarDropdown" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false">Mes</a>
+				aria-haspopup="true" aria-expanded="false">Elegir Mes</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
 
 
@@ -41,38 +57,39 @@
 
 				</div>
 			</li>
+			
+			
+			<li class="nav-item dropdown mr-3"><a
+				class="nav-link dropdown-toggle text-white" href="#"
+				id="navbarDropdown" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">Elegir Aula</a>
+				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
+
+
+					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 1</a>
+					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 2</a>
+					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 3</a>
+					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 4</a>
+					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 5</a>
+					
+
+				</div>
+			</li>
 
 			<li class="nav-item dropdown mr-3"><a
 				class="nav-link dropdown-toggle text-white" href="#"
 				id="navbarDropdown" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false">Aulas</a>
+				aria-haspopup="true" aria-expanded="false">Elegir Turno</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item text-white" href="/aulas/admin/crearAula">Crear
-						Aula</a> <a class="dropdown-item text-white"
-						href="/aulas/admin/mostrarAula">Listado Aulas</a>
-				</div></li>
 
-			<li class="nav-item dropdown mr-3"><a
-				class="nav-link dropdown-toggle text-white" href="#"
-				id="navbarDropdown" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false">Equipos</a>
-				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item text-white"
-						href="/aulas/admin/crearOrdenador">Crear Equipo</a> <a
-						class="dropdown-item text-white"
-						href="/aulas/admin/mostrarOrdenador">Listado Equipos</a>
-				</div></li>
+					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Turno Mañana</a>
+					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Turno Tarde</a>
 
-			<li class="nav-item dropdown mr-3"><a
-				class="nav-link dropdown-toggle text-white" href="#"
-				id="navbarDropdown" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false">Equipamientos</a>
-				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item text-white"
-						href="/aulas/admin/crearEquipamiento">Crear Equipamiento</a> <a
-						class="dropdown-item text-white"
-						href="/aulas/admin/mostrarEquipamiento">Listado Equipamientos</a>
-				</div></li>
+				</div>
+			</li>
+			
+
+			
 
 		</ul>
 
