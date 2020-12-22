@@ -7,21 +7,42 @@
 <c:import url="../common/head.jsp"/>
 
 <style>
-      th {
-        background-color: aquamarine;
-        width: 1em;
-      }
+    th {
+      background-color: aquamarine;
+      width: 1em;
+      height: 2em;
+    }
 
-      td {
-        background-color: bisque;
-        width: 3em;
-        height: 2em;
-      }
+    td {
+      background-color: bisque;
+      width: 3em;
+      height: 2em;
+    }
 
-      .diaMes {
-        color: black;
-        background-color: aquamarine;
-      }
+    .diaMes {
+      color: black;
+      background-color: aquamarine;
+    }
+
+    #leyendaColores {
+      width: 50%;
+      padding: 1em;
+      font-size: 1em;
+    }
+
+    .festivo {
+      background-color: coral;
+    }
+
+    .libre {
+      background-color: chartreuse;
+
+    }
+
+    .ocupado {
+      background-color: crimson;
+
+    }
     </style>
 
 <title>Reservas</title>
@@ -29,7 +50,7 @@
 </head>
 <body>
 	
-<c:import url="../common/navbarAdmin.jsp"/>
+<c:import url="../common/navbarPublic.jsp"/>
 	
 	<div class="container-md w-50">
 		<div class="pt-5"></div>
