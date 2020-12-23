@@ -23,6 +23,10 @@ public class Aula {
 	@NonNull
 	private int id;
 	
+	@Column(name = "nombre")
+	@NonNull
+	private String nombre;
+		
 	@Column(name = "id_sede")
 	@NonNull
 	private int idSede;

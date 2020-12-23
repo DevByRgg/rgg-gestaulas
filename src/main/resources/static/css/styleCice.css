@@ -1,3 +1,9 @@
 .bg-cice {
-	background-color: #ff00ff;
+	background-color: #e50081;
 }
+
+.cice-hover:hover {
+	background-color: #ff3b9a;
+	color: black;
+}
+

@@ -22,7 +22,7 @@
 		<div class="pt-5"></div>
 		
 		<h2 class="pt-3 pb-2">
-			Sedes <span class="badge text-white bg-cice">LISTADO</span>
+			Aulas <span class="badge text-white bg-cice">LISTADO</span>
 		</h2>
 
 		<!-- Forumulario -->
@@ -30,6 +30,7 @@
 				<thead>
 					<tr tr class="thead-dark">
 						<th class="align-middle text-center" scope="col">Id</th>
+						<th class="align-middle text-left" scope="col">Nombre</th>
 						<th class="align-middle text-left" scope="col">Sede</th>
 						<th class="align-middle text-left" scope="col">Capacidad</th>
 						<th class="align-middle text-right" scope="col">Equipo Profesor</th>
@@ -43,6 +44,7 @@
 					<c:forEach items="${aulas}" var="aula">
 					<tr>
 	      				<th scope="row" class="align-middle text-center">${aula.id}</th>
+						<td class="align-middle text-right">${aula.nombre}</td>
 						<td class="align-middle text-right">${aula.idSede}</td>
 						<td class="align-middle text-right">${aula.capacidad}</td>
 						<td class="align-middle text-right">${aula.equipoProfesor}</td>

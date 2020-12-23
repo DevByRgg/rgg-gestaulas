@@ -29,6 +29,12 @@
 		<!-- Forumulario -->
 		<form action="crearAulaControl" method="GET">
 			
+			<!-- Nombre -->
+			<div class="form-group mt-4">
+				<label class="text-secondary font-weight-bold" for="nombre">Nombre</label>
+				<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
+			</div>
+			
 			<!-- Sede del Aula -->
 			<div class="form-group w-25 mt-1">
 				<label class="text-secondary font-weight-bold" for="idSede">Sede del aula</label>
@@ -77,7 +83,7 @@
 			
 			<!-- Boton enviar formulario -->
 			<div class="botonEnviar mt-4">
-				<button type="submit" class="btn btn-outline-secondary btn-lg font-weight-bold text-white bg-cice">Crear</button>
+				<button type="submit" class="btn btn-lg font-weight-bold text-white cice-hover bg-cice">Crear</button>
 			</div>
 		</form>
 	</div>

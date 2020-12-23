@@ -51,16 +51,10 @@
 				<input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono" required>
 			</div>
 			
-			<!-- Numero Aulas de la Sede -->
-			<div class="form-group w-25 mt-4">
-				<label class="text-secondary font-weight-bold" for="numeroAulas">Numero de aulas</label>
-				<input type="number" class="form-control" name="numeroAulas" id="numeroAulas" placeholder="Numero de aulas" required>
-			</div>
-						
 			
 			<!-- Boton enviar formulario -->
 			<div class="botonEnviar mt-4">
-				<button type="submit" class="btn btn-outline-secondary btn-lg font-weight-bold text-white bg-cice">Crear</button>
+				<button type="submit" class="btn btn-lg font-weight-bold text-white cice-hover bg-cice">Crear</button>
 			</div>
 		</form>
 	</div>

@@ -20,7 +20,7 @@ public class EquipamientoController {
 	IEquipamientoService equipamientoService;
 	
 	@GetMapping("/admin/crearEquipamientoControl")
-	public String crearOrdenador(
+	public String crearEquipamiento(
 			@RequestParam (name = "nombre", required = true) String nombre,
 			@RequestParam (name = "descripcion", required = true) String descripcion) {
 		
