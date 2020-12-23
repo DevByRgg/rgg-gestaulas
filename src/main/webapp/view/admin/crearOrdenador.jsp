@@ -59,23 +59,11 @@
 				<input type="number" class="form-control" name="ram" id="ram" placeholder="Ram" required>
 			</div>
 			
-			<!-- Hdd -->
-			<div class="form-group mt-4">
-				<label class="text-secondary font-weight-bold" for="hdd">Hdd</label>
-				<input type="text" class="form-control" name="hdd" id="hdd" placeholder="Hdd" required>
-			</div>
-			
 			<!-- Tarjeta grafica -->
 			<div class="form-group mt-4">
 				<label class="text-secondary font-weight-bold" for="tarjetaGrafica">Tarjeta grafica</label>
 				<input type="text" class="form-control " name="tarjetaGrafica" id="tarjetaGrafica" placeholder="Tarjeta grafica" required>
 			</div>			
-			
-			<!-- Observaciones -->
-			<div class="form-group mt-4">
-				<label class="text-secondary font-weight-bold" for="observaciones">Observaciones</label>
-				<input type="text" class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" required>
-			</div>	
 						
 			<!-- Boton enviar formulario -->
 			<div class="botonEnviar mt-4">

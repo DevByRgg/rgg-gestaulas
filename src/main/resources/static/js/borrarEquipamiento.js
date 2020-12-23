@@ -3,5 +3,5 @@ var idEquipamiento;
 			idEquipamiento=id;
 		}
 		function borrar(){
-			window.location.href = "borrarEquipamiento?id=" + idSede;
+			window.location.href = "borrarEquipamiento?id=" + idEquipamiento;
 		}

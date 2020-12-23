@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Entity
-@Table(name = "sedes")
+@Table(name = "tipo_aulas")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Sede {
+public class TipoAula {
 	@Id
 	@Column(name = "id")
 	@NonNull
@@ -25,17 +25,4 @@ public class Sede {
 	@Column(name = "nombre")
 	@NonNull
 	private String nombre;
-		
-	@Column(name = "direccion")
-	@NonNull
-	private String direccion;
-	
-	@Column(name = "codigo_postal")
-	@NonNull
-	private String codigoPostal;
-	
-	@Column(name = "telefono")
-	@NonNull
-	private String telefono;
-	
 }

@@ -9,7 +9,7 @@
 <c:import url="../common/head.jsp"/>
 
 		
-<title>Realizar reservas</title>
+<title>Consultar Aulas</title>
 
 </head>
 <body>
@@ -20,12 +20,10 @@
 		<div class="pt-5"></div>
 		
 		<!-- Titulo -->
-		<h2 class="pt-3">
-			Cice <span class="badge text-white bg-cice">CALENDAR</span>
-		</h2>
+		<h2 class="pt-3">Cice <span class="badge text-white bg-cice">CALENDAR</span></h2>
 		
 		<!-- Forumulario -->
-		<form action="buscarReservaControl" method="GET">
+		<form action="elegirAula" method="GET">
 			
 			
 			<div class="row align-items-end mt-4">
@@ -88,7 +86,7 @@
 		</form>
 		
 		<!-- Opciones -->
-		<div class="pt-3">
+		<div class="container w-75 pt-3">
 			<form action="elegirAulaReservaControl" method="GET">
 				<table class="table">
   					<thead>
@@ -100,15 +98,15 @@
 					</thead>
   					
   					<tbody>
-    				<c:forEach items="${resultados}" var="resultado">
+    				<c:forEach items="${resAulas}" var="resAula">
 						<tr>
 	      					<th scope="row" class="align-top text-center">
-	      						<input class="form-check-input" type="radio" name="opcion" id="${resultado.id}" value="${resultado.id}">
+	      						<input class="form-check-input" type="radio" name="opcion" id="${resAula.id}" value="${resAula.id}">
 	      					</th>
 						
 							<td class="align-middle text-left">
-								<label class="form-check-label" for="${resultado.id}">
-    								${resultado.nombre}
+								<label class="form-check-label" for="${resAula.id}">
+    								${resAula.nombre}
 								</label>
 							</td>
 							
@@ -121,7 +119,7 @@
 						
 							<td class="align-middle text-left"></td>
 							
-							<td class="align-middle text-left">
+							<td class="align-middle text-right">
 								<button type="submit" class="btn font-weight-bold text-white cice-hover bg-cice">Seleccionar</button>
 							</td>	
 						</tr>			

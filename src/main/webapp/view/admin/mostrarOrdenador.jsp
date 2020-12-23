@@ -29,13 +29,12 @@
 		<table class="table table-bordered table-dark table-striped">
 				<thead>
 					<tr tr class="thead-dark">
-						<th class="align-middle text-center" scope="col">Tipo</th>
+						<th class="align-middle text-center" scope="col">Id</th>
 						<th class="align-middle text-center" scope="col">Nombre</th>
 						<th class="align-middle text-center" scope="col">Sistema Operativo</th>
 						<th class="align-middle text-center" scope="col">Tamaño pantalla</th>
 						<th class="align-middle text-center" scope="col">Cpu</th>
 						<th class="align-middle text-center" scope="col">Memoria Ram</th>
-						<th class="align-middle text-center" scope="col">Hdd</th>
 						<th class="align-middle text-center" scope="col">Tarjeta grafica</th>						
 						<th class="align-middle text-center" scope="col">Borrar</th>
 						<th class="align-middle text-center" scope="col">Update</th>					
@@ -51,11 +50,9 @@
 						<td class="align-middle text-center">${ordenador.dimensionPantalla}"</td>
 						<td class="align-middle text-center">${ordenador.cpu}</td>
 						<td class="align-middle text-center">${ordenador.ram} Gb</td>
-						<td class="align-middle text-center">${ordenador.hdd}</td>
 						<td class="align-middle text-center">${ordenador.tarjetaGrafica}</td>
-						<td class="align-middle text-center">${ordenador.observaciones}</td>
 						<td class="align-middle text-center">
-							<button type="button" class="btn btn-secondary text-white bg-cice" data-toggle="modal" data-target="#divBorrado"
+							<button type="button" class="btn cice-hover bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
 							onclick="configurarBorrado('${ordenador.id}')">
 								Borrar
 							</button>
@@ -93,6 +90,3 @@
 </body>
 </html>
 
-
-</body>
-</html>

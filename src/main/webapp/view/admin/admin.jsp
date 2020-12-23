@@ -85,7 +85,7 @@
 						<h5 class="card-title">Busqueda</h5>
 					</div>
 					<a title="Busqueda" href="/aulas/reservas/busquedaReserva">
-						<img class="card-img-top" src="/aulas/images/sede_800x600.png"  height="200" alt="Card image cap">
+						<img class="card-img-top" src="/aulas/images/buscar_800x600.png"  height="200" alt="Card image cap">
 					</a>				
 				</div>
 				
@@ -94,7 +94,7 @@
 						<h5 class="card-title">Reservar</h5>
 					</div>
 					<a title="Aulas" href="/aulas/admin/crearReserva">
-						<img class="card-img-top" src="/aulas/images/aula_800x600.png"  height="200" alt="Card image cap">
+						<img class="card-img-top" src="/aulas/images/curso_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
 				

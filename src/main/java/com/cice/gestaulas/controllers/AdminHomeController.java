@@ -11,13 +11,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cice.gestaulas.entities.Equipamiento;
 import com.cice.gestaulas.entities.Ordenador;
 import com.cice.gestaulas.entities.Sede;
+import com.cice.gestaulas.entities.TipoAula;
 import com.cice.gestaulas.services.interfaces.IEquipamientoService;
 import com.cice.gestaulas.services.interfaces.IOrdenadorService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
+import com.cice.gestaulas.services.interfaces.ITipoAulaService;
 
 @Controller
 public class AdminHomeController {
 
+	@Autowired
+	ITipoAulaService tipoAulaService;
+	
 	@Autowired
 	ISedeService sedeService;
 	
@@ -45,9 +50,11 @@ public class AdminHomeController {
 	@GetMapping("/admin/crearAula")
 	public ModelAndView crearAulaPage() {
 		ModelAndView mav = new ModelAndView();
+		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
 		List<Sede> listaSedes = sedeService.findAll();
 		List<Ordenador> listaOrdenadores = ordenadorService.findAll();
 		List<Equipamiento> listaEquipamientos = equipamientoService.findAll();
+		mav.addObject("tipoAulas", listaTipoAulas);
 		mav.addObject("sedes", listaSedes);
 		mav.addObject("ordenadores", listaOrdenadores);
 		mav.addObject("equipamientos", listaEquipamientos);
@@ -55,6 +62,13 @@ public class AdminHomeController {
 		return mav;
 	}
 
+	@GetMapping("/admin/crearTipoAula")
+	public ModelAndView crearTipoAulaPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/crearTipoAula");
+		return mav;
+	}
+	
 	@GetMapping("/admin/crearOrdenador")
 	public ModelAndView crearOrdenadorPage() {
 		ModelAndView mav = new ModelAndView();
@@ -67,7 +81,6 @@ public class AdminHomeController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/crearEquipamiento");
 		return mav;
-	
 	}
 	
 }

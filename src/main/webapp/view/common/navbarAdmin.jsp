@@ -28,6 +28,8 @@
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearAula">Crear Aula</a>
                     <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarAula">Listado Aulas</a>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearTipoAula">Crear Tipo de aula</a>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarTipoAula">Listado Tipos de aula</a>
                 </div>
             </li>
 

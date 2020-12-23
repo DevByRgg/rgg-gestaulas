@@ -25,11 +25,9 @@ public class OrdenadorController {
 			@RequestParam (name = "dimensionPantalla", required = true) int dimensionPantalla,
 			@RequestParam (name = "cpu", required = true) String cpu,
 			@RequestParam (name = "ram", required = true) int ram,
-			@RequestParam (name = "hdd", required = true) String hdd,
-			@RequestParam (name = "tarjetaGrafica", required = true) String tarjetaGrafica,
-			@RequestParam (name = "observaciones", required = true) String observaciones) {
+			@RequestParam (name = "tarjetaGrafica", required = true) String tarjetaGrafica) {
 		
-		Ordenador o = new Ordenador(0, nombre, sistemaOperativo, dimensionPantalla, cpu, ram, hdd, tarjetaGrafica, observaciones);
+		Ordenador o = new Ordenador(0, nombre, sistemaOperativo, dimensionPantalla, cpu, ram, tarjetaGrafica);
 		
 		ordenadorService.create(o);
 		

@@ -6,7 +6,7 @@
 
 <c:import url="../common/head.jsp"/>
 
-<script src="/aulas/js/borrarAula.js"></script>
+<script src="/aulas/js/borrarTipoAula.js"></script>
 
 <title>Zona Administracion</title>
 
@@ -16,13 +16,13 @@
 	
 <c:import url="../common/navbarAdmin.jsp"/>
 	
-	<div class="container-md w-75">
+	<div class="container-md w-50">
 		<!-- Titulo -->
 		
 		<div class="pt-5"></div>
 		
 		<h2 class="pt-3 pb-2">
-			Aulas <span class="badge text-white bg-cice">LISTADO</span>
+			Tipo de aulas <span class="badge text-white bg-cice">LISTADO</span>
 		</h2>
 
 		<!-- Forumulario -->
@@ -31,32 +31,19 @@
 					<tr tr class="thead-dark">
 						<th class="align-middle text-center" scope="col">Id</th>
 						<th class="align-middle text-left" scope="col">Nombre</th>
-						<th class="align-middle text-left" scope="col">Tipo</th>
-						<th class="align-middle text-left" scope="col">Sede</th>
-						<th class="align-middle text-left" scope="col">Capacidad</th>
-						<th class="align-middle text-right" scope="col">Equipo Profesor</th>
-						<th class="align-middle text-right" scope="col">Equipo Alumnos</th>
-						<th class="align-middle text-right" scope="col">Equipamiento</th>
 						<th class="align-middle text-center" scope="col">Borrar</th>
 						<th class="align-middle text-center" scope="col">Update</th>					
 					</tr>
 				</thead>
 				
 				<tbody>
-					<c:forEach items="${aulas}" var="aula">
+					<c:forEach items="${tipoAulas}" var="tipoAula">
 					<tr>
-	      				<th scope="row" class="align-middle text-center">${aula.id}</th>
-						<td class="align-middle text-right">${aula.nombre}</td>
-						<td class="align-middle text-right">${aula.tipo}</td>
-						<td class="align-middle text-right">${aula.idSede}</td>
-						<td class="align-middle text-right">${aula.capacidad}</td>
-						<td class="align-middle text-right">${aula.equipoProfesor}</td>
-						<td class="align-middle text-right">${aula.equipoAlumno}</td>
-						<td class="align-middle text-right">${aula.equipamiento}</td>
-
+	      				<th scope="row" class="align-middle text-center">${tipoAula.id}</th>
+						<td class="align-middle text-left">${tipoAula.nombre}</td>
 						<td class="align-middle text-center">
 							<button type="button" class="btn cice-hover bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
-							onclick="configurarBorrado('${aula.id}')">
+							onclick="configurarBorrado('${tipoAula.id}')">
 								Borrar
 							</button>
 						</td>
@@ -72,7 +59,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-cice">
-					<h5 class="modal-title text-white" id="exampleModalLongTitle">Borrar Aula</h5>
+					<h5 class="modal-title text-white" id="exampleModalLongTitle">Borrar Tipo de aula</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>

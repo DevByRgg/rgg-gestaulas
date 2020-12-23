@@ -26,8 +26,12 @@ public class Aula {
 	@Column(name = "nombre")
 	@NonNull
 	private String nombre;
-		
-	@Column(name = "id_sede")
+	
+	@Column(name = "tipo")
+	@NonNull
+	private int tipo;
+	
+	@Column(name = "sede")
 	@NonNull
 	private int idSede;
 	
@@ -35,7 +39,7 @@ public class Aula {
 	@NonNull
 	private int capacidad;
 	
-	@Column(name = "equipo_profe")
+	@Column(name = "equipo_profesor")
 	@NonNull
 	private int equipoProfesor;
 	

@@ -44,7 +44,7 @@
 						<td class="align-middle text-left">${equipamiento.nombre}</td>
 						<td class="align-middle text-left">${equipamiento.descripcion}</td>
 						<td class="align-middle text-center">
-							<button type="button" class="btn bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
+							<button type="button" class="btn cice-hover bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
 							onclick="configurarBorrado('${equipamiento.id}')">
 								Borrar
 							</button>

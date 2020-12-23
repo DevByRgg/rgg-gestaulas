@@ -35,10 +35,23 @@
 				<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
 			</div>
 			
+			<!-- Tipo -->
+			<div class="form-group w-50 mt-1">
+				<label class="text-secondary font-weight-bold" for="tipo">Tipo de Aula</label>
+				<select	class="form-control" id="tipo" name="tipo" required>
+					<option selected disabled></option>
+					<c:forEach items="${tipoAulas}" var="tipoAula">
+						<option value="${tipoAula.id}">${tipoAula.nombre}</option>
+					</c:forEach>
+				</select>
+			</div>
+			
+			
 			<!-- Sede del Aula -->
 			<div class="form-group w-25 mt-1">
 				<label class="text-secondary font-weight-bold" for="idSede">Sede del aula</label>
-				<select	class="form-control" id="idSede" name="idSede">
+				<select	class="form-control" id="idSede" name="idSede" required>
+						<option selected disabled></option>
 					<c:forEach items="${sedes}" var="sede">
 						<option value="${sede.id}">${sede.nombre}</option>
 					</c:forEach>
@@ -54,7 +67,8 @@
 			<!-- Equipo profesor -->
 			<div class="form-group w-50 mt-1">
 				<label class="text-secondary font-weight-bold" for="equipoProfesor">Equipo profesor</label>
-				<select	class="form-control" id="equipoProfesor" name="equipoProfesor">
+				<select	class="form-control" id="equipoProfesor" name="equipoProfesor" required>
+						<option selected disabled></option>
 					<c:forEach items="${ordenadores}" var="ordenador">
 						<option value="${ordenador.id}">${ordenador.nombre}</option>
 					</c:forEach>
@@ -64,7 +78,8 @@
 			<!-- Equipo alumnos -->
 			<div class="form-group w-50 mt-1">
 				<label class="text-secondary font-weight-bold" for="equipoAlumno">Equipo alumnos</label>
-				<select	class="form-control" id="equipoAlumno" name="equipoAlumno">
+				<select	class="form-control" id="equipoAlumno" name="equipoAlumno" required>
+						<option selected disabled></option>
 					<c:forEach items="${ordenadores}" var="ordenador">
 						<option value="${ordenador.id}">${ordenador.nombre}</option>
 					</c:forEach>
@@ -74,7 +89,8 @@
 			<!-- Equipamiento -->
 			<div class="form-group mt-1">
 				<label class="text-secondary font-weight-bold" for="equipamiento">Equipamiento</label>
-				<select	class="form-control " id="equipamiento" name="equipamiento">
+				<select	class="form-control " id="equipamiento" name="equipamiento" required>
+						<option selected disabled></option>
 					<c:forEach items="${equipamientos}" var="equipamiento">
 						<option value="${equipamiento.id}">${equipamiento.nombre}</option>
 					</c:forEach>
