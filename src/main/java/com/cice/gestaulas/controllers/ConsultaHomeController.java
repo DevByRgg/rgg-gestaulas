@@ -11,14 +11,15 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cice.gestaulas.entities.Aula;
 import com.cice.gestaulas.entities.Sede;
+import com.cice.gestaulas.entities.TipoAula;
 import com.cice.gestaulas.services.interfaces.IAulaService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
+import com.cice.gestaulas.services.interfaces.ITipoAulaService;
 
 @Controller
 public class ConsultaHomeController {
@@ -29,10 +30,14 @@ public class ConsultaHomeController {
 	@Autowired
 	IAulaService aulaService;
 	
+	@Autowired
+	ITipoAulaService tipoAulaService;
+	
 	@GetMapping("consultas/buscarAula")
 	public ModelAndView buscarAulaPage() {
 		List<Sede> listaSedes = sedeService.findAll();
 		List<Aula> listaAulas = aulaService.findAll();
+		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
 		
 		Map<Integer, Integer> listaAnios = new HashMap<Integer, Integer>();
 		for (int i = 0; i < 5; i++) {
@@ -47,6 +52,7 @@ public class ConsultaHomeController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("sedes", listaSedes);
 		mav.addObject("aulas", listaAulas);
+		mav.addObject("tipoAulas", listaTipoAulas);
 		mav.addObject("anios", listaAnios);
 		mav.addObject("meses", listaMeses);
 		
@@ -57,11 +63,12 @@ public class ConsultaHomeController {
 	
 	//Metodo que crea el ModelAndview para todos los metodos
 	//-------------------------------------------------------------------------------------------------------
-	private ModelAndView consultaAulas (List<Aula> resAulas, int idSede , int mes, int anio, int turno) {
+	private ModelAndView consultaAulas (List<Aula> resAulas) {
 		ModelAndView mav = new ModelAndView();
 		
 		List<Sede> listaSedes = sedeService.findAll();
 		List<Aula> listaAulas = aulaService.findAll();
+		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
 		
 		Map<Integer, Integer> listaAnios = new HashMap<Integer, Integer>();
 		for (int i = 0; i < 5; i++) {
@@ -75,16 +82,14 @@ public class ConsultaHomeController {
 		
 		mav.addObject("sedes", listaSedes);
 		mav.addObject("aulas", listaAulas);
+		mav.addObject("tipoAulas", listaTipoAulas);
 		mav.addObject("anios", listaAnios);
 		mav.addObject("meses", listaMeses);
 		
 		//------------------------------------------------------------------------------------------------------
 		
 		mav.addObject("resAulas", resAulas);
-		mav.addObject("resAulas", resAulas);
-		mav.addObject("resAulas", resAulas);
-		mav.addObject("resAulas", resAulas);
-		mav.addObject("resAulas", resAulas);
+		
 		mav.setViewName("consultas/buscarAula");
 		return mav;
 	}
@@ -93,17 +98,25 @@ public class ConsultaHomeController {
 	
 	@GetMapping("consultas/elegirAula")
 	public ModelAndView elegirAulaPage(
-		@RequestParam (name="idSede", required = true) int idSede,
-		@RequestParam (name="idAula", required = true) int idAula,
-		@RequestParam (name="mes", required = true) int mes,
-		@RequestParam (name="anio", required = true) int anio,
-		@RequestParam (name="turno", required = true) int turno) {
-	
-		List<Aula> listaAulas = aulaService.findAll();
+		@RequestParam (name="sede") int sede,
+		@RequestParam (name="tipo") int tipo) {
 		
-		ModelAndView mav = consultaAulas(listaAulas, idSede, mes, anio, turno);
-		return mav;
+		if (sede == -1) {
+			List<Aula> listaAulas = aulaService.findByTipo(tipo);
+			ModelAndView mav = consultaAulas(listaAulas);
+			return mav;
+			
+		} else if (tipo == -1) {
+			List<Aula> listaAulas = aulaService.findBySede(sede);
+			ModelAndView mav = consultaAulas(listaAulas);
+			return mav;
+			
+		} else {
+			List<Aula> listaAulas = aulaService.findBySedeAndTipo(sede, tipo);
+			ModelAndView mav = consultaAulas(listaAulas);
+			return mav;
+		}
+		
 	}
-	
 	
 }

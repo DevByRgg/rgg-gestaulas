@@ -26,13 +26,13 @@ public class AulaController {
 	public String crearAula(
 			@RequestParam (name = "nombre", required = true) String nombre,
 			@RequestParam (name = "tipo", required = true) int tipo,
-			@RequestParam (name = "idSede", required = true) int idSede,
+			@RequestParam (name = "sede", required = true) int sede,
 			@RequestParam (name = "capacidad", required = true) int capacidad,
 			@RequestParam (name = "equipoProfesor", required = true) int equipoProfesor,
 			@RequestParam (name = "equipoAlumno", required = true) int equipoAlumno,
 			@RequestParam (name = "equipamiento", required = true) int equipamiento) {
 		
-		Aula a = new Aula(0, nombre, tipo, idSede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
+		Aula a = new Aula(0, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
 		
 		aulaService.create(a);
 		

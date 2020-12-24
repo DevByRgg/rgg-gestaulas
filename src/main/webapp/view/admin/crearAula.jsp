@@ -49,8 +49,8 @@
 			
 			<!-- Sede del Aula -->
 			<div class="form-group w-25 mt-1">
-				<label class="text-secondary font-weight-bold" for="idSede">Sede del aula</label>
-				<select	class="form-control" id="idSede" name="idSede" required>
+				<label class="text-secondary font-weight-bold" for="sede">Sede del aula</label>
+				<select	class="form-control" id="sede" name="sede" required>
 						<option selected disabled></option>
 					<c:forEach items="${sedes}" var="sede">
 						<option value="${sede.id}">${sede.nombre}</option>

@@ -48,7 +48,7 @@
 	      				<th scope="row" class="align-middle text-center">${aula.id}</th>
 						<td class="align-middle text-right">${aula.nombre}</td>
 						<td class="align-middle text-right">${aula.tipo}</td>
-						<td class="align-middle text-right">${aula.idSede}</td>
+						<td class="align-middle text-right">${aula.sede}</td>
 						<td class="align-middle text-right">${aula.capacidad}</td>
 						<td class="align-middle text-right">${aula.equipoProfesor}</td>
 						<td class="align-middle text-right">${aula.equipoAlumno}</td>

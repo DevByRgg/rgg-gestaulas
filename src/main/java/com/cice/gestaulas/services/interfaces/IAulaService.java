@@ -12,5 +12,10 @@ public interface IAulaService {
 	public void update(Aula a);
 	public void delete(int id);
 	public void delete(Aula a);
-
+	
+	//Query-----------------------
+	public List<Aula> findBySedeAndTipo(int sede, int tipo);
+	public List<Aula> findBySede(int sede);
+	public List<Aula> findByTipo(int tipo);
+	
 }

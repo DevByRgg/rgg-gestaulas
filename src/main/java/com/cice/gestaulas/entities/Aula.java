@@ -33,7 +33,7 @@ public class Aula {
 	
 	@Column(name = "sede")
 	@NonNull
-	private int idSede;
+	private int sede;
 	
 	@Column(name = "capacidad")
 	@NonNull
