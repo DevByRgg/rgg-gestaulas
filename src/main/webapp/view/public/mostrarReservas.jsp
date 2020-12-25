@@ -7,22 +7,6 @@
 <c:import url="../common/head.jsp" />
 
 <style>
-th {
-	background-color: aquamarine;
-	width: 1em;
-	height: 2em;
-}
-
-td {
-	background-color: bisque;
-	width: 3em;
-	height: 2em;
-}
-
-.diaMes {
-	color: black;
-	background-color: aquamarine;
-}
 
 #leyendaColores {
 	width: 50%;
