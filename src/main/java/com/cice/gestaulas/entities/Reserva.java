@@ -1,7 +1,6 @@
 package com.cice.gestaulas.entities;
 
-import java.util.Date;
-
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,17 +30,17 @@ public class Reserva {
 	
 	@Column(name="dia_inicio")
 	@NonNull
-	private Date diaInicio;
+	private LocalDateTime diaInicio;
 	
 	@Column(name="dia_fin")
 	@NonNull
-	private Date diaFin;
+	private LocalDateTime diaFin;
 	
 	@Column(name="hora_inicio")
 	@NonNull
-	private Date horaInicio;
+	private LocalDateTime horaInicio;
 	
 	@Column(name="hora_fin")
 	@NonNull
-	private Date horaFin;
+	private LocalDateTime horaFin;
 }

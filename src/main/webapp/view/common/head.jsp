@@ -4,6 +4,10 @@
 	<!-- JQUERY -->	
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
+<!-- FULL CALENDAR JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js" crossorigin="anonymous"></script>
+
+
 	<!-- POPPER -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 
@@ -26,3 +30,6 @@
 
 <!-- ESTILOS NO BOOTSTRAP CSS -->
 <link rel="stylesheet" type="text/css" href="/aulas/css/styleCice.css" />
+
+<!-- ESTILO CSS FULLCALENDAR -->
+<link rel="stylesheet" type="text/css" href="/aulas/css/styleFullCalendar.css" />
