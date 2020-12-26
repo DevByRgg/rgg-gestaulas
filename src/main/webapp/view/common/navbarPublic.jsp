@@ -25,36 +25,9 @@
 				aria-haspopup="true" aria-expanded="false">Elegir Sede</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
 
-
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Sede 1</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Sede 2</a>
+					<a class="dropdown-item text-white" href="/aulas/mostrarSedes">Sede 1</a>
+					<a class="dropdown-item text-white" href="/aulas/mostrarSedes">Sede 2</a>
 					
-
-
-				</div>
-			</li>
-
-			<li class="nav-item dropdown mr-3"><a
-				class="nav-link dropdown-toggle text-white" href="#"
-				id="navbarDropdown" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false">Elegir Mes</a>
-				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-
-
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Enero</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Febrero</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Marzo</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Abril</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Mayo</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Junio</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Julio</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Agosto</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Septiembre</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Octubre</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Noviembre</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarMes">Diciembre</a>
-
-
 				</div>
 			</li>
 			
@@ -72,7 +45,6 @@
 					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 4</a>
 					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 5</a>
 					
-
 				</div>
 			</li>
 
@@ -88,8 +60,18 @@
 				</div>
 			</li>
 			
+			<li class="nav-item dropdown mr-3"><a
+				class="nav-link dropdown-toggle text-white" href="#"
+				id="navbarDropdown" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">Elegir Tipo de PC</a>
+				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
 
-			
+					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Ordenador Mac</a>
+					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Ordenador Windows</a>
+
+				</div>
+			</li>
+						
 
 		</ul>
 

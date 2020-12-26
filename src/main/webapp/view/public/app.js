@@ -16,7 +16,8 @@ $(document).ready(function () {
 		weekend: true,
 		minTime: '08:00:00',
 		maxTime: '15:00:00',
-		slotDuration: '01:00:00'
+		slotDuration: '00:30:00',
+		slotLabelInterval: '01:00:00'	
 	});
 
 	$('#horarios').fullCalendar({

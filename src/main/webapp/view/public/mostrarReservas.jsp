@@ -7,7 +7,6 @@
 <c:import url="../common/head.jsp" />
 
 <style>
-
 #leyendaColores {
 	width: 50%;
 	padding: 1em;
@@ -35,29 +34,32 @@
 	<c:import url="../common/navbarPublic.jsp" />
 
 
-
-
-	<div class="container-md w-50">
-
+	<div class="container-md w-50" id="turnoMorning">
+		
 		<div class="pt-5">
-		
-		<!-- Aqui se genera automaticamente un calendario  -->
-		<div id="calendar"></div>
-		
-		
-		
-			
-
-
-
+			<!-- Titulo -->
+			<h2 class="pt-3">
+				Aulas CICE <span class="badge text-white bg-cice">Turno Mañana</span>
+			</h2>
+			<!-- Aqui se genera automaticamente un calendario  -->
+			<div id="calendarMorning"></div>
 
 		</div>
 
-		<!-- Titulo -->
-		<h2 class="pt-3">
-			Reservas Aulas CICE <span class="badge text-white bg-cice">ZONE</span>
-		</h2>
 
+	</div>
+	
+	<div class="container-md w-50" id="turnoAfternoon">
+		
+		<div class="pt-5">
+			<!-- Titulo -->
+			<h2 class="pt-3">
+				Aulas CICE <span class="badge text-white bg-cice">Turno Tarde</span>
+			</h2>
+			<!-- Aqui se genera automaticamente un calendario  -->
+			<div class="container" id="calendarAfternoon"></div>
+
+		</div>
 
 
 	</div>
