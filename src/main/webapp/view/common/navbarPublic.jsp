@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-cice">
 	<a class="navbar-brand text-white" href="#"> <img
 		src="/aulas/images/logo_blanco_total.svg" height="25"
@@ -16,17 +19,20 @@
 		<ul class="navbar-nav ml-auto mr-auto">
 
 			<li class="nav-item active mr-3"><a class="nav-link text-white"
-				href="/aulas/">Reservas aulas CICE </a></li>
+				href="/aulas/">Consulta aulas CICE </a></li>
 				
 				
-			<li class="nav-item dropdown mr-3"><a
+			<li class="nav-item dropdown mr-3">
+			
+			
+			<!-- <a
 				class="nav-link dropdown-toggle text-white" href="#"
 				id="navbarDropdown" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false">Elegir Sede</a>
-				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
+				aria-haspopup="true" aria-expanded="false">Elegir Sede</a> -->
+<!-- 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown"> -->
 
-				<select	class="form-control" id="sede" name="sede">
-							<option selected value="-1"></option>
+				<select	class="form-control bg-cice" id="sede" name="sede">
+							<option selected value="-1">Elegir Sede</option>
 						<c:forEach items="${sedes}" var="sede">
 							<option value="${sede.id}">${sede.nombre}</option>
 						</c:forEach>
@@ -36,7 +42,7 @@
 					<!-- <a class="dropdown-item text-white" href="/aulas/mostrarSedes">Sede 1</a>
 					<a class="dropdown-item text-white" href="/aulas/mostrarSedes">Sede 2</a> -->
 					
-				</div>
+<!-- 				</div> -->
 			</li>
 			
 			
@@ -47,11 +53,11 @@
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
 
 
-					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 1</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 2</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 3</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 4</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Aula 5</a>
+					<a class="dropdown-item cice-hover text-white" href="/aulas/mostrarAula">Aula 1</a>
+					<a class="dropdown-item cice-hover text-white" href="/aulas/mostrarAula">Aula 2</a>
+					<a class="dropdown-item cice-hover text-white" href="/aulas/mostrarAula">Aula 3</a>
+					<a class="dropdown-item cice-hover text-white" href="/aulas/mostrarAula">Aula 4</a>
+					<a class="dropdown-item cice-hover text-white" href="/aulas/mostrarAula">Aula 5</a>
 					
 				</div>
 			</li>
@@ -62,8 +68,8 @@
 				aria-haspopup="true" aria-expanded="false">Elegir Turno</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
 
-					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Turno Mañana</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Turno Tarde</a>
+					<a class="dropdown-item cice-hover text-white" href="/aulas/mostrarAula">Turno MaÃ±ana</a>
+					<a class="dropdown-item cice-hover text-white" href="/aulas/mostrarAula">Turno Tarde</a>
 
 				</div>
 			</li>
@@ -74,8 +80,8 @@
 				aria-haspopup="true" aria-expanded="false">Elegir Tipo de PC</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
 
-					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Ordenador Mac</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarAula">Ordenador Windows</a>
+					<a class="dropdown-item cice-hover text-white" href="/aulas/mostrarAula">Ordenador Mac</a>
+					<a class="dropdown-item cice-hover text-white" href="/aulas/mostrarAula">Ordenador Windows</a>
 
 				</div>
 			</li>
