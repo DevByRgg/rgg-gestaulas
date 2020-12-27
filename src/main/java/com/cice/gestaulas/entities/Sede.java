@@ -30,11 +30,11 @@ public class Sede {
 	@NonNull
 	private String direccion;
 	
-	@Column(name = "codigo_postal")
+	@Column(name = "cp")
 	@NonNull
 	private String codigoPostal;
 	
-	@Column(name = "telefono")
+	@Column(name = "tlf")
 	@NonNull
 	private String telefono;
 	

@@ -25,8 +25,16 @@
 				aria-haspopup="true" aria-expanded="false">Elegir Sede</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
 
-					<a class="dropdown-item text-white" href="/aulas/mostrarSedes">Sede 1</a>
-					<a class="dropdown-item text-white" href="/aulas/mostrarSedes">Sede 2</a>
+				<select	class="form-control" id="sede" name="sede">
+							<option selected value="-1"></option>
+						<c:forEach items="${sedes}" var="sede">
+							<option value="${sede.id}">${sede.nombre}</option>
+						</c:forEach>
+					</select>
+
+
+					<!-- <a class="dropdown-item text-white" href="/aulas/mostrarSedes">Sede 1</a>
+					<a class="dropdown-item text-white" href="/aulas/mostrarSedes">Sede 2</a> -->
 					
 				</div>
 			</li>
