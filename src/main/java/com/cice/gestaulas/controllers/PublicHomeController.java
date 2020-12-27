@@ -10,10 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cice.gestaulas.entities.Equipamiento;
 import com.cice.gestaulas.entities.Ordenador;
+import com.cice.gestaulas.entities.Reserva;
 import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.services.interfaces.IAulaService;
 import com.cice.gestaulas.services.interfaces.IEquipamientoService;
 import com.cice.gestaulas.services.interfaces.IOrdenadorService;
+import com.cice.gestaulas.services.interfaces.IReservaService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 
 @Controller
@@ -31,14 +33,19 @@ public class PublicHomeController {
 	@Autowired
 	IEquipamientoService equipamientoService;
 	
+	@Autowired
+	IReservaService reservaService;
+	
 	
 	@GetMapping("/")
 	public ModelAndView mostrarHomePage() {
 		ModelAndView mav = new ModelAndView();
 		List<Sede> listaSedes = sedeService.findAll();
 		List<Ordenador> listaOrdenadores = ordenadorService.findAll();
+		List<Reserva> listaReservas = reservaService.findAll();
 		mav.addObject("sedes", listaSedes);
 		mav.addObject("ordenadores", listaOrdenadores);
+		mav.addObject("reservas", listaReservas);
 		
 		mav.setViewName("public/mostrarReservas");
 		return mav;

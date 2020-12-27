@@ -35,11 +35,12 @@
 
 
 	<div class="container-md w-50" id="turnoMorning">
-		
+
 		<div class="pt-5">
 			<!-- Titulo -->
 			<h2 class="pt-3">
-				Aulas CICE <span class="badge text-white bg-cice">Turno Mañana</span>
+				Aulas CICE <span class="badge text-white bg-cice">Turno
+					Mañana</span>
 			</h2>
 			<!-- Aqui se genera automaticamente un calendario  -->
 			<div id="calendarMorning"></div>
@@ -48,9 +49,9 @@
 
 
 	</div>
-	
+
 	<div class="container-md w-50" id="turnoAfternoon">
-		
+
 		<div class="pt-5">
 			<!-- Titulo -->
 			<h2 class="pt-3">
@@ -88,7 +89,9 @@
 				id="sedes">
 				<option value="sede1">Sede 1</option>
 				<option value="sede2">Sede 2</option>
-			</select> <label for="aulas">Elegir Aula:</label> <select name="aulas"
+			</select> 
+			
+			<label for="aulas">Elegir Aula:</label> <select name="aulas"
 				id="aulas">
 				<option value="aula1">Aula 1</option>
 				<option value="aula2">Aula 2</option>
