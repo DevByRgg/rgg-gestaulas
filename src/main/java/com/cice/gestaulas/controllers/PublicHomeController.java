@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cice.gestaulas.entities.Equipamiento;
 import com.cice.gestaulas.entities.Ordenador;
 import com.cice.gestaulas.entities.Sede;
+import com.cice.gestaulas.services.interfaces.IAulaService;
 import com.cice.gestaulas.services.interfaces.IEquipamientoService;
 import com.cice.gestaulas.services.interfaces.IOrdenadorService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
@@ -22,6 +23,9 @@ public class PublicHomeController {
 	ISedeService sedeService;
 	
 	@Autowired
+	IAulaService aulaService;
+	
+	@Autowired
 	IOrdenadorService ordenadorService;
 	
 	@Autowired
@@ -31,6 +35,11 @@ public class PublicHomeController {
 	@GetMapping("/")
 	public ModelAndView mostrarHomePage() {
 		ModelAndView mav = new ModelAndView();
+		List<Sede> listaSedes = sedeService.findAll();
+		List<Ordenador> listaOrdenadores = ordenadorService.findAll();
+		mav.addObject("sedes", listaSedes);
+		mav.addObject("ordenadores", listaOrdenadores);
+		
 		mav.setViewName("public/mostrarReservas");
 		return mav;
 	}
@@ -47,8 +56,7 @@ public class PublicHomeController {
 	@GetMapping("/admin/crearAula")
 	public ModelAndView crearAulaPage() {
 		ModelAndView mav = new ModelAndView();
-		List<Sede> listaSedes = sedeService.findAll();
-		List<Ordenador> listaOrdenadores = ordenadorService.findAll();
+		
 		List<Equipamiento> listaEquipamientos = equipamientoService.findAll();
 		mav.addObject("sedes", listaSedes);
 		mav.addObject("ordenadores", listaOrdenadores);
