@@ -119,4 +119,22 @@ public class ConsultaHomeController {
 		
 	}
 	
+	
+	@GetMapping("consultas/verHorarioAula")
+	public ModelAndView verHorarioPage(
+			@RequestParam (name = "aula") int aula,
+			@RequestParam (name = "mes") int mes,
+			@RequestParam (name = "anio") int anio) {
+		
+		int numDias = LocalDate.of(anio, mes, 1).lengthOfMonth();
+		
+		List<LocalDate> listaDias;
+		
+		
+		
+		
+		ModelAndView mav = new ModelAndView();
+		
+		return mav;
+	}
 }

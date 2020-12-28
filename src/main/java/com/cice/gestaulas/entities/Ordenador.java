@@ -19,7 +19,7 @@ import lombok.NonNull;
 public class Ordenador {
 
 	@Id
-	@Column(name = "tipo")
+	@Column(name = "id")
 	@NonNull
 	private int id;
 	
@@ -31,7 +31,7 @@ public class Ordenador {
 	@NonNull
 	private String sistemaOperativo;
 	
-	@Column(name = "dimension_pantalla")
+	@Column(name = "pantalla")
 	@NonNull
 	private int dimensionPantalla;
 	
@@ -43,15 +43,10 @@ public class Ordenador {
 	@NonNull
 	private int ram;
 	
-	@Column(name = "hdd")
-	@NonNull
-	private String hdd;
-
 	@Column(name = "tarjeta_grafica")
 	@NonNull
 	private String tarjetaGrafica;
 	
-	@Column(name = "observaciones")
-	private String observaciones;
+
 	
 }
