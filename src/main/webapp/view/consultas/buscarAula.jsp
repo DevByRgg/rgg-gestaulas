@@ -87,7 +87,6 @@
 							<td class="align-middle text-left">
 								<label class="form-check-label" for="${resAula.sede}">
     								${resAula.sede}
-								</label>
 							</td>
 							
 							<td class="align-middle text-left">

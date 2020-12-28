@@ -25,10 +25,17 @@
 		
 		<h2 class="pt-3 pb-2">
 			Ver <span class="badge text-white bg-cice mr-5">Horario</span> 
-			<a href="#"><img class="ml-5" alt="mes anterior" src="/aulas/icons/flecha2-black-izq-fill.svg" height="30px"></a>
-			<span class="ml-1 mr-1 text-capitalize">${mesTexto}</span>
-			<a href="#"><img class="mr-5" alt="mes siguiente" src="/aulas/icons/flecha2-black-der-fill.svg" height="30px"></a>
-			<span class="ml-5 text-capitalize">${nombreAula}</span>
+			<a href="restarMes?aula=${aula}&mes=${mes}&anio=${anio}"><img class="ml-5" alt="mes anterior" src="/aulas/icons/flecha2-black-izq-fill.svg" height="30px"></a>
+			<span class="ml-2 mr-2 text-center text-capitalize">${mesTexto}</span>
+			<a href="anadirMes?aula=${aula}&mes=${mes}&anio=${anio}"><img class="mr-2" alt="mes siguiente" src="/aulas/icons/flecha2-black-der-fill.svg" height="30px"></a>
+			
+			<a href="restarAnio?aula=${aula}&mes=${mes}&anio=${anio}"><img class="ml-2" alt="mes anterior" src="/aulas/icons/flecha2-black-izq-fill.svg" height="30px"></a>
+			<span class="ml-2 mr-2 text-capitalize">${anio}</span>
+			<a href="anadirAnio?aula=${aula}&mes=${mes}&anio=${anio}"><img class="mr-5" alt="mes siguiente" src="/aulas/icons/flecha2-black-der-fill.svg" height="30px"></a>
+			
+			
+			Aula <span class="badge text-left text-white bg-cice">${nombreAula}</span>
+			
 		</h2>
 
 		

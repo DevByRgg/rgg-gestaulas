@@ -21,6 +21,7 @@ import com.cice.gestaulas.services.interfaces.IAulaService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
 
+
 @Controller
 public class ConsultaHomeController {
 	
@@ -33,8 +34,12 @@ public class ConsultaHomeController {
 	@Autowired
 	ITipoAulaService tipoAulaService;
 	
+	
+	
 	@GetMapping("consultas/buscarAula")
 	public ModelAndView buscarAulaPage() {
+		ModelAndView mav = new ModelAndView();
+		
 		List<Sede> listaSedes = sedeService.findAll();
 		List<Aula> listaAulas = aulaService.findAll();
 		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
@@ -49,7 +54,7 @@ public class ConsultaHomeController {
 			listaMeses.put(i, Month.of(i).getDisplayName(TextStyle.FULL, new Locale("es", "ES")).toUpperCase());
 		}
 		
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("sedes", listaSedes);
 		mav.addObject("aulas", listaAulas);
 		mav.addObject("tipoAulas", listaTipoAulas);
@@ -116,7 +121,7 @@ public class ConsultaHomeController {
 			ModelAndView mav = consultaAulas(listaAulas);
 			return mav;
 		}
-		
+
 	}
 	
 	
@@ -137,16 +142,79 @@ public class ConsultaHomeController {
 		String nombreAula = aulaService.findById(aula).getNombre(); 
 		
 		
-		
-		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dias", listaDias);
 		mav.addObject("mesTexto", mesTexto);
 		mav.addObject("nombreAula", nombreAula);
 		mav.addObject("mes", mes);
 		mav.addObject("anio", anio);
+		mav.addObject("aula", aula);
 		
 		mav.setViewName("consultas/verHorario");
 		return mav;
 	}
+	
+	//-------------------------------------------------------------------------------------------------------
+	
+	@GetMapping("consultas/anadirAnio")
+	public String addAnioHorarioPage(
+			@RequestParam (name = "aula") int aula,
+			@RequestParam (name = "mes") int mes,
+			@RequestParam (name = "anio") int anio) {
+		
+		int	nextAnio = anio + 1;
+		
+		
+		return "redirect:/consultas/verHorarioAula?aula=" + aula + "&mes=" + mes + "&anio=" + nextAnio;
+	}
+	
+	@GetMapping("consultas/restarAnio")
+	public String restarAnioHorarioPage(
+			@RequestParam (name = "aula") int aula,
+			@RequestParam (name = "mes") int mes,
+			@RequestParam (name = "anio") int anio) {
+		
+		int	antAnio = anio - 1;
+		
+		return "redirect:/consultas/verHorarioAula?aula=" + aula + "&mes=" + mes + "&anio=" + antAnio;
+	}
+	
+	//-------------------------------------------------------------------------------------------------------
+	
+	@GetMapping("consultas/anadirMes")
+	public String addMesHorarioPage(
+			@RequestParam (name = "aula") int aula,
+			@RequestParam (name = "mes") int mes,
+			@RequestParam (name = "anio") int anio) {
+		
+		int nextMes = mes + 1;
+		int	nextAnio = anio;
+		
+		if (nextMes == 13 ) {
+			nextMes = 1;
+			nextAnio = anio + 1;
+		}	
+		
+		return "redirect:/consultas/verHorarioAula?aula=" + aula + "&mes=" + nextMes + "&anio=" + nextAnio;
+	}
+	
+	@GetMapping("consultas/restarMes")
+	public String restarMesHorarioPage(
+			@RequestParam (name = "aula") int aula,
+			@RequestParam (name = "mes") int mes,
+			@RequestParam (name = "anio") int anio) {
+		
+		int antMes = mes - 1;
+		int	antAnio = anio;
+		
+		if (antMes == 0 ) {
+			antMes = 12;
+			antAnio = anio - 1;
+			
+		}
+		
+		return "redirect:/consultas/verHorarioAula?aula=" + aula + "&mes=" + antMes + "&anio=" + antAnio;
+	}
+	
+	
 }
