@@ -60,12 +60,14 @@
 		
 		<!-- Opciones -->
 		<div class="pt-3">
-			<form action="elegirAulaReservaControl" method="GET">
+			<form action="verHorarioAula" method="GET">
 				<table class="table">
   					<thead>
     					<tr>
       						<th scope="col" class="text-center"></th>
-      						<th scope="col">Aulas busqueda</th>
+      						<th scope="col">Aulas</th>
+      						<th scope="col">Sede</th>
+      						<th scope="col">Tipo</th>
       					</tr>
 					</thead>
   					
@@ -73,7 +75,7 @@
     				<c:forEach items="${resAulas}" var="resAula">
 						<tr>
 	      					<th scope="row" class="align-top text-center">
-	      						<input class="form-check-input" type="radio" name="idAula" id="${resAula.id}" value="${resAula.id}" required>
+	      						<input class="form-check-input" type="radio" name="aula" id="${resAula.id}" value="${resAula.id}" required>
 	      					</th>
 						
 							<td class="align-middle text-left">
@@ -82,7 +84,20 @@
 								</label>
 							</td>
 							
-							<td class="align-middle text-left"></td>
+							<td class="align-middle text-left">
+								<label class="form-check-label" for="${resAula.sede}">
+    								${resAula.sede}
+								</label>
+							</td>
+							
+							<td class="align-middle text-left">
+								<label class="form-check-label" for="${resAula.tipo}">
+    								${resAula.tipo}
+								</label>
+							</td>
+							
+							
+							
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -93,7 +108,7 @@
 				<!-- Mes -->
 				<div class="form-group col-md-2">
 					<label class="text-secondary font-weight-bold" for="mes">Mes</label>
-					<select	class="form-control" id="mes" name="mes" required>
+					<select	class="form-control text-capitalize" id="mes" name="mes" required>
 							<option selected disabled></option>
 						<c:forEach items="${meses}" var="mes">
 							<option value="${mes.key}">${mes.value}</option>

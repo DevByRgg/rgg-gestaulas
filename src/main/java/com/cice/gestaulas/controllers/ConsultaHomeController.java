@@ -77,7 +77,7 @@ public class ConsultaHomeController {
 		
 		Map<Integer, String> listaMeses = new HashMap<Integer, String>();
 		for (int i = 1; i < 13; i++) {
-			listaMeses.put(i, Month.of(i).getDisplayName(TextStyle.FULL, new Locale("es", "ES")).toUpperCase());
+			listaMeses.put(i, Month.of(i).getDisplayName(TextStyle.FULL, new Locale("es", "ES")));
 		}
 		
 		mav.addObject("sedes", listaSedes);
@@ -127,14 +127,26 @@ public class ConsultaHomeController {
 			@RequestParam (name = "anio") int anio) {
 		
 		int numDias = LocalDate.of(anio, mes, 1).lengthOfMonth();
+		String mesTexto = Month.of(mes).getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
 		
-		List<LocalDate> listaDias;
+		Map<Integer, LocalDate> listaDias = new HashMap<Integer, LocalDate>();
+		for (int i = 1; i <= numDias; i++) {
+			listaDias.put(i, LocalDate.of(anio, mes, i));
+		}
+		
+		String nombreAula = aulaService.findById(aula).getNombre(); 
 		
 		
 		
 		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("dias", listaDias);
+		mav.addObject("mesTexto", mesTexto);
+		mav.addObject("nombreAula", nombreAula);
+		mav.addObject("mes", mes);
+		mav.addObject("anio", anio);
 		
+		mav.setViewName("consultas/verHorario");
 		return mav;
 	}
 }
