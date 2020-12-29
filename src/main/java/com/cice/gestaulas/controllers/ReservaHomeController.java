@@ -91,7 +91,13 @@ public class ReservaHomeController {
 		return mav;
 	}
 	
-	
+	@GetMapping("reservas/borrarReserva")
+	public String borrarReserva(
+			@RequestParam(required = true) int id){
+		reservaService.delete(id);
+		
+		return "redirect:mostrarReserva";
+	}
 	
 	
 }

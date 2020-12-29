@@ -35,7 +35,6 @@ public class ConsultaHomeController {
 	ITipoAulaService tipoAulaService;
 	
 	
-	
 	@GetMapping("consultas/buscarAula")
 	public ModelAndView buscarAulaPage() {
 		ModelAndView mav = new ModelAndView();

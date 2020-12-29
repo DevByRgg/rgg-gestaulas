@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-12-2020 a las 09:37:25
+-- Tiempo de generación: 29-12-2020 a las 10:21:24
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.0
 
@@ -134,8 +134,7 @@ CREATE TABLE `reservas` (
 --
 
 INSERT INTO `reservas` (`id`, `nombre_curso`, `id_aula`, `fecha_reserva`) VALUES
-(2, 'IFCT0609', 18, '2021-01-19 09:00:00'),
-(3, 'IFCT0609', 18, '2021-01-19 10:00:00');
+(6, 'IFCT0609', 18, '2021-01-19 08:00:00');
 
 -- --------------------------------------------------------
 
@@ -228,6 +227,7 @@ ALTER TABLE `ordenadores`
 --
 ALTER TABLE `reservas`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unicos` (`nombre_curso`,`id_aula`,`fecha_reserva`),
   ADD KEY `id_aula` (`id_aula`);
 
 --
@@ -280,7 +280,7 @@ ALTER TABLE `ordenadores`
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `sedes`
