@@ -40,34 +40,9 @@ public class AdminHomeController {
 		return mav;
 	}
 	
-	@GetMapping("/admin/crearSede")
-	public ModelAndView crearSedePage() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/crearSede");
-		return mav;
-	}
+	
 
-	@GetMapping("/admin/crearAula")
-	public ModelAndView crearAulaPage() {
-		ModelAndView mav = new ModelAndView();
-		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
-		List<Sede> listaSedes = sedeService.findAll();
-		List<Ordenador> listaOrdenadores = ordenadorService.findAll();
-		List<Equipamiento> listaEquipamientos = equipamientoService.findAll();
-		mav.addObject("tipoAulas", listaTipoAulas);
-		mav.addObject("sedes", listaSedes);
-		mav.addObject("ordenadores", listaOrdenadores);
-		mav.addObject("equipamientos", listaEquipamientos);
-		mav.setViewName("admin/crearAula");
-		return mav;
-	}
-
-	@GetMapping("/admin/crearTipoAula")
-	public ModelAndView crearTipoAulaPage() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/crearTipoAula");
-		return mav;
-	}
+	
 	
 	@GetMapping("/admin/crearOrdenador")
 	public ModelAndView crearOrdenadorPage() {

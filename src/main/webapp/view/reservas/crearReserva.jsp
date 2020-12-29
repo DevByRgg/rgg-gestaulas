@@ -21,7 +21,7 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Reservar <span class="badge text-white bg-cice">AULAS</span>
+			Reservar <span class="badge text-white bg-cice">AULA</span>
 		</h2>
 		
 		<!-- Forumulario -->

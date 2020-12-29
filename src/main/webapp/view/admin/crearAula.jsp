@@ -23,7 +23,7 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Aulas <span class="badge text-white bg-cice">CREAR</span>
+			Aula <span class="badge text-white bg-cice">CREAR</span>
 		</h2>
 		
 		<!-- Forumulario -->

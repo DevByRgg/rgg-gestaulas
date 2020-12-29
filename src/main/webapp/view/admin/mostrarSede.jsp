@@ -22,20 +22,20 @@
 		<div class="pt-5"></div>
 		
 		<h2 class="pt-3 pb-2">
-			Sedes <span class="badge text-white bg-cice">LISTADO</span>
+			Sede <span class="badge text-white bg-cice">LISTADO</span>
 		</h2>
 
 		<!-- Forumulario -->
-		<table class="table table-bordered table-dark table-striped">
+		<table class="table table-bordered table-striped">
 				<thead>
-					<tr tr class="thead-dark">
+					<tr tr class="thead text-white bg-cice">
 						<th class="align-middle text-center" scope="col">Id</th>
 						<th class="align-middle text-left" scope="col">Nombre</th>
 						<th class="align-middle text-left" scope="col">Direccion</th>
-						<th class="align-middle text-right" scope="col">Codigo postal</th>
-						<th class="align-middle text-right" scope="col">Telefono</th>
-						<th class="align-middle text-center" scope="col">Borrar</th>
-						<th class="align-middle text-center" scope="col">Update</th>					
+						<th class="align-middle text-center" scope="col">Codigo postal</th>
+						<th class="align-middle text-center" scope="col">Telefono</th>
+						<th class="align-middle text-center" scope="col">Update</th>
+						<th class="align-middle text-center" scope="col">Borrar</th>											
 					</tr>
 				</thead>
 				
@@ -45,8 +45,15 @@
 	      				<th scope="row" class="align-middle text-center">${sede.id}</th>
 						<td class="align-middle text-left">${sede.nombre}</td>
 						<td class="align-middle text-left">${sede.direccion}</td>
-						<td class="align-middle text-right">${sede.codigoPostal}</td>
-						<td class="align-middle text-right">${sede.telefono}</td>
+						<td class="align-middle text-center">${sede.codigoPostal}</td>
+						<td class="align-middle text-center">${sede.telefono}</td>
+						
+						<td class="align-middle text-center">
+							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/admin/updateSede?id=${sede.id}">
+								Update
+							</a>
+						</td>
+						
 						<td class="align-middle text-center">
 							<button type="button" class="btn cice-hover bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
 							onclick="configurarBorrado('${sede.id}')">
