@@ -1,6 +1,7 @@
 package com.cice.gestaulas.entities;
 
 import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,25 +23,14 @@ public class Reserva {
 	@Column(name="id")
 	private int id;
 	
+	@Column(name="nombre_curso")
+	private String nombreCurso;
+	
 	@Column(name="id_aula")
 	private int idAula;
 	
-	@Column(name="id_admin")
-	private int idAdmin;
-	
-	@Column(name="dia_inicio")
+	@Column(name="fecha_reserva")
 	@NonNull
-	private LocalDateTime diaInicio;
+	private LocalDateTime fechaReserva;
 	
-	@Column(name="dia_fin")
-	@NonNull
-	private LocalDateTime diaFin;
-	
-	@Column(name="hora_inicio")
-	@NonNull
-	private LocalDateTime horaInicio;
-	
-	@Column(name="hora_fin")
-	@NonNull
-	private LocalDateTime horaFin;
 }
