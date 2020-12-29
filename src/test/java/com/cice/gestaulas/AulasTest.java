@@ -22,7 +22,14 @@ import com.cice.gestaulas.services.impl.AulaServiceImpl;
 @TestInstance(Lifecycle.PER_CLASS) // PARA QUE CREE UNA INSTANCIA POR CLASE DE TEST Y NO HAY QUE HACER STATIC
 class AulasTest {
 
-	final String NOMBRE_AULA = "TEST_AULA_BORRAR";
+	final String NOMBRE_AULA_TEST = "TEST_AULA_BORRAR";
+	final int TIPO_AULA_TEST = 1;
+	final int SEDE_AULA_TEST = 1;
+	final int CAPACIDAD_AULA_TEST = 33;
+	final int EQUIPO_PROFESOR_AULA = 3;
+	final int EQUIPO_ALUMNO_AULA = 3;
+	final int EQUIPAMIENTO_AULA = 5;
+	final int CAPACIDAD_AULA_TEST_UPDATE = 9999;
 	Aula aulaNueva;
 	Aula aulaAlmacenada;
 	
@@ -41,7 +48,13 @@ class AulasTest {
 	@BeforeAll
 	void setUpBeforeClass() throws Exception {
 		System.out.println("------------------BEFORE ALL---------------------");
-		aulaNueva = new Aula(0,NOMBRE_AULA, 1, 1, 16, 3, 3, 5);
+		aulaNueva = new Aula(0,NOMBRE_AULA_TEST, 
+				TIPO_AULA_TEST, 
+				SEDE_AULA_TEST, 
+				CAPACIDAD_AULA_TEST, 
+				EQUIPO_PROFESOR_AULA, 
+				EQUIPO_ALUMNO_AULA, 
+				EQUIPAMIENTO_AULA);
 		aulaService.create(aulaNueva);
 		System.out.println("----------- aula nueva id: " + aulaNueva.getId());
 	}
@@ -108,26 +121,97 @@ class AulasTest {
 		
 	}
 	
+	/**
+	 * Probar FindAll Aula
+	 */
 	@Test
 	void testFindAll() {
-		fail("Not yet implemented");
+		List<Aula> aulas = aulaService.findAll();
+		assertTrue(aulas!=null,"Funciona FindAll");
+		System.out.println("-------Funciona FindAll-------");
 	}
 	
+	/**
+	 * Probar FindBySede Aula
+	 */
+	@Test
+	void testFindBySede() {
+		List<Aula> aulas = aulaService.findBySede(aulaNueva.getSede());
+		assertTrue(aulas!=null,"Funciona FindBySede");
+		System.out.println("-------Funciona FindBySede-------");
+	}
+	
+	/**
+	 * Probar FindByTipo Aula
+	 */
+	@Test
+	void testFindByTipo() {
+		List<Aula> aulas = aulaService.findBySede(aulaNueva.getTipo());
+		assertTrue(aulas!=null,"Funciona FindByTipo");
+		System.out.println("-------Funciona FindByTipo-------");
+	}
+	
+	/**
+	 * Probar FindBySede Aula
+	 */
+	@Test
+	void testFindBySedeAndTipo() {
+		List<Aula> aulas = aulaService.findBySedeAndTipo(aulaNueva.getSede(), aulaNueva.getTipo());
+		assertTrue(aulas!=null,"Funciona FindBySedeAndTipo");
+		System.out.println("-------Funciona FindBySedeAndTipo-------");
+	}
+	
+	/**
+	 * Probar Update Aula
+	 */
 	@Test
 	void testUpdate() {
-		fail("Not yet implemented");
+		aulaNueva.setCapacidad(CAPACIDAD_AULA_TEST_UPDATE);
+		
+		aulaService.update(aulaNueva);
+		
+		assertTrue(aulaNueva.getCapacidad()==CAPACIDAD_AULA_TEST_UPDATE, "Funciona Update");
+		System.out.println("-------- Funciona Update ---------");
 	}
 	
+	/**
+	 * Probar DeleteById
+	 */
 	@Test
 	void testDeleteById() {
-		fail("Not yet implemented");
+		Aula aulaBorrar = new Aula
+				(0,NOMBRE_AULA_TEST, 
+					TIPO_AULA_TEST, 
+					SEDE_AULA_TEST, 
+					CAPACIDAD_AULA_TEST, 
+					EQUIPO_PROFESOR_AULA, 
+					EQUIPO_ALUMNO_AULA, 
+					EQUIPAMIENTO_AULA);
+		aulaService.create(aulaBorrar);
+		assertNotNull(aulaBorrar, "No se ha creado aula en test deleteById. NULL");
+		aulaService.delete(aulaBorrar.getId());
+		assertNull(aulaService.findById(aulaBorrar.getId()), "No se ha podido borrar. Error");
+		System.out.println("--------------- Funciona deleteById ----------------");
 	}
 	
+	/**
+	 * Probar DeleteEntity
+	 */
 	@Test
 	void testDeleteEntity() {
-		fail("Not yet implemented");
+		Aula aulaBorrar = new Aula
+				(0,NOMBRE_AULA_TEST, 
+					TIPO_AULA_TEST, 
+					SEDE_AULA_TEST, 
+					CAPACIDAD_AULA_TEST, 
+					EQUIPO_PROFESOR_AULA, 
+					EQUIPO_ALUMNO_AULA, 
+					EQUIPAMIENTO_AULA);
+		aulaService.create(aulaBorrar);
+		assertNotNull(aulaBorrar, "No se ha creado aula en test deleteEntity. NULL");
+		aulaService.delete(aulaBorrar);
+		assertNull(aulaService.findById(aulaBorrar.getId()), "No se ha podido borrar. Error");
+		System.out.println("--------------- Funciona deleteEntity ----------------");
 	}
-
-	
 
 }
