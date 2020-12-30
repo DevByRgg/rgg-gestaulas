@@ -25,7 +25,7 @@ public class SedeTest {
 	@Autowired
 	private ISedeRepository sedeRepository;
 	
-	private ISedeService sedeService;
+	//private ISedeService sedeService;
 	
 	@Test
 	@DisplayName("Test Create")
@@ -44,8 +44,7 @@ public class SedeTest {
 	public void testFindSedeByNameExist() {
 		String nombre = "Povedilla";
 		Sede sede = sedeRepository.findByNombre(nombre);
-		
-		
+			
 		assertAll("ComprobarBusqueda",
 				()->assertNotNull(sede),
 				()->assertEquals(sede.getNombre(), nombre)
