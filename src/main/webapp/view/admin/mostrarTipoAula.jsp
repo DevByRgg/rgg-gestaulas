@@ -16,7 +16,7 @@
 	
 <c:import url="../common/navbarAdmin.jsp"/>
 	
-	<div class="container-md w-50">
+	<div class="container-md w-25">
 		<!-- Titulo -->
 		
 		<div class="pt-5"></div>

@@ -21,11 +21,11 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Reservar <span class="badge text-white bg-cice">AULA</span>
+			Reservar <span class="badge text-white bg-cice">SESION</span>
 		</h2>
 		
 		<!-- Forumulario -->
-		<form action="crearReservaControl" method="GET">
+		<form action="crearReservaMultipleControl" method="GET">
 			
 			
 			<!-- Nombre del curso -->
@@ -54,7 +54,7 @@
 			<!-- Horas -->
 			<div class="form-group mt-4">
 				
-					<p class="text-secondary font-weight-bold">Horas reservadas</p>
+					<p class="text-secondary font-weight-bold">Horas de la sesion</p>
 				
 				<div class="form-group">
 					<div class="form-check form-check-inline mr-5">

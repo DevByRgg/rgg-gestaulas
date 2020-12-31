@@ -9,7 +9,7 @@
 <c:import url="../common/head.jsp"/>
 
 		
-<title>Zona Administracion - Crear Ordenador</title>
+<title>Zona Administracion</title>
 
 </head>
 <body>
@@ -23,7 +23,7 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Equipos <span class="badge text-white bg-cice">CREAR</span>
+			Equipo <span class="badge text-white bg-cice">CREAR</span>
 		</h2>
 		
 		<!-- Forumulario -->
@@ -32,37 +32,37 @@
 			<!-- Nombre -->
 			<div class="form-group mt-4">
 				<label class="text-secondary font-weight-bold" for="nombre">Nombre</label>
-				<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
+				<input type="text" class="form-control" name="nombre" id="nombre" required>
 			</div>
 			
 			<!-- Sistema operativo -->
 			<div class="form-group mt-4">
 				<label class="text-secondary font-weight-bold" for="sistemaOperativo">Sistema operativo</label>
-				<input type="text" class="form-control" name="sistemaOperativo" id="sistemaOperativo" placeholder="Sistema operativo" required>
+				<input type="text" class="form-control" name="sistemaOperativo" id="sistemaOperativo" required>
 			</div>
 			
 			<!-- Tamaño de la pantalla -->
 			<div class="form-group w-25 mt-4">
 				<label class="text-secondary font-weight-bold" for="dimensionPantalla">Tamaño de pantalla</label>
-				<input type="number" class="form-control" name="dimensionPantalla" id="dimensionPantalla" placeholder="Tamaño pantalla" required>
+				<input type="number" class="form-control" name="dimensionPantalla" id="dimensionPantalla" required>
 			</div>
 			
 			<!-- Cpu -->
 			<div class="form-group mt-4">
 				<label class="text-secondary font-weight-bold" for="cpu">Cpu</label>
-				<input type="text" class="form-control" name="cpu" id="cpu" placeholder="Cpu" required>
+				<input type="text" class="form-control" name="cpu" id="cpu" required>
 			</div>
 			
 			<!-- Ram -->
 			<div class="form-group w-25 mt-4">
 				<label class="text-secondary font-weight-bold" for="ram">Ram</label>
-				<input type="number" class="form-control" name="ram" id="ram" placeholder="Ram" required>
+				<input type="number" class="form-control" name="ram" id="ram" required>
 			</div>
 			
 			<!-- Tarjeta grafica -->
 			<div class="form-group mt-4">
 				<label class="text-secondary font-weight-bold" for="tarjetaGrafica">Tarjeta grafica</label>
-				<input type="text" class="form-control " name="tarjetaGrafica" id="tarjetaGrafica" placeholder="Tarjeta grafica" required>
+				<input type="text" class="form-control " name="tarjetaGrafica" id="tarjetaGrafica" required>
 			</div>			
 						
 			<!-- Boton enviar formulario -->

@@ -9,7 +9,7 @@
 <c:import url="../common/head.jsp"/>
 
 		
-<title>Zona Reservas</title>
+<title>Reservas</title>
 
 </head>
 <body>
@@ -21,38 +21,68 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Reservar <span class="badge text-white bg-cice">AULA</span>
+			Busqueda <span class="badge text-white bg-cice">AULAS</span>
 		</h2>
 		
 		<!-- Forumulario -->
-		<form action="crearReservaControl" method="GET">
+		<form action="buscarReservaControl" method="GET">
 			
 			
 			<!-- Nombre del curso -->
 			<div class="form-group mt-4">
 				<label class="text-secondary font-weight-bold" for="nombreCurso">Nombre del curso</label>
-				<input type="text" class="form-control" name="nombreCurso" id="nombreCurso" placeholder="Nombre del curso" required>
+				<input type="text" class="form-control" name="nombreCurso" id="nombreCurso" required>
 			</div>
 			
-			<!-- Aula -->
-			<div class="form-group mt-4 w-50">
-  				<label class="text-secondary font-weight-bold" for="aulaReserva">Aula de la reserva</label>
-				<select	class="form-control" id="aulaReserva" name="aulaReserva" required>
-					<option selected disabled></option>
-				<c:forEach items="${aulas}" var="aula">
-					<option value="${aula.id}">${aula.nombre}</option>
-				</c:forEach>
-				</select>	
-			</div>
 			
-			<!-- Fecha -->
+			<!-- Fecha de inicio -->
 			<div class="form-group mt-4 w-25">
-				<label class="text-secondary font-weight-bold" for="diaReserva">Fecha de la reserva</label>
-				<input type="date" class="form-control" name="diaReserva" id="diaReserva" placeholder="Fecha de la reserva" required>
+				<label class="text-secondary font-weight-bold" for="fechaInicio">Fecha de inicio</label>
+				<input type="date" class="form-control" name="fechaInicio" id="fechaInicio" required>
 			</div>
 			
-			<!-- Horas -->
-			<div class="form-group mt-4">
+			 <!-- Duracion curso -->
+			<div class="form-row mt-4">
+    			<div class="form-group w-25 mr-5">
+      				<label class="text-secondary font-weight-bold" for="horasCurso">Duracion del curso (horas)</label>
+      				<input type="number" class="form-control" name="horasCurso" id="horasCurso" required>
+    			</div>
+    			
+    			<div class="form-group w-25 ml-5">
+      				<label class="text-secondary font-weight-bold" for="horasDia">Horas diarias</label>
+      				<input type="number" class="form-control" name="horasDia" id="horasDia" min="1" max="12" required>
+    			</div>
+  			</div>
+  			
+			<!-- Dias lectivos -->
+			<div class="form-group mt-3">
+  				<p class="text-secondary font-weight-bold">Dias lectivos</p>
+  				
+  				<div class="form-check form-check-inline">
+  					<input class="form-check-input" type="checkbox" id="lunes" name="lunes" value="true">
+  					<label class="form-check-label mr-4" for="lunes">Lunes</label>
+  				
+  					<input class="form-check-input" type="checkbox" id="martes" name="martes" value="true">
+  					<label class="form-check-label mr-4" for="martes">Martes</label>
+  				
+  					<input class="form-check-input" type="checkbox" id="miercoles" name="miercoles" value="true">
+  					<label class="form-check-label mr-4" for="miercoles">Miercoles</label>
+  					
+  					<input class="form-check-input" type="checkbox" id="jueves" name="jueves" value="true">
+  					<label class="form-check-label mr-4" for="jueves">Jueves</label>
+  				
+  					<input class="form-check-input" type="checkbox" id="viernes" name="viernes" value="true">
+  					<label class="form-check-label mr-4" for="viernes">Viernes</label>
+  				
+  					<input class="form-check-input" type="checkbox" id="sabado" name="sabado" value="true">
+  					<label class="form-check-label mr-4" for="sabado">Sabado</label>
+  				</div>
+			</div>
+
+
+			
+<!-- Horas -->
+			<div class="form-group mt-3">
 				
 					<p class="text-secondary font-weight-bold">Horas reservadas</p>
 				
@@ -110,11 +140,32 @@
 					</div>
 				</div>
 			</div>
+			   
 			
+			
+			<div class="form-row mt-4">
+				<!-- Tipo Aula -->
+				<div class="form-group col-md-7 mr-3">
+					<label class="text-secondary font-weight-bold" for="tipoAula">Tipo de Aula</label>
+					<select	class="form-control" id="tipoAula" name="tipoAula" required>
+							<option selected disabled></option>
+						<c:forEach items="${tipoAulas}" var="tipoAula">
+							<option value="${tipoAula.id}">${tipoAula.nombre}</option>
+						</c:forEach>
+					</select>
+				</div>
+			
+				<!-- Capacidad del Aula -->
+				<div class="form-group col-md-3 mr-3">
+					<label class="text-secondary font-weight-bold" for="capacidadAula">Capacidad del Aula</label>
+					<input type="number" class="form-control" name="capacidadAula" id="capacidadAula" required>
+				</div>
+			
+			</div>
 			
 			<!-- Boton enviar formulario -->
 			<div class="botonEnviar mt-4">
-				<button type="submit" class="btn btn-outline-default btn-lg font-weight-bold text-white cice-hover bg-cice">Reservar</button>
+				<button type="submit" class="btn btn-outline-default btn-lg font-weight-bold text-white bg-cice">Buscar</button>
 			</div>
 		</form>
 	</div>

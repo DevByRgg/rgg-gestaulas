@@ -17,18 +17,18 @@
 <c:import url="../common/navbarAdmin.jsp"/>
 	
 	<div class="container-md w-75">
-		<!-- Titulo -->
 		
+		<!-- Titulo -->
 		<div class="pt-5"></div>
 		
 		<h2 class="pt-3 pb-2">
-			Equipos <span class="badge text-white bg-cice">LISTADO</span>
+			Equipo <span class="badge text-white bg-cice">LISTADO</span>
 		</h2>
 
 		<!-- Forumulario -->
-		<table class="table table-bordered table-dark table-striped">
+		<table class="table table-bordered table-striped">
 				<thead>
-					<tr tr class="thead-dark">
+					<tr tr class="thead text-white bg-cice">
 						<th class="align-middle text-center" scope="col">Id</th>
 						<th class="align-middle text-center" scope="col">Nombre</th>
 						<th class="align-middle text-center" scope="col">Sistema Operativo</th>
@@ -36,8 +36,8 @@
 						<th class="align-middle text-center" scope="col">Cpu</th>
 						<th class="align-middle text-center" scope="col">Memoria Ram</th>
 						<th class="align-middle text-center" scope="col">Tarjeta grafica</th>						
-						<th class="align-middle text-center" scope="col">Borrar</th>
-						<th class="align-middle text-center" scope="col">Update</th>					
+						<th class="align-middle text-center" scope="col">Update</th>
+						<th class="align-middle text-center" scope="col">Borrar</th>					
 					</tr>
 				</thead>
 				
@@ -51,6 +51,13 @@
 						<td class="align-middle text-center">${ordenador.cpu}</td>
 						<td class="align-middle text-center">${ordenador.ram} Gb</td>
 						<td class="align-middle text-center">${ordenador.tarjetaGrafica}</td>
+						
+						<td class="align-middle text-center">
+							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/admin/updateOrdenador?id=${ordenador.id}">
+								Update
+							</a>
+						</td>
+						
 						<td class="align-middle text-center">
 							<button type="button" class="btn cice-hover bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
 							onclick="configurarBorrado('${ordenador.id}')">

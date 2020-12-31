@@ -9,7 +9,7 @@
 <c:import url="../common/head.jsp"/>
 
 		
-<title>Zona Administracion - Crear Equipamiento</title>
+<title>Zona Administracion</title>
 
 </head>
 <body>
@@ -24,7 +24,7 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Equipamientos <span class="badge text-white bg-cice">CREAR</span>
+			Equipamiento <span class="badge text-white bg-cice">CREAR</span>
 		</h2>
 		
 		<!-- Forumulario -->
@@ -33,16 +33,15 @@
 			<!-- Nombre -->
 			<div class="form-group mt-4">
 				<label class="text-secondary font-weight-bold" for="nombre">Nombre</label>
-				<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
+				<input type="text" class="form-control" name="nombre" id="nombre" required>
 			</div>
 			
 			<!-- Descripcion -->
 			<div class="form-group mt-4">
 				<label class="text-secondary font-weight-bold" for="descripcion">Descripcion</label>
-				<input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripcion" required>
+				<input type="text" class="form-control" name="descripcion" id="descripcion" required>
 			</div>
-			
-			
+						
 			<!-- Boton enviar formulario -->
 			<div class="botonEnviar mt-4">
 				<button type="submit" class="btn btn-lg font-weight-bold text-white cice-hover bg-cice">Crear</button>
