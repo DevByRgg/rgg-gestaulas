@@ -6,4 +6,5 @@ import com.cice.gestaulas.entities.Sede;
 
 public interface ISedeRepository extends JpaRepository<Sede, Integer>{
 
+	public Sede findByNombre(String nombre);
 }
