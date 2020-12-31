@@ -4,9 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +83,7 @@ public class ReservaHomeController {
 		
 		LocalDate dia = LocalDate.parse(diaReserva);
 		
+		//deprecated, usar el metodo que generarHoras
 		Map<Integer, Boolean> horas = mapaHoras(man09, man10, man11, man12, man13, 
 				man14, tar17, tar18, tar19, tar20, tar21, tar22);
 		
@@ -109,8 +112,7 @@ public class ReservaHomeController {
 	public ModelAndView buscarReserva(
 			@RequestParam (name = "nombreCurso", required = true) String nombreCurso,
 			@RequestParam (name = "fechaInicio", required = true) String fechaInicio,
-			@RequestParam (name = "horasCurso") int horasCurso,
-			@RequestParam (name = "horasDia") int horasDia,
+			@RequestParam (name = "horasCurso") int cantidadHorasCurso,
 			@RequestParam (name = "lunes", defaultValue = "false", required = true) boolean lunes,
 			@RequestParam (name = "martes", defaultValue = "false", required = true) boolean martes,
 			@RequestParam (name = "miercoles", defaultValue = "false", required = true) boolean miercoles,
@@ -132,35 +134,23 @@ public class ReservaHomeController {
 			@RequestParam (name = "tipoAula") int tipoAula,
 			@RequestParam (name = "capacidadAula") int capacidadAula) {
 		
-		LocalDate inicioCurso = LocalDate.parse(fechaInicio);
-		int diasCurso = horasCurso / horasDia;
-		Map<Integer, Boolean> horas = mapaHoras(man09, man10, man11, man12, man13, 
-				man14, tar17, tar18, tar19, tar20, tar21, tar22);
-		Map<Integer, Boolean> diasSemana = mapaDias(lunes, martes, miercoles, jueves, viernes, sabado);
+		LocalDate fechainicioCurso = LocalDate.parse(fechaInicio);
 		
-		Map<Integer, Integer> diasDeCurso = new HashMap<Integer, Integer>();
+		List<LocalTime> listaHorasDiarias = generarHoras(man09, man10, man11, man12, man13, man14, tar17, tar18, 
+				tar19, tar20, tar21, tar22);
 		
-		Map<Integer, Boolean> selecDias = new HashMap<Integer, Boolean>();
-		for (int i = 1; i < (diasSemana.size() + 1); i++) {
-			if (diasSemana.get(i) == true) {
-				selecDias.put(i, diasSemana.get(i));
-			}
-		}
+		int numeroHorasDiarias = listaHorasDiarias.size();
 		
-		List<Integer> listaSelecDias = new ArrayList<Integer>(selecDias.keySet());
+		int duracionCurso = cantidadHorasCurso / numeroHorasDiarias;
 		
-		int numDias = selecDias.size();
+		Map<Integer, Boolean> diasLectivos = mapaDias(lunes, martes, miercoles, jueves, viernes, sabado);
 		
-		int diaInicioCurso = inicioCurso.getDayOfWeek().getValue();
+		List<LocalDate> listafechasCurso = generarFechas(fechainicioCurso, diasLectivos, duracionCurso);
 		
-		System.out.println( "diascurso" + diasCurso);
-		System.out.println("numDias" + numDias);
-		System.out.println("diaInicioCurso" + diaInicioCurso);
-		System.out.println("selecDias" + selecDias.size());
-		System.out.println(listaSelecDias.get(0));
-		System.out.println(listaSelecDias.get(1));
-		System.out.println(listaSelecDias.get(2));
 		
+		//tenemos una lista de horas y una lista de fechas, necesitamos combinarlas para tener todas las reservas
+		//hacer otro metodo
+		//mapaHoras deprecated adaptarlo para que sirva a la busqueda unitaria
 		
 		
 		ModelAndView mav = new ModelAndView();
@@ -238,6 +228,9 @@ public class ReservaHomeController {
 		return horas;
 	}
 	
+	//-------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
+
 	private Map<Integer, Boolean> mapaDias(boolean lunes, boolean martes, boolean miercoles, 
 			boolean jueves, boolean viernes, boolean sabado){
 
@@ -252,7 +245,190 @@ public class ReservaHomeController {
 		return diasSemana;
 	}
 
+	//-------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
+
+	private List<LocalDate> generarFechas(
+			LocalDate fechainicioCurso,
+			Map<Integer, Boolean> diasLectivos,
+			int duracionCurso){
+		
+		int diaSemanaInicioCurso = fechainicioCurso.getDayOfWeek().getValue();
+		
+		Map<Integer, Boolean> selecDias = new HashMap<Integer, Boolean>();
+
+		//Separamos los dias lectivos del resto de la semana
+		for (int i = 1; i < (diasLectivos.size() + 1); i++) {
+			if (diasLectivos.get(i) == true) {
+				selecDias.put(i, diasLectivos.get(i));
+			}
+		}
+		
+		//Cantidad de dias lectivos
+		int cantidadDiasLectivos = selecDias.size();
+		
+		
+		List<Integer> diaSemanaLectivos = new ArrayList<Integer>(selecDias.keySet());
+		
+		Map<Integer, LocalDate> primerasFechasLectivas = new HashMap<Integer, LocalDate>();
+		
+		for (int i = 0; i < diaSemanaLectivos.size(); i++) {
+			if (diaSemanaLectivos.get(i) < diaSemanaInicioCurso) {
+				int diferencia = diaSemanaLectivos.get(i) - diaSemanaInicioCurso + 7;
+				LocalDate diaCurso = fechainicioCurso.plusDays(diferencia);
+				primerasFechasLectivas.put(i, diaCurso);
+			} 
+		
+			else if (diaSemanaLectivos.get(i) == diaSemanaInicioCurso) {
+				primerasFechasLectivas.put(i, fechainicioCurso);
+			}
+			
+			else if (diaSemanaLectivos.get(i) > diaSemanaInicioCurso) {
+				int diferencia = diaSemanaLectivos.get(i) - diaSemanaInicioCurso;
+				LocalDate diaCurso = fechainicioCurso.plusDays(diferencia);
+				primerasFechasLectivas.put(i, diaCurso);
+			}
+		}
+		
+		
+		
+		
+		//Comprobaciones-----------------------------------------------------
+		System.out.println( "Duracion del curso " + duracionCurso);
+		System.out.println("Numero de dias lectivos " + cantidadDiasLectivos);
+		System.out.println("Dia Semana Lectivos " + diaSemanaLectivos);
+		
+		for (int i = 0; i < diaSemanaLectivos.size(); i++) {
+			System.out.println(i + "dia " + diaSemanaLectivos.get(i));
+		}
+		
+		for (int i = 0; i < primerasFechasLectivas.size(); i++) {
+			System.out.println(i + "dia " + primerasFechasLectivas.get(i));
+		}
+		//-------------------------------------------------------------------------				
+		
+		
+		
+		List<LocalDate> listaPrimerasFechas = new ArrayList<>(primerasFechasLectivas.values());
+		
+		
+		
+		//-------------------------------------------------------------------------
+		System.out.println(listaPrimerasFechas);
+		//-------------------------------------------------------------------------
+		
+		
+		
+		
+		Collections.sort(listaPrimerasFechas);
+		
+		
+		
+		//-------------------------------------------------------------------------
+		System.out.println(listaPrimerasFechas);
+		//-------------------------------------------------------------------------
+		
+		
+		
+		List<LocalDate> listaFechasCurso = new ArrayList<LocalDate>();
+		
+		int i = 0;
+		int j = 0;
+		while (i < duracionCurso) {
+			System.out.println("j= " + j);
+			System.out.println("i= " + i);
+			
+			if (cantidadDiasLectivos >= 1 && i < duracionCurso) {
+				listaFechasCurso.add(i, listaPrimerasFechas.get(0).plusWeeks(j));
+				i++;
+			}
+			
+			if (cantidadDiasLectivos >= 2 && i < duracionCurso) {
+				listaFechasCurso.add(i, listaPrimerasFechas.get(1).plusWeeks(j));
+				i++;
+			}
+			
+			if (cantidadDiasLectivos >= 3 && i < duracionCurso) {
+				listaFechasCurso.add(i, listaPrimerasFechas.get(2).plusWeeks(j));
+				i++;
+			} 
+			
+			if (cantidadDiasLectivos >= 4 && i < duracionCurso) {
+				listaFechasCurso.add(i,listaPrimerasFechas.get(3).plusWeeks(j));
+				i++;
+			}
+		
+			if (cantidadDiasLectivos >= 5 && i < duracionCurso) {
+				listaFechasCurso.add(i, listaPrimerasFechas.get(4).plusWeeks(j));
+				i++;
+			}
+
+			if (cantidadDiasLectivos >= 6 && i < duracionCurso) {
+				listaFechasCurso.add(i, listaPrimerasFechas.get(5).plusWeeks(j));
+				i++;
+			}
+
+			j++;
+		
+		}
+		
+		
+		
+		//-------------------------------------------------------------------------
+		System.out.println(listaFechasCurso);
+		//-------------------------------------------------------------------------	
+						
+		
+		return listaFechasCurso;		
+	}
+
+	//-------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
+
+	private List<LocalTime> generarHoras(boolean man09, boolean man10, boolean man11,
+			boolean man12, boolean man13, boolean man14, boolean tar17, boolean tar18, 
+			boolean tar19, boolean tar20, boolean tar21, boolean tar22){
+		
+		Map<Integer, Boolean> horas = new HashMap<Integer, Boolean>();
+		Map<Integer, LocalTime> listaHoras = new HashMap<Integer, LocalTime>();
+		List<LocalTime> listaHorasDiarias = new ArrayList<LocalTime>();
+		
+		horas.put(0, man09);
+		horas.put(1, man10);
+		horas.put(2, man11);
+		horas.put(3, man12);
+		horas.put(4, man13);
+		horas.put(5, man14);
+		horas.put(6, tar17);
+		horas.put(7, tar18);
+		horas.put(8, tar19);
+		horas.put(9, tar20);
+		horas.put(10, tar21);
+		horas.put(11, tar22);
+		
+		for (int i = 0; i < 6; i++) {
+			listaHoras.put(i, LocalTime.of(i + 9, 0));
+			listaHoras.put(i + 6, LocalTime.of(i + 17, 0));
+		}
+		
+		for (int i = 0; i < horas.size(); i++) {
+			if (horas.get(i) == true) {
+				listaHorasDiarias.add(listaHoras.get(i));
+			}
+		}
+		
+		
+		//-------------------------------------------------------------------------
+		System.out.println(listaHorasDiarias);
+		//-------------------------------------------------------------------------	
+		
+		
+		return listaHorasDiarias;
+	}
 	
+	//-------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
+
 	private Map<Integer, Reserva> generarReservas(
 			String nombreCurso,
 			int idAula,
@@ -295,6 +471,8 @@ public class ReservaHomeController {
 		return mapaReservas;
 	}
 	
+	//-------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
 	
 	private void hacerReservas(
 			Map<Integer, Reserva> reservas) {
