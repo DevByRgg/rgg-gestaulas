@@ -50,4 +50,10 @@ public class SedeServiceImpl implements ISedeService{
 		sedeRepository.delete(s);	
 	}
 
+
+	@Override
+	public Sede findByNombre(String nombre) {
+		return sedeRepository.findByNombre(nombre);
+	}
+
 }

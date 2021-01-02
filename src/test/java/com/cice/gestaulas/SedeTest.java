@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -13,28 +15,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.repositories.ISedeRepository;
+import com.cice.gestaulas.services.*;
+import com.cice.gestaulas.services.impl.*;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 
+@SpringBootTest
 @DisplayName("Tests para el Repositorio Sedes")
-@DataJpaTest //Configuracion automática
-@AutoConfigureTestDatabase(replace = Replace.NONE) //RollBack en la BBDD no se guarda nada
+//@DataJpaTest //Configuracion automática NO USAR DE MOMENTO (NO FUNCIONAN LOS SERVICIOS)
+@AutoConfigureTestDatabase(replace = Replace.NONE) //No obligar a ser Static los métodos
 public class SedeTest {
 
-	@Autowired
-	private ISedeRepository sedeRepository;
+	public final String NOMBRE_SEDE = "TEST_SEDE";
+	public final String DIRECCION_SEDE = "TEST_DIRECCION";
+	public final String CODIGO_POSTAL_SEDE = "TEST_CODIGO_POSTAL";
+	public final String TELEFONO_SEDE="TEST_TELEFONO";
 	
-	//private ISedeService sedeService;
+	public final String NOMBRE_NO_EXISTENTE="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+	
+	public int idSedeTest = 0;
+	
+	
+	
+	@Autowired
+	ISedeRepository sedeRepository;
+	
+	@Autowired
+	ISedeService sedeService;
 	
 	@Test
 	@DisplayName("Test Create")
 	@Order(1)
 	//@Commit // Hace commit -->persistente en la BBDD
 	public void testCreateSede() {
-		Sede sede =  new Sede(0,"testSede", "testGoya33", "28001", "911112222");
+		Sede sede =  new Sede(0, NOMBRE_SEDE, DIRECCION_SEDE, CODIGO_POSTAL_SEDE, TELEFONO_SEDE);
 		Sede savedSede = sedeRepository.save(sede);
-		
+		idSedeTest = savedSede.getId(); //guardar el id para el resto de tests
 		assertNotNull(savedSede, "Error, No se ha guardado en la BBDD");		
 	}
 	
@@ -42,12 +61,11 @@ public class SedeTest {
 	@DisplayName("Test FindSedeByName existente")
 	@Order(2)
 	public void testFindSedeByNameExist() {
-		String nombre = "Povedilla";
-		Sede sede = sedeRepository.findByNombre(nombre);
+		Sede sede = sedeRepository.findByNombre(NOMBRE_SEDE);
 			
 		assertAll("ComprobarBusqueda",
 				()->assertNotNull(sede),
-				()->assertEquals(sede.getNombre(), nombre)
+				()->assertEquals(sede.getNombre(), NOMBRE_SEDE)
 				);			
 	}
 	
@@ -55,21 +73,45 @@ public class SedeTest {
 	@DisplayName("Test FindSedeByName no existente")
 	@Order(3)
 	public void testFindSedeByNameNotExist() {
-		String nombre = "zzzzzzz";
-		Sede sede = sedeRepository.findByNombre(nombre);	
-		assertNull(sede, ()-> "Error, La sede no debe existir");
-						
+		Sede sede = sedeRepository.findByNombre(NOMBRE_NO_EXISTENTE);	
+		assertNull(sede, ()-> "Error, La sede no debe existir");				
+	}
+		
+	
+	@Test
+	@DisplayName("Test FindAll")
+	@Order(5)
+	public void testFindAll() {
+		List<Sede> sedes = sedeService.findAll();
+		assertNotNull(sedes, ()->"No hay sedes");
+	}
+	
+	@Test
+	@DisplayName("Test Update")
+	@Order(6)
+	public void testUpdate() {
+		
+		Sede sede =  new Sede(0, NOMBRE_SEDE, NOMBRE_SEDE, NOMBRE_SEDE, NOMBRE_SEDE);
+		sede.setId(idSedeTest);
+		sedeService.update(sede);
+		Sede updatedSede = sedeRepository.findByNombre(NOMBRE_SEDE);
+		
+		assertAll("Comprobar update",
+				()->assertEquals(updatedSede.getNombre(), NOMBRE_SEDE),
+				()->assertEquals(updatedSede.getDireccion(), NOMBRE_SEDE),
+				()->assertEquals(updatedSede.getCodigoPostal(), NOMBRE_SEDE),
+				()->assertEquals(updatedSede.getTelefono(), NOMBRE_SEDE)
+				);	
 	}
 	
 	@Test
 	@DisplayName("Test DeleteById")
-	@Order(4)
+	@Order(7)
 	public void testDeleteById() {
-		Sede sede =  new Sede(0,"testSede", "testGoya33", "28001", "911112222");
-		Sede sedeNueva = sedeRepository.save(sede);
-		sedeRepository.deleteById(sede.getId());
 		
-		Sede sedeBorrada = sedeRepository.findById(sedeNueva.getId()).orElse(null);
+		sedeRepository.deleteById(idSedeTest);
+		
+		Sede sedeBorrada = sedeRepository.findById(idSedeTest).orElse(null);
 		
 		assertNull(sedeBorrada, ()-> "La sede no se ha borrado de la BBDD");
 	}

@@ -18,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cice.gestaulas.entities.Aula;
 import com.cice.gestaulas.repositories.IAulaRepository;
 import com.cice.gestaulas.services.impl.AulaServiceImpl;
+import com.cice.gestaulas.services.interfaces.IAulaService;
 
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS) // PARA QUE CREE UNA INSTANCIA POR CLASE DE TEST Y NO HAY QUE HACER STATIC
@@ -39,7 +40,7 @@ class AulasTest {
 	IAulaRepository aulaRepository;
 	
 	@Autowired
-	AulaServiceImpl aulaService;
+	IAulaService aulaService;
 	Aula aula;
 	
 	

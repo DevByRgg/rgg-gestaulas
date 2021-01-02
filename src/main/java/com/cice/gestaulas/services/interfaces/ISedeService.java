@@ -13,4 +13,6 @@ public interface ISedeService {
 	public void delete(int id);
 	public void delete(Sede s);
 	
+	public Sede findByNombre(String nombre);
+	
 }
