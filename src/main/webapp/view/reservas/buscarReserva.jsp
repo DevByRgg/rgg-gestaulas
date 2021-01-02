@@ -42,17 +42,10 @@
 			</div>
 			
 			 <!-- Duracion curso -->
-			<div class="form-row mt-4">
-    			<div class="form-group w-25 mr-5">
+			<div class="form-group w-25 mr-5">
       				<label class="text-secondary font-weight-bold" for="horasCurso">Duracion del curso (horas)</label>
       				<input type="number" class="form-control" name="horasCurso" id="horasCurso" required>
-    			</div>
-    			
-    			<div class="form-group w-25 ml-5">
-      				<label class="text-secondary font-weight-bold" for="horasDia">Horas diarias</label>
-      				<input type="number" class="form-control" name="horasDia" id="horasDia" min="1" max="12" required>
-    			</div>
-  			</div>
+    		</div>
   			
 			<!-- Dias lectivos -->
 			<div class="form-group mt-3">

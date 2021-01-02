@@ -18,4 +18,7 @@ public interface IAulaService {
 	public List<Aula> findBySede(int sede);
 	public List<Aula> findByTipo(int tipo);
 	
+	//Se necesita para las reservas
+	public List<Integer> findAulasByTipoAndCapacidad(int tipo, int capacidad);
+	
 }

@@ -1,5 +1,6 @@
 package com.cice.gestaulas.services.interfaces;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.cice.gestaulas.entities.Reserva;
@@ -13,8 +14,8 @@ public interface IReservaService {
 	public void delete(int id);
 	public void delete(Reserva r);
 	
-    //	Query --------------------------------
-
+    //Query --------------------------------
+	public List<LocalDateTime> findFechasByAulas(int idAula);
 
 	
 

@@ -1,9 +1,18 @@
 package com.cice.gestaulas.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.time.LocalDateTime;
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.cice.gestaulas.entities.Aula;
 import com.cice.gestaulas.entities.Reserva;
 
 public interface IReservasRepository extends JpaRepository<Reserva, Integer> {
-
+	
+	@Query("SELECT a.fechaReserva FROM Reserva a WHERE a.idAula = :idAula")
+	List<LocalDateTime> findFechasReservasByAula(
+			@Param("idAula") Integer aulaSeleccionada);
 }

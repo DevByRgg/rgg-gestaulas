@@ -60,4 +60,9 @@ public class AulaServiceImpl implements IAulaService{
 		return aulaRepository.findAulasByTipo(tipo);
 	}
 
+	@Override
+	public List<Integer> findAulasByTipoAndCapacidad(int tipo, int capacidad) {
+		return aulaRepository.findAulasByTipoAndCapacidad(tipo, capacidad);
+	}
+
 }

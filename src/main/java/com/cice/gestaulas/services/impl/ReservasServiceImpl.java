@@ -1,5 +1,6 @@
 package com.cice.gestaulas.services.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,11 @@ public class ReservasServiceImpl implements IReservaService {
 	@Override
 	public void delete(Reserva r) {
 		reservaRepository.delete(r);
+	}
+
+	@Override
+	public List<LocalDateTime> findFechasByAulas(int idAula) {
+		return reservaRepository.findFechasReservasByAula(idAula);
 	}
 
 }
