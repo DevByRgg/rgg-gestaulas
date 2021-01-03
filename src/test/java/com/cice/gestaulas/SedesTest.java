@@ -2,6 +2,8 @@ package com.cice.gestaulas;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -20,7 +22,7 @@ import com.cice.gestaulas.services.interfaces.ISedeService;
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS)
 @DisplayName("Tests para Service de la entidad Sede")
-class SedesTest {
+class SedesTest{
 	
 	public final String NOMBRE_SEDE = "TEST_SEDE";
 	public final String DIRECCION_SEDE = "TEST_DIRECCION";
@@ -102,6 +104,41 @@ class SedesTest {
 		sedeAlmacenada = sedeService.findById(idSedeTest);
 		assertNotNull(sedeAlmacenada, ()->"Error, no se ha encontrado la sede");
 		assertEquals(sedeNueva, sedeAlmacenada, ()->"Error, los registros no son iguales");
+	}
+
+
+	@Test
+	@DisplayName("Test FindAll Sede")
+	public void testFindAll() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Test
+	@DisplayName("Test Update Sede")
+	public void testUpdate() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Test
+	@DisplayName("Test DeleteById Sede")
+	public void testDeleteById() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Test
+	@DisplayName("Test DeleteEntity Sede")
+	public void TestDeleteEntity() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Test
+	@DisplayName("Test FindByNombre Sede")
+	public void testFindByNombre() {
+		// TODO
 	}
 	
 	
