@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cice.gestaulas.entities.Sede;
-import com.cice.gestaulas.repositories.ISedeRepository;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 
 @SpringBootTest
