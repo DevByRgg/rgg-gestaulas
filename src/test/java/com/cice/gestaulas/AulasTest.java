@@ -16,13 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cice.gestaulas.entities.Aula;
-import com.cice.gestaulas.repositories.IAulaRepository;
-import com.cice.gestaulas.services.impl.AulaServiceImpl;
 import com.cice.gestaulas.services.interfaces.IAulaService;
 
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS) // PARA QUE CREE UNA INSTANCIA POR CLASE DE TEST Y NO HAY QUE HACER STATIC
-@DisplayName("Tests para la entidad Aula")
+@DisplayName("Tests para Service de la entidad Aula")
 class AulasTest {
 
 	final String NOMBRE_AULA_TEST = "TEST_AULA_BORRAR";
@@ -33,19 +31,16 @@ class AulasTest {
 	final int EQUIPO_ALUMNO_AULA = 3;
 	final int EQUIPAMIENTO_AULA = 5;
 	final int CAPACIDAD_AULA_TEST_UPDATE = 9999;
+	
 	Aula aulaNueva;
 	Aula aulaAlmacenada;
 	
 	@Autowired
-	IAulaRepository aulaRepository;
-	
-	@Autowired
 	IAulaService aulaService;
-	Aula aula;
 	
 	
 	/**
-	 * Creamos una nueva aula en la BBDD para pruebas
+	 * Crear una nueva aula en la BBDD para pruebas de busquedas
 	 * @throws java.lang.Exception
 	 */
 	@BeforeAll
@@ -59,8 +54,21 @@ class AulasTest {
 				EQUIPO_ALUMNO_AULA, 
 				EQUIPAMIENTO_AULA);
 		aulaService.create(aulaNueva);
-		System.out.println("----------- aula nueva id: " + aulaNueva.getId());
+		//System.out.println("----------- aula nueva id: " + aulaNueva.getId());
 	}
+	
+	/**
+	 * Eliminar el registro creado para test
+	 * @throws java.lang.Exception
+	 */
+	@AfterAll
+	void tearDownAfterClass() throws Exception {
+		 {
+			System.out.println("-------------------------- AFTER ALL -----------------------");
+			aulaService.delete(aulaNueva); //eliminar el registro creado
+		}
+	}
+
 	
 	/**
 	 * @throws java.lang.Exception
@@ -82,35 +90,21 @@ class AulasTest {
 		System.out.println("***************************************");
 	}
 	
-
-	/**
-	 * Eliminar el registro creado para test
-	 * @throws java.lang.Exception
-	 */
-	@AfterAll
-	void tearDownAfterClass() throws Exception {
-		 {
-			System.out.println("-------------------------- AFTER ALL -----------------------");
-			aulaService.delete(aulaNueva); //eliminar el registro creado
-		}
-	}
-
 	
 	/**
-	 * Probar guardado e integridad del aula en la BBDD
+	 * Probar guardado e integridad del Aula en la BBDD
 	 */
 	@Test
 	@DisplayName("Test Create Aula")
 	void testCreate() {
+		System.out.println("******* CREATE *******");
 		aulaAlmacenada = aulaService.findById(aulaNueva.getId());
 		
 		//Si es null el aula no se ha creado
-		assertNotNull(aulaAlmacenada, ()->"Error. El aula no se ha guardado en la BBDD");
+		assertNotNull(aulaAlmacenada, ()->"Error, el aula no se ha guardado en la BBDD");
 		
 		//Comprobar si son iguales los datos almacenados y enviados
-		assertEquals(aulaNueva, aulaAlmacenada, ()->"Error. No se han almacenado correctamente los datos");
-		
-		
+		assertEquals(aulaNueva, aulaAlmacenada, ()->"Error, no se han almacenado correctamente los datos");	
 	}
 	
 	/**
@@ -119,11 +113,10 @@ class AulasTest {
 	@Test
 	@DisplayName("Test FindById Aula")
 	void testFindById() {
+		System.out.println("******* FIND BY ID *******");
 		aulaAlmacenada = aulaService.findById(aulaNueva.getId());
-		System.out.println("------------- AULA NUEVA: -----" + aulaNueva.getNombre() );
-		System.out.println("------------- AULA ALMACENADA RECUPERADA: ------" + aulaAlmacenada.getNombre());
-		assertEquals(aulaAlmacenada, aulaNueva, ()-> "Registros Iguales");
-		
+		assertNotNull(aulaAlmacenada, ()-> "Error, no se ha encontrado el aula");
+		assertEquals(aulaNueva, aulaAlmacenada, ()-> "Error, los registros no son iguales");		
 	}
 	
 	/**
@@ -132,9 +125,9 @@ class AulasTest {
 	@Test
 	@DisplayName("Test FindAll Aula")
 	void testFindAll() {
+		System.out.println("******* FIND ALL *******");
 		List<Aula> aulas = aulaService.findAll();
-		assertTrue(aulas!=null, ()-> "Funciona FindAll");
-		System.out.println("-------Funciona FindAll-------");
+		assertNotNull(aulas, ()-> "Error, no funciona FindAll");
 	}
 	
 	/**
@@ -143,9 +136,9 @@ class AulasTest {
 	@Test
 	@DisplayName("Test FindBySede Aula")
 	void testFindBySede() {
+		System.out.println("******** FIND BY SEDE ********");
 		List<Aula> aulas = aulaService.findBySede(aulaNueva.getSede());
-		assertTrue(aulas!=null, ()-> "Funciona FindBySede");
-		System.out.println("-------Funciona FindBySede-------");
+		assertNotNull(aulas, ()-> "Error, no funciona FindBySede");
 	}
 	
 	/**
@@ -154,9 +147,9 @@ class AulasTest {
 	@Test
 	@DisplayName("Test FindByTipo Aula")
 	void testFindByTipo() {
+		System.out.println("******** FIND BY TIPO ********");
 		List<Aula> aulas = aulaService.findBySede(aulaNueva.getTipo());
-		assertTrue(aulas!=null, ()-> "Funciona FindByTipo");
-		System.out.println("-------Funciona FindByTipo-------");
+		assertNotNull(aulas, ()-> "Error, no funciona FindByTipo");
 	}
 	
 	/**
@@ -165,9 +158,9 @@ class AulasTest {
 	@Test
 	@DisplayName("Test FindBySedeAndTipo Aula")
 	void testFindBySedeAndTipo() {
+		System.out.println("******** FIND BY SEDE AND TIPO ********");
 		List<Aula> aulas = aulaService.findBySedeAndTipo(aulaNueva.getSede(), aulaNueva.getTipo());
-		assertTrue(aulas!=null, ()-> "Funciona FindBySedeAndTipo");
-		System.out.println("-------Funciona FindBySedeAndTipo-------");
+		assertNotNull(aulas, ()-> "Funciona FindBySedeAndTipo");
 	}
 	
 	/**
@@ -176,12 +169,12 @@ class AulasTest {
 	@Test
 	@DisplayName("Test Update Aula")
 	void testUpdate() {
+		System.out.println("******** UPDATE ********");
 		aulaNueva.setCapacidad(CAPACIDAD_AULA_TEST_UPDATE);
 		
 		aulaService.update(aulaNueva);
 		
-		assertTrue(aulaNueva.getCapacidad()==CAPACIDAD_AULA_TEST_UPDATE, ()-> "Funciona Update");
-		System.out.println("-------- Funciona Update ---------");
+		assertEquals(CAPACIDAD_AULA_TEST_UPDATE, aulaNueva.getCapacidad(), ()-> "Error, no funciona Update");
 	}
 	
 	/**
@@ -190,6 +183,7 @@ class AulasTest {
 	@Test
 	@DisplayName("Test DeleteById Aula")
 	void testDeleteById() {
+		System.out.println("******** DELETE BY ID ********");
 		Aula aulaBorrar = new Aula
 				(0,NOMBRE_AULA_TEST, 
 					TIPO_AULA_TEST, 
@@ -199,10 +193,9 @@ class AulasTest {
 					EQUIPO_ALUMNO_AULA, 
 					EQUIPAMIENTO_AULA);
 		aulaService.create(aulaBorrar);
-		assertNotNull(aulaBorrar, ()-> "No se ha creado aula en test deleteById. NULL");
+		assertNotNull(aulaBorrar, ()-> "Error, no se ha creado aula en test deleteById. NULL");
 		aulaService.delete(aulaBorrar.getId());
-		assertNull(aulaService.findById(aulaBorrar.getId()), ()-> "No se ha podido borrar. Error");
-		System.out.println("--------------- Funciona deleteById ----------------");
+		assertNull(aulaService.findById(aulaBorrar.getId()), ()-> "Error, no se ha podido borrar");
 	}
 	
 	/**
@@ -211,6 +204,7 @@ class AulasTest {
 	@Test
 	@DisplayName("Test DeleteEntity Aula")
 	void testDeleteEntity() {
+		System.out.println("******** DELETE BY AULA ********");
 		Aula aulaBorrar = new Aula
 				(0,NOMBRE_AULA_TEST, 
 					TIPO_AULA_TEST, 
@@ -220,10 +214,8 @@ class AulasTest {
 					EQUIPO_ALUMNO_AULA, 
 					EQUIPAMIENTO_AULA);
 		aulaService.create(aulaBorrar);
-		assertNotNull(aulaBorrar, ()-> "No se ha creado aula en test deleteEntity. NULL");
+		assertNotNull(aulaBorrar, ()-> "Error, no se ha creado aula en test deleteEntity. NULL");
 		aulaService.delete(aulaBorrar);
-		assertNull(aulaService.findById(aulaBorrar.getId()), ()-> "No se ha podido borrar. Error");
-		System.out.println("--------------- Funciona deleteEntity ----------------");
+		assertNull(aulaService.findById(aulaBorrar.getId()), ()-> "Error, no se ha podido borrar");
 	}
-
 }
