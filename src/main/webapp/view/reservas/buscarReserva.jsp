@@ -21,63 +21,130 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Busqueda <span class="badge text-white bg-cice">AULAS</span>
+			Buscar <span class="badge text-white bg-cice">AULAS</span>
 		</h2>
 		
 		<!-- Forumulario -->
 		<form action="buscarReservaControl" method="GET">
 			
+			<div class="form-row mt-2">
+				<!-- Nombre del curso -->
+				<div class="form-group w-50 mr-5">
+					<label class="text-secondary font-weight-bold" for="nombreCurso">Nombre del curso</label>
+					<input type="text" class="form-control" name="nombreCurso" id="nombreCurso" value="${nombreCurso}" required>
+				</div>
 			
-			<!-- Nombre del curso -->
-			<div class="form-group mt-4">
-				<label class="text-secondary font-weight-bold" for="nombreCurso">Nombre del curso</label>
-				<input type="text" class="form-control" name="nombreCurso" id="nombreCurso" required>
+				<!-- Fecha de inicio -->
+				<div class="form-group w-25">
+					<label class="text-secondary font-weight-bold" for="fechaInicio">Fecha de inicio</label>
+					<input type="date" class="form-control" name="fechaInicio" id="fechaInicio" value="${fechaInicio}" required>
+				</div>
 			</div>
 			
-			
-			<!-- Fecha de inicio -->
-			<div class="form-group mt-4 w-25">
-				<label class="text-secondary font-weight-bold" for="fechaInicio">Fecha de inicio</label>
-				<input type="date" class="form-control" name="fechaInicio" id="fechaInicio" required>
-			</div>
-			
-			 <!-- Duracion curso -->
-			<div class="form-group w-25 mr-5">
+			<div class="form-row mt-2">
+				<!-- Duracion curso -->
+				<div class="form-group w-25 mr-5">
       				<label class="text-secondary font-weight-bold" for="horasCurso">Duracion del curso (horas)</label>
-      				<input type="number" class="form-control" name="horasCurso" id="horasCurso" required>
-    		</div>
+      				<input type="number" class="form-control" name="horasCurso" id="horasCurso" value="${cantidadHorasCurso}" required>
+    			</div>
+    			
+    			<!-- Tipo Aula -->
+				<div class="form-group w-25 mr-5">
+					<label class="text-secondary font-weight-bold" for="tipoAula">Tipo de Aula</label>
+					<select	class="form-control" id="tipoAula" name="tipoAula" required>
+						<option selected disabled></option>
+					<c:forEach items="${tipoAulas}" var="tipoAula">
+						<c:choose>
+							<c:when test="${tipoAula.id == idAula}">
+								<option value="${tipoAula.id}" selected>${tipoAula.nombre}</option>
+							</c:when>    
+    						<c:otherwise>
+								<option value="${tipoAula.id}">${tipoAula.nombre}</option>
+							</c:otherwise>
+						</c:choose>		
+					</c:forEach>
+					</select>
+				</div>
+			
+				<!-- Capacidad del Aula -->
+				<div class="form-group w-25 mr-5">
+					<label class="text-secondary font-weight-bold" for="capacidadAula">Capacidad del Aula</label>
+					<input type="number" class="form-control" name="capacidadAula" id="capacidadAula" value="${capacidadAula}" required>
+				</div>
+  			</div>
   			
 			<!-- Dias lectivos -->
-			<div class="form-group mt-3">
+			<div class="form-group mt-2">
   				<p class="text-secondary font-weight-bold">Dias lectivos</p>
   				
   				<div class="form-check form-check-inline">
-  					<input class="form-check-input" type="checkbox" id="lunes" name="lunes" value="true">
-  					<label class="form-check-label mr-4" for="lunes">Lunes</label>
-  				
-  					<input class="form-check-input" type="checkbox" id="martes" name="martes" value="true">
-  					<label class="form-check-label mr-4" for="martes">Martes</label>
-  				
-  					<input class="form-check-input" type="checkbox" id="miercoles" name="miercoles" value="true">
-  					<label class="form-check-label mr-4" for="miercoles">Miercoles</label>
+  					<c:choose>
+    					<c:when test="${semana[0] == true}">
+    						<input class="form-check-input mr-2" type="checkbox" id="lunes" name="lunes" value="true" checked>
+    					</c:when>
+    					<c:otherwise>
+							<input class="form-check-input mr-2" type="checkbox" id="lunes" name="lunes" value="true">
+						</c:otherwise>
+					</c:choose>
+  					<label class="form-check-label mr-5" for="lunes">Lunes</label>
   					
-  					<input class="form-check-input" type="checkbox" id="jueves" name="jueves" value="true">
-  					<label class="form-check-label mr-4" for="jueves">Jueves</label>
+  					<c:choose>
+    					<c:when test="${semana[1] == true}">
+    						<input class="form-check-input mr-2" type="checkbox" id="martes" name="martes" value="true" checked>
+    					</c:when>
+    					<c:otherwise>
+							<input class="form-check-input mr-2" type="checkbox" id="martes" name="martes" value="true">
+						</c:otherwise>
+					</c:choose>
+  					<label class="form-check-label mr-5" for="martes">Martes</label>
   				
-  					<input class="form-check-input" type="checkbox" id="viernes" name="viernes" value="true">
-  					<label class="form-check-label mr-4" for="viernes">Viernes</label>
-  				
-  					<input class="form-check-input" type="checkbox" id="sabado" name="sabado" value="true">
-  					<label class="form-check-label mr-4" for="sabado">Sabado</label>
+  					<c:choose>
+    					<c:when test="${semana[2] == true}">
+    						<input class="form-check-input mr-2" type="checkbox" id="miercoles" name="miercoles" value="true" checked>
+    					</c:when>
+    					<c:otherwise>
+							<input class="form-check-input mr-2" type="checkbox" id="miercoles" name="miercoles" value="true">
+						</c:otherwise>
+					</c:choose>
+  					<label class="form-check-label mr-5" for="miercoles">Miercoles</label>
+  					
+  					<c:choose>
+    					<c:when test="${semana[3] == true}">
+    						<input class="form-check-input mr-2" type="checkbox" id="jueves" name="jueves" value="true" checked>
+    					</c:when>
+    					<c:otherwise>
+							<input class="form-check-input mr-2" type="checkbox" id="jueves" name="jueves" value="true">
+						</c:otherwise>
+					</c:choose>
+  					<label class="form-check-label mr-5" for="jueves">Jueves</label>
+					  	
+					  	<c:choose>
+    					<c:when test="${semana[4] == true}">
+    						<input class="form-check-input mr-2" type="checkbox" id="viernes" name="viernes" value="true" checked>
+    					</c:when>
+    					<c:otherwise>
+							<input class="form-check-input mr-2" type="checkbox" id="viernes" name="viernes" value="true">
+						</c:otherwise>
+					</c:choose>
+  					<label class="form-check-label mr-5" for="viernes">Viernes</label>
+  						
+  					<c:choose>
+    					<c:when test="${semana[5] == true}">
+    						<input class="form-check-input mr-2" type="checkbox" id="sabado" name="sabado" value="true" checked>
+    					</c:when>
+    					<c:otherwise>
+							<input class="form-check-input mr-2" type="checkbox" id="sabado" name="sabado" value="true">
+						</c:otherwise>
+					</c:choose>
+  					
+  					<label class="form-check-label mr-5" for="sabado">Sabado</label>
   				</div>
 			</div>
 
-
 			
-<!-- Horas -->
-			<div class="form-group mt-3">
-				
-					<p class="text-secondary font-weight-bold">Horas reservadas</p>
+			<!-- Horas -->
+			<div class="form-group mt-2">
+				<p class="text-secondary font-weight-bold">Horas reservadas</p>
 				
 				<div class="form-group">
 					<div class="form-check form-check-inline mr-5">
@@ -133,35 +200,89 @@
 					</div>
 				</div>
 			</div>
-			   
 			
-			
-			<div class="form-row mt-4">
-				<!-- Tipo Aula -->
-				<div class="form-group col-md-7 mr-3">
-					<label class="text-secondary font-weight-bold" for="tipoAula">Tipo de Aula</label>
-					<select	class="form-control" id="tipoAula" name="tipoAula" required>
-							<option selected disabled></option>
-						<c:forEach items="${tipoAulas}" var="tipoAula">
-							<option value="${tipoAula.id}">${tipoAula.nombre}</option>
-						</c:forEach>
-					</select>
-				</div>
-			
-				<!-- Capacidad del Aula -->
-				<div class="form-group col-md-3 mr-3">
-					<label class="text-secondary font-weight-bold" for="capacidadAula">Capacidad del Aula</label>
-					<input type="number" class="form-control" name="capacidadAula" id="capacidadAula" required>
-				</div>
-			
-			</div>
 			
 			<!-- Boton enviar formulario -->
-			<div class="botonEnviar mt-4">
-				<button type="submit" class="btn btn-outline-default btn-lg font-weight-bold text-white bg-cice">Buscar</button>
+			<div class="botonEnviar">
+				<button type="submit" class="btn btn-outline-default btn-lg font-weight-bold float-right text-white cice-hover bg-cice mt-4 mb-4">Buscar</button>
 			</div>
 		</form>
+		
+		<form action="seleccionarReservas" method="GET">
+			<table class="table">
+  				<thead>
+    				<tr>
+      					<th scope="col" class="text-center"></th>
+      					<th scope="col">Aulas</th>
+      					<th scope="col">Sede</th>
+      					<th scope="col">Tipo</th>
+      				</tr>
+				</thead>
+  				
+  				<tbody>
+    			<c:forEach items="${aulasValidas}" var="aulasValida">
+					<tr>
+	      				<th scope="row" class="align-top text-white bg-success text-center">
+	      					<input class="form-check-input" type="radio" name="aula" id="${aulasValida.id}" value="${aulasValida.id}" required>
+	      				</th>
+					
+						<td class="align-middle text-white bg-success text-left">
+							<label class="form-check-label" for="${aulasValida.id}">
+    							${aulasValida.nombre}
+							</label>
+						</td>
+						
+						<td class="align-middle text-white bg-success text-left">
+							<label class="form-check-label" for="${aulasValida.sede}">
+    							${aulasValida.sede}
+    						</label>
+						</td>
+							
+						<td class="align-middle text-white bg-success text-left">
+							<label class="form-check-label" for="${aulasValida.tipo}">
+    							${aulasValida.tipo}
+							</label>
+						</td>
+					</tr>
+				</c:forEach>
+				<c:forEach items="${aulasNoValidas}" var="aulasNoValida">
+					<tr>
+	      				<th scope="row" class="align-top text-white bg-danger text-center">
+	      					<input class="form-check-input" type="radio" name="aula" id="${aulasNoValida.id}" value="${aulasNoValida.id}" required disabled>
+	      				</th>
+						
+						<td class="align-middle text-white bg-danger text-left">
+							<label class="form-check-label" for="${aulasNoValida.id}">
+    							${aulasNoValida.nombre}
+							</label>
+						</td>
+							
+						<td class="align-middle text-white bg-danger text-left">
+							<label class="form-check-label" for="${aulasNoValida.sede}">
+    							${aulasNoValida.sede}
+							</label>
+						</td>
+							
+						<td class="align-middle text-white bg-danger text-left">
+							<label class="form-check-label" for="${aulasNoValida.tipo}">
+    							${aulasNoValida.tipo}
+							</label>
+						</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
+			
+			<!-- Boton enviar formulario -->
+			<div class="botonEnviar">
+				<button type="submit" class="btn btn-outline-default btn-lg font-weight-bold float-right text-white cice-hover bg-cice mt-4 mb-4">Reservar</button>
+			</div>
+
+		</form>
+		
 	</div>
+	
+	
 
 </body>
 </html>
