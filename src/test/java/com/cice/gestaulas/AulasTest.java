@@ -173,8 +173,9 @@ class AulasTest {
 		aulaNueva.setCapacidad(CAPACIDAD_AULA_TEST_UPDATE);
 		
 		aulaService.update(aulaNueva);
+		aulaAlmacenada = aulaService.findById(aulaNueva.getId());
 		
-		assertEquals(CAPACIDAD_AULA_TEST_UPDATE, aulaNueva.getCapacidad(), ()-> "Error, no funciona Update");
+		assertEquals(CAPACIDAD_AULA_TEST_UPDATE, aulaAlmacenada.getCapacidad(), ()-> "Error, no funciona Update");
 	}
 	
 	/**
@@ -183,7 +184,7 @@ class AulasTest {
 	@Test
 	@DisplayName("Test DeleteById Aula")
 	void testDeleteById() {
-		System.out.println("******** DELETE BY ID ********");
+		
 		Aula aulaBorrar = new Aula
 				(0,NOMBRE_AULA_TEST, 
 					TIPO_AULA_TEST, 
@@ -192,10 +193,16 @@ class AulasTest {
 					EQUIPO_PROFESOR_AULA, 
 					EQUIPO_ALUMNO_AULA, 
 					EQUIPAMIENTO_AULA);
+		
+		//crear aula
 		aulaService.create(aulaBorrar);
+		//comprobar
 		assertNotNull(aulaBorrar, ()-> "Error, no se ha creado aula en test deleteById. NULL");
-		aulaService.delete(aulaBorrar.getId());
-		assertNull(aulaService.findById(aulaBorrar.getId()), ()-> "Error, no se ha podido borrar");
+		int idAulaBorrar = aulaBorrar.getId();
+		//borrar aula
+		aulaService.delete(idAulaBorrar);
+		//comprobar
+		assertNull(aulaService.findById(idAulaBorrar), ()-> "Error, no se ha podido borrar");
 	}
 	
 	/**
@@ -213,9 +220,15 @@ class AulasTest {
 					EQUIPO_PROFESOR_AULA, 
 					EQUIPO_ALUMNO_AULA, 
 					EQUIPAMIENTO_AULA);
+		
+		//crear aula
 		aulaService.create(aulaBorrar);
+		//comprobar
 		assertNotNull(aulaBorrar, ()-> "Error, no se ha creado aula en test deleteEntity. NULL");
+		int idAulaBorrar = aulaBorrar.getId();
+		//borrar aula
 		aulaService.delete(aulaBorrar);
-		assertNull(aulaService.findById(aulaBorrar.getId()), ()-> "Error, no se ha podido borrar");
+		//comprobar
+		assertNull(aulaService.findById(idAulaBorrar), ()-> "Error, no se ha podido borrar");
 	}
 }
