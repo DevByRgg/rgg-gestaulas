@@ -206,9 +206,6 @@ public class ReservaHomeController {
 		mav.addObject("semana", semana);
 		mav.addObject("horas", horas);
 		
-		//tenemos que meter las horas para que las mantenga
-		// y un js para obligar a marcar algun check box de cada grupo (usar los id para identificarlo????)
-		
 		
 		mav.addObject("tipoAulas", listaTipoAulas);
 		mav.setViewName("reservas/buscarReserva");
