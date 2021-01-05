@@ -16,7 +16,19 @@ public interface IReservaService {
 	
     //Query --------------------------------
 	public List<LocalDateTime> findFechasByAulas(int idAula);
-
 	
+	//Ordenacion
+	public List<Reserva> findAllByIdAsc();
+	public List<Reserva> findAllByIdDes();
+
+	public List<Reserva> findAllByCursoAsc();
+	public List<Reserva> findAllByCursoDes();
+	
+	public List<Reserva> findAllByAulaAsc();
+	public List<Reserva> findAllByAulaDes();
+	
+	public List<Reserva> findAllByFechaAsc();
+	public List<Reserva> findAllByFechaDes();
+
 
 }

@@ -30,7 +30,7 @@
 			<!-- Nombre de la Sede -->
 			<div class="form-group mt-4">
 				<label class="text-secondary font-weight-bold" for="id">Id</label>
-				<input type="text" class="form-control" name="id" id="id" placeholder="id" value="${sede.id}" readonly>
+				<input type="text" class="form-control" name="id" id="id" value="${sede.id}" readonly>
 			</div>
 			
 			<!-- Nombre de la Sede -->

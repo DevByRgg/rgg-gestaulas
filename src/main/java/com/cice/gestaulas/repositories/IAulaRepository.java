@@ -31,4 +31,12 @@ public interface IAulaRepository extends JpaRepository<Aula, Integer>{
 			@Param("tipo") Integer tipoSeleccionado,
 			@Param("capacidad") Integer capacidadMinima);
 	
+	@Query("SELECT a.id FROM Aula a WHERE a.capacidad >= :capacidad")
+	List<Integer> findAulasByCapacidad(
+			@Param("capacidad") Integer capacidadMinima);
+	
+	List<Aula> findByTipoAndCapacidad(int tipo, int capacidad);
+	List<Aula> findByCapacidad(int capacidad);
+	
+	
 }

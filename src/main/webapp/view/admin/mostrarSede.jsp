@@ -26,7 +26,7 @@
 		</h2>
 
 		<!-- Forumulario -->
-		<table class="table table-bordered table-striped">
+		<table class="table table-bordered table-hover">
 				<thead>
 					<tr tr class="thead text-white bg-cice">
 						<th class="align-middle text-center" scope="col">Id</th>

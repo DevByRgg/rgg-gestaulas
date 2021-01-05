@@ -22,19 +22,71 @@
 		<div class="pt-5"></div>
 		
 		<h2 class="pt-3 pb-2">
-			Reservas <span class="badge text-white bg-cice">LISTADO</span>
+			Reserva <span class="badge text-white bg-cice">LISTADO</span>
 		</h2>
 
 		<!-- Forumulario -->
-		<table class="table table-bordered table-dark table-striped">
+		<table class="table table-sm table-hover">
 				<thead>
-					<tr tr class="thead-dark">
-						<th class="align-middle text-center" scope="col">Id</th>
-						<th class="align-middle text-left" scope="col">Curso</th>
-						<th class="align-middle text-left" scope="col">Aula</th>
-						<th class="align-middle text-right" scope="col">Fecha reserva</th>
-						<th class="align-middle text-center" scope="col">Borrar</th>
-						<th class="align-middle text-center" scope="col">Update</th>					
+					<tr tr class="thead text-white bg-cice">
+						<th class="align-middle text-center" scope="col">
+							<a class="btn btn-link font-weight-bold cice-hover text-white" href="orderByIdAsc">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+  									<path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+								</svg>
+  							</a>
+  								Id
+  							<a class="btn btn-link font-weight-bold cice-hover text-white" href="orderByIdDes">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
+  									<path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+								</svg>
+							</a>
+						</th>
+						
+						<th class="align-middle text-left" scope="col">
+							<a class="btn btn-link font-weight-bold cice-hover text-white" href="orderByCursoAsc">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+  									<path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+								</svg>
+  							</a>
+  								Curso
+  							<a class="btn btn-link font-weight-bold cice-hover text-white" href="orderByCursoDes">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
+  									<path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+								</svg>
+							</a>
+						</th>
+						
+						<th class="align-middle text-center" scope="col">
+							<a class="btn btn-link font-weight-bold cice-hover text-white" href="orderByAulaAsc">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+  									<path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+								</svg>
+  							</a>
+  								Aula
+  							<a class="btn btn-link font-weight-bold cice-hover text-white" href="orderByAulaDes">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
+  									<path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+								</svg>
+							</a>
+						</th>
+						
+						<th class="align-middle text-center" scope="col">
+							<a class="btn btn-link font-weight-bold cice-hover text-white" href="orderByFechaAsc">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+  									<path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+								</svg>
+  							</a>
+  								Fecha
+  							<a class="btn btn-link font-weight-bold cice-hover text-white" href="orderByFechaDes">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
+  									<path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+								</svg>
+							</a>
+						</th>
+
+						<th class="align-middle text-center" scope="col">Update</th>
+						<th class="align-middle text-center" scope="col">Borrar</th>					
 					</tr>
 				</thead>
 				
@@ -43,11 +95,17 @@
 					<tr>
 	      				<th scope="row" class="align-middle text-center">${reserva.id}</th>
 						<td class="align-middle text-left">${reserva.nombreCurso}</td>
-						<td class="align-middle text-left">${reserva.idAula}</td>
-						<td class="align-middle text-right">${reserva.fechaReserva}</td>
+						<td class="align-middle text-center">${reserva.idAula}</td>
+						<td class="align-middle text-center">${reserva.fechaReserva}</td>
 						
 						<td class="align-middle text-center">
-							<button type="button" class="btn cice-hover bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
+							<a type="button" class="btn font-weight-bold cice-hover bg-cice text-white" href="/aulas/reservas/updateReserva?id=${reserva.id}">
+								Update
+							</a>
+						</td>
+						
+						<td class="align-middle text-center">
+							<button type="button" class="btn font-weight-bold cice-hover bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
 							onclick="configurarBorrado('${reserva.id}')">
 								Borrar
 							</button>

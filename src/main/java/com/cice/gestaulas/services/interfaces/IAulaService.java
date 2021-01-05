@@ -75,11 +75,18 @@ public interface IAulaService {
 	//Se necesita para las reservas
 	
 	/**
-	 * Método para obtener todas las aulas de una sede y con una capacidad
+	 * Método para obtener todas las aulas de un tipo y con una capacidad
 	 * @param tipo int que es el id del tipo de Aula
 	 * @param capacidad int con la capacidad buscada
 	 * @return Lista de Aulas coincidentes
 	 */
 	public List<Integer> findAulasByTipoAndCapacidad(int tipo, int capacidad);
+	
+	/**
+	 * Método para obtener todas las aulas con una capacidad
+	 * @param capacidad int con la capacidad buscada
+	 * @return Lista de Aulas coincidentes
+	 */
+	public List<Integer> findAulasByCapacidad(int capacidad);
 	
 }

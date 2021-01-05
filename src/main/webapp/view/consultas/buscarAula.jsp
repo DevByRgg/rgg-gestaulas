@@ -16,7 +16,7 @@
 
 <c:import url="../common/navbarAdmin.jsp"/>
 	
-	<div class="container-md w-75">
+	<div class="container-md w-50">
 		<div class="pt-5"></div>
 		
 		<!-- Titulo -->
@@ -28,7 +28,7 @@
 			
 			<div class="row align-items-end mt-4">
 				<!-- Sede -->	
-				<div class="form-group col-md-2">
+				<div class="form-group w-25 mr-5">
 					<label class="text-secondary font-weight-bold" for="sede">Sede</label>
 					<select	class="form-control" id="sede" name="sede">
 							<option selected value="-1"></option>
@@ -39,7 +39,7 @@
 				</div>
 			
 				<!-- Tipo Aula -->
-				<div class="form-group col-md-3">
+				<div class="form-group w-25 mr-5">
 					<label class="text-secondary font-weight-bold" for="tipo">Tipo de aula</label>
 					<select	class="form-control" id="tipo" name="tipo">
 							<option selected value="-1"></option>
@@ -61,8 +61,8 @@
 		<!-- Opciones -->
 		<div class="pt-3">
 			<form action="verHorarioAula" method="GET">
-				<table class="table">
-  					<thead>
+				<table class="table table-sm table-hover">
+  					<thead class="bg-cice text-white">
     					<tr>
       						<th scope="col" class="text-center"></th>
       						<th scope="col">Aulas</th>
@@ -75,7 +75,7 @@
     				<c:forEach items="${resAulas}" var="resAula">
 						<tr>
 	      					<th scope="row" class="align-top text-center">
-	      						<input class="form-check-input" type="radio" name="aula" id="${resAula.id}" value="${resAula.id}" required>
+	      						<input type="radio" name="aula" id="${resAula.id}" value="${resAula.id}" required>
 	      					</th>
 						
 							<td class="align-middle text-left">

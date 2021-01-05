@@ -56,4 +56,3 @@ function validarHoras() {
         man09.setAttribute('required');
     }   
 }
-

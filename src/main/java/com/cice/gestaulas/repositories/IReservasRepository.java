@@ -15,4 +15,6 @@ public interface IReservasRepository extends JpaRepository<Reserva, Integer> {
 	@Query("SELECT a.fechaReserva FROM Reserva a WHERE a.idAula = :idAula")
 	List<LocalDateTime> findFechasReservasByAula(
 			@Param("idAula") Integer aulaSeleccionada);
+	
+	
 }

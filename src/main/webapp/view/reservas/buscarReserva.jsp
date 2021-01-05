@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <!DOCTYPE html>
 <html lang="ES">
@@ -27,13 +28,13 @@
 		
 		<!-- Forumulario -->
 		<form action="buscarReservaControl" method="GET">
-			
-			<div class="form-row mt-2">
-				<!-- Nombre del curso -->
-				<div class="form-group w-50 mr-5">
+			<form action="seleccionarReservas" method="GET">
+				<div class="form-row mt-2">
+					<!-- Nombre del curso -->
+					<div class="form-group w-50 mr-5">
 					<label class="text-secondary font-weight-bold" for="nombreCurso">Nombre del curso</label>
 					<input type="text" class="form-control" name="nombreCurso" id="nombreCurso" value="${nombreCurso}" required>
-				</div>
+					</div>
 			
 				<!-- Fecha de inicio -->
 				<div class="form-group w-25">
@@ -53,7 +54,7 @@
 				<div class="form-group w-25 mr-5">
 					<label class="text-secondary font-weight-bold" for="tipoAula">Tipo de Aula</label>
 					<select	class="form-control" id="tipoAula" name="tipoAula" required>
-						<option selected disabled></option>
+						<option value="0" selected></option>
 					<c:forEach items="${tipoAulas}" var="tipoAula">
 						<c:choose>
 							<c:when test="${tipoAula.id == idAula}">
@@ -284,64 +285,66 @@
 		<!-- -------------------------------------------------------------------------------------------------------------------- -->
 		
 		<form action="seleccionarReservas" method="GET">
-			<table class="table">
-  				<thead>
+			<table class="table table-sm table-bordered">
+  				<thead class="bg-cice text-white">
     				<tr>
       					<th scope="col" class="text-center"></th>
-      					<th scope="col">Aulas</th>
-      					<th scope="col">Sede</th>
-      					<th scope="col">Tipo</th>
+      					<th scope="col" class="text-center">Aulas</th>
+      					<th scope="col" class="text-center">Sede</th>
+      					<th scope="col" class="text-center">Tipo</th>
+      					<th scope="col" class="text-center">Coincidencias</th>
+      					
       				</tr>
 				</thead>
   				
   				<tbody>
     			<c:forEach items="${aulasValidas}" var="aulasValida">
 					<tr>
-	      				<th scope="row" class="align-top text-white bg-success text-center">
-	      					<input class="form-check-input" type="radio" name="aula" id="${aulasValida.id}" value="${aulasValida.id}" required>
+	      				<th scope="row" class="align-top text-dark bg-cice-ok text-center">
+	      					<input type="radio" name="aula" id="${aulasValida.idAula}" value="${aulasValida.idAula}" required>
 	      				</th>
 					
-						<td class="align-middle text-white bg-success text-left">
-							<label class="form-check-label" for="${aulasValida.id}">
-    							${aulasValida.nombre}
-							</label>
+						<td class="align-middle text-dark bg-cice-ok text-center">
+    							${aulasValida.nombreAula}
 						</td>
 						
-						<td class="align-middle text-white bg-success text-left">
-							<label class="form-check-label" for="${aulasValida.sede}">
-    							${aulasValida.sede}
-    						</label>
+						<td class="align-middle text-dark bg-cice-ok text-center">
+							${aulasValida.nombreSede}
+    					</td>
+													
+						<td class="align-middle text-dark bg-cice-ok text-center">
+							${aulasValida.nombreTipoAula}
 						</td>
-							
-						<td class="align-middle text-white bg-success text-left">
-							<label class="form-check-label" for="${aulasValida.tipo}">
-    							${aulasValida.tipo}
-							</label>
+						
+						<td class="align-middle text-dark bg-cice-ok text-center">
+							${aulasValida.coincidencias}
 						</td>
+						
 					</tr>
 				</c:forEach>
+
+				
+				
 				<c:forEach items="${aulasNoValidas}" var="aulasNoValida">
 					<tr>
-	      				<th scope="row" class="align-top text-white bg-danger text-center">
-	      					<input class="form-check-input" type="radio" name="aula" id="${aulasNoValida.id}" value="${aulasNoValida.id}" required disabled>
+	      				<th scope="row" class="align-top text-dark bg-cice-fail text-center">
+	      					<input type="radio" name="aula" id="${aulasNoValida.idAula}" value="${aulasNoValida.idAula}" required disabled>
 	      				</th>
 						
-						<td class="align-middle text-white bg-danger text-left">
-							<label class="form-check-label" for="${aulasNoValida.id}">
-    							${aulasNoValida.nombre}
-							</label>
+						<td class="align-middle text-dark bg-cice-fail text-center">
+							${aulasNoValida.nombreAula}
 						</td>
-							
-						<td class="align-middle text-white bg-danger text-left">
-							<label class="form-check-label" for="${aulasNoValida.sede}">
-    							${aulasNoValida.sede}
-							</label>
+						
+						<td class="align-middle text-dark bg-cice-fail text-center">
+							${aulasNoValida.nombreSede}
 						</td>
-							
-						<td class="align-middle text-white bg-danger text-left">
-							<label class="form-check-label" for="${aulasNoValida.tipo}">
-    							${aulasNoValida.tipo}
-							</label>
+						
+						<td class="align-middle text-dark bg-cice-fail text-center">
+							${aulasNoValida.nombreTipoAula}
+						</td>
+						
+						<td class="align-middle text-dark bg-cice-fail text-center">
+							${aulasNoValida.coincidencias}
 						</td>
 					</tr>
 				</c:forEach>
