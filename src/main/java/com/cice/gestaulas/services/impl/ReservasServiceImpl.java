@@ -58,49 +58,31 @@ public class ReservasServiceImpl implements IReservaService {
 		return reservaRepository.findFechasReservasByAula(idAula);
 	}
 
-	//Ordenacion-----------------------------------------------------------
 	
+	//Filtros Buscar-------------------------------------------------------
+
 	@Override
-	public List<Reserva> findAllByIdAsc() {
-		return reservaRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+	public List<Reserva> findAllByAula(int idAula) {
+		return reservaRepository.findByIdAula(idAula);
 	}
+
+	@Override
+	public List<Reserva> findAllByCurso(String nombreCurso) {
+		return reservaRepository.findByNombreCurso(nombreCurso);
+	}
+
+	@Override
+	public List<Reserva> findAllByAulaAndCurso(int idAula, String nombreCurso) {
+		return reservaRepository.findByIdAulaAndNombreCurso(idAula, nombreCurso);
+	}
+
 	
-	@Override
-	public List<Reserva> findAllByIdDes() {
-		return reservaRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-	}
+	//Filtros Reserva Listado----------------------------------------------
 
 	@Override
-	public List<Reserva> findAllByCursoAsc() {
-		return reservaRepository.findAll(Sort.by(Sort.Direction.ASC, "nombreCurso"));
+	public List<String> findAllListaCursos() {
+		return reservaRepository.findAllListaNombresCurso();
 	}
-
-	@Override
-	public List<Reserva> findAllByCursoDes() {
-		return reservaRepository.findAll(Sort.by(Sort.Direction.DESC, "nombreCurso"));
-	}
-
-	@Override
-	public List<Reserva> findAllByAulaAsc() {
-		return reservaRepository.findAll(Sort.by(Sort.Direction.ASC, "idAula"));
-	}
-
-	@Override
-	public List<Reserva> findAllByAulaDes() {
-		return reservaRepository.findAll(Sort.by(Sort.Direction.DESC, "idAula"));
-	}
-
-	@Override
-	public List<Reserva> findAllByFechaAsc() {
-		return reservaRepository.findAll(Sort.by(Sort.Direction.ASC, "fechaReserva"));
-	}
-
-	@Override
-	public List<Reserva> findAllByFechaDes() {
-		return reservaRepository.findAll(Sort.by(Sort.Direction.DESC, "fechaReserva"));
-	}
-
-	//Ordenacion-----------------------------------------------------------
 	
 	
 	

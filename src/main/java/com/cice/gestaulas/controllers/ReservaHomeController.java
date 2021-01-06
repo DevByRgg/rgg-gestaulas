@@ -135,20 +135,14 @@ public class ReservaHomeController extends ReservaAuxiliarController{
 			@RequestParam (name = "tipoAula", defaultValue = "0", required = true) int tipoAula,
 			@RequestParam (name = "capacidadAula", required = true) int capacidadAula) {
 		
-		ModelAndView mav = new ModelAndView();
-		
-		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
-		
-		List<Boolean> horas = listaHorasBoleano(man09, man10, man11, man12, man13, man14, tar17, tar18, tar19, 
-				tar20, tar21, tar22);
-		
+		//Realizar Busqueda
 		List<Boolean> diasLectivos = listaDiasBoleano(lunes, martes, miercoles, jueves, viernes, sabado);
 		
 		List<LocalTime> listaHorasLectivas = generarHorasLectivas(man09, man10, man11, man12, man13, man14, tar17, tar18, 
 				tar19, tar20, tar21, tar22);
 		
 		List<LocalDateTime> listaFechasHoras = generarNecesidades(fechaInicio, cantidadHorasCurso, listaHorasLectivas, diasLectivos);
-
+		LocalDate fechaFinal = listaFechasHoras.get(listaFechasHoras.size() - 1).toLocalDate();
 		
 		Map<Integer, Integer> listaAulas = generarMapaAulas(tipoAula, capacidadAula, listaFechasHoras);
 		List<Integer> aulasBusqueda = new ArrayList<Integer>(listaAulas.keySet());
@@ -193,8 +187,16 @@ public class ReservaHomeController extends ReservaAuxiliarController{
 		}
 		
 		
+		
 		System.out.println(listaAulaValida);
 		System.out.println(listaAulaNoValida);
+		
+		//Realizar Presentacion
+		ModelAndView mav = new ModelAndView();
+		
+		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
+		List<Boolean> horas = listaHorasBoleano(man09, man10, man11, man12, man13, man14, tar17, tar18, tar19, 
+				tar20, tar21, tar22);
 		
 		mav.addObject("aulasValidas", listaAulaValida);
 		mav.addObject("aulasNoValidas", listaAulaNoValida);
@@ -202,16 +204,86 @@ public class ReservaHomeController extends ReservaAuxiliarController{
 		mav.addObject("nombreCurso", nombreCurso);
 		mav.addObject("fechaInicio", fechaInicio);
 		mav.addObject("cantidadHorasCurso", cantidadHorasCurso);
-		mav.addObject("idAula", tipoAula);
+		mav.addObject("tipo", tipoAula);
 		mav.addObject("capacidadAula", capacidadAula);
 		mav.addObject("semana", diasLectivos);
 		mav.addObject("horas", horas);
+		mav.addObject("fechaFinal", fechaFinal);
 		
 		mav.addObject("tipoAulas", listaTipoAulas);
 		mav.setViewName("reservas/buscarReserva");
 		
 		return mav;
 	}
+	
+	@GetMapping("reservas/realizarReservas")
+	public ModelAndView realizarReservaCurso(
+			@RequestParam (name = "nombreCurso", required = true) String nombreCurso,
+			@RequestParam (name = "fechaInicio", required = true) String fechaInicio,
+			@RequestParam (name = "horasCurso", required = true) int cantidadHorasCurso,
+			@RequestParam (name = "aulaSeleccionada", required = true) int aulaSeleccionada,
+			@RequestParam (name = "lunes", defaultValue = "false", required = true) boolean lunes,
+			@RequestParam (name = "martes", defaultValue = "false", required = true) boolean martes,
+			@RequestParam (name = "miercoles", defaultValue = "false", required = true) boolean miercoles,
+			@RequestParam (name = "jueves", defaultValue = "false", required = true) boolean jueves,
+			@RequestParam (name = "viernes", defaultValue = "false", required = true) boolean viernes,
+			@RequestParam (name = "sabado", defaultValue = "false", required = true) boolean sabado,
+			@RequestParam (name = "man09", defaultValue = "false", required = true) boolean man09,
+			@RequestParam (name = "man10", defaultValue = "false", required = true) boolean man10,
+			@RequestParam (name = "man11", defaultValue = "false", required = true) boolean man11,
+			@RequestParam (name = "man12", defaultValue = "false", required = true) boolean man12,
+			@RequestParam (name = "man13", defaultValue = "false", required = true) boolean man13,
+			@RequestParam (name = "man14", defaultValue = "false", required = true) boolean man14,
+			@RequestParam (name = "tar17", defaultValue = "false", required = true) boolean tar17,
+			@RequestParam (name = "tar18", defaultValue = "false", required = true) boolean tar18,
+			@RequestParam (name = "tar19", defaultValue = "false", required = true) boolean tar19,
+			@RequestParam (name = "tar20", defaultValue = "false", required = true) boolean tar20,
+			@RequestParam (name = "tar21", defaultValue = "false", required = true) boolean tar21,
+			@RequestParam (name = "tar22", defaultValue = "false", required = true) boolean tar22,
+			@RequestParam (name = "tipoAula", defaultValue = "0", required = true) int tipoAula,
+			@RequestParam (name = "capacidadAula", required = true) int capacidadAula) {
+		
+		List<LocalTime> listaHorasLectivas = generarHorasLectivas(man09, man10, man11, man12, man13, 
+				man14, tar17, tar18, tar19, tar20, tar21, tar22);
+		List<Boolean> diasLectivos = listaDiasBoleano(lunes, martes, miercoles, jueves, viernes, sabado);
+		
+		List<LocalDateTime> listaFechasHoras = generarNecesidades(fechaInicio, cantidadHorasCurso, 
+				listaHorasLectivas, diasLectivos);
+		
+		List<Reserva> listaReservas = generarReservas(nombreCurso, aulaSeleccionada, listaFechasHoras);
+		int numeroReservas = listaFechasHoras.size();
+		LocalDate fechaFinal = listaFechasHoras.get(listaFechasHoras.size() - 1).toLocalDate();
+		
+		hacerReservas(listaReservas);
+		
+		//Realizar Presentacion----------------------------------------------------------------------------------
+		ModelAndView mav = new ModelAndView();
+		
+		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
+		List<Boolean> horas = listaHorasBoleano(man09, man10, man11, man12, man13, man14, tar17, tar18, tar19, 
+				tar20, tar21, tar22);
+		
+		System.out.println(diasLectivos);
+		System.out.println(horas);
+		System.out.println(numeroReservas);
+		
+		mav.addObject("nombreCurso", nombreCurso);
+		mav.addObject("fechaInicio", fechaInicio);
+		mav.addObject("cantidadHorasCurso", cantidadHorasCurso);
+		mav.addObject("tipo", tipoAula);
+		mav.addObject("capacidadAula", capacidadAula);
+		mav.addObject("semana", diasLectivos);
+		mav.addObject("horas", horas);
+		mav.addObject("numeroReservas", numeroReservas);
+		mav.addObject("fechaFinal", fechaFinal);
+		
+		
+		mav.addObject("tipoAulas", listaTipoAulas);
+		mav.setViewName("reservas/buscarReserva");
+		
+		return mav;
+	}
+	
 	
 	
 	//-------------------------------------------------------------------------------------------------------

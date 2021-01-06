@@ -16,5 +16,15 @@ public interface IReservasRepository extends JpaRepository<Reserva, Integer> {
 	List<LocalDateTime> findFechasReservasByAula(
 			@Param("idAula") Integer aulaSeleccionada);
 	
+
+	@Query("SELECT DISTINCT a.nombreCurso FROM Reserva a")
+	List<String> findAllListaNombresCurso();
+	
+	
+	List<Reserva> findByNombreCurso(String nombreCurso);
+	List<Reserva> findByIdAula(int idAula);
+	List<Reserva> findByIdAulaAndNombreCurso(int idAula, String nombreCurso);
+	
+	// List<String> findDistinctByNombreCurso();	No funciona
 	
 }

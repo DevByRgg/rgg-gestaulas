@@ -1,13 +1,9 @@
-
-Filtros en el listado de reservas
-	curso
-	aula
-	
-constructor mostrar Aula
-constructor consulta aulas
-
 hacer las consultas y que quede bonito
 
-realizar reservas
 
-mirar en el video a ver que mas me ha pedido
+	
+ObjetoPresentacion.java
+	constructor mostrar Aula
+	constructor consulta aulas
+
+	

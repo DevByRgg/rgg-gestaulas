@@ -39,4 +39,5 @@ public interface IAulaRepository extends JpaRepository<Aula, Integer>{
 	List<Aula> findByCapacidad(int capacidad);
 	
 	
+	
 }
