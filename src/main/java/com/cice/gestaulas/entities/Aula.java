@@ -12,12 +12,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+/**
+ * Clase Entidad Aula que se corresponde con la tabla aulas de la BBDD
+ *
+ */
 @Entity
 @Table(name = "aulas")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Aula {
 	
 	@Id
@@ -25,6 +28,10 @@ public class Aula {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	/**
+	 * Nombre del aula compuesto por la primera letra de la sede y un numero de tres cifras identificativo
+	 * por ejemplo M003 para aula 003 de M (Maldonado)
+	 */
 	@Column(name = "nombre")
 	@NonNull
 	private String nombre;
@@ -37,6 +44,9 @@ public class Aula {
 	@NonNull
 	private int sede;
 	
+	/**
+	 * Capacidad de puestos del Aula
+	 */
 	@Column(name = "capacidad")
 	@NonNull
 	private int capacidad;

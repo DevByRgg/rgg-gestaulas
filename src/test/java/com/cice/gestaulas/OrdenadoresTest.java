@@ -92,7 +92,7 @@ class OrdenadoresTest{
 	 */
 	@Test
 	@DisplayName("Test Create Ordenador")
-	public void create() {
+	public void testCreate() {
 		System.out.println("******* CREATE *******");
 		ordenadorAlmacenado = ordenadorService.findById(idOrdenadorNuevo);
 		
@@ -108,7 +108,7 @@ class OrdenadoresTest{
 	 */
 	@Test
 	@DisplayName("Test FindById Ordenador")
-	public void findById() {
+	public void testFindById() {
 		System.out.println("******* FIND BY ID *******");
 		ordenadorAlmacenado = ordenadorService.findById(idOrdenadorNuevo);
 		assertNotNull(ordenadorAlmacenado, ()->"Error, no se ha encontrado el ordenador");
@@ -120,7 +120,7 @@ class OrdenadoresTest{
 	 */
 	@Test
 	@DisplayName("Test FindAll Ordenador")
-	public void findAll() {
+	public void testFindAll() {
 		System.out.println("******* FIND ALL *******");
 		List<Ordenador> ordenadores = ordenadorService.findAll();
 		assertNotNull(ordenadores, ()->"Error, no funciona FindAll");
@@ -131,23 +131,85 @@ class OrdenadoresTest{
 	 */
 	@Test
 	@DisplayName("Test Update Ordenador")
-	public void update() {
+	public void testUpdate() {
 		System.out.println("******** UPDATE ********");
+		//cambiar datos
 		ordenadorNuevo.setNombre(NOMBRE_TEST_UPDATE);
-			
-		//TODO
+		ordenadorNuevo.setSistemaOperativo(SO_TEST_UPDATE);
+		ordenadorNuevo.setDimensionPantalla(PULGADAS_TEST_UPDATE);
+		ordenadorNuevo.setCpu(CPU_TEST_UPDATE);
+		ordenadorNuevo.setRam(RAM_TEST_UPDATE);
+		ordenadorNuevo.setTarjetaGrafica(TGRAFICA_TEST_UPDATE);
+		
+		//actualizar
+		ordenadorService.update(ordenadorNuevo);
+		
+		//recuperar de la BBDD
+		ordenadorAlmacenado = ordenadorService.findById(idOrdenadorNuevo);
+		
+		//comprobar update
+		assertAll("Comprobar todos los campos update",
+				()-> assertEquals(NOMBRE_TEST_UPDATE,ordenadorAlmacenado.getNombre()),
+				()-> assertEquals(SO_TEST_UPDATE, ordenadorAlmacenado.getSistemaOperativo()),
+				()-> assertEquals(PULGADAS_TEST_UPDATE, ordenadorAlmacenado.getDimensionPantalla()),
+				()-> assertEquals(CPU_TEST_UPDATE, ordenadorAlmacenado.getCpu()),
+				()-> assertEquals(RAM_TEST_UPDATE, ordenadorAlmacenado.getRam()),
+				()-> assertEquals(TGRAFICA_TEST_UPDATE, ordenadorAlmacenado.getTarjetaGrafica())		
+		);
 	}
 
+	/**
+	 * Probar DeleteById
+	 */
 	@Test
-	public void delete(int id) {
-		// TODO Auto-generated method stub
+	@DisplayName("Test DeleteById Ordenador")
+	public void testDeleteById() {
+		System.out.println("******** DELETE BY ID ********");
+		Ordenador ordenadorBorrar = new Ordenador(0,
+				NOMBRE_TEST, 
+				SO_TEST,
+				PULGADAS_TEST, 
+				CPU_TEST, 
+				RAM_TEST, 
+				TGRAFICA_TEST);
+		
+		//crear ordenador
+		ordenadorService.create(ordenadorBorrar);
+		//comprobar
+		assertNotNull(ordenadorBorrar, ()-> "Error, no se ha creado Ordenador en test DeleteById. NULL");
+		int idOrdenadorBorrar = ordenadorBorrar.getId();
+		//borrar ordenador
+		ordenadorService.delete(idOrdenadorBorrar);
+		//comprobar
+		assertNull(ordenadorService.findById(idOrdenadorBorrar), ()->"Error, no se ha podido borrar");
+		
 		
 	}
 
+	/**
+	 * Probar DeleteEntity Ordenador
+	 */
 	@Test
-	public void delete(Ordenador o) {
-		// TODO Auto-generated method stub
+	@DisplayName("Test DeleteEntity Ordenador")
+	public void testDeleteEntity() {
+		System.out.println("******** DELETE BY ENTITY ORDENADOR ********");
+		Ordenador ordenadorBorrar = new Ordenador(0,
+				NOMBRE_TEST, 
+				SO_TEST,
+				PULGADAS_TEST, 
+				CPU_TEST, 
+				RAM_TEST, 
+				TGRAFICA_TEST);
 		
+		//crear ordenador
+		ordenadorService.create(ordenadorBorrar);
+		//comprobar
+		assertNotNull(ordenadorBorrar, ()-> "Error, no se ha creado Ordenador en test DeleteById. NULL");
+		int idOrdenadorBorrar = ordenadorBorrar.getId();
+		//borrar ordenador
+		ordenadorService.delete(ordenadorBorrar);
+		//comprobar
+		assertNull(ordenadorService.findById(idOrdenadorBorrar), ()->"Error, no se ha podido borrar");
 	}
 
 }
