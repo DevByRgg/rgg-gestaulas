@@ -34,6 +34,8 @@ class AulasTest {
 	final int EQUIPAMIENTO_AULA = 5;
 	final int CAPACIDAD_AULA_TEST_UPDATE = 9999;
 	
+	int idAulaNueva;
+	
 	Aula aulaNueva;
 	Aula aulaAlmacenada;
 	
@@ -56,7 +58,7 @@ class AulasTest {
 				EQUIPO_ALUMNO_AULA, 
 				EQUIPAMIENTO_AULA);
 		aulaService.create(aulaNueva);
-		//System.out.println("----------- aula nueva id: " + aulaNueva.getId());
+		idAulaNueva = aulaNueva.getId();
 	}
 	
 	/**
@@ -67,7 +69,7 @@ class AulasTest {
 	void tearDownAfterClass() throws Exception {
 		 {
 			System.out.println("-------------------------- AFTER ALL -----------------------");
-			aulaService.delete(aulaNueva); //eliminar el registro creado
+			aulaService.delete(idAulaNueva); //eliminar el registro creado
 		}
 	}
 
@@ -100,13 +102,13 @@ class AulasTest {
 	@DisplayName("Test Create Aula")
 	void testCreate() {
 		System.out.println("******* CREATE *******");
-		aulaAlmacenada = aulaService.findById(aulaNueva.getId());
+		aulaAlmacenada = aulaService.findById(idAulaNueva);
 		
 		//Si es null el aula no se ha creado
-		assertNotNull(aulaAlmacenada, ()->"Error, el aula no se ha guardado en la BBDD");
+		assertNotNull(aulaAlmacenada, ()-> "Error, el aula no se ha guardado en la BBDD");
 		
 		//Comprobar si son iguales los datos almacenados y enviados
-		assertEquals(aulaNueva, aulaAlmacenada, ()->"Error, no se han almacenado correctamente los datos");	
+		assertEquals(aulaNueva, aulaAlmacenada, ()-> "Error, no se han almacenado correctamente los datos");	
 	}
 	
 	/**
@@ -116,13 +118,13 @@ class AulasTest {
 	@DisplayName("Test FindById Aula")
 	void testFindById() {
 		System.out.println("******* FIND BY ID *******");
-		aulaAlmacenada = aulaService.findById(aulaNueva.getId());
+		aulaAlmacenada = aulaService.findById(idAulaNueva);
 		assertNotNull(aulaAlmacenada, ()-> "Error, no se ha encontrado el aula");
 		assertEquals(aulaNueva, aulaAlmacenada, ()-> "Error, los registros no son iguales");		
 	}
 	
 	/**
-	 * Probar FindAll Aula
+	 * Probar findAll Aula
 	 */
 	@Test
 	@DisplayName("Test FindAll Aula")
@@ -133,7 +135,7 @@ class AulasTest {
 	}
 	
 	/**
-	 * Probar FindBySede Aula
+	 * Probar findBySede Aula
 	 */
 	@Test
 	@DisplayName("Test FindBySede Aula")
@@ -144,18 +146,18 @@ class AulasTest {
 	}
 	
 	/**
-	 * Probar FindByTipo Aula
+	 * Probar findByTipo Aula
 	 */
 	@Test
 	@DisplayName("Test FindByTipo Aula")
 	void testFindByTipo() {
 		System.out.println("******** FIND BY TIPO ********");
-		List<Aula> aulas = aulaService.findBySede(aulaNueva.getTipo());
+		List<Aula> aulas = aulaService.findByTipo(aulaNueva.getTipo());
 		assertNotNull(aulas, ()-> "Error, no funciona FindByTipo");
 	}
 	
 	/**
-	 * Probar FindBySede Aula
+	 * Probar findBySedeAndTipo Aula
 	 */
 	@Test
 	@DisplayName("Test FindBySedeAndTipo Aula")
@@ -166,7 +168,7 @@ class AulasTest {
 	}
 	
 	/**
-	 * Probar Update Aula
+	 * Probar update Aula
 	 */
 	@Test
 	@DisplayName("Test Update Aula")
@@ -175,18 +177,18 @@ class AulasTest {
 		aulaNueva.setCapacidad(CAPACIDAD_AULA_TEST_UPDATE);
 		
 		aulaService.update(aulaNueva);
-		aulaAlmacenada = aulaService.findById(aulaNueva.getId());
+		aulaAlmacenada = aulaService.findById(idAulaNueva);
 		
 		assertEquals(CAPACIDAD_AULA_TEST_UPDATE, aulaAlmacenada.getCapacidad(), ()-> "Error, no funciona Update");
 	}
 	
 	/**
-	 * Probar DeleteById
+	 * Probar delete By Id
 	 */
 	@Test
 	@DisplayName("Test DeleteById Aula")
 	void testDeleteById() {
-		
+		System.out.println("******** DELETE BY ID ********");
 		Aula aulaBorrar = new Aula
 				(0,NOMBRE_AULA_TEST, 
 					TIPO_AULA_TEST, 
@@ -208,7 +210,7 @@ class AulasTest {
 	}
 	
 	/**
-	 * Probar DeleteEntity
+	 * Probar delete Entity
 	 */
 	@Test
 	@DisplayName("Test DeleteEntity Aula")
