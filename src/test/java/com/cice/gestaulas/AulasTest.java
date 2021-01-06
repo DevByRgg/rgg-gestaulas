@@ -24,7 +24,9 @@ import com.cice.gestaulas.services.interfaces.IAulaService;
 class AulasTest {
 
 	final String NOMBRE_AULA_TEST = "TEST_AULA_BORRAR";
-	final int TIPO_AULA_TEST = 1;
+	//Los id tipoAula, sedeAula, equipoProfesor, equipoAlumno y 
+		//equipamientoAula deben existir en la BBDD
+	final int TIPO_AULA_TEST = 1; 
 	final int SEDE_AULA_TEST = 1;
 	final int CAPACIDAD_AULA_TEST = 33;
 	final int EQUIPO_PROFESOR_AULA = 3;
@@ -40,7 +42,7 @@ class AulasTest {
 	
 	
 	/**
-	 * Crear una nueva aula en la BBDD para pruebas de busquedas
+	 * Crear una nueva Aula en la BBDD para pruebas de búsquedas
 	 * @throws java.lang.Exception
 	 */
 	@BeforeAll

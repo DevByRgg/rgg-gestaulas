@@ -34,7 +34,6 @@ public class Ordenador {
 	private String sistemaOperativo;
 	
 	@Column(name = "pantalla")
-	@NonNull
 	private int dimensionPantalla;
 	
 	@Column(name = "cpu")
@@ -42,7 +41,6 @@ public class Ordenador {
 	private String cpu;
 	
 	@Column(name = "ram")
-	@NonNull
 	private int ram;
 	
 	@Column(name = "tarjeta_grafica")
