@@ -36,7 +36,12 @@ public class ReservasServiceImpl implements IReservaService {
 
 	@Override
 	public void update(Reserva r) {
-		reservaRepository.save(r);
+		if (this.findById(r.getId())!=null) {
+			reservaRepository.save(r);
+		}else {
+			//TODO GESTIONAR ERROR NO SE PUEDE ACTUALIZAR UN OBJETO QUE NO EXISTE CREARIA UNO NUEVO
+		}
+		
 
 	}
 

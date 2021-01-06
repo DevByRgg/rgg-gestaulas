@@ -32,7 +32,12 @@ public class OrdenadorServiceImpl implements IOrdenadorService{
 
 	@Override
 	public void update(Ordenador o) {
-		ordenadorRepository.save(o);
+		if (this.findById(o.getId())!=null) {
+			ordenadorRepository.save(o);
+		}else {
+			//TODO GESTIONAR ERROR NO SE PUEDE ACTUALIZAR UN OBJETO QUE NO EXISTE CREARIA UNO NUEVO
+		}
+		
 	}
 
 	@Override

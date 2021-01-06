@@ -32,7 +32,14 @@ public class AulaServiceImpl implements IAulaService{
 
 	@Override
 	public void update(Aula a) {
-		aulaRepository.save(a);
+		//comprobar que exista en la BBDD
+		if (this.findById(a.getId())!=null) {
+			aulaRepository.save(a);
+		}
+		else {
+			//TODO GESTIONAR ERROR NO EXISTE NO SE PUEDE ACTUALIZAR.. CREARIA UNO NUEVO
+		}
+		
 	}
 
 	@Override

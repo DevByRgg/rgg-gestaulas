@@ -35,7 +35,11 @@ public class SedeServiceImpl implements ISedeService{
 	
 	@Override
 	public void update(Sede s) {
-		sedeRepository.save(s);	
+		if(this.findById(s.getId())!=null) {
+			sedeRepository.save(s);	
+		}else {
+			//TODO GESTIONAR ERROR NO SE PUEDE ACTUALIZAR UN OBJETO QUE NO EXISTE CREARIA UNO NUEVO
+		}	
 	}
 
 	

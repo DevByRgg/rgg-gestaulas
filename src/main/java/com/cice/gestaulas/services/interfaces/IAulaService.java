@@ -36,7 +36,7 @@ public interface IAulaService {
 	public void update(Aula a);
 	
 	/**
-	 * Método para borrar un Aula por su id
+	 * Método para borrar un Aula por su id de la BBDD
 	 * @param id identificador del Aula
 	 */
 	public void delete(int id);

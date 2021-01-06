@@ -36,8 +36,11 @@ public class EquipamientoServiceImpl implements IEquipamientoService{
 
 	@Override
 	public void update(Equipamiento e) {
-		equipamientoRepository.save(e);
-		
+		if (this.findById(e.getId())!=null) {
+			equipamientoRepository.save(e);
+		}else {
+			//TODO GESTIONAR ERROR NO SE PUEDE ACTUALIZAR UN OBJETO QUE NO EXISTE CREARIA UNO NUEVO
+		}
 	}
 
 	@Override

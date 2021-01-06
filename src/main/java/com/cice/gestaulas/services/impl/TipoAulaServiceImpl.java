@@ -32,7 +32,12 @@ public class TipoAulaServiceImpl implements ITipoAulaService{
 
 	@Override
 	public void update(TipoAula t) {
-		tipoAulaRepository.save(t);
+		if(this.findById(t.getId())!=null) {
+			tipoAulaRepository.save(t);
+		}else {
+			//TODO GESTIONAR ERROR NO SE PUEDE ACTUALIZAR UN OBJETO QUE NO EXISTE CREARIA UNO NUEVO
+		}
+		
 	}
 
 	@Override
