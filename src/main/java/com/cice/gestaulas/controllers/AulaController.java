@@ -1,7 +1,9 @@
 package com.cice.gestaulas.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import com.cice.gestaulas.entities.Equipamiento;
 import com.cice.gestaulas.entities.Ordenador;
 import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.entities.TipoAula;
+import com.cice.gestaulas.entities.auxiliar.ObjetoPresentacion;
 import com.cice.gestaulas.services.interfaces.IAulaService;
 import com.cice.gestaulas.services.interfaces.IEquipamientoService;
 import com.cice.gestaulas.services.interfaces.IOrdenadorService;
@@ -84,7 +87,22 @@ public class AulaController {
 		
 		List<Aula> listaAulas = aulaService.findAll();
 		
-		mav.addObject("aulas", listaAulas);
+		List<ObjetoPresentacion> listaPresentacion = new ArrayList<ObjetoPresentacion>();
+		
+		for (int i = 0; i < listaAulas.size(); i++) {
+			Aula a = listaAulas.get(i);
+			TipoAula t = tipoAulaService.findById(a.getTipo());
+			Sede s = sedeService.findById(a.getSede());
+			Ordenador o = ordenadorService.findById(a.getEquipoProfesor());
+			Equipamiento e = equipamientoService.findById(a.getEquipamiento());
+			
+			ObjetoPresentacion obj = new ObjetoPresentacion(a.getId(), a.getNombre(), t.getId(), t.getNombre(),
+					s.getId(), s.getNombre(), a.getCapacidad(), o.getId(), o.getNombre(), e.getId(), e.getNombre());
+			
+			listaPresentacion.add(obj);
+		}
+		
+		mav.addObject("aulas", listaPresentacion);
 		mav.setViewName("/admin/mostrarAula");
 		
 		return mav;

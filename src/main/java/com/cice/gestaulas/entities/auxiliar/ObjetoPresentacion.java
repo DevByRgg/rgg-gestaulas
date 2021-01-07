@@ -17,17 +17,54 @@ import lombok.NonNull;
 @NoArgsConstructor
 public class ObjetoPresentacion {
 	
-	private int idReserva;
-	private String nombreCurso;
-	private LocalDateTime fechaReserva;
+	private int idSede;
+	private String nombreSede;
+	
 	private int idAula;
 	private String nombreAula;
 	private int capacidadAula;
-	private int idSede;
-	private String nombreSede;
+	
+	private int idOrdenador;
+	private String nombreOrdenador;
+	
+	private int idEquipamiento;
+	private String nombreEquipamiento;
+	
 	private int idTipoAula;
 	private String nombreTipoAula;
+	
+	private int idReserva;
+	private String nombreCurso;
+	private LocalDateTime fechaReserva;
+	
+	//--------------------------------------------------------------------
+	//--------------------------------------------------------------------
+
+	//Auxiliares----------------------------------------------------------
 	private int coincidencias;
+
+	//--------------------------------------------------------------------
+	//--------------------------------------------------------------------
+
+	//Constructores-------------------------------------------------------
+	
+	
+	//ListadoAula---------------------------------------------------------
+	public ObjetoPresentacion(int idAula, String nombreAula, int idTipoAula, String nombreTipoAula, 
+			int idSede, String nombreSede,  int capacidadAula, int idOrdenador, String nombreOrdenador,
+			int idEquipamiento, String nombreEquipamiento) {
+		this.idAula = idAula;
+		this.nombreAula = nombreAula;
+		this.idTipoAula = idTipoAula;
+		this.nombreTipoAula = nombreTipoAula;
+		this.idSede = idSede;
+		this.nombreSede = nombreSede;
+		this.capacidadAula = capacidadAula;
+		this.idOrdenador = idOrdenador;
+		this.nombreOrdenador = nombreOrdenador;
+		this.idEquipamiento = idEquipamiento;
+		this.nombreEquipamiento = nombreEquipamiento;
+	}
 	
 	//ListadoReserva------------------------------------------------------
 	public ObjetoPresentacion(int idReserva, String nombreCurso,  int idAula, String nombreAula,
@@ -62,6 +99,24 @@ public class ObjetoPresentacion {
 		this.coincidencias = coincidencias;
 	}
 
+	public ObjetoPresentacion(int idSede, String nombreSede, int idAula, String nombreAula, int capacidadAula,
+			int idOrdenador, String nombreOrdenador, int idEquipamiento, String nombreEquipamiento, int idTipoAula,
+			String nombreTipoAula) {
+		super();
+		this.idSede = idSede;
+		this.nombreSede = nombreSede;
+		this.idAula = idAula;
+		this.nombreAula = nombreAula;
+		this.capacidadAula = capacidadAula;
+		this.idOrdenador = idOrdenador;
+		this.nombreOrdenador = nombreOrdenador;
+		this.idEquipamiento = idEquipamiento;
+		this.nombreEquipamiento = nombreEquipamiento;
+		this.idTipoAula = idTipoAula;
+		this.nombreTipoAula = nombreTipoAula;
+	}
+
+	
 	
 
 	

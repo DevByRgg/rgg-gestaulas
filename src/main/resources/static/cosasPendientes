@@ -1,9 +1,4 @@
 hacer las consultas y que quede bonito
 
-
-	
-ObjetoPresentacion.java
-	constructor mostrar Aula
-	constructor consulta aulas
-
-	
+Reserva update
+	comprobar que la reserva a insertar no existe en la bbdd constrain unicos

@@ -45,24 +45,24 @@
 				<tbody>
 					<c:forEach items="${aulas}" var="aula">
 					<tr>
-	      				<th scope="row" class="align-middle text-center">${aula.id}</th>
-						<td class="align-middle text-left">${aula.nombre}</td>
-						<td class="align-middle text-right">${aula.tipo}</td>
-						<td class="align-middle text-right">${aula.sede}</td>
-						<td class="align-middle text-right">${aula.capacidad}</td>
-						<td class="align-middle text-right">${aula.equipoProfesor}</td>
-						<td class="align-middle text-right">${aula.equipoAlumno}</td>
-						<td class="align-middle text-right">${aula.equipamiento}</td>
+	      				<th scope="row" class="align-middle text-center">${aula.idAula}</th>
+						<td class="align-middle text-left">${aula.nombreAula}</td>
+						<td class="align-middle text-right">${aula.nombreTipoAula}</td>
+						<td class="align-middle text-right">${aula.nombreSede}</td>
+						<td class="align-middle text-right">${aula.capacidadAula}</td>
+						<td class="align-middle text-right">${aula.nombreOrdenador}</td>
+						<td class="align-middle text-right">${aula.nombreOrdenador}</td>
+						<td class="align-middle text-right">${aula.nombreEquipamiento}</td>
 
 						<td class="align-middle text-center">
-							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/admin/updateAula?id=${aula.id}">
+							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/admin/updateAula?id=${aula.idAula}">
 								Update
 							</a>
 						</td>
 							
 						<td class="align-middle text-center">
 							<button type="button" class="btn cice-hover bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
-							onclick="configurarBorrado('${aula.id}')">
+							onclick="configurarBorrado('${aula.idAula}')">
 								Borrar
 							</button>
 						</td>

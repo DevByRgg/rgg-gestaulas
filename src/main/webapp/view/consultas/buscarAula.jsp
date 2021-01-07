@@ -22,41 +22,106 @@
 		<!-- Titulo -->
 		<h2 class="pt-3">Cice <span class="badge text-white bg-cice">CONSULTAR</span></h2>
 		
+		<!-- Aqui  va el formulario para los filtros -->
+		<form class=form-inline" action="filtrarReserva" method="GET">
+			<div class="form-group mt-3">
+				<label class="font-weight-bold mr-3" for="sede">Sede</label>
+	  			<select	class="w-25 form-control-sm mr-4" id="sede" name="sede" required>
+					<option value="-1" selected></option>
+				<c:forEach items="${sedes}" var="sede">
+					<c:choose>
+						<c:when test="${sede.id == sedeSeleccionada}">
+							<option value="${sede.id}" selected>${sede.nombre}</option>
+						</c:when>    
+	    				<c:otherwise>
+							<option value="${sede.id}">${sede.nombre}</option>
+						</c:otherwise>
+					</c:choose>		
+				</c:forEach>
+				</select>
+	  				
+				<label class="font-weight-bold mr-3" for=""tipo"">Tipo de Aula</label>
+	  			<select	class="w-25 form-control-sm mr-4" id=""tipo"" name="tipo" required>
+					<option value="-1" selected></option>
+				<c:forEach items="${tipoAulas}" var="tipoAulas">
+					<c:choose>
+						<c:when test="${tipoAulas.id == tipoAulaSeleccionada}">
+							<option value="${tipoAulas.id}" selected>${tipoAulas.nombre}</option>
+						</c:when>    
+	    				<c:otherwise>
+							<option value="${tipoAulas.id}">${tipoAulas.nombre}</option>
+						</c:otherwise>
+					</c:choose>		
+				</c:forEach>
+				</select>			
+			</div>
+			
+			<div class="form-group mt-2">
+				<label class="font-weight-bold mr-3" for="mes">Mes</label>
+	  			<select	class="form-control-sm text-capitalize mr-4" id="mes" name="mes" required>
+					<option value="-1" selected></option>
+				<c:forEach items="${meses}" var="mes">
+					<c:choose>
+						<c:when test="${mes.key == mesSeleccionado}">
+							<option class="text-capitalize" value="${mes.key}" selected>${mes.value}</option>
+						</c:when>    
+	    				<c:otherwise>
+							<option class="text-capitalize" value="${mes.key}">${mes.value}</option>
+						</c:otherwise>
+					</c:choose>		
+				</c:forEach>
+				</select>
+	  				
+				<label class="font-weight-bold mr-3" for="anio">Año</label>
+	  			<select	class="form-control-sm mr-4" id="anio" name="anio" required>
+					<option value="-1" selected></option>
+				<c:forEach items="${anios}" var="anio">
+					<c:choose>
+						<c:when test="${anio.value == anioSeleccionado}">
+							<option value="${anio.value}" selected>${anio.value}</option>
+						</c:when>    
+	    				<c:otherwise>
+							<option value="${anio.value}">${anio.value}</option>
+						</c:otherwise>
+					</c:choose>		
+				</c:forEach>
+				</select>
+					
+				<label class="font-weight-bold mr-3" for="idSede">Turno</label>
+	  			<select	class="form-control-sm mr-4" id="idSede" name="idSede" required>
+						<option value="-1" selected></option>
+					<c:choose>
+						<c:when test="${turno == 1}">
+							<option value="1" selected>Mañana</option>
+						</c:when>    
+	    				<c:otherwise>
+							<option value="1">Mañana</option>
+						</c:otherwise>
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${turno == 2}">
+							<option value="2" selected>Tarde</option>
+						</c:when>    
+	    				<c:otherwise>
+							<option value="1">Tarde</option>
+						</c:otherwise>
+					</c:choose>	
+				</select>	
+
+				<button type="submit" class="btn btn-sm font-weight-bold text-white cice-hover bg-cice">Filtrar</button>
+
+
+			</div>
+		</form>
+		<!-- Aqui  va el formulario para los filtros -->
+		
+		
 		<!-- Forumulario -->
 		<form action="elegirAula" method="GET">
 			
 			
-			<div class="row align-items-end mt-4">
-				<!-- Sede -->	
-				<div class="form-group w-25 mr-5">
-					<label class="text-secondary font-weight-bold" for="sede">Sede</label>
-					<select	class="form-control" id="sede" name="sede">
-							<option selected value="-1"></option>
-						<c:forEach items="${sedes}" var="sede">
-							<option value="${sede.id}">${sede.nombre}</option>
-						</c:forEach>
-					</select>
-				</div>
-			
-				<!-- Tipo Aula -->
-				<div class="form-group w-25 mr-5">
-					<label class="text-secondary font-weight-bold" for="tipo">Tipo de aula</label>
-					<select	class="form-control" id="tipo" name="tipo">
-							<option selected value="-1"></option>
-						<c:forEach items="${tipoAulas}" var="tipoAula">
-							<option value="${tipoAula.id}">${tipoAula.nombre}</option>
-						</c:forEach>
-					</select>
-				</div>
-				
-				<!-- Boton enviar formulario -->
-				<div class="form-group col-md-1">
-					<button type="submit" class="btn font-weight-bold text-white cice-hover bg-cice">Buscar</button>
-				</div>
-			
-			</div>
-			
-		</form>
+		
 		
 		<!-- Opciones -->
 		<div class="pt-3">
@@ -103,32 +168,9 @@
 					</tbody>
 				</table>
 						
-				<div class="row align-items-end mt-4">
-				
-				<!-- Mes -->
-				<div class="form-group col-md-2">
-					<label class="text-secondary font-weight-bold" for="mes">Mes</label>
-					<select	class="form-control text-capitalize" id="mes" name="mes" required>
-							<option selected disabled></option>
-						<c:forEach items="${meses}" var="mes">
-							<option value="${mes.key}">${mes.value}</option>
-						</c:forEach>
-      				</select>
-				</div>
-				
-				<!-- Año -->
-				<div class="form-group col-md-2">
-					<label class="text-secondary font-weight-bold" for="anio">Año</label>
-					<select	class="form-control" id="anio" name="anio" required>
-							<option selected disabled></option>
-						<c:forEach items="${anios}" var="anio">
-							<option>${anio.value}</option>
-						</c:forEach>
-					</select>
-				</div>
 				
 				<!-- Boton enviar formulario -->
-				<div class="form-group col-md-1">
+				<div class="form-group float-right">
 					<button type="submit" class="btn font-weight-bold text-white cice-hover bg-cice">Seleccionar</button>
 				</div>
 			
