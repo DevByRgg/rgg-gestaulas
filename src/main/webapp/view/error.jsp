@@ -4,17 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:import url="./common/head.jsp"/>
 <title>Error</title>
 </head>
 <body>
 
-<ul>
-        <li>status: <c:out value="${requestScope.status}" /></li>
-        <li>error: <c:out value="${requestScope.error}" /></li>
-        <li>message: <c:out value="${requestScope.message}" /></li>
-        <li>path: <c:out value="${requestScope.path}" /></li>
-        <li>trace: <c:out value="${requestScope.trace}" /></li>
-    </ul>
+
 
 	<div class="container-md w-75">
 
@@ -23,6 +18,15 @@
 		<h2 class="pt-3">
 			Administration <span class="badge text-white bg-cice">Error</span>
 		</h2>
+		
+		<ul>
+        <li>status: <c:out value="${requestScope.status}" /></li>
+        <li>error: <c:out value="${requestScope.error}" /></li>
+        <li>message: <c:out value="${requestScope.message}" /></li>
+        <li>path: <c:out value="${requestScope.path}" /></li>
+        <li>trace: <c:out value="${requestScope.trace}" /></li>
+    </ul>
+		
 		<a href="./">Volver</a>
 	</div>
 
