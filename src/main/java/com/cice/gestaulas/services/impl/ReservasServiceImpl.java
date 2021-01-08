@@ -88,6 +88,15 @@ public class ReservasServiceImpl implements IReservaService {
 	public List<String> findAllListaCursos() {
 		return reservaRepository.findAllListaNombresCurso();
 	}
+
+	
+	
+	
+	@Override
+	public List<Reserva> findByIdAulaAndFechaReserva(int idAula, LocalDateTime fechaReserva) {
+		
+		return reservaRepository.findByIdAulaAndFechaReserva(idAula, fechaReserva);
+	}
 	
 	
 	

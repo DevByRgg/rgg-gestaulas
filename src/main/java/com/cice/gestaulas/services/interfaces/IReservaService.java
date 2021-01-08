@@ -24,5 +24,14 @@ public interface IReservaService {
 	
 	public List<String> findAllListaCursos();
 	
+	
+	/**
+	 * Para comprobar que una fecha en una aula está libre para reservar
+	 * @param idAula
+	 * @param fechaReserva
+	 * @return
+	 */
+	public List<Reserva> findByIdAulaAndFechaReserva(int idAula, LocalDateTime fechaReserva);
+	
 
 }

@@ -17,6 +17,7 @@ public class CustomErrorController implements ErrorController {
 	
 	@RequestMapping("/error")
 	public ModelAndView showErrorPage() {
+		System.out.println("LLEGA AL MAPPING ERROR DEL ERRORCONTROLLER");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("mensaje", "Ha ocurrido un error. Contacte con el CAU");
 		mav.setViewName("error");

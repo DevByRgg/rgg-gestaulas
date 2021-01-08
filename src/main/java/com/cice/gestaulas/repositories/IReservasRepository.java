@@ -27,4 +27,5 @@ public interface IReservasRepository extends JpaRepository<Reserva, Integer> {
 	
 	// List<String> findDistinctByNombreCurso();	No funciona
 	
+	public List<Reserva> findByIdAulaAndFechaReserva(int idAula, LocalDateTime fechaReserva);
 }
