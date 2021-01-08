@@ -2,19 +2,3 @@
 
 Reserva update
 	comprobar que la reserva a insertar no existe en la bbdd constrain unicos
-		crear reserva
-		update reserva
-		
-	comprobacion nombreCurso en el buscador de cursos
-	
-crear la zona public
-
-
-Reservas
-	entidad festivo
-	
-	meter festivos y que chequee si estan en la bbdd
-	
-	entidad curso 
-		id - nombre - codigo curso 
-	

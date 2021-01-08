@@ -23,7 +23,7 @@
 		<h2 class="pt-3">Consultar <span class="badge text-white bg-cice">AULA</span></h2>
 		
 		<!-- Aqui  va el formulario para los filtros -->
-		<form class=form-inline" action="filtrarAulasDisponibles" method="GET">
+		<form class=form-inline" action="filtrarAulasDisponible" method="GET">
 			<div class="form-group mt-3">
 				<label class="font-weight-bold mr-3" for="sede">Sede</label>
 	  			<select	class="w-25 form-control-sm mr-4" id="sede" name="sede" required>
@@ -158,10 +158,14 @@
     								${aulaDisponible.nombreTipoAula}
 								</label>
 							</td>
+							
+							
+							
 						</tr>
 					</c:forEach>
 					</tbody>
 				</table>
+						
 				
 				<!-- Boton enviar formulario -->
 				<div class="form-group float-right">

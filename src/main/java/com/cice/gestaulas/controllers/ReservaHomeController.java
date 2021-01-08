@@ -59,7 +59,6 @@ public class ReservaHomeController extends ReservaAuxiliarController{
 		return mav;
 	}
 	
-	//-------------------------------------------------------------------------------------------------------
 	
 	@GetMapping("reservas/crearReservaControl")
 	public String crearReserva(
@@ -96,10 +95,6 @@ public class ReservaHomeController extends ReservaAuxiliarController{
 		return "redirect:crearReserva";
 	}
 	
-	//-------------------------------------------------------------------------------------------------------
-	//BUSCADOR RESERVAS--------------------------------------------------------------------------------------
-	//-------------------------------------------------------------------------------------------------------
-	
 	
 	@GetMapping("reservas/buscarReserva")
 	public ModelAndView buscarReservaPage() {
@@ -113,8 +108,6 @@ public class ReservaHomeController extends ReservaAuxiliarController{
 		
 		return mav;
 	}
-	
-	//-------------------------------------------------------------------------------------------------------
 	
 	@GetMapping("reservas/buscarReservaControl")
 	public ModelAndView buscarReserva(
@@ -223,8 +216,6 @@ public class ReservaHomeController extends ReservaAuxiliarController{
 		return mav;
 	}
 	
-	//-------------------------------------------------------------------------------------------------------
-
 	@GetMapping("reservas/realizarReservas")
 	public ModelAndView realizarReservaCurso(
 			@RequestParam (name = "nombreCurso", required = true) String nombreCurso,
@@ -292,7 +283,9 @@ public class ReservaHomeController extends ReservaAuxiliarController{
 		
 		return mav;
 	}
-
+	
+	
+	
 	//-------------------------------------------------------------------------------------------------------
 	//	UPDATE
 	//-------------------------------------------------------------------------------------------------------

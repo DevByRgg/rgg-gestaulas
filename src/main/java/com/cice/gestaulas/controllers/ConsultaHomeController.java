@@ -100,7 +100,7 @@ public class ConsultaHomeController {
 	
 	//-------------------------------------------------------------------------------------------------------
 	
-	@GetMapping("consultas/consultarAulasDisponibles")
+	@GetMapping("consultas/consultarAulasDisponible")
 	public ModelAndView buscarAulaPage() {
 		
 		List<Aula> aulas = new ArrayList<Aula>();
@@ -112,7 +112,7 @@ public class ConsultaHomeController {
 	}
 	
 	
-	@GetMapping("consultas/filtrarAulasDisponibles")
+	@GetMapping("consultas/filtrarAulasDisponible")
 	public ModelAndView elegirAulaPage(
 		@RequestParam (name="sede") int sede,
 		@RequestParam (name="tipo") int tipo,
