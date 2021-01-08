@@ -27,7 +27,7 @@
         <li>trace: <c:out value="${requestScope.trace}" /></li>
     </ul>
 		
-		<a href="./">Volver</a>
+		<a href="javascript:history.back()">Volver</a>
 	</div>
 
 </body>

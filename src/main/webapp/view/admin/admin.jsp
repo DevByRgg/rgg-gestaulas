@@ -102,7 +102,7 @@
 					<div class="card-header">
 						<h5 class="card-title">Consultar</h5>
 					</div>
-					<a title="Equipos" href="/aulas/admin/mostrarReserva">
+					<a title="Equipos" href="/aulas/admin/consultarAulasDisponibles">
 						<img class="card-img-top" src="/aulas/images/ordenador_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
