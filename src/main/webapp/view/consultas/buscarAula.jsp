@@ -9,7 +9,7 @@
 <c:import url="../common/head.jsp"/>
 
 		
-<title>Consultar Aulas</title>
+<title>Consultar</title>
 
 </head>
 <body>
@@ -20,10 +20,10 @@
 		<div class="pt-5"></div>
 		
 		<!-- Titulo -->
-		<h2 class="pt-3">Cice <span class="badge text-white bg-cice">CONSULTAR</span></h2>
+		<h2 class="pt-3">Consultar <span class="badge text-white bg-cice">AULA</span></h2>
 		
 		<!-- Aqui  va el formulario para los filtros -->
-		<form class=form-inline" action="filtrarReserva" method="GET">
+		<form class=form-inline" action="filtrarAulasDisponible" method="GET">
 			<div class="form-group mt-3">
 				<label class="font-weight-bold mr-3" for="sede">Sede</label>
 	  			<select	class="w-25 form-control-sm mr-4" id="sede" name="sede" required>
@@ -45,7 +45,7 @@
 					<option value="-1" selected></option>
 				<c:forEach items="${tipoAulas}" var="tipoAulas">
 					<c:choose>
-						<c:when test="${tipoAulas.id == tipoAulaSeleccionada}">
+						<c:when test="${tipoAulas.id == tipoSeleccionado}">
 							<option value="${tipoAulas.id}" selected>${tipoAulas.nombre}</option>
 						</c:when>    
 	    				<c:otherwise>
@@ -59,7 +59,7 @@
 			<div class="form-group mt-2">
 				<label class="font-weight-bold mr-3" for="mes">Mes</label>
 	  			<select	class="form-control-sm text-capitalize mr-4" id="mes" name="mes" required>
-					<option value="-1" selected></option>
+					<option selected disabled></option>
 				<c:forEach items="${meses}" var="mes">
 					<c:choose>
 						<c:when test="${mes.key == mesSeleccionado}">
@@ -74,7 +74,7 @@
 	  				
 				<label class="font-weight-bold mr-3" for="anio">Año</label>
 	  			<select	class="form-control-sm mr-4" id="anio" name="anio" required>
-					<option value="-1" selected></option>
+					<option selected disabled></option>
 				<c:forEach items="${anios}" var="anio">
 					<c:choose>
 						<c:when test="${anio.value == anioSeleccionado}">
@@ -87,11 +87,11 @@
 				</c:forEach>
 				</select>
 					
-				<label class="font-weight-bold mr-3" for="idSede">Turno</label>
-	  			<select	class="form-control-sm mr-4" id="idSede" name="idSede" required>
-						<option value="-1" selected></option>
+				<label class="font-weight-bold mr-3" for="turno">Turno</label>
+	  			<select	class="form-control-sm mr-4" id="turno" name="turno" required>
+						<option value="0" selected></option>
 					<c:choose>
-						<c:when test="${turno == 1}">
+						<c:when test="${turnoSeleccionado == 1}">
 							<option value="1" selected>Mañana</option>
 						</c:when>    
 	    				<c:otherwise>
@@ -100,32 +100,30 @@
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${turno == 2}">
+						<c:when test="${turnoSeleccionado == 2}">
 							<option value="2" selected>Tarde</option>
 						</c:when>    
 	    				<c:otherwise>
-							<option value="1">Tarde</option>
+							<option value="2">Tarde</option>
 						</c:otherwise>
 					</c:choose>	
 				</select>	
 
-				<button type="submit" class="btn btn-sm font-weight-bold text-white cice-hover bg-cice">Filtrar</button>
+				<button type="submit" class="btn btn-sm font-weight-bold text-white cice-hover bg-cice float-right mr-5">Filtrar</button>
 
 
 			</div>
 		</form>
 		<!-- Aqui  va el formulario para los filtros -->
 		
-		
-		<!-- Forumulario -->
-		<form action="elegirAula" method="GET">
-			
-			
-		
-		
 		<!-- Opciones -->
 		<div class="pt-3">
 			<form action="verHorarioAula" method="GET">
+				<input type="hidden" name="mes" value="${mesSeleccionado}">
+				<input type="hidden" name="anio" value="${anioSeleccionado}">
+				<input type="hidden" name="turno" value="${turnoSeleccionado}">
+				
+				
 				<table class="table table-sm table-hover">
   					<thead class="bg-cice text-white">
     					<tr>
@@ -137,27 +135,27 @@
 					</thead>
   					
   					<tbody>
-    				<c:forEach items="${resAulas}" var="resAula">
+    				<c:forEach items="${aulasDisponibles}" var="aulaDisponible">
 						<tr>
 	      					<th scope="row" class="align-top text-center">
-	      						<input type="radio" name="aula" id="${resAula.id}" value="${resAula.id}" required>
+	      						<input type="radio" name="aula" id="${aulaDisponible.idAula}" value="${aulaDisponible.idAula}" required>
 	      					</th>
 						
 							<td class="align-middle text-left">
-								<label class="form-check-label" for="${resAula.id}">
-    								${resAula.nombre}
+								<label class="form-check-label" for="${aulaDisponible.nombreAula}">
+    								${aulaDisponible.nombreAula}
 								</label>
 							</td>
 							
 							<td class="align-middle text-left">
-								<label class="form-check-label" for="${resAula.sede}">
-    								${resAula.sede}
+								<label class="form-check-label" for="${aulaDisponible.nombreSede}">
+    								${aulaDisponible.nombreSede}
     							</label>
 							</td>
 							
 							<td class="align-middle text-left">
-								<label class="form-check-label" for="${resAula.tipo}">
-    								${resAula.tipo}
+								<label class="form-check-label" for="${aulaDisponible.nombreTipoAula}">
+    								${aulaDisponible.nombreTipoAula}
 								</label>
 							</td>
 							
@@ -171,7 +169,7 @@
 				
 				<!-- Boton enviar formulario -->
 				<div class="form-group float-right">
-					<button type="submit" class="btn font-weight-bold text-white cice-hover bg-cice">Seleccionar</button>
+					<button type="submit" class="btn btn-sm font-weight-bold text-white cice-hover bg-cice float-right mr-5">Seleccionar</button>
 				</div>
 			
 			</div>
