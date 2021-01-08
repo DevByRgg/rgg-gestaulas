@@ -22,7 +22,7 @@
 		<ul>
         	<li>status: <c:out value="${requestScope.status}" /></li>
 	        <li>error: <c:out value="${requestScope.error}" /></li>
-	        <li>message: <c:out value="${requestScope.message}" /></li>
+	        <li>message: <c:out value="${requestScope.mensaje}" /></li>
 	        <li>path: <c:out value="${requestScope.path}" /></li>
 	        <li>trace: <c:out value="${requestScope.trace}" /></li>
     	</ul>
