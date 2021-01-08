@@ -368,7 +368,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("error");
 		ErrorContainer ec = new ErrorContainer(1, "Error. La reserva ya está ocupada");
-		mav.addObject("mensajeError", ec.getMessage());
+		mav.addObject("mensaje", ec.getMessage());
 		return mav;
 	}
 

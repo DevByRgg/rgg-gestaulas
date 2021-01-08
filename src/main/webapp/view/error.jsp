@@ -52,7 +52,6 @@
 			<li>trace: <c:out value="${requestScope.trace}" /></li>
 		</ul>
 		
-		<h2>Error específico: <c:out value="${resquestScope.mensajeError}" /></h2>
 
 		<a type="button" class="btn cice-hover bg-cice text-white"
 			href="javascript:history.back()"> Volver Atrás </a>
