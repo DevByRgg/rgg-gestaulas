@@ -67,7 +67,7 @@
             <li class="nav-item dropdown ml-2">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Consulta</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/consultas/consultarAulasDisponible">Consultar</a>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/consultas/consultarAulasDisponibles">Consultar</a>
                     <a class="dropdown-item cice-hover text-white" href="#">#</a>
                     <a class="dropdown-item cice-hover text-white" href="#">#</a>
                     <a class="dropdown-item cice-hover text-white" href="#">#</a>
