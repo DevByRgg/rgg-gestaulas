@@ -42,7 +42,7 @@
 
 		<h2 class="pt-3">
 		
-			<span class="badge text-white bg-cice">Error  </span><c:out value="${requestScope.mensaje}" />
+			<span class="badge text-white bg-cice"><c:out value="${requestScope.titulo}" />  </span><c:out value="${requestScope.mensaje}" />
 		</h2>
 
 		

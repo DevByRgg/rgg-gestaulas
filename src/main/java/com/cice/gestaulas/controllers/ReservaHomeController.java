@@ -399,6 +399,8 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		ErrorContainer ec = new ErrorContainer(1, "La reserva ya está ocupada");
 		//introducimos el mensaje que queremos que se muestre en error.jsp
 		mav.addObject("mensaje", ec.getMessage());
+		mav.addObject("titulo", "Error Reserva Ocupada");
+		
 		return mav;
 	}
 
