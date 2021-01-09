@@ -4,11 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.cice.gestaulas.entities.Reserva;
-import com.cice.gestaulas.repositories.IAulaRepository;
 import com.cice.gestaulas.repositories.IReservasRepository;
 import com.cice.gestaulas.services.interfaces.IReservaService;
 

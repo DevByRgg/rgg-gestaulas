@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cice.gestaulas.entities.Reserva;
 import com.cice.gestaulas.services.interfaces.IAulaService;
+import com.cice.gestaulas.services.interfaces.IFestivoService;
 import com.cice.gestaulas.services.interfaces.IReservaService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
@@ -31,7 +32,12 @@ public class ReservaAuxiliarController {
 	@Autowired
 	IReservaService reservaService;
 	
-	//
+	@Autowired
+	IFestivoService festivoService;
+	
+	//-------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
+
 	protected List<Boolean> listaDiasBoleano(boolean lunes, boolean martes, boolean miercoles, 
 			boolean jueves, boolean viernes, boolean sabado){
 		List<Boolean> diasSemana = new ArrayList<Boolean>();
@@ -151,44 +157,72 @@ public class ReservaAuxiliarController {
 		
 		Collections.sort(listaPrimerasFechas);
 		
+		List<LocalDate> listaFestivos = festivoService.findAllFechas();
+		
+		
 		List<LocalDate> listaFechasCurso = new ArrayList<LocalDate>();
 		
 		int i = 0;
 		int j = 0;
 		while (i < duracionCurso) {
 			if (cantidadDiasLectivos >= 1 && i < duracionCurso) {
-				listaFechasCurso.add(i, listaPrimerasFechas.get(0).plusWeeks(j));
-				i++;
+				LocalDate fecha = listaPrimerasFechas.get(0).plusWeeks(j);
+				boolean existe = listaFestivos.contains(fecha);
+					if (!existe) {
+						listaFechasCurso.add(i, fecha);
+						i++;
+					}
 			}
 			
 			if (cantidadDiasLectivos >= 2 && i < duracionCurso) {
-				listaFechasCurso.add(i, listaPrimerasFechas.get(1).plusWeeks(j));
-				i++;
+				LocalDate fecha = listaPrimerasFechas.get(1).plusWeeks(j);
+				boolean existe = listaFestivos.contains(fecha);
+					if (!existe) {
+						listaFechasCurso.add(i, fecha);
+						i++;
+					}
 			}
 			
 			if (cantidadDiasLectivos >= 3 && i < duracionCurso) {
-				listaFechasCurso.add(i, listaPrimerasFechas.get(2).plusWeeks(j));
-				i++;
+				LocalDate fecha = listaPrimerasFechas.get(2).plusWeeks(j);
+				boolean existe = listaFestivos.contains(fecha);
+					if (!existe) {
+						listaFechasCurso.add(i, fecha);
+						i++;
+					}
 			} 
 			
 			if (cantidadDiasLectivos >= 4 && i < duracionCurso) {
-				listaFechasCurso.add(i,listaPrimerasFechas.get(3).plusWeeks(j));
-				i++;
+				LocalDate fecha = listaPrimerasFechas.get(3).plusWeeks(j);
+				boolean existe = listaFestivos.contains(fecha);
+					if (!existe) {
+						listaFechasCurso.add(i, fecha);
+						i++;
+					}
 			}
 		
 			if (cantidadDiasLectivos >= 5 && i < duracionCurso) {
-				listaFechasCurso.add(i, listaPrimerasFechas.get(4).plusWeeks(j));
-				i++;
+				LocalDate fecha = listaPrimerasFechas.get(4).plusWeeks(j);
+				boolean existe = listaFestivos.contains(fecha);
+					if (!existe) {
+						listaFechasCurso.add(i, fecha);
+						i++;
+					}
 			}
 
 			if (cantidadDiasLectivos >= 6 && i < duracionCurso) {
-				listaFechasCurso.add(i, listaPrimerasFechas.get(5).plusWeeks(j));
-				i++;
+				LocalDate fecha = listaPrimerasFechas.get(5).plusWeeks(j);
+				boolean existe = listaFestivos.contains(fecha);
+					if (!existe) {
+						listaFechasCurso.add(i, fecha);
+						i++;
+					}
 			}
 
 			j++;
 		
 		}
+		
 		
 		return listaFechasCurso;		
 	}

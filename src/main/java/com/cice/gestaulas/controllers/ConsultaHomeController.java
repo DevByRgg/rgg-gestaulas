@@ -24,6 +24,7 @@ import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.entities.TipoAula;
 import com.cice.gestaulas.entities.auxiliar.ObjetoPresentacion;
 import com.cice.gestaulas.services.interfaces.IAulaService;
+import com.cice.gestaulas.services.interfaces.IFestivoService;
 import com.cice.gestaulas.services.interfaces.IReservaService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
@@ -43,6 +44,9 @@ public class ConsultaHomeController {
 	
 	@Autowired
 	IReservaService reservaService;
+	
+	@Autowired
+	IFestivoService festivoService;
 	
 	
 	//Metodo que crea el ModelAndview para todos los metodos
@@ -194,13 +198,14 @@ public class ConsultaHomeController {
 			for (int j = 0; j < listaHoras.size(); j++) {
 				LocalTime hora = listaHoras.get(j);
 				LocalDateTime fechaHora = LocalDateTime.of(dia, hora);
+				boolean festivo = festivoService.findAllFechas().contains(dia);
 				
-				if(diaSemana != 7) {
+				if(diaSemana != 7 && !festivo) {
 					if (listaFechasReservas.contains(fechaHora)) {
 						horasBoleano.add(1);
 					} else {
 						horasBoleano.add(2);
-					}
+					}	
 				} else {
 					horasBoleano.add(0);
 				}

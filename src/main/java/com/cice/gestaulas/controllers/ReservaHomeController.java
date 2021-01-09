@@ -358,7 +358,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		LocalDateTime fechaReserva = LocalDateTime.of(dia, hora);
 
 		Reserva r = new Reserva(id, nombreCurso, idAula, fechaReserva);
-
+		
 		// comprobar que no se ha cambiado nada
 		if (reservaService.findById(id).equals(r)) {
 			System.out.println("NO SE HA MODIFICADO NADA");

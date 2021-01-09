@@ -1,5 +1,6 @@
 package com.cice.gestaulas.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,11 @@ public class FestivoServiceImpl implements IFestivoService{
 	}
 
 	@Override
+	public List<LocalDate> findAllFechas() {
+		return festivoRepository.findAllFestivoFecha();
+	}
+	
+	@Override
 	public void update(Festivo f) {
 		festivoRepository.save(f);
 	}
@@ -44,6 +50,7 @@ public class FestivoServiceImpl implements IFestivoService{
 	public void delete(Festivo f) {
 		festivoRepository.delete(f);
 	}
+
 
 	
 }

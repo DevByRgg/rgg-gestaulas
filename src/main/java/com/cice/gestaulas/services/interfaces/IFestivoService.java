@@ -1,5 +1,6 @@
 package com.cice.gestaulas.services.interfaces;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.cice.gestaulas.entities.auxiliar.Festivo;
@@ -29,6 +30,12 @@ public interface IFestivoService {
 	 */
 	public List<Festivo> findAll();
 		
+	/**
+	 * Método para obtener una lista con todas las fechas de Festivos de la BBDD
+	 * @return List de LocalDate
+	 */
+	public List<LocalDate> findAllFechas();
+	
 	/**
 	 * Método para actualizar un Festivo en la BBDD
 	 * @param f de la clase Festivo
