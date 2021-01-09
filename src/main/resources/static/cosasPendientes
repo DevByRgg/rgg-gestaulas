@@ -3,7 +3,9 @@
 Reserva update
 	comprobar que la reserva a insertar no existe en la bbdd constrain unicos
 		crear reserva
-		update reserva
+		update reserva 
+			- Al crear o actualizar una reserva el buscador
+			no funciona correctamente. Buscar por aula y fecha Revisar
 		
 	comprobacion nombreCurso en el buscador de cursos
 	
@@ -17,4 +19,13 @@ Reservas
 	
 	entidad curso 
 		id - nombre - codigo curso 
+		
+08.01.2021 
+Buscar Aula
+	Cambiar el nombre a Reservar Curso Completo o algo parecido...
+	
+ReservaAuxiliarController
+	Clase Padre del @Controller ReservaHomeController ... No lo había visto.
+		
+		
 	

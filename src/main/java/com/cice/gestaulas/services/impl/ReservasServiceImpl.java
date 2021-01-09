@@ -93,7 +93,7 @@ public class ReservasServiceImpl implements IReservaService {
 	
 	
 	@Override
-	public List<Reserva> findByIdAulaAndFechaReserva(int idAula, LocalDateTime fechaReserva) {
+	public Reserva findByIdAulaAndFechaReserva(int idAula, LocalDateTime fechaReserva) {
 		
 		return reservaRepository.findByIdAulaAndFechaReserva(idAula, fechaReserva);
 	}

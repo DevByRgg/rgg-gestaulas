@@ -355,7 +355,13 @@ public class ReservaAuxiliarController {
 	//-------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------
 
-	
+	/**
+	 * Método para generar la List con todas las reservas de un curso
+	 * @param nombreCurso nombre del curso para hacer la reserva
+	 * @param idAula id del Aula reservada para el curso
+	 * @param listaFechasHoras una lista con todas las fechas y horas reservadas
+	 * @return
+	 */
 	protected List<Reserva> generarReservas(
 			String nombreCurso,
 			int idAula,
@@ -375,16 +381,21 @@ public class ReservaAuxiliarController {
 	//-------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Método para guardar en BBDD las reservas de un curso
+	 * @param listaReservas List de Reserva
+	 */
 	protected void hacerReservas(
 			List<Reserva> listaReservas) {
 		
+		/*
+		 * for (Reserva reserva : listaReservas) { reservaService.create(reserva); }
+		 */
 		
-		for (int i = 0; i < listaReservas.size(); i++) {
-			reservaService.create(listaReservas.get(i));
-		}
+		
+		  for (int i = 0; i < listaReservas.size(); i++) {
+		  reservaService.create(listaReservas.get(i)); }
+		 
 	}
-
-
-
 
 }
