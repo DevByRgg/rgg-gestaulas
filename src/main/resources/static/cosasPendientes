@@ -5,7 +5,8 @@ Reserva update
 		crear reserva
 		update reserva 
 			- Al crear o actualizar una reserva 09.01.2021 HECHO. PENDIENTE DE TESTS
-			
+				Comprueba que la reserva esté libre al actualizar o crear. 
+				Si en crear coincide una reserva al menos ocupada no deja hacer ninguna.
 		
 	comprobacion nombreCurso en el buscador de cursos
 	
