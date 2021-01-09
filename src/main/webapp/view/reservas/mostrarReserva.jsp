@@ -147,13 +147,13 @@
 						<td class="align-middle text-center">${reserva.fechaReserva}</td>
 						
 						<td class="align-middle text-center">
-							<a type="button" class="btn font-weight-bold cice-hover bg-cice text-white" href="/aulas/reservas/updateReserva?id=${reserva.idReserva}">
+							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/reservas/updateReserva?id=${reserva.idReserva}">
 								Update
 							</a>
 						</td>
 						
 						<td class="align-middle text-center">
-							<button type="button" class="btn font-weight-bold cice-hover bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
+							<button type="button" class="btn cice-hover bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
 							onclick="configurarBorrado('${reserva.idReserva}')">
 								Borrar
 							</button>

@@ -65,7 +65,7 @@ public class SedeController {
 	//-------------------------------------------------------------------------------------------------------
 	
 	@GetMapping("/admin/updateSede")
-	public ModelAndView actualizaSede(
+	public ModelAndView actualizarSede(
 			@RequestParam (name = "id") int id) {
 		
 		ModelAndView mav = new ModelAndView();
