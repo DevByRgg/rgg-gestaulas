@@ -266,7 +266,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 			@RequestParam(name = "tar21", defaultValue = "false", required = true) boolean tar21,
 			@RequestParam(name = "tar22", defaultValue = "false", required = true) boolean tar22,
 			@RequestParam(name = "tipoAula", defaultValue = "0", required = true) int tipoAula,
-			@RequestParam(name = "capacidadAula", required = true) int capacidadAula) {
+			@RequestParam(name = "capacidadAula", required = true) int capacidadAula) throws ReservaOcupadaException {
 
 		List<LocalTime> listaHorasLectivas = generarHorasLectivas(man09, man10, man11, man12, man13, man14, tar17,
 				tar18, tar19, tar20, tar21, tar22);
@@ -279,7 +279,16 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		int numeroReservas = listaFechasHoras.size();
 		LocalDate fechaFinal = listaFechasHoras.get(listaFechasHoras.size() - 1).toLocalDate();
 
-		hacerReservas(listaReservas);
+		//comprobar si se pueden reservar
+				if (comprobarReservasLibres(listaReservas)) {
+					hacerReservas(listaReservas);
+				} else {
+					System.out.println("LA RESERVA YA EXISTE");
+					throw new ReservaOcupadaException("No se puede reservar, ya reservada");
+				}
+		
+		
+		//hacerReservas(listaReservas);
 
 		// Realizar
 		// Presentacion----------------------------------------------------------------------------------
