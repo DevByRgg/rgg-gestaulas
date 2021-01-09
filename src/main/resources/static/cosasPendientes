@@ -4,8 +4,8 @@ Reserva update
 	comprobar que la reserva a insertar no existe en la bbdd constrain unicos
 		crear reserva
 		update reserva 
-			- Al crear o actualizar una reserva el buscador
-			no funciona correctamente. Buscar por aula y fecha Revisar
+			- Al crear o actualizar una reserva 09.01.2021 HECHO. PENDIENTE DE TESTS
+			
 		
 	comprobacion nombreCurso en el buscador de cursos
 	
