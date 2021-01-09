@@ -114,10 +114,8 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		boolean reservasLibres = true;
 		for (Reserva reserva : listaReservas) {
 			if (null != reservaService.findByIdAulaAndFechaReserva(reserva.getIdAula(), reserva.getFechaReserva())) {
-				//comprobar las horas
 				reservasLibres = false;
 			}
-
 		}
 		return reservasLibres;
 	}
@@ -389,7 +387,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		System.out.println("LLEGA A EXCEPTION HANDLER...");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("error");
-		ErrorContainer ec = new ErrorContainer(1, "Error. La reserva ya está ocupada");
+		ErrorContainer ec = new ErrorContainer(1, "La reserva ya está ocupada");
 		//introducimos el mensaje que queremos que se muestre en error.jsp
 		mav.addObject("mensaje", ec.getMessage());
 		return mav;

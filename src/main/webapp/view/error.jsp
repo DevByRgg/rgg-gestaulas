@@ -41,16 +41,11 @@
 		<div class="pt-5"></div>
 
 		<h2 class="pt-3">
-			Administration <span class="badge text-white bg-cice">Error</span>
+		
+			<span class="badge text-white bg-cice">Error  </span><c:out value="${requestScope.mensaje}" />
 		</h2>
 
-		<ul>
-			<li>status: <c:out value="${requestScope.status}" /></li>
-			<li>error: <c:out value="${requestScope.error}" /></li>
-			<li>Mensaje: <c:out value="${requestScope.mensaje}" /></li>
-			<li>path: <c:out value="${requestScope.path}" /></li>
-			<li>trace: <c:out value="${requestScope.trace}" /></li>
-		</ul>
+		
 		
 
 		<a type="button" class="btn cice-hover bg-cice text-white"
