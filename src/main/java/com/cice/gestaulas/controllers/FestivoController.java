@@ -12,7 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cice.gestaulas.entities.auxiliar.Festivo;
 import com.cice.gestaulas.services.interfaces.IFestivoService;
 
-
+/**
+ * Controller para la entidad Festivo
+ * @author Diego
+ *
+ */
 @Controller
 public class FestivoController {
 	
@@ -22,7 +26,10 @@ public class FestivoController {
 	//-------------------------------------------------------------------------------------------------------
 	//	CREATE
 	//-------------------------------------------------------------------------------------------------------
-	
+	/**
+	 * Mostrar la vista de mantenimiento/crearFestivo.jsp
+	 * 
+	*/
 	@GetMapping("/mantenimiento/crearFestivo")
 	public ModelAndView crearFestivoPage() {
 		
@@ -32,6 +39,12 @@ public class FestivoController {
 		return mav;
 	}
 	
+	/**
+	 * Guardar el Festivo en la BBDD
+	 * @param nombre especifico del festivo
+	 * @param fecha del festivo
+	 * @return
+	 */
 	@GetMapping("/mantenimiento/crearFestivoControl")
 	public String crearFestivo(
 			@RequestParam (name = "nombre", required = true) String nombre,
@@ -51,6 +64,10 @@ public class FestivoController {
 	//	READ
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Mostrar lista con los festivos creados
+	 * @return Lista de Festivo
+	 */
 	@GetMapping("/mantenimiento/mostrarFestivo")
 	public ModelAndView findAllFestivo() {
 		
@@ -67,6 +84,11 @@ public class FestivoController {
 	//	UPDATE
 	//-------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Mostrar la vista de mantenimiento/updateFestivo.jsp 
+	 * @param id del festivo a mostrar
+	 * @return Modelo
+	 */
 	@GetMapping("/mantenimiento/updateFestivo")
 	public ModelAndView actualizarFestivo(
 			@RequestParam (name = "id") int id) {
@@ -81,7 +103,13 @@ public class FestivoController {
 		return mav;
 	}
 	
-	
+	/**
+	 * Actualizar/Modificar día festivo
+	 * @param id identificador del festivo
+	 * @param nombre del día festivo
+	 * @param fecha del día festivo
+	 * @return
+	 */
 	@GetMapping("/mantenimiento/updateFestivoControl")
 	public String updateFestivo(
 			@RequestParam (name = "id") int id,
@@ -103,6 +131,11 @@ public class FestivoController {
 	//	DELETE
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Borrar día festivo
+	 * @param id del día festivo
+	 * @return redireccion a mostrarFestivo
+	 */
 	@GetMapping("mantenimiento/borrarFestivo")
 	public String borrarFestivo(
 			@RequestParam(name = "id", required = true) int id){
