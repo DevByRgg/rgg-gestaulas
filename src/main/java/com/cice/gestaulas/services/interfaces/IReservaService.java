@@ -27,11 +27,11 @@ public interface IReservaService {
 	
 	/**
 	 * Para comprobar que una fecha en una aula está libre para reservar
-	 * @param idAula
-	 * @param fechaReserva
-	 * @return
+	 * @param idAula identificador del Aula
+	 * @param fechaReserva fecha de la reserva
+	 * @return una reserva única si existe o null si no
 	 */
-	public List<Reserva> findByIdAulaAndFechaReserva(int idAula, LocalDateTime fechaReserva);
+	public Reserva findByIdAulaAndFechaReserva(int idAula, LocalDateTime fechaReserva);
 	
 
 }

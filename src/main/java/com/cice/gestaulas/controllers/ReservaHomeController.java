@@ -75,7 +75,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 			@RequestParam(name = "tar19", defaultValue = "false", required = true) boolean tar19,
 			@RequestParam(name = "tar20", defaultValue = "false", required = true) boolean tar20,
 			@RequestParam(name = "tar21", defaultValue = "false", required = true) boolean tar21,
-			@RequestParam(name = "tar22", defaultValue = "false", required = true) boolean tar22) {
+			@RequestParam(name = "tar22", defaultValue = "false", required = true) boolean tar22) throws ReservaOcupadaException {
 
 		LocalDate dia = LocalDate.parse(diaReserva);
 
@@ -89,7 +89,13 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 
 		List<Reserva> listaReservas = generarReservas(nombreCurso, idAula, listaFechasHoras);
 
-		hacerReservas(listaReservas);
+		//comprobar si se pueden reservar
+		if (comprobarReservasLibres(listaReservas)) {
+			hacerReservas(listaReservas);
+		} else {
+			System.out.println("LA RESERVA YA EXISTE");
+			throw new ReservaOcupadaException("No se puede reservar, ya reservada");
+		}
 
 		return "redirect:crearReserva";
 	}
@@ -98,6 +104,21 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	// BUSCADOR
 	// RESERVAS--------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Método para comprobar que todas las reservas solicitadas están libres
+	 * @param listaReservas lista con todas las reservas de horas
+	 * @return true si se puede hacer la reserva false si no se puede
+	 */
+	private boolean comprobarReservasLibres(List<Reserva> listaReservas) {
+		boolean reservasLibres = true;
+		for (Reserva reserva : listaReservas) {
+			if (null != reservaService.findByIdAulaAndFechaReserva(reserva.getIdAula(), reserva.getFechaReserva())) {
+				reservasLibres = false;
+			}
+		}
+		return reservasLibres;
+	}
 
 	@GetMapping("reservas/buscarReserva")
 	public ModelAndView buscarReservaPage() {
@@ -245,7 +266,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 			@RequestParam(name = "tar21", defaultValue = "false", required = true) boolean tar21,
 			@RequestParam(name = "tar22", defaultValue = "false", required = true) boolean tar22,
 			@RequestParam(name = "tipoAula", defaultValue = "0", required = true) int tipoAula,
-			@RequestParam(name = "capacidadAula", required = true) int capacidadAula) {
+			@RequestParam(name = "capacidadAula", required = true) int capacidadAula) throws ReservaOcupadaException {
 
 		List<LocalTime> listaHorasLectivas = generarHorasLectivas(man09, man10, man11, man12, man13, man14, tar17,
 				tar18, tar19, tar20, tar21, tar22);
@@ -258,7 +279,16 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		int numeroReservas = listaFechasHoras.size();
 		LocalDate fechaFinal = listaFechasHoras.get(listaFechasHoras.size() - 1).toLocalDate();
 
-		hacerReservas(listaReservas);
+		//comprobar si se pueden reservar
+				if (comprobarReservasLibres(listaReservas)) {
+					hacerReservas(listaReservas);
+				} else {
+					System.out.println("LA RESERVA YA EXISTE");
+					throw new ReservaOcupadaException("No se puede reservar, ya reservada");
+				}
+		
+		
+		//hacerReservas(listaReservas);
 
 		// Realizar
 		// Presentacion----------------------------------------------------------------------------------
@@ -340,7 +370,6 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 			System.out.println("LA RESERVA YA EXISTE");
 			throw new ReservaOcupadaException("No se puede reservar, ya reservada");
 		}
-		// comprobar si la reserva NoExiste
 
 		return "redirect:mostrarReserva";
 	}
@@ -367,8 +396,11 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		System.out.println("LLEGA A EXCEPTION HANDLER...");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("error");
-		ErrorContainer ec = new ErrorContainer(1, "Error. La reserva ya está ocupada");
+		ErrorContainer ec = new ErrorContainer(1, "La reserva ya está ocupada");
+		//introducimos el mensaje que queremos que se muestre en error.jsp
 		mav.addObject("mensaje", ec.getMessage());
+		mav.addObject("titulo", "Error Reserva Ocupada");
+		
 		return mav;
 	}
 
