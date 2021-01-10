@@ -1,5 +1,10 @@
 package com.cice.gestaulas.exceptions;
 
+/**
+ * NO USADA DE MOMENTO
+ * @author Diego
+ *
+ */
 public class ErrorContainer {
 	private int id;
 	private String message;

@@ -391,14 +391,19 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	// -------------------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------------------
 
+	
+	// -------------------------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------------------------
+	// HANDLER DE EXCEPCIONES
+	// -------------------------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------------------------
 	@ExceptionHandler(ReservaOcupadaException.class)
-	public ModelAndView gestionarErrorReservaOcupada() {
+	public ModelAndView gestionarErrorReservaOcupada(ReservaOcupadaException ex) {
 		System.out.println("LLEGA A EXCEPTION HANDLER...");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("error");
-		ErrorContainer ec = new ErrorContainer(1, "La reserva ya está ocupada");
 		//introducimos el mensaje que queremos que se muestre en error.jsp
-		mav.addObject("mensaje", ec.getMessage());
+		mav.addObject("mensaje", ex.getMessage());
 		mav.addObject("titulo", "Error Reserva Ocupada");
 		
 		return mav;

@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:import url="./common/head.jsp" />
-<title>Error</title>
+<c:import url="../common/head.jsp" />
+<title>Error 404</title>
 </head>
 <body>
 
@@ -41,12 +41,16 @@
 		<div class="pt-5"></div>
 
 		<h2 class="pt-3">
-		${ex.getmessage()}
-			<span class="badge text-white bg-cice"><c:out value="${requestScope.titulo}" />  </span><c:out value="${requestScope.mensaje}" />
+			Administration <span class="badge text-white bg-cice">Error</span>
 		</h2>
 
-		
-		
+		<ul>
+			<li>status: <c:out value="${requestScope.status}" /></li>
+			<li>error 404: <c:out value="${requestScope.error}" /></li>
+			<li>Mensaje: <c:out value="${requestScope.mensaje}" /></li>
+			<li>path: <c:out value="${requestScope.path}" /></li>
+			<li>trace: <c:out value="${requestScope.trace}" /></li>
+		</ul>
 
 		<a type="button" class="btn cice-hover bg-cice text-white"
 			href="javascript:history.back()"> Volver Atrás </a>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:import url="./common/head.jsp" />
+<c:import url="../common/head.jsp" />
 <title>Error 500</title>
 </head>
 <body>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="ES">
@@ -25,25 +26,32 @@
 		</h2>
 		
 		<!-- Forumulario -->
-		<form action="crearFestivoControl" method="GET">
-			
+		<form:form action="crearFestivoControl" method="POST" modelAttribute="festivo">
+			<form:hidden path="id"/>
 			<!-- Nombre del festivo -->
 			<div class="form-group mt-4">
-				<label class="text-secondary font-weight-bold" for="nombre">Nombre del curso</label>
-				<input type="text" class="form-control" name="nombre" id="nombre" required>
+				<form:label class="text-secondary font-weight-bold" path="nombre" for="nombre">Nombre del festivo</form:label>
+				<form:input class="form-control" path="nombre" id="nombre" required="required"></form:input>
+				
+				
 			</div>
 			
 			<!-- Fecha del festivo-->
 			<div class="form-group mt-4 w-25">
-				<label class="text-secondary font-weight-bold" for="fecha">Fecha de la reserva</label>
-				<input type="date" class="form-control" name="fecha" id="fecha" required>
+				<form:label class="text-secondary font-weight-bold" path="fecha" for="fecha">Fecha del festivo</form:label>
+				<form:input type="date" class="form-control" path="fecha" id="fecha" required="required"></form:input>
+				
 			</div>
 
 			<!-- Boton enviar formulario -->
 			<div class="botonEnviar mt-4">
 				<button type="submit" class="btn btn-outline-default btn-lg font-weight-bold text-white cice-hover bg-cice">Crear</button>
 			</div>
-		</form>
+			
+			<div id="erroresFormulario">
+				<form:errors></form:errors>
+			</div>
+		</form:form>
 	</div>
 
 </body>

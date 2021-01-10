@@ -1,6 +1,6 @@
 package com.cice.gestaulas.exceptions;
 
-public class CapacidadExcesivaException extends Exception{
+public class FestivoExisteException extends Exception{
 
 	/**
 	 * 
@@ -10,7 +10,7 @@ public class CapacidadExcesivaException extends Exception{
 	/**
 	 * @param mensaje
 	 */
-	public CapacidadExcesivaException(String mensaje) {
+	public FestivoExisteException(String mensaje) {
 		super(mensaje);
 		
 	}
