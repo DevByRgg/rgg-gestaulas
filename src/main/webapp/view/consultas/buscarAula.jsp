@@ -27,7 +27,7 @@
 			<div class="form-group mt-3">
 				<label class="font-weight-bold mr-3" for="sede">Sede</label>
 	  			<select	class="w-25 form-control-sm mr-4" id="sede" name="sede" required>
-					<option value="-1" selected></option>
+					<option value="-1" selected>Todas</option>
 				<c:forEach items="${sedes}" var="sede">
 					<c:choose>
 						<c:when test="${sede.id == sedeSeleccionada}">
@@ -42,7 +42,7 @@
 	  				
 				<label class="font-weight-bold mr-3" for=""tipo"">Tipo de Aula</label>
 	  			<select	class="w-25 form-control-sm mr-4" id=""tipo"" name="tipo" required>
-					<option value="-1" selected></option>
+					<option value="-1" selected>Todas</option>
 				<c:forEach items="${tipoAulas}" var="tipoAulas">
 					<c:choose>
 						<c:when test="${tipoAulas.id == tipoSeleccionado}">
@@ -89,7 +89,7 @@
 					
 				<label class="font-weight-bold mr-3" for="turno">Turno</label>
 	  			<select	class="form-control-sm mr-4" id="turno" name="turno" required>
-						<option value="0" selected></option>
+						<option value="0" selected>Todos</option>
 					<c:choose>
 						<c:when test="${turnoSeleccionado == 1}">
 							<option value="1" selected>Mañana</option>

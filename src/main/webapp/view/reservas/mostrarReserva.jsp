@@ -31,7 +31,7 @@
   				<div class="form-inline col-sm-4">
   					<label class="col-sm-1 font-weight-bold align-middle ml-5 mr-3" for="aula">Aula</label>
   					<select	class="form-control-sm col-sm-6" id="idAula" name="idAula" required>
-							<option value="0" selected></option>
+							<option value="0" selected>Todas</option>
 						<c:forEach items="${aulas}" var="aula">
 							<c:choose>
 								<c:when test="${aula.id == aulaSeleccionada}">
@@ -49,7 +49,7 @@
 				<div class="form-inline col-sm-5">
   					<label class="col-sm-1 font-weight-bold align-middle ml-5 mr-3" for="nombreCurso">Curso</label>
   					<select	class="form-control-sm col-sm-6" id="nombreCurso" name="nombreCurso" required>
-							<option value="aaa" selected></option>
+							<option value="aaa" selected>Todos</option>
 						<c:forEach items="${cursos}" var="curso">
 							<c:choose>
 								<c:when test="${curso == cursoSeleccionado}">

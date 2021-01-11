@@ -20,16 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cice.gestaulas.entities.Aula;
-import com.cice.gestaulas.entities.Equipamiento;
-import com.cice.gestaulas.entities.Ordenador;
 import com.cice.gestaulas.entities.Reserva;
 import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.entities.TipoAula;
 import com.cice.gestaulas.entities.auxiliar.ObjetoPresentacion;
 import com.cice.gestaulas.services.interfaces.IAulaService;
-import com.cice.gestaulas.services.interfaces.IEquipamientoService;
 import com.cice.gestaulas.services.interfaces.IFestivoService;
-import com.cice.gestaulas.services.interfaces.IOrdenadorService;
 import com.cice.gestaulas.services.interfaces.IReservaService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;

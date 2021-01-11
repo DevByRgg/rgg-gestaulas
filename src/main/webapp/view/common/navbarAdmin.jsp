@@ -16,10 +16,14 @@
 		<ul class="navbar-nav ml-auto mr-auto">
 			
 			<li class="nav-item active mr-3">
+        		<a class="nav-link text-white" href="/aulas">Public</a>
+      		</li>
+			
+			<li class="nav-item active mr-5">
         		<a class="nav-link text-white" href="/aulas/admin">Administration</a>
       		</li>
 			
-			<li class="nav-item dropdown mr-2">
+			<li class="nav-item dropdown ml-3 mr-2">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sede</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearSede">Crear</a>
@@ -46,7 +50,7 @@
                 </div>
             </li>
 
-            <li class="nav-item dropdown mr-2">
+            <li class="nav-item dropdown mr-3">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Equipamiento</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearEquipamiento">Crear Equipamiento</a>

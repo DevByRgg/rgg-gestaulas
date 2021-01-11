@@ -53,7 +53,7 @@
 				<div class="form-group w-25 mr-5">
 					<label class="text-secondary font-weight-bold" for="tipoAula">Tipo de Aula</label>
 					<select	class="form-control" id="tipoAula" name="tipoAula" required>
-						<option value="0" selected></option>
+						<option value="0" selected>Todas</option>
 					<c:forEach items="${tipoAulas}" var="tipoAula">
 						<c:choose>
 							<c:when test="${tipoAula.id == tipo}">
