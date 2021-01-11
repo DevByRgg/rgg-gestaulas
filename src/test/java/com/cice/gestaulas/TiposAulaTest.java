@@ -15,7 +15,7 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.cice.gestaulas.entities.TipoAula;
+import com.cice.gestaulas.entities.auxiliar.TipoAula;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
 
 @SpringBootTest

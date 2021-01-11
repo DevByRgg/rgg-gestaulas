@@ -1,4 +1,4 @@
-package com.cice.gestaulas.entities;
+package com.cice.gestaulas.entities.auxiliar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

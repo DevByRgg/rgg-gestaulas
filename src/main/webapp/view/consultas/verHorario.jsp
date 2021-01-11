@@ -14,8 +14,16 @@
 
 </head>
 <body>
-	
-<c:import url="../common/navbarAdmin.jsp"/>
+
+
+<c:choose>
+	<c:when test="${zone == 0}">
+		<c:import url="../common/navbarAdmin.jsp"/>	
+	</c:when>    
+	<c:otherwise>
+		<c:import url="../common/navbarPublic.jsp"/>
+	</c:otherwise>
+</c:choose>		
 
 	
 	<div class="container-md w-75">

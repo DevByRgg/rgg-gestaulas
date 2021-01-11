@@ -14,7 +14,15 @@
 </head>
 <body>
 
-<c:import url="../common/navbarAdmin.jsp"/>
+<c:choose>
+	<c:when test="${zone == 0}">
+		<c:import url="../common/navbarAdmin.jsp"/>	
+	</c:when>    
+	<c:otherwise>
+		<c:import url="../common/navbarPublic.jsp"/>
+	</c:otherwise>
+</c:choose>		
+
 	
 	<div class="container-md w-50">
 		<div class="pt-5"></div>
@@ -40,8 +48,8 @@
 				</c:forEach>
 				</select>
 	  				
-				<label class="font-weight-bold mr-3" for=""tipo"">Tipo de Aula</label>
-	  			<select	class="w-25 form-control-sm mr-4" id=""tipo"" name="tipo" required>
+				<label class="font-weight-bold mr-3" for="tipo">Tipo de Aula</label>
+	  			<select	class="w-25 form-control-sm mr-4" id="tipo" name="tipo" required>
 					<option value="-1" selected>Todas</option>
 				<c:forEach items="${tipoAulas}" var="tipoAulas">
 					<c:choose>

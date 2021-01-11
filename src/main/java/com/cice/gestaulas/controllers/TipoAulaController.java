@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cice.gestaulas.entities.TipoAula;
+import com.cice.gestaulas.entities.auxiliar.TipoAula;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
 
 @Controller

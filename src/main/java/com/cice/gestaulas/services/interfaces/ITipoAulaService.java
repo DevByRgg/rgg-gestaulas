@@ -2,7 +2,7 @@ package com.cice.gestaulas.services.interfaces;
 
 import java.util.List;
 
-import com.cice.gestaulas.entities.TipoAula;
+import com.cice.gestaulas.entities.auxiliar.TipoAula;
 
 /**
  * Interface para los servicios de la clase TipoAula
