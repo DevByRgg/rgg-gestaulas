@@ -43,7 +43,7 @@ public class EquipamientoController {
 		
 		equipamientoService.create(e);
 		
-		return "redirect:crearEquipamiento";
+		return "redirect:mostrarEquipamiento";
 	}
 	
 	

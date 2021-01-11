@@ -74,7 +74,7 @@ public class FestivoController {
 		} else {
 			System.out.println("CREAR FESTIVO ---- " + festivo.getNombre());
 			festivoService.create(festivo);
-			return "redirect:crearFestivo";
+			return "redirect:mostrarFestivo";
 		}
 	}
 
@@ -224,7 +224,7 @@ public class FestivoController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("error");
 		mav.addObject("mensaje", mensaje);
-		mav.addObject("titulo", "Error datos no válidos");
+		mav.addObject("titulo", "Datos no válidos");
 		return mav;
 
 	}
@@ -245,7 +245,7 @@ public class FestivoController {
 
 		// introducimos el mensaje que queremos que se muestre en error.jsp
 		mav.addObject("mensaje", ex.getLocalizedMessage());
-		mav.addObject("titulo", "Error Festivo no válido");
+		mav.addObject("titulo", "Festivo no válido");
 
 		return mav;
 	}

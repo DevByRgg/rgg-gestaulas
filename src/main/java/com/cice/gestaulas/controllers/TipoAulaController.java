@@ -38,7 +38,7 @@ public class TipoAulaController {
 		
 		tipoAulaService.create(t);
 		
-		return "redirect:crearTipoAula";
+		return "redirect:mostrarTipoAula";
 	}
 	
 	

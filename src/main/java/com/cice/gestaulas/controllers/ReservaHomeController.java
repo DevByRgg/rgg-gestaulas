@@ -97,7 +97,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 			throw new ReservaOcupadaException("No se puede reservar, ya reservada");
 		}
 
-		return "redirect:crearReserva";
+		return "redirect:mostrarReserva";
 	}
 
 	// -------------------------------------------------------------------------------------------------------
@@ -404,7 +404,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		mav.setViewName("error");
 		//introducimos el mensaje que queremos que se muestre en error.jsp
 		mav.addObject("mensaje", ex.getMessage());
-		mav.addObject("titulo", "Error Reserva Ocupada");
+		mav.addObject("titulo", "Reserva Ocupada");
 		
 		return mav;
 	}

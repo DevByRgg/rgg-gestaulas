@@ -44,7 +44,7 @@ public class OrdenadorController {
 		
 		ordenadorService.create(o);
 		
-		return "redirect:crearOrdenador";	
+		return "redirect:mostrarOrdenador";	
 	}
 	
 	

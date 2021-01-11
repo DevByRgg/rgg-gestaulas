@@ -41,7 +41,7 @@ public class SedeController {
 		
 		sedeService.create(s);
 		
-		return "redirect:crearSede";
+		return "redirect:mostrarSede";
 	}
 		
 	//-------------------------------------------------------------------------------------------------------

@@ -13,7 +13,6 @@
 		<a class="navbar-brand text-white" href="javascript:history.back()">
 			<img src="/aulas/images/logo_blanco_total.svg" height="25"
 			class="d-inline-block align-top" alt="">
-
 		</a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -41,14 +40,14 @@
 		<div class="pt-5"></div>
 
 		<h2 class="pt-3">
-		${ex.getmessage()}
-			<span class="badge text-white bg-cice"><c:out value="${requestScope.titulo}" />  </span><c:out value="${requestScope.mensaje}" />
+		<c:out value="${requestScope.titulo}" />
+			<span class="badge text-white bg-cice">ERROR</span>
 		</h2>
-
 		
+		<h4 class="mt-5"><c:out value="${requestScope.mensaje}"/></h4>
 		
 
-		<a type="button" class="btn cice-hover bg-cice text-white"
+		<a type="button" class="btn font-weight-bold cice-hover bg-cice text-white mt-5"
 			href="javascript:history.back()"> Volver Atrás </a>
 	</div>
 </body>

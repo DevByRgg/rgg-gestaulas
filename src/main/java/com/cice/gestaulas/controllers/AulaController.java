@@ -73,7 +73,7 @@ public class AulaController {
 		
 		aulaService.create(a);
 		
-		return "redirect:crearAula";
+		return "redirect:mostrarAula";
 	}
 
 	

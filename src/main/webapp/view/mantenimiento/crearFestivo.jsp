@@ -32,15 +32,12 @@
 			<div class="form-group mt-4">
 				<form:label class="text-secondary font-weight-bold" path="nombre" for="nombre">Nombre del festivo</form:label>
 				<form:input class="form-control" path="nombre" id="nombre" required="required"></form:input>
-				
-				
 			</div>
 			
 			<!-- Fecha del festivo-->
 			<div class="form-group mt-4 w-25">
 				<form:label class="text-secondary font-weight-bold" path="fecha" for="fecha">Fecha del festivo</form:label>
-				<form:input type="date" class="form-control" path="fecha" id="fecha" required="required"></form:input>
-				
+				<form:input type="date" class="form-control" path="fecha" id="fecha" required="required"></form:input>	
 			</div>
 
 			<!-- Boton enviar formulario -->
