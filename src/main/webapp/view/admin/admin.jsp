@@ -79,22 +79,30 @@
 		<div class="container-md mt-4">
 	
 			<div class="card-deck">
+				<div class="card">
+					<div class="card-header">
+						<h5 class="card-title">Crear Reserva</h5>
+					</div>
+					<a title="Aulas" href="/aulas/reservas/crearReserva">
+						<img class="card-img-top" src="/aulas/images/curso_800x600.png"  height="200" alt="Card image cap">
+					</a>
+				</div>
 				
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Busqueda</h5>
+						<h5 class="card-title">Buscar Reserva</h5>
 					</div>
-					<a title="Busqueda" href="/aulas/reservas/busquedaReserva">
+					<a title="Busqueda" href="/aulas/reservas/buscarReserva">
 						<img class="card-img-top" src="/aulas/images/buscar_800x600.png"  height="200" alt="Card image cap">
 					</a>				
 				</div>
 				
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Reservar</h5>
+						<h5 class="card-title">Crear Festivo</h5>
 					</div>
-					<a title="Aulas" href="/aulas/admin/crearReserva">
-						<img class="card-img-top" src="/aulas/images/curso_800x600.png"  height="200" alt="Card image cap">
+					<a title="Equipos" href="/aulas/mantenimiento/crearFestivo">
+						<img class="card-img-top" src="/aulas/images/festivo_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
 				
@@ -102,8 +110,8 @@
 					<div class="card-header">
 						<h5 class="card-title">Consultar</h5>
 					</div>
-					<a title="Equipos" href="/aulas/admin/consultarAulasDisponibles">
-						<img class="card-img-top" src="/aulas/images/ordenador_800x600.png"  height="200" alt="Card image cap">
+					<a title="Equipos" href="/aulas/consultas/consultarAulasDisponibles">
+						<img class="card-img-top" src="/aulas/images/consulta_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
 			
