@@ -28,23 +28,23 @@
 		</h2>
 		
 		<!-- Forumulario -->
-		<form action="crearPeriodoFestivoControl" method="GET">
+		<form action="crearPeridoFestivoControl" method="GET">
 			<!-- Nombre del festivo -->
 			<div class="form-group mt-4">
-				<label class="text-secondary font-weight-bold" path="nombre" for="nombre">Nombre del festivo</label>
-				<input class="form-control" path="nombre" id="nombre" required="required"></input>
+				<label class="text-secondary font-weight-bold" for="nombre">Nombre del festivo</label>
+				<input class="form-control" name="nombre" id="nombre" required="required"></input>
 			</div>
 			
 			<!-- Fecha inicio del periodo festivo -->
 			<div class="form-group mt-4 w-25">
-				<label class="text-secondary font-weight-bold" path="fechaInicio" for="fechaInicio">Fecha inicio</label>
-				<input type="date" class="form-control" path="fechaInicio" id="fechaInicio" required="required"></input>	
+				<label class="text-secondary font-weight-bold" for="fechaInicio">Fecha inicio</label>
+				<input type="date" class="form-control" name="fechaInicio" id="fechaInicio" required="required"></input>	
 			</div>
 			
 			<!-- Fecha fin del periodo festivo -->
 			<div class="form-group mt-4 w-25">
-				<label class="text-secondary font-weight-bold" path="fechaFin" for="fechaFin">Fecha fin</label>
-				<input type="date" class="form-control" path="fechaFin" id="fechaFin" required="required"></input>	
+				<label class="text-secondary font-weight-bold" for="fechaFin">Fecha fin</label>
+				<input type="date" class="form-control" name="fechaFin" id="fechaFin" required="required"></input>	
 			</div>
 
 			<!-- Boton enviar formulario -->

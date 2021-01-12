@@ -1,13 +1,12 @@
 package com.cice.gestaulas.controllers;
 
-import java.net.BindException;
+import org.hibernate.exception.ConstraintViolationException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import static java.time.temporal.ChronoUnit.DAYS;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cice.gestaulas.entities.auxiliar.Festivo;
 import com.cice.gestaulas.exceptions.FestivoExisteException;
 import com.cice.gestaulas.services.interfaces.IFestivoService;
-import com.fasterxml.jackson.datatype.jsr310.ser.MonthDaySerializer;
+
 
 /**
  * Controller para la entidad Festivo
@@ -82,7 +81,7 @@ public class FestivoController {
 
 	//-------------------------------------------------------------------------------------------------------
 	
-	@RequestMapping(value = "/mantenimiento/crearPeriodoFestivo", method = RequestMethod.GET)
+	@GetMapping(value = "/mantenimiento/crearPeriodoFestivo")
 	public ModelAndView crearPeriodoFestivoPage() {
 		ModelAndView mav = new ModelAndView();
 		
@@ -92,19 +91,38 @@ public class FestivoController {
 	
 	//-------------------------------------------------------------------------------------------------------
 
-	@RequestMapping(value = "/mantenimiento/crearPeridoFestivoControl", method = RequestMethod.POST)
+	@GetMapping(value = "/mantenimiento/crearPeridoFestivoControl")
 	public String crearPeriodoFestivo(
 			@RequestParam (name = "nombre", required = true) String nombre,
 			@RequestParam (name = "fechaInicio") String fechaInicio,
 			@RequestParam (name = "fechaFin") String fechaFin) throws FestivoExisteException {
 		LocalDate ldInicio = LocalDate.parse(fechaInicio);
 		LocalDate ldFin = LocalDate.parse(fechaFin);
+		int orden = ldInicio.compareTo(ldFin);
+
+		Long l = DAYS.between(ldInicio, ldFin);
+		int numDias = l.intValue() + 1;
 		
-		int periodoDias= ldFin.getDayOfYear() - ldInicio.getDayOfYear();
+		//Comprobar fecha inicio anterior a fecha fin
+		if (orden > 0) {
+			System.out.println("ORDEN ERRONEO");
+			throw new FestivoExisteException("La fecha fin no puede ser anterior a la fecha inicio");	
+		}
 		
-		System.out.println(periodoDias);
+		//Graba todas las fechas anteriores al error y eso se tiene que evitar
+		for (int i = 0; i < numDias; i++) {
+			LocalDate fecha = ldInicio.plusDays(i);
+			Festivo f = new Festivo(0, nombre, fecha);
+			
+			//Comprobar si ese festivo ya existe
+			if (festivoService.findAllFechas().contains(f.getFecha())) {
+				throw new FestivoExisteException("La fecha " + fecha + " ya tiene un festivo asignado. Puede modificarlo");
+			} else {
+				festivoService.create(f);
+			}	
+		}
 		
-		return null;
+		return "redirect:mostrarFestivo";
 	}
 	
 	
@@ -164,7 +182,8 @@ public class FestivoController {
 	 * @return Modelo
 	 */
 	@GetMapping("/mantenimiento/updateFestivo")
-	public ModelAndView actualizarFestivo(@RequestParam(name = "id") int id) {
+	public ModelAndView actualizarFestivo(
+			@RequestParam(name = "id") int id) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -186,20 +205,22 @@ public class FestivoController {
 	 * @throws FestivoExisteException
 	 */
 	@GetMapping("/mantenimiento/updateFestivoControl")
-	public String updateFestivo(@RequestParam(name = "id") int id, @RequestParam(name = "nombre") String nombre,
+	public String updateFestivo(
+			@RequestParam(name = "id") int id, @RequestParam(name = "nombre") String nombre,
 			@RequestParam(name = "fecha") String fecha) throws FestivoExisteException {
-
-		ModelAndView mav = new ModelAndView();
-
 		LocalDate fechaFestivo = LocalDate.parse(fecha);
-
 		Festivo f = new Festivo(id, nombre, fechaFestivo);
-
-		// comprobar si existe
+		
+		//Comprobar si es el mismo festivo
+		if (festivoService.findById(id).getId() == f.getId()) {
+			System.out.println("ES LA MISMA");
+			festivoService.update(f);
+			return "redirect:mostrarFestivo";
+		}
+		//Comprobar si ese festivo ya existe
 		if (festivoService.findAllFechas().contains(f.getFecha())) {
 			System.out.println("LA FECHA YA EXISTE");
 			throw new FestivoExisteException("La fecha ya tiene un festivo asignado. Puede modificarlo");
-
 		} else {
 			System.out.println("CREAR FESTIVO ---- " + f.getNombre());
 			festivoService.update(f);
@@ -252,7 +273,12 @@ public class FestivoController {
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ModelAndView ConstraintViolationExceptions(ConstraintViolationException ex) {
 		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION -- MENSAJE: ");
-		String mensaje = ex.getMessage() != null ? ex.getMessage().split(":")[1] : "Constraint en BBDD no admitido";
+		String mensaje = "Esa fecha ya esta reservada!! Modificala";
+		
+		/*Esto no funciona
+			String mensaje = ex.getMessage() != null ? ex.getMessage().split(":")[0] : "Constraint en BBDD no admitido";
+		*/
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("error");
 		mav.addObject("mensaje", mensaje);
@@ -260,7 +286,7 @@ public class FestivoController {
 		return mav;
 
 	}
-
+	
 	/**
 	 * Capturar y gestionar FestivoExisteException. Para que no se pueda grabar
 	 * festivos con la misma fecha
