@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.ConstraintDefinitionException;
 import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,24 +43,26 @@ public class AulaController {
 	IOrdenadorService ordenadorService;
 	@Autowired
 	IEquipamientoService equipamientoService;
-	
+
+	/**
+	 * Para crear objeto Validator para comprobar las Constrains de la Entidad
+	 */
 	@Autowired
 	ValidatorFactory factoryValidator;
-	
-	
-	//-------------------------------------------------------------------------------------------------------
-	//	CREATE
-	//-------------------------------------------------------------------------------------------------------
-	
+
+	// -------------------------------------------------------------------------------------------------------
+	// CREATE
+	// -------------------------------------------------------------------------------------------------------
+
 	@GetMapping("/admin/crearAula")
 	public ModelAndView crearAulaPage() {
 		ModelAndView mav = new ModelAndView();
-		
+
 		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
 		List<Sede> listaSedes = sedeService.findAll();
 		List<Ordenador> listaOrdenadores = ordenadorService.findAll();
 		List<Equipamiento> listaEquipamientos = equipamientoService.findAll();
-		
+
 		mav.addObject("tipoAulas", listaTipoAulas);
 		mav.addObject("sedes", listaSedes);
 		mav.addObject("ordenadores", listaOrdenadores);
@@ -65,138 +70,162 @@ public class AulaController {
 		mav.setViewName("admin/crearAula");
 		return mav;
 	}
-		
 
 	@GetMapping("/admin/crearAulaControl")
-	public String crearAula(
-			@RequestParam (name = "nombre", required = true) String nombre,
-			@RequestParam (name = "tipo", required = true) int tipo,
-			@RequestParam (name = "sede", required = true) int sede,
-			@RequestParam (name = "capacidad", required = true) int capacidad,
-			@RequestParam (name = "equipoProfesor", required = true) int equipoProfesor,
-			@RequestParam (name = "equipoAlumno", required = true) int equipoAlumno,
-			@RequestParam (name = "equipamiento", required = true) int equipamiento) {
-		
-		Validator validator = factoryValidator.getValidator(); 
+	public String crearAula(@RequestParam(name = "nombre", required = true) String nombre,
+			@RequestParam(name = "tipo", required = true) int tipo,
+			@RequestParam(name = "sede", required = true) int sede,
+			@RequestParam(name = "capacidad", required = true) int capacidad,
+			@RequestParam(name = "equipoProfesor", required = true) int equipoProfesor,
+			@RequestParam(name = "equipoAlumno", required = true) int equipoAlumno,
+			@RequestParam(name = "equipamiento", required = true) int equipamiento) {
+
 		Aula a = new Aula(0, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
-		
-		//validar Entidad Aula
-		if (validar(a, validator)) {
-			aulaService.create(a);
-		}
-		
-		
-		
+
+		//Comprobar que los campos son correctos
+		validar(a);
+		aulaService.create(a);
 		return "redirect:mostrarAula";
 	}
 
+	
+
+	// -------------------------------------------------------------------------------------------------------
+	// READ
+	// -------------------------------------------------------------------------------------------------------
+
 	/**
-	 * Método para validar un Aula
-	 * @param a Objeto de la clase Aula
-	 * @param validator Validador
-	 * @return true si no hay errores, false si hay errores de validación
+	 * Mostrar todas las aulas de la BBDD
+	 * 
+	 * @return ModelAndView "/admin/mostrarAula"
 	 */
-	private boolean validar(Aula a, Validator validator) {
-		Set<ConstraintViolation<Aula>> violations = validator.validate(a);
-		if (null == violations) {
-			return true;
-		}
-		for (ConstraintViolation<Aula> constraintViolation : violations) {
-			System.out.println(constraintViolation.getMessage());
-		}
-		return false;
-	}
-
-	//-------------------------------------------------------------------------------------------------------
-	//	READ
-	//-------------------------------------------------------------------------------------------------------
-	
-	
-
 	@GetMapping("/admin/mostrarAula")
 	public ModelAndView findAllAula() {
 		ModelAndView mav = new ModelAndView();
-		
+
 		List<Aula> listaAulas = aulaService.findAll();
-		
+
 		List<ObjetoPresentacion> listaPresentacion = new ArrayList<ObjetoPresentacion>();
-		
+
 		for (int i = 0; i < listaAulas.size(); i++) {
 			Aula a = listaAulas.get(i);
 			TipoAula t = tipoAulaService.findById(a.getTipo());
 			Sede s = sedeService.findById(a.getSede());
 			Ordenador o = ordenadorService.findById(a.getEquipoProfesor());
 			Equipamiento e = equipamientoService.findById(a.getEquipamiento());
-			
+
 			ObjetoPresentacion obj = new ObjetoPresentacion(a.getId(), a.getNombre(), t.getId(), t.getNombre(),
 					s.getId(), s.getNombre(), a.getCapacidad(), o.getId(), o.getNombre(), e.getId(), e.getNombre());
-			
+
 			listaPresentacion.add(obj);
 		}
-		
+
 		mav.addObject("aulas", listaPresentacion);
 		mav.setViewName("/admin/mostrarAula");
-		
+
 		return mav;
 	}
-	
-	
-	//-------------------------------------------------------------------------------------------------------
-	//	UPDATE
-	//-------------------------------------------------------------------------------------------------------
-	
+
+	// -------------------------------------------------------------------------------------------------------
+	// UPDATE
+	// -------------------------------------------------------------------------------------------------------
+
 	@GetMapping("/admin/updateAula")
-	public ModelAndView actualizaAula(
-			@RequestParam (name = "id") int id) {
+	public ModelAndView actualizaAula(@RequestParam(name = "id") int id) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
 		List<Sede> listaSedes = sedeService.findAll();
 		List<Ordenador> listaOrdenadores = ordenadorService.findAll();
 		List<Equipamiento> listaEquipamientos = equipamientoService.findAll();
-		
+
 		Aula a = aulaService.findById(id);
-		
+
 		mav.addObject("tipoAulas", listaTipoAulas);
 		mav.addObject("sedes", listaSedes);
 		mav.addObject("ordenadores", listaOrdenadores);
 		mav.addObject("equipamientos", listaEquipamientos);
 		mav.addObject("aula", a);
 		mav.setViewName("/admin/updateAula");
-		
+
 		return mav;
 	}
-	
-	
+
 	@GetMapping("/admin/updateAulaControl")
-	public String updateAula (
-			@RequestParam (name = "id") int id,
-			@RequestParam (name = "nombre", required = true) String nombre,
-			@RequestParam (name = "tipo", required = true) int tipo,
-			@RequestParam (name = "sede", required = true) int sede,
-			@RequestParam (name = "capacidad", required = true) int capacidad,
-			@RequestParam (name = "equipoProfesor", required = true) int equipoProfesor,
-			@RequestParam (name = "equipoAlumno", required = true) int equipoAlumno,
-			@RequestParam (name = "equipamiento", required = true) int equipamiento) {
-		
+	public String updateAula(@RequestParam(name = "id") int id,
+			@RequestParam(name = "nombre", required = true) String nombre,
+			@RequestParam(name = "tipo", required = true) int tipo,
+			@RequestParam(name = "sede", required = true) int sede,
+			@RequestParam(name = "capacidad", required = true) int capacidad,
+			@RequestParam(name = "equipoProfesor", required = true) int equipoProfesor,
+			@RequestParam(name = "equipoAlumno", required = true) int equipoAlumno,
+			@RequestParam(name = "equipamiento", required = true) int equipamiento) {
+
 		Aula a = new Aula(id, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
-		
+
+		validar(a);
 		aulaService.update(a);
-		
-		return "redirect:mostrarAula";
-	}
-	
-	
-	//-------------------------------------------------------------------------------------------------------
-	//	DELETE
-	//-------------------------------------------------------------------------------------------------------
-	
-	@GetMapping("admin/borrarAula")
-	public String borrarAula(
-			@RequestParam(required = true) int id){
-		aulaService.delete(id);
-		
 		return "redirect:mostrarAula";
 	}
 
+	// -------------------------------------------------------------------------------------------------------
+	// DELETE
+	// -------------------------------------------------------------------------------------------------------
+
+	@GetMapping("admin/borrarAula")
+	public String borrarAula(@RequestParam(required = true) int id) {
+		aulaService.delete(id);
+
+		return "redirect:mostrarAula";
+	}
+	
+	// -------------------------------------------------------------------------------------------------------
+	// VALIDACIONES
+	// -------------------------------------------------------------------------------------------------------
+
+	
+	/**
+	 * Método para validar un Aula
+	 * 
+	 * @param a Objeto de la clase Aula
+	 * 
+	 */
+	private void validar(Aula aula) {
+		Validator validator = factoryValidator.getValidator();
+		Set<ConstraintViolation<Aula>> violations = validator.validate(aula);
+		if (null != violations) {
+			System.out.println("ERRORES EN LA VALIDACIÓN");
+			throw new ConstraintViolationException(violations);
+		}
+	}
+
+	/**
+	 * Capturar y gestionar las excepciones de constraint violation de la base de
+	 * datos.
+	 * 
+	 * @param ex del tipo ConstraintViolationException
+	 * @return ModelAndView para mostrar el error
+	 */
+	@ExceptionHandler(ConstraintViolationException.class)
+	public ModelAndView ConstraintViolationExceptions(ConstraintViolationException ex) {
+		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION");
+		final String TITULO_ERROR = "Datos no válidos";
+		ModelAndView mav = new ModelAndView();
+		String[] mensajesError;
+		String mensaje = "";
+		Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
+		for (ConstraintViolation<?> constraintViolation : violations) {
+			
+			//para separar los mensajes
+			mensaje += constraintViolation.getMessage().trim() + "#";
+			System.out.println(constraintViolation.getMessage());
+		}
+		//puede haber varios mensajes de error
+		mensajesError = mensaje.split("#");
+	
+		mav.setViewName("error");
+		mav.addObject("mensajesError", mensajesError);
+		mav.addObject("titulo", TITULO_ERROR);
+		return mav;
+	}
 }

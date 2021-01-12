@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -29,11 +30,13 @@ public class Aula {
 	/**
 	 * Para indicar la capacidad mínima de las aulas
 	 */
+	@Transient
 	final int MIN_CAPACIDAD_AULA = 1;
 	
 	/**
 	 * Para indicar la capacidad máxima de las aulas
 	 */
+	@Transient
 	final int MAX_CAPACIDAD_AULA = 30;
 	
 	@Id

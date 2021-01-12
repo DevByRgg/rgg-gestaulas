@@ -44,8 +44,10 @@
 			<span class="badge text-white bg-cice">ERROR</span>
 		</h2>
 		
-		<h4 class="mt-5"><c:out value="${requestScope.mensaje}"/></h4>
-		
+<%-- 		<h4 class="mt-5"><c:out value="${requestScope.mensaje}"/></h4> --%>
+		<c:forEach var="mensaje" items="${mensajesError}">
+		  <h4 class="mt-5"><c:out value="${mensaje}"/></h4>
+		</c:forEach>
 
 		<a type="button" class="btn font-weight-bold cice-hover bg-cice text-white mt-5"
 			href="javascript:history.back()"> Volver Atrás </a>
