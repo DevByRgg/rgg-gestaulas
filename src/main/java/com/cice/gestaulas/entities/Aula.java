@@ -49,9 +49,9 @@ public class Aula {
 	 * por ejemplo M003 para aula 003 de M (Maldonado)
 	 */
 	@Column(name = "nombre")
-	@NotBlank(message="El nombre es obligatorio")
+	@NotBlank(message="{aula.nombre.empty}")
 	@Size(min = 4, max = 64, message 
-    = "El nombre del aula tiene que tener entre 4 y 64 caracteres")
+    = "{aula.nombre.size}")
 	private String nombre;
 	
 	@Column(name = "tipo")
@@ -66,8 +66,8 @@ public class Aula {
 	 * Número de puestos del Aula
 	 */
 	@Column(name = "capacidad")
-	@Min(value = MIN_CAPACIDAD_AULA, message="La capacidad del aula tiene que ser al menos de " + MIN_CAPACIDAD_AULA)
-	@Max(value = MAX_CAPACIDAD_AULA, message="La capacidad maxima del aula es de " + MAX_CAPACIDAD_AULA)
+	@Min(value = MIN_CAPACIDAD_AULA, message="{aula.capacidad.min} " + MIN_CAPACIDAD_AULA)
+	@Max(value = MAX_CAPACIDAD_AULA, message="{aula.capacidad.max} " + MAX_CAPACIDAD_AULA)
 	private int capacidad;
 	
 	/**
