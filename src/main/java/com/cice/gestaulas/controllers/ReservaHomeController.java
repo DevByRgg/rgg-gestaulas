@@ -19,7 +19,6 @@ import com.cice.gestaulas.entities.Reserva;
 import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.entities.auxiliar.ObjetoPresentacion;
 import com.cice.gestaulas.entities.auxiliar.TipoAula;
-import com.cice.gestaulas.exceptions.ErrorContainer;
 import com.cice.gestaulas.exceptions.ReservaOcupadaException;
 import com.cice.gestaulas.services.interfaces.IAulaService;
 import com.cice.gestaulas.services.interfaces.IReservaService;

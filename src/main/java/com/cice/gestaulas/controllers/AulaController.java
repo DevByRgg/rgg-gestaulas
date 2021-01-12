@@ -2,6 +2,11 @@ package com.cice.gestaulas.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +41,9 @@ public class AulaController {
 	@Autowired
 	IEquipamientoService equipamientoService;
 	
+	@Autowired
+	ValidatorFactory factoryValidator;
+	
 	
 	//-------------------------------------------------------------------------------------------------------
 	//	CREATE
@@ -69,18 +77,42 @@ public class AulaController {
 			@RequestParam (name = "equipoAlumno", required = true) int equipoAlumno,
 			@RequestParam (name = "equipamiento", required = true) int equipamiento) {
 		
+		Validator validator = factoryValidator.getValidator(); 
 		Aula a = new Aula(0, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
 		
-		aulaService.create(a);
+		//validar Entidad Aula
+		if (validar(a, validator)) {
+			aulaService.create(a);
+		}
+		
+		
 		
 		return "redirect:mostrarAula";
 	}
 
-	
+	/**
+	 * Método para validar un Aula
+	 * @param a Objeto de la clase Aula
+	 * @param validator Validador
+	 * @return true si no hay errores, false si hay errores de validación
+	 */
+	private boolean validar(Aula a, Validator validator) {
+		Set<ConstraintViolation<Aula>> violations = validator.validate(a);
+		if (null == violations) {
+			return true;
+		}
+		for (ConstraintViolation<Aula> constraintViolation : violations) {
+			System.out.println(constraintViolation.getMessage());
+		}
+		return false;
+	}
+
 	//-------------------------------------------------------------------------------------------------------
 	//	READ
 	//-------------------------------------------------------------------------------------------------------
 	
+	
+
 	@GetMapping("/admin/mostrarAula")
 	public ModelAndView findAllAula() {
 		ModelAndView mav = new ModelAndView();
