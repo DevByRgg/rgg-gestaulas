@@ -5,8 +5,7 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-cice">
 	<a class="navbar-brand text-white" href="#"> 
         <img src="/aulas/images/logo_blanco_total.svg" height="25"	class="d-inline-block align-top" alt="">
-        
-	</a>
+    </a>
 
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -74,6 +73,7 @@
                     <a class="dropdown-item cice-hover text-white" href="/aulas/consultas/consultarAulasDisponibles">Consultar</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item cice-hover text-white" href="/aulas/mantenimiento/crearFestivo">Crear Festivo</a>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/mantenimiento/crearPeriodoFestivo">Crear Periodo festivo</a>
                     <a class="dropdown-item cice-hover text-white" href="/aulas/mantenimiento/mostrarFestivo">Listado Festivo</a>
                 </div>
             </li>

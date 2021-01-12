@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cice.gestaulas.entities.auxiliar.Festivo;
 import com.cice.gestaulas.exceptions.FestivoExisteException;
 import com.cice.gestaulas.services.interfaces.IFestivoService;
+import com.fasterxml.jackson.datatype.jsr310.ser.MonthDaySerializer;
 
 /**
  * Controller para la entidad Festivo
@@ -37,9 +39,9 @@ public class FestivoController {
 	@Autowired
 	IFestivoService festivoService;
 
-	// -------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
 	// CREATE
-	// -------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
 	/**
 	 * Mostrar la vista de mantenimiento/crearFestivo.jsp
 	 * 
@@ -78,6 +80,34 @@ public class FestivoController {
 		}
 	}
 
+	//-------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping(value = "/mantenimiento/crearPeriodoFestivo", method = RequestMethod.GET)
+	public ModelAndView crearPeriodoFestivoPage() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("mantenimiento/crearPeriodoFestivo");
+		return mav;
+	}
+	
+	//-------------------------------------------------------------------------------------------------------
+
+	@RequestMapping(value = "/mantenimiento/crearPeridoFestivoControl", method = RequestMethod.POST)
+	public String crearPeriodoFestivo(
+			@RequestParam (name = "nombre", required = true) String nombre,
+			@RequestParam (name = "fechaInicio") String fechaInicio,
+			@RequestParam (name = "fechaFin") String fechaFin) throws FestivoExisteException {
+		LocalDate ldInicio = LocalDate.parse(fechaInicio);
+		LocalDate ldFin = LocalDate.parse(fechaFin);
+		
+		int periodoDias= ldFin.getDayOfYear() - ldInicio.getDayOfYear();
+		
+		System.out.println(periodoDias);
+		
+		return null;
+	}
+	
+	
 	/**
 	 * Guardar el Festivo en la BBDD
 	 * 
@@ -100,6 +130,8 @@ public class FestivoController {
 		 * return "redirect:crearFestivo"; }
 		 */
 
+	
+	
 	// -------------------------------------------------------------------------------------------------------
 	// READ
 	// -------------------------------------------------------------------------------------------------------
