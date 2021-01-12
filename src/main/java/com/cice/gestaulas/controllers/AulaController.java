@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.validation.ConstraintDefinitionException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import javax.validation.Path;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
@@ -193,7 +194,7 @@ public class AulaController {
 	private void validar(Aula aula) {
 		Validator validator = factoryValidator.getValidator();
 		Set<ConstraintViolation<Aula>> violations = validator.validate(aula);
-		if (null != violations) {
+		if (!violations.isEmpty()) {
 			System.out.println("ERRORES EN LA VALIDACIÓN");
 			throw new ConstraintViolationException(violations);
 		}
@@ -217,8 +218,10 @@ public class AulaController {
 		for (ConstraintViolation<?> constraintViolation : violations) {
 			
 			//para separar los mensajes
-			mensaje += constraintViolation.getMessage().trim() + "#";
-			System.out.println(constraintViolation.getMessage());
+			String atributo = constraintViolation.getPropertyPath().toString();
+			
+			mensaje += atributo + ": " + constraintViolation.getMessage().trim() + "#";
+			System.out.println(mensaje);
 		}
 		//puede haber varios mensajes de error
 		mensajesError = mensaje.split("#");
