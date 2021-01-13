@@ -34,7 +34,6 @@ public class SedeController {
 	 */
 	@GetMapping("/admin/crearSede")
 	public ModelAndView crearSedePage() {
-		
 		ModelAndView mav = new ModelAndView();
 	
 		mav.setViewName("admin/crearSede");
