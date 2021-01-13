@@ -62,22 +62,18 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 	@ExceptionHandler(JDBCConnectionException.class)
 	public ModelAndView JDBCConnectionException(JDBCConnectionException ex) {
 		System.out.println("EXCEPTION HANDLER JDBCConnectionException EXCEPTION");
+		final String TITULO_ERROR = "Bbdd";
+		Map<String, String> msnError = new HashMap<String, String>();
 		String mensaje = "Fallo en la bbdd!! La bbdd puede estar apagada";
 		
-		System.out.println("--" + ex.getErrorCode());
-		System.out.println("--" + ex.getLocalizedMessage());
-		System.out.println("--" + ex.getMessage());
-		System.out.println("--" + ex.fillInStackTrace());
-		System.out.println("--" + ex.getCause());
-		
-		/*Esto no funciona
-			String mensaje = ex.getMessage() != null ? ex.getMessage().split(":")[0] : "Constraint en BBDD no admitido";
-		*/
+		msnError.put("Error", ex.getMessage());
+		msnError.put("Bbdd", "Communications link failure");
+		msnError.put("Problema", "Es posible que la bbdd este apagada");
 		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("msnError", msnError);
+		mav.addObject("titulo", TITULO_ERROR);
 		mav.setViewName("error");
-		mav.addObject("mensajesError", mensaje);
-		mav.addObject("titulo", "Conexion bbdd");
 		return mav;
 	}
 	
@@ -92,7 +88,6 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 	public ModelAndView ConstraintViolationExceptions(ConstraintViolationException ex) {
 		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION");
 		final String TITULO_ERROR = "Datos no validos";
-		ModelAndView mav = new ModelAndView();
 		Map<String, String> msnError = new HashMap<String, String>();
 		Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
 		
@@ -102,7 +97,8 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 			
 			msnError.put(atributo, mensaje);
 		}
-			
+		
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("msnError", msnError);
 		mav.addObject("titulo", TITULO_ERROR);
 		mav.setViewName("error");
