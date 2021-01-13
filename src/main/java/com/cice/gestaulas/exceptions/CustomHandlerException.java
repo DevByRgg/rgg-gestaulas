@@ -97,17 +97,12 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 		Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
 		
 		for (ConstraintViolation<?> constraintViolation : violations) {
-			
 			String atributo = constraintViolation.getPropertyPath().toString();
 			String mensaje = constraintViolation.getMessage().trim();
 			
 			msnError.put(atributo, mensaje);
 		}
-		
-		//puede haber varios mensajes de error
-		
-	
-		
+			
 		mav.addObject("msnError", msnError);
 		mav.addObject("titulo", TITULO_ERROR);
 		mav.setViewName("error");
