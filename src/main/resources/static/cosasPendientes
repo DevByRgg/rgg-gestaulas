@@ -1,32 +1,4 @@
 
-
-Reserva update
-	comprobar que la reserva a insertar no existe en la bbdd constrain unicos
-		crear reserva
-		update reserva 
-			- Al crear o actualizar una reserva 09.01.2021 HECHO. PENDIENTE DE TESTS
-				Comprueba que la reserva esté libre al actualizar o crear. 
-				Si en crear coincide una reserva al menos ocupada no deja hacer ninguna.
-		
-	comprobacion nombreCurso en el buscador de cursos
-	
-crear la zona public
-
-
-Reservas
-	entidad festivo
-	
-	meter festivos y que chequee si estan en la bbdd
-	
-	entidad curso 
-		id - nombre - codigo curso 
-		
-08.01.2021 
-Buscar Aula
-	Cambiar el nombre a Reservar Curso Completo o algo parecido...
-	
-ReservaAuxiliarController
-	Clase Padre del @Controller ReservaHomeController ... No lo había visto.
-		
+introducir el curso que hay en cada hora del cuadro consultas		
 		
 	
