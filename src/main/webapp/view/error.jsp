@@ -39,7 +39,7 @@
 
 		<div class="pt-5"></div>
 
-		<h2 class="pt-3">${titulo} <span class="badge text-white bg-cice">ERROR</span></h2>
+		<h2 class="pt-3 mb-5">${titulo} <span class="badge text-white bg-cice">ERROR</span></h2>
 		
 		<c:forEach items="${msnError}" var="mensaje">
 			<div class="mt-3">
