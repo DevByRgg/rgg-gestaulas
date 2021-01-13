@@ -89,8 +89,6 @@ public class FestivoController {
 		return mav;
 	}
 	
-	//-------------------------------------------------------------------------------------------------------
-
 	@GetMapping(value = "/mantenimiento/crearPeridoFestivoControl")
 	public String crearPeriodoFestivo(
 			@RequestParam (name = "nombre", required = true) String nombre,
