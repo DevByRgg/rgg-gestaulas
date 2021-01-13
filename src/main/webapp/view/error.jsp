@@ -48,7 +48,7 @@
 		</c:forEach>
 
 		<a type="button" class="btn btn-lg font-weight-bold cice-hover bg-cice text-white mt-3"
-			href="javascript:history.back()">Volver</a>
+			href="javascript:history.back()"><img alt="" src="/aulas/">Volver</a>
 	</div>
 </body>
 </html>
