@@ -3,6 +3,7 @@ package com.cice.gestaulas.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cice.gestaulas.entities.Equipamiento;
 import com.cice.gestaulas.services.interfaces.IEquipamientoService;
 
-
+@Secured("ROLE_ADMIN")
 @Controller
 public class EquipamientoController {
 

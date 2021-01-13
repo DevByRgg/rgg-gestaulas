@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ import com.cice.gestaulas.services.interfaces.IReservaService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
 
+@Secured("ROLE_USER")
 @Controller
 public class ReservaHomeController extends ReservaAuxiliarController {
 

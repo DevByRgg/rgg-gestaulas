@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 
 import com.cice.gestaulas.entities.Reserva;
 import com.cice.gestaulas.services.interfaces.IAulaService;
@@ -18,6 +19,7 @@ import com.cice.gestaulas.services.interfaces.IReservaService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
 
+@Secured("ROLE_USER")
 public class ReservaAuxiliarController {
 	
 	@Autowired

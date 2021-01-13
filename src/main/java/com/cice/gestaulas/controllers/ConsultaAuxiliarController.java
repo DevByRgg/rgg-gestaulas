@@ -13,6 +13,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cice.gestaulas.entities.Aula;
@@ -31,6 +32,8 @@ import com.cice.gestaulas.services.interfaces.ITipoAulaService;
  * Facilita los métodos necesarios para realizar las consultas en la aplicación
  *
  */
+
+@Secured("ROLE_USER")
 public class ConsultaAuxiliarController {
 	
 	@Autowired

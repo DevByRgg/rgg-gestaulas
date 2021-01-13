@@ -9,6 +9,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -31,6 +32,7 @@ import com.cice.gestaulas.services.interfaces.IFestivoService;
  * Controller para la entidad Festivo
  *
  */
+@Secured("ROLE_ADMIN")
 @Validated
 @Controller
 public class FestivoController {

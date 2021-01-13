@@ -3,6 +3,7 @@ package com.cice.gestaulas.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cice.gestaulas.entities.Aula;
 
+@Secured("ROLE_USER")
 @Controller
 public class ConsultaHomeController extends ConsultaAuxiliarController{
 	

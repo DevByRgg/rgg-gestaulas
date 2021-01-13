@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,7 @@ import com.cice.gestaulas.repositories.IReservasRepository;
 import com.cice.gestaulas.services.interfaces.IAulaService;
 import com.cice.gestaulas.services.interfaces.IReservaService;
 
+@Secured("ROLE_USER")
 @Controller
 public class ReservaShowController {
 	List<Reserva> listaReservas = new ArrayList<Reserva>();

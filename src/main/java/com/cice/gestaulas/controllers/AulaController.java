@@ -13,6 +13,7 @@ import javax.validation.ValidatorFactory;
 
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ import com.cice.gestaulas.services.interfaces.IOrdenadorService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
 
+@Secured("ROLE_ADMIN")
 @Controller
 public class AulaController {
 

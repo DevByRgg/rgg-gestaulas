@@ -57,6 +57,13 @@
                 </div>
             </li>
             
+            <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/altaUsuario">Crear Usuario</a>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarUsuarios">Listado usuarios</a>
+                </div>
+            </li>
             
             <li class="nav-item dropdown ml-5">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reserva</a>
@@ -78,6 +85,10 @@
                     <a class="dropdown-item cice-hover text-white" href="/aulas/mantenimiento/mostrarFestivo">Listado Festivo</a>
                 </div>
             </li>
+            
+            <li class="nav-item"><a class="btn btn-primary float-right mx-3"
+				href="<c:url value="/logout" />">Logout</a>
+			</li>
 
 		</ul>
 
