@@ -2,6 +2,8 @@ package com.cice.gestaulas.controllers;
 
 import java.util.List;
 
+import javax.validation.ValidatorFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +18,21 @@ public class SedeController {
 
 	@Autowired
 	ISedeService sedeService;
+	
+	/**
+	 * Para crear objeto Validator para comprobar las Constrains de la Entidad
+	 */
+	@Autowired
+	ValidatorFactory factoryValidator;
 		
 	//-------------------------------------------------------------------------------------------------------
 	//	CREATE
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Cargar y mostrar la página crearSede
+	 * @return ModelAndView 
+	 */
 	@GetMapping("/admin/crearSede")
 	public ModelAndView crearSedePage() {
 		
@@ -30,6 +42,14 @@ public class SedeController {
 		return mav;
 	}
 	
+	/**
+	 * Crear una Sede en la BBDD
+	 * @param nombre de la Sede
+	 * @param direccion de la Sede
+	 * @param codigoPostal de la Sede
+	 * @param telefono de la Sede
+	 * @return "redirect:mostrarSede". Mostrar la lista con todas las sedes
+	 */
 	@GetMapping("/admin/crearSedeControl")
 	public String crearSede (
 			@RequestParam (name = "nombre") String nombre,
@@ -38,6 +58,8 @@ public class SedeController {
 			@RequestParam (name = "telefono", required = true) String telefono) {
 		
 		Sede s = new Sede(0, nombre, direccion, codigoPostal, telefono);
+		
+		
 		
 		sedeService.create(s);
 		
@@ -48,6 +70,10 @@ public class SedeController {
 	//	READ
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Mostrar todas las sedes de la BBDD
+	 * @return ModelAndView /admin/mostrarSede
+	 */
 	@GetMapping("/admin/mostrarSede")
 	public ModelAndView findAllSede() {
 		
@@ -64,6 +90,11 @@ public class SedeController {
 	//	UPDATE
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Mostrar Sede a actualizar
+	 * @param id identificador de la sede
+	 * @return ModelAndView /admin/updateSede
+	 */
 	@GetMapping("/admin/updateSede")
 	public ModelAndView actualizarSede(
 			@RequestParam (name = "id") int id) {
@@ -78,6 +109,15 @@ public class SedeController {
 		return mav;
 	}
 	
+	/**
+	 * Actualizar Sede en la BBDD
+	 * @param id identificador de la Sede
+	 * @param nombre de la sede
+	 * @param direccion de la sede
+	 * @param codigoPostal de la sede
+	 * @param telefono de la sede
+	 * @return "redirect:mostrarSede". Mostrar la lista con todas la sedes
+	 */
 	@GetMapping("/admin/updateSedeControl")
 	public String updateSede (
 			@RequestParam (name = "id") int id,
@@ -97,6 +137,11 @@ public class SedeController {
 	//	DELETE
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Borrar una Sede de la BBDD
+	 * @param id identificador de la sede
+	 * @return "redirect:mostrarSede". Mostrar la lista con todas las sedes
+	 */
 	@GetMapping("admin/borrarSede")
 	public String borrarSede(
 			@RequestParam(required = true) int id){
