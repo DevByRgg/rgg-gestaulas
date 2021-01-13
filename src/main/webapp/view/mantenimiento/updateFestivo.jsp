@@ -21,7 +21,7 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Sede <span class="badge text-white bg-cice">UPDATE</span>
+			Festivo <span class="badge text-white bg-cice">UPDATE</span>
 		</h2>
 		
 		<!-- Forumulario -->
