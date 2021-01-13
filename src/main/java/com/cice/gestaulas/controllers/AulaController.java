@@ -200,35 +200,5 @@ public class AulaController {
 		}
 	}
 
-	/**
-	 * Capturar y gestionar las excepciones de constraint violation de la base de
-	 * datos.
-	 * 
-	 * @param ex del tipo ConstraintViolationException
-	 * @return ModelAndView para mostrar el error
-	 */
-	@ExceptionHandler(ConstraintViolationException.class)
-	public ModelAndView ConstraintViolationExceptions(ConstraintViolationException ex) {
-		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION");
-		final String TITULO_ERROR = "Datos no válidos";
-		ModelAndView mav = new ModelAndView();
-		String[] mensajesError;
-		String mensaje = "";
-		Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
-		for (ConstraintViolation<?> constraintViolation : violations) {
-			
-			//para separar los mensajes
-			String atributo = constraintViolation.getPropertyPath().toString();
-			
-			mensaje += atributo + ": " + constraintViolation.getMessage().trim() + "#";
-			System.out.println(mensaje);
-		}
-		//puede haber varios mensajes de error
-		mensajesError = mensaje.split("#");
 	
-		mav.setViewName("error");
-		mav.addObject("mensajesError", mensajesError);
-		mav.addObject("titulo", TITULO_ERROR);
-		return mav;
-	}
 }

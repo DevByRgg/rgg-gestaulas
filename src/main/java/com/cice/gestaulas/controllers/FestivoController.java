@@ -261,37 +261,7 @@ public class FestivoController {
 		return errors;
 	}
 
-	/**
-	 * Capturar y gestionar las excepciones de constraint violation de la base de
-	 * datos.
-	 * 
-	 * @param ex del tipo ConstraintViolationException
-	 * @return ModelAndView para mostrar el error
-	 */
-	@ExceptionHandler(ConstraintViolationException.class)
-	public ModelAndView ConstraintViolationExceptions(ConstraintViolationException ex) {
-		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION -- MENSAJE: ");
-		String mensaje = "Esa fecha ya esta reservada!! Modificala";
 		
-		System.out.println("--" + ex.getConstraintName());
-		System.out.println("--" + ex.getErrorCode());
-		System.out.println("--" + ex.getLocalizedMessage());
-		System.out.println("--" + ex.getMessage());
-		System.out.println("--" + ex.getSQL());
-		System.out.println("--" + ex.getSQLState());
-		
-		/*Esto no funciona
-			String mensaje = ex.getMessage() != null ? ex.getMessage().split(":")[0] : "Constraint en BBDD no admitido";
-		*/
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("error");
-		mav.addObject("mensajesError", mensaje);
-		mav.addObject("titulo", "Datos no válidos");
-		return mav;
-
-	}
-	
 	/**
 	 * Capturar y gestionar FestivoExisteException. Para que no se pueda grabar
 	 * festivos con la misma fecha

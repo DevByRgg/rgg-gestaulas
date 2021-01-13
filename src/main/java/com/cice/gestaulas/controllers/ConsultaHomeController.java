@@ -169,7 +169,7 @@ public class ConsultaHomeController extends ConsultaAuxiliarController{
 			@RequestParam (name = "mes") int mes,
 			@RequestParam (name = "anio") int anio,
 			@RequestParam (name = "turno") int turno) {
-		String zone = "/consultas";
+		String zone = "consultas/";
 		
 		String retorno = restarTurno(aula, mes, anio, turno, zone);
 		return retorno;

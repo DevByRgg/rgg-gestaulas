@@ -23,7 +23,7 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Buscar <span class="badge text-white bg-cice">AULAS</span>
+			Reservar <span class="badge text-white bg-cice">CURSO</span>
 		</h2>
 		
 		<!-- Forumulario BUSCAR-->
@@ -69,7 +69,7 @@
 			
 				<!-- Capacidad del Aula -->
 				<div class="form-group w-25 mr-5">
-					<label class="text-secondary font-weight-bold" for="capacidadAula">Capacidad del Aula</label>
+					<label class="text-secondary font-weight-bold" for="capacidadAula">Capacidad minima</label>
 					<input type="number" class="form-control" name="capacidadAula" id="capacidadAula" value="${capacidadAula}" required>
 				</div>
   			</div>

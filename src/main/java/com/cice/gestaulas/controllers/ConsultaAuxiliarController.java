@@ -26,6 +26,11 @@ import com.cice.gestaulas.services.interfaces.IReservaService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
 
+/**
+ * Controller auxiliar
+ * Facilita los métodos necesarios para realizar las consultas en la aplicación
+ *
+ */
 public class ConsultaAuxiliarController {
 	
 	@Autowired
@@ -127,6 +132,15 @@ public class ConsultaAuxiliarController {
 	//-------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Generar el horario
+	 * @param aula id del aula
+	 * @param mes mes a generar
+	 * @param anio año a generar
+	 * @param turno turno a generar
+	 * @param zone de tipo entero 0 si es llamado desde administración y 1 si es desde público
+	 * @return ModelAndView con el horario 
+	 */
 	protected ModelAndView verHorario(int aula, int mes, int anio, int turno, int zone) {
 		String mesTexto = Month.of(mes).getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
 		String aulaTexto = aulaService.findById(aula).getNombre();
@@ -139,7 +153,7 @@ public class ConsultaAuxiliarController {
 		List<ObjetoPresentacion> listaObj= new ArrayList<ObjetoPresentacion>();
 		List<LocalDate> listaFechas = new ArrayList<LocalDate>();
 		List<LocalTime> listaHoras = new ArrayList<LocalTime>();
-		List<LocalDateTime> listaFechasHoras = new ArrayList<LocalDateTime>();
+		//List<LocalDateTime> listaFechasHoras = new ArrayList<LocalDateTime>();
 		
 		int numDiasMes = LocalDate.of(anio, mes, 1).lengthOfMonth();
 		
@@ -154,10 +168,22 @@ public class ConsultaAuxiliarController {
 			listaFechas.add(LocalDate.of(anio, mes, i));
 		}
 		
+		//
 		List<Reserva> listaReservasAula = reservaService.findAllByAula(aula);
+		
+		
 		List<LocalDateTime> listaFechasReservas = new ArrayList<LocalDateTime>();
 		
+		List<String> nombresCurso = new ArrayList<String>();
+		
 		for (int i = 0; i < listaReservasAula.size(); i++) {
+			
+			//coger el nombre del curso
+			String nombreCurso =  listaReservasAula.get(i).getNombreCurso();
+			nombresCurso.add(nombreCurso);
+			
+			//guardarlo en el model and view ("nombreCurso")
+			
 			int mesReserva = listaReservasAula.get(i).getFechaReserva().getMonthValue();
 			int anioReserva = listaReservasAula.get(i).getFechaReserva().getYear();
 			
@@ -168,7 +194,7 @@ public class ConsultaAuxiliarController {
 		
 		for (int i = 0; i < listaFechas.size(); i++) {
 			LocalDate dia = listaFechas.get(i);
-			List<Integer> horasBoleano = new ArrayList<Integer>(); 
+			List<Integer> horasColores = new ArrayList<Integer>(); 
 			int diaSemana = dia.getDayOfWeek().getValue();
 			
 			for (int j = 0; j < listaHoras.size(); j++) {
@@ -178,21 +204,22 @@ public class ConsultaAuxiliarController {
 				
 				if(diaSemana != 7 && !festivo) {
 					if (listaFechasReservas.contains(fechaHora)) {
-						horasBoleano.add(1);
+						horasColores.add(1); //color rojo ocupado
+						
 					} else {
-						horasBoleano.add(2);
+						horasColores.add(2); // verde libre
 					}	
 				} else {
-					horasBoleano.add(0);
+					horasColores.add(0); //color gris
 				}
 			}
 			
 			String diaReserva = dia.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 			
-			ObjetoPresentacion obj = new ObjetoPresentacion(diaReserva, horasBoleano.get(0),
-					horasBoleano.get(1), horasBoleano.get(2), horasBoleano.get(3), horasBoleano.get(4),
-					horasBoleano.get(5), horasBoleano.get(6), horasBoleano.get(7), horasBoleano.get(8),
-					horasBoleano.get(9), horasBoleano.get(10), horasBoleano.get(11));
+			ObjetoPresentacion obj = new ObjetoPresentacion(diaReserva, horasColores.get(0),
+					horasColores.get(1), horasColores.get(2), horasColores.get(3), horasColores.get(4),
+					horasColores.get(5), horasColores.get(6), horasColores.get(7), horasColores.get(8),
+					horasColores.get(9), horasColores.get(10), horasColores.get(11));
 			
 			listaObj.add(obj);
 		}
@@ -206,6 +233,7 @@ public class ConsultaAuxiliarController {
 		mav.addObject("mesTexto", mesTexto);
 		mav.addObject("aulaTexto", aulaTexto);
 		mav.addObject("turnoTexto", turnoTexto);
+		mav.addObject("zone", zone);
 		
 		mav.addObject("horasDisponibles", listaObj);
 		

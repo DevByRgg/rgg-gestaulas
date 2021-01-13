@@ -128,13 +128,13 @@
 							<c:when test="${turno != 2}">
 								<c:choose>
 									<c:when test="${horaDisponible.man09 == 1}">
-										<td class="align-middle text-center bg-cice-fail"></td>
+										<td class="align-middle text-center bg-cice-fail">Ocupado</td>
 									</c:when>
 									<c:when test="${horaDisponible.man09 == 2}">
-										<td class="align-middle text-center bg-cice-ok"></td>
+										<td class="align-middle text-center bg-cice-ok">Libre</td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"></td>
+										<td class="align-middle text-center bg-secondary">Festivo</td>
 									</c:otherwise>
 								</c:choose>
 								
