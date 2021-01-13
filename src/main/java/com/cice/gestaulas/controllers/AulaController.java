@@ -64,11 +64,6 @@ public class AulaController {
 	@Autowired
 	IEquipamientoService equipamientoService;
 
-	/**
-	 * Para crear objeto Validator para comprobar las Constrains de la Entidad
-	 */
-	//@Autowired
-	//ValidatorFactory factoryValidator;
 
 	// -------------------------------------------------------------------------------------------------------
 	// CREATE
@@ -216,7 +211,6 @@ public class AulaController {
 
 		Aula a = new Aula(id, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
 
-		//validar(a);
 		Utilidades.validar(a);
 		aulaService.update(a);
 		return "redirect:mostrarAula";
@@ -226,16 +220,15 @@ public class AulaController {
 	// DELETE
 	// -------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Borrar un Aula de la BBDD
+	 * @param id identificador del Aula
+	 * @return "redirect:mostrarAula". Mostrar todas las Aulas
+	 */
 	@GetMapping("admin/borrarAula")
 	public String borrarAula(@RequestParam(required = true) int id) {
 		aulaService.delete(id);
 
 		return "redirect:mostrarAula";
 	}
-	
-	
-
-	
-
-	
 }

@@ -12,18 +12,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.services.interfaces.ISedeService;
+import com.cice.gestaulas.utils.Utilidades;
 
 @Controller
 public class SedeController {
 
+	/**
+	 * Servicios de Sede
+	 */
 	@Autowired
 	ISedeService sedeService;
 	
-	/**
-	 * Para crear objeto Validator para comprobar las Constrains de la Entidad
-	 */
-	@Autowired
-	ValidatorFactory factoryValidator;
 		
 	//-------------------------------------------------------------------------------------------------------
 	//	CREATE
@@ -60,7 +59,7 @@ public class SedeController {
 		Sede s = new Sede(0, nombre, direccion, codigoPostal, telefono);
 		
 		
-		
+		Utilidades.validar(s);
 		sedeService.create(s);
 		
 		return "redirect:mostrarSede";
@@ -128,6 +127,7 @@ public class SedeController {
 		
 		Sede s = new Sede(id, nombre, direccion, codigoPostal, telefono);
 		
+		Utilidades.validar(s);
 		sedeService.update(s);
 		
 		return "redirect:mostrarSede";
