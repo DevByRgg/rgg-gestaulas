@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="context" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,18 +39,16 @@
 
 		<div class="pt-5"></div>
 
-		<h2 class="pt-3">
-		<c:out value="${requestScope.titulo}" />
-			<span class="badge text-white bg-cice">ERROR</span>
-		</h2>
+		<h2 class="pt-3">${titulo} <span class="badge text-white bg-cice">ERROR</span></h2>
 		
-<%-- 		<h4 class="mt-5"><c:out value="${requestScope.mensaje}"/></h4> --%>
-		<c:forEach var="mensaje" items="${mensajesError}">
-		  <h4 class="mt-5"><c:out value="${mensaje}"/></h4>
+		<c:forEach items="${msnError}" var="mensaje">
+			<div class="mt-3">
+				<p><span class="font-weight-bold text-capitalize mr-2">- ${mensaje.key}:</span>${mensaje.value}</p>
+			</div>
 		</c:forEach>
 
-		<a type="button" class="btn font-weight-bold cice-hover bg-cice text-white mt-5"
-			href="javascript:history.back()"> Volver Atrás </a>
+		<a type="button" class="btn btn-lg font-weight-bold cice-hover bg-cice text-white mt-3"
+			href="javascript:history.back()">Volver</a>
 	</div>
 </body>
 </html>

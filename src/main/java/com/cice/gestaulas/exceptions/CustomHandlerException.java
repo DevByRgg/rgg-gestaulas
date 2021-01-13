@@ -5,6 +5,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
 import java.net.ConnectException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.exception.JDBCConnectionException;
@@ -19,7 +21,7 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 	//Parece no ser necesario probar a quitarlo
 	@ExceptionHandler(CommunicationException.class)
 	public ModelAndView CommunicationsException(CommunicationException ex) {
-		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION -- MENSAJE: ");
+		System.out.println("EXCEPTION HANDLER CommunicationException EXCEPTION");
 		String mensaje = "Fallo en la bbdd, compruebe si esta encendida";
 		
 		/*Esto no funciona
@@ -36,7 +38,7 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 	//Parece no ser necesario probar a quitarlo
 	@ExceptionHandler(ConnectException.class)
 	public ModelAndView ConnectException(ConnectException ex) {
-		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION -- MENSAJE: ");
+		System.out.println("EXCEPTION HANDLER ConnectException EXCEPTION");
 		String mensaje = "Fallo en la bbdd!! Compruebe si esta encendida";
 		
 		System.out.println("--" + ex.fillInStackTrace());
@@ -59,7 +61,7 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 	//Este metodo es para cuando la bbdd esta apagada
 	@ExceptionHandler(JDBCConnectionException.class)
 	public ModelAndView JDBCConnectionException(JDBCConnectionException ex) {
-		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION -- MENSAJE: ");
+		System.out.println("EXCEPTION HANDLER JDBCConnectionException EXCEPTION");
 		String mensaje = "Fallo en la bbdd!! La bbdd puede estar apagada";
 		
 		System.out.println("--" + ex.getErrorCode());
@@ -89,25 +91,26 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ModelAndView ConstraintViolationExceptions(ConstraintViolationException ex) {
 		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION");
-		final String TITULO_ERROR = "Datos no válidos";
+		final String TITULO_ERROR = "Datos no validos";
 		ModelAndView mav = new ModelAndView();
-		String[] mensajesError;
-		String mensaje = "";
+		Map<String, String> msnError = new HashMap<String, String>();
 		Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
+		
 		for (ConstraintViolation<?> constraintViolation : violations) {
 			
-			//para separar los mensajes
-			String atributo = constraintViolation.getPropertyPath().toString().toUpperCase();
+			String atributo = constraintViolation.getPropertyPath().toString();
+			String mensaje = constraintViolation.getMessage().trim();
 			
-			mensaje += atributo + ": " + constraintViolation.getMessage().trim() + "#";
-			System.out.println(mensaje);
+			msnError.put(atributo, mensaje);
 		}
+		
 		//puede haber varios mensajes de error
-		mensajesError = mensaje.split("#");
+		
 	
-		mav.setViewName("error");
-		mav.addObject("mensajesError", mensajesError);
+		
+		mav.addObject("msnError", msnError);
 		mav.addObject("titulo", TITULO_ERROR);
+		mav.setViewName("error");
 		return mav;
 	}
 	
