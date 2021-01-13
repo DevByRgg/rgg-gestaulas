@@ -14,6 +14,9 @@ import com.cice.gestaulas.services.interfaces.IOrdenadorService;
 @Controller
 public class OrdenadorController {
 
+	/**
+	 * Servicios de Ordenador
+	 */
 	@Autowired
 	IOrdenadorService ordenadorService;
 	
