@@ -30,6 +30,7 @@ import com.cice.gestaulas.services.interfaces.IEquipamientoService;
 import com.cice.gestaulas.services.interfaces.IOrdenadorService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
+import com.cice.gestaulas.utils.Utilidades;
 
 @Controller
 public class AulaController {
@@ -66,8 +67,8 @@ public class AulaController {
 	/**
 	 * Para crear objeto Validator para comprobar las Constrains de la Entidad
 	 */
-	@Autowired
-	ValidatorFactory factoryValidator;
+	//@Autowired
+	//ValidatorFactory factoryValidator;
 
 	// -------------------------------------------------------------------------------------------------------
 	// CREATE
@@ -117,7 +118,8 @@ public class AulaController {
 		Aula a = new Aula(0, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
 
 		//Comprobar que los campos son correctos
-		validar(a);
+		Utilidades.validar(a);
+		//validar(a);
 		aulaService.create(a);
 		return "redirect:mostrarAula";
 	}
@@ -214,7 +216,8 @@ public class AulaController {
 
 		Aula a = new Aula(id, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
 
-		validar(a);
+		//validar(a);
+		Utilidades.validar(a);
 		aulaService.update(a);
 		return "redirect:mostrarAula";
 	}
@@ -230,25 +233,9 @@ public class AulaController {
 		return "redirect:mostrarAula";
 	}
 	
-	// -------------------------------------------------------------------------------------------------------
-	// VALIDACIONES
-	// -------------------------------------------------------------------------------------------------------
+	
 
 	
-	/**
-	 * Método para validar un Aula
-	 * 
-	 * @param a Objeto de la clase Aula
-	 * 
-	 */
-	private void validar(Aula aula) {
-		Validator validator = factoryValidator.getValidator();
-		Set<ConstraintViolation<Aula>> violations = validator.validate(aula);
-		if (!violations.isEmpty()) {
-			System.out.println("ERRORES EN LA VALIDACIÓN");
-			throw new ConstraintViolationException(violations);
-		}
-	}
 
 	
 }
