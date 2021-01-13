@@ -58,16 +58,21 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 		return mav;
 	}
 	
-	//Este metodo es para cuando la bbdd esta apagada
+	/**
+	 * Capturar y gestionar las excepciones de JDBCConnectionException de la base de
+	 * datos.
+	 * 
+	 * @param ex del tipo JDBCConnectionException
+	 * @return ModelAndView para mostrar el error
+	 */
 	@ExceptionHandler(JDBCConnectionException.class)
 	public ModelAndView JDBCConnectionException(JDBCConnectionException ex) {
 		System.out.println("EXCEPTION HANDLER JDBCConnectionException EXCEPTION");
 		final String TITULO_ERROR = "Bbdd";
 		Map<String, String> msnError = new HashMap<String, String>();
-		String mensaje = "Fallo en la bbdd!! La bbdd puede estar apagada";
 		
-		msnError.put("Error", ex.getMessage());
 		msnError.put("Bbdd", "Communications link failure");
+		msnError.put("Error", ex.getMessage());
 		msnError.put("Problema", "Es posible que la bbdd este apagada");
 		
 		ModelAndView mav = new ModelAndView();
