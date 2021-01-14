@@ -37,6 +37,11 @@ public class FestivoServiceImpl implements IFestivoService{
 	}
 	
 	@Override
+	public String findNombreByFecha(LocalDate fecha) {
+		return festivoRepository.findNombreByFecha(fecha);
+	}
+	
+	@Override
 	public void update(Festivo f) {
 		festivoRepository.save(f);
 	}
@@ -50,6 +55,8 @@ public class FestivoServiceImpl implements IFestivoService{
 	public void delete(Festivo f) {
 		festivoRepository.delete(f);
 	}
+
+	
 
 
 	

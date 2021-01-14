@@ -68,7 +68,7 @@
             <li class="nav-item dropdown ml-5">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reserva</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/crearReserva">Reservar Día</a>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/crearReserva">Reservar Dia</a>
                     <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/buscarReserva">Reservar Curso</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/mostrarReserva">Listado Reservas</a>

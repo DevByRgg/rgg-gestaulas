@@ -177,16 +177,9 @@ public class ConsultaAuxiliarController {
 		
 		List<LocalDateTime> listaFechasReservas = new ArrayList<LocalDateTime>();
 		
-		List<String> nombresCurso = new ArrayList<String>();
+		
 		
 		for (int i = 0; i < listaReservasAula.size(); i++) {
-			
-			//coger el nombre del curso
-			String nombreCurso =  listaReservasAula.get(i).getNombreCurso();
-			nombresCurso.add(nombreCurso);
-			
-			//guardarlo en el model and view ("nombreCurso")
-			
 			int mesReserva = listaReservasAula.get(i).getFechaReserva().getMonthValue();
 			int anioReserva = listaReservasAula.get(i).getFechaReserva().getYear();
 			
@@ -198,6 +191,7 @@ public class ConsultaAuxiliarController {
 		for (int i = 0; i < listaFechas.size(); i++) {
 			LocalDate dia = listaFechas.get(i);
 			List<Integer> horasColores = new ArrayList<Integer>(); 
+			List<String> nombresCurso = new ArrayList<String>();
 			int diaSemana = dia.getDayOfWeek().getValue();
 			
 			for (int j = 0; j < listaHoras.size(); j++) {
@@ -208,21 +202,32 @@ public class ConsultaAuxiliarController {
 				if(diaSemana != 7 && !festivo) {
 					if (listaFechasReservas.contains(fechaHora)) {
 						horasColores.add(1); //color rojo ocupado
-						
+						nombresCurso.add(reservaService.findByIdAulaAndFechaReserva(aula, fechaHora).getNombreCurso());
 					} else {
 						horasColores.add(2); // verde libre
+						nombresCurso.add("Libre");
 					}	
 				} else {
 					horasColores.add(0); //color gris
-				}
+						if(diaSemana == 7) {
+							nombresCurso.add("Domingo");
+						} else {
+							nombresCurso.add(festivoService.findNombreByFecha(dia));
+						}
+				}			
 			}
+			System.out.println(nombresCurso);
 			
 			String diaReserva = dia.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+			//falta añadir los nombres al obj presentacion
 			
-			ObjetoPresentacion obj = new ObjetoPresentacion(diaReserva, horasColores.get(0),
-					horasColores.get(1), horasColores.get(2), horasColores.get(3), horasColores.get(4),
-					horasColores.get(5), horasColores.get(6), horasColores.get(7), horasColores.get(8),
-					horasColores.get(9), horasColores.get(10), horasColores.get(11));
+			ObjetoPresentacion obj = new ObjetoPresentacion(diaReserva, horasColores.get(0), nombresCurso.get(0),
+					horasColores.get(1), nombresCurso.get(1), horasColores.get(2), nombresCurso.get(2),
+					horasColores.get(3), nombresCurso.get(3), horasColores.get(4), nombresCurso.get(4),
+					horasColores.get(5), nombresCurso.get(5), horasColores.get(6), nombresCurso.get(6), 
+					horasColores.get(7), nombresCurso.get(7), horasColores.get(8), nombresCurso.get(8),
+					horasColores.get(9), nombresCurso.get(9), horasColores.get(10), nombresCurso.get(10), 
+					horasColores.get(11), nombresCurso.get(11));
 			
 			listaObj.add(obj);
 		}

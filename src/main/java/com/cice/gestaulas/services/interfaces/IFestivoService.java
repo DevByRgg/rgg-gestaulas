@@ -37,6 +37,12 @@ public interface IFestivoService {
 	public List<LocalDate> findAllFechas();
 	
 	/**
+	 * Método para obtener el nombre de un Festivo de la BBDD
+	 * @return String
+	 */
+	public String findNombreByFecha(LocalDate fecha);
+	
+	/**
 	 * Método para actualizar un Festivo en la BBDD
 	 * @param f de la clase Festivo
 	 */

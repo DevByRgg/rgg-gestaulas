@@ -14,4 +14,8 @@ public interface IFestivoRepository extends JpaRepository<Festivo, Integer>{
 
 	@Query("SELECT a.fecha FROM Festivo a")
 	List<LocalDate> findAllFestivoFecha();
+	
+	@Query("SELECT a.nombre FROM Festivo a WHERE a.fecha = :fecha")
+	String findNombreByFecha(
+			@Param("fecha") LocalDate fechaSeleccionada);
 }
