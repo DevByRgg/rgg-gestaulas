@@ -81,7 +81,7 @@
 			<div class="card-deck">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Crear Reserva</h5>
+						<h5 class="card-title">Reservar dia</h5>
 					</div>
 					<a title="Aulas" href="/aulas/reservas/crearReserva">
 						<img class="card-img-top" src="/aulas/images/curso_800x600.png"  height="200" alt="Card image cap">
@@ -90,7 +90,7 @@
 				
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Buscar Reserva</h5>
+						<h5 class="card-title">Reservar curso</h5>
 					</div>
 					<a title="Busqueda" href="/aulas/reservas/buscarReserva">
 						<img class="card-img-top" src="/aulas/images/buscar_800x600.png"  height="200" alt="Card image cap">
