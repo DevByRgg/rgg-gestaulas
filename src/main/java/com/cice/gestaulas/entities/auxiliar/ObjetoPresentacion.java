@@ -1,18 +1,10 @@
 package com.cice.gestaulas.entities.auxiliar;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-import com.cice.gestaulas.entities.Aula;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
