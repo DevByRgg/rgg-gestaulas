@@ -5,6 +5,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
 import java.net.ConnectException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.exception.JDBCConnectionException;
@@ -19,7 +21,7 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 	//Parece no ser necesario probar a quitarlo
 	@ExceptionHandler(CommunicationException.class)
 	public ModelAndView CommunicationsException(CommunicationException ex) {
-		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION -- MENSAJE: ");
+		System.out.println("EXCEPTION HANDLER CommunicationException EXCEPTION");
 		String mensaje = "Fallo en la bbdd, compruebe si esta encendida";
 		
 		/*Esto no funciona
@@ -36,7 +38,7 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 	//Parece no ser necesario probar a quitarlo
 	@ExceptionHandler(ConnectException.class)
 	public ModelAndView ConnectException(ConnectException ex) {
-		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION -- MENSAJE: ");
+		System.out.println("EXCEPTION HANDLER ConnectException EXCEPTION");
 		String mensaje = "Fallo en la bbdd!! Compruebe si esta encendida";
 		
 		System.out.println("--" + ex.fillInStackTrace());
@@ -56,26 +58,27 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 		return mav;
 	}
 	
-	//Este metodo es para cuando la bbdd esta apagada
+	/**
+	 * Capturar y gestionar las excepciones de JDBCConnectionException de la base de
+	 * datos.
+	 * 
+	 * @param ex del tipo JDBCConnectionException
+	 * @return ModelAndView para mostrar el error
+	 */
 	@ExceptionHandler(JDBCConnectionException.class)
 	public ModelAndView JDBCConnectionException(JDBCConnectionException ex) {
-		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION -- MENSAJE: ");
-		String mensaje = "Fallo en la bbdd!! La bbdd puede estar apagada";
+		System.out.println("EXCEPTION HANDLER JDBCConnectionException EXCEPTION");
+		final String TITULO_ERROR = "Bbdd";
+		Map<String, String> msnError = new HashMap<String, String>();
 		
-		System.out.println("--" + ex.getErrorCode());
-		System.out.println("--" + ex.getLocalizedMessage());
-		System.out.println("--" + ex.getMessage());
-		System.out.println("--" + ex.fillInStackTrace());
-		System.out.println("--" + ex.getCause());
-		
-		/*Esto no funciona
-			String mensaje = ex.getMessage() != null ? ex.getMessage().split(":")[0] : "Constraint en BBDD no admitido";
-		*/
+		msnError.put("Bbdd", "Communications link failure");
+		msnError.put("Error", ex.getMessage());
+		msnError.put("Problema", "Es posible que la bbdd este apagada");
 		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("msnError", msnError);
+		mav.addObject("titulo", TITULO_ERROR);
 		mav.setViewName("error");
-		mav.addObject("mensajesError", mensaje);
-		mav.addObject("titulo", "Conexion bbdd");
 		return mav;
 	}
 	
@@ -89,25 +92,21 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ModelAndView ConstraintViolationExceptions(ConstraintViolationException ex) {
 		System.out.println("EXCEPTION HANDLER CONSTRAINTVIOLATION EXCEPTION");
-		final String TITULO_ERROR = "Datos no válidos";
-		ModelAndView mav = new ModelAndView();
-		String[] mensajesError;
-		String mensaje = "";
+		final String TITULO_ERROR = "Datos no validos";
+		Map<String, String> msnError = new HashMap<String, String>();
 		Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
+		
 		for (ConstraintViolation<?> constraintViolation : violations) {
+			String atributo = constraintViolation.getPropertyPath().toString();
+			String mensaje = constraintViolation.getMessage().trim();
 			
-			//para separar los mensajes
-			String atributo = constraintViolation.getPropertyPath().toString().toUpperCase();
-			
-			mensaje += atributo + ": " + constraintViolation.getMessage().trim() + "#";
-			System.out.println(mensaje);
+			msnError.put(atributo, mensaje);
 		}
-		//puede haber varios mensajes de error
-		mensajesError = mensaje.split("#");
-	
-		mav.setViewName("error");
-		mav.addObject("mensajesError", mensajesError);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msnError", msnError);
 		mav.addObject("titulo", TITULO_ERROR);
+		mav.setViewName("error");
 		return mav;
 	}
 	

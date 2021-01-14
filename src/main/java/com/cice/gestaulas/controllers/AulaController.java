@@ -31,32 +31,50 @@ import com.cice.gestaulas.services.interfaces.IEquipamientoService;
 import com.cice.gestaulas.services.interfaces.IOrdenadorService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
+import com.cice.gestaulas.utils.Utilidades;
 
 @Secured("ROLE_ADMIN")
 @Controller
 public class AulaController {
 
+	/**
+	 * Servicios de Aula
+	 */
 	@Autowired
 	IAulaService aulaService;
+	/**
+	 * Servicios de TipoAula 
+	 */
 	@Autowired
 	ITipoAulaService tipoAulaService;
+	
+	/**
+	 * Servicios de Sede
+	 */
 	@Autowired
 	ISedeService sedeService;
+	
+	/**
+	 * Servicios de Ordenador
+	 */
 	@Autowired
 	IOrdenadorService ordenadorService;
+	
+	/**
+	 * Servicios de Equipamiento
+	 */
 	@Autowired
 	IEquipamientoService equipamientoService;
 
-	/**
-	 * Para crear objeto Validator para comprobar las Constrains de la Entidad
-	 */
-	@Autowired
-	ValidatorFactory factoryValidator;
 
 	// -------------------------------------------------------------------------------------------------------
 	// CREATE
 	// -------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Cargar y mostrar la página crearAula
+	 * @return ModelAndView 
+	 */
 	@GetMapping("/admin/crearAula")
 	public ModelAndView crearAulaPage() {
 		ModelAndView mav = new ModelAndView();
@@ -74,6 +92,17 @@ public class AulaController {
 		return mav;
 	}
 
+	/**
+	 * Crear un Aula en la BBDD
+	 * @param nombre del Aula
+	 * @param tipo identificador del TipoAula
+	 * @param sede identificador de la Sede
+	 * @param capacidad del Aula
+	 * @param equipoProfesor identificador Ordenador
+	 * @param equipoAlumno identificador Ordenador
+	 * @param equipamiento identificador Equipamiento
+	 * @return "redirect:mostrarAula". Mostrar las Aulas
+	 */
 	@GetMapping("/admin/crearAulaControl")
 	public String crearAula(@RequestParam(name = "nombre", required = true) String nombre,
 			@RequestParam(name = "tipo", required = true) int tipo,
@@ -86,7 +115,8 @@ public class AulaController {
 		Aula a = new Aula(0, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
 
 		//Comprobar que los campos son correctos
-		validar(a);
+		Utilidades.validar(a);
+		//validar(a);
 		aulaService.create(a);
 		return "redirect:mostrarAula";
 	}
@@ -133,6 +163,11 @@ public class AulaController {
 	// UPDATE
 	// -------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Mostrar aula a actualizar
+	 * @param id identificador del aula
+	 * @return ModelAndView /admin/updateAula
+	 */
 	@GetMapping("/admin/updateAula")
 	public ModelAndView actualizaAula(@RequestParam(name = "id") int id) {
 		ModelAndView mav = new ModelAndView();
@@ -154,6 +189,18 @@ public class AulaController {
 		return mav;
 	}
 
+	/**
+	 * Actualizar aula en la BBDD
+	 * @param id identificador del Aula
+	 * @param nombre del aula
+	 * @param tipo identificador de TipoAula
+	 * @param sede identificador de la Sede
+	 * @param capacidad del aula
+	 * @param equipoProfesor identificador Ordenador del profesor
+	 * @param equipoAlumno identificador Ordenador de los alumnos
+	 * @param equipamiento del aula
+	 * @return "redirect:mostrarAula". Mostrar todas las Aulas
+	 */
 	@GetMapping("/admin/updateAulaControl")
 	public String updateAula(@RequestParam(name = "id") int id,
 			@RequestParam(name = "nombre", required = true) String nombre,
@@ -166,7 +213,7 @@ public class AulaController {
 
 		Aula a = new Aula(id, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
 
-		validar(a);
+		Utilidades.validar(a);
 		aulaService.update(a);
 		return "redirect:mostrarAula";
 	}
@@ -175,32 +222,15 @@ public class AulaController {
 	// DELETE
 	// -------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Borrar un Aula de la BBDD
+	 * @param id identificador del Aula
+	 * @return "redirect:mostrarAula". Mostrar todas las Aulas
+	 */
 	@GetMapping("admin/borrarAula")
 	public String borrarAula(@RequestParam(required = true) int id) {
 		aulaService.delete(id);
 
 		return "redirect:mostrarAula";
 	}
-	
-	// -------------------------------------------------------------------------------------------------------
-	// VALIDACIONES
-	// -------------------------------------------------------------------------------------------------------
-
-	
-	/**
-	 * Método para validar un Aula
-	 * 
-	 * @param a Objeto de la clase Aula
-	 * 
-	 */
-	private void validar(Aula aula) {
-		Validator validator = factoryValidator.getValidator();
-		Set<ConstraintViolation<Aula>> violations = validator.validate(aula);
-		if (!violations.isEmpty()) {
-			System.out.println("ERRORES EN LA VALIDACIÓN");
-			throw new ConstraintViolationException(violations);
-		}
-	}
-
-	
 }

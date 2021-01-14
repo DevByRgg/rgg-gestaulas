@@ -16,3 +16,11 @@
 	background-color: #ffbfbf;
 }
 
+.text-cice {
+	color: #e50081;
+}
+
+.text-cice-hover:hover {
+	background-color: #e50081;
+	color: white;
+}
