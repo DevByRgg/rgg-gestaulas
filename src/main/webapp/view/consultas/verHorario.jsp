@@ -128,73 +128,73 @@
 							<c:when test="${turno != 2}">
 								<c:choose>
 									<c:when test="${horaDisponible.man09 == 1}">
-										<td class="align-middle text-center bg-cice-fail">Ocupado</td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.manTitle09}"></td>
 									</c:when>
 									<c:when test="${horaDisponible.man09 == 2}">
-										<td class="align-middle text-center bg-cice-ok">Libre</td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.manTitle09}"></td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary">Festivo</td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.manTitle09}"></td>
 									</c:otherwise>
 								</c:choose>
 								
 								<c:choose>
 									<c:when test="${horaDisponible.man10 == 1}">
-										<td class="align-middle text-center bg-cice-fail"></td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.manTitle10}"></td>
 									</c:when>
 									<c:when test="${horaDisponible.man10 == 2}">
-										<td class="align-middle text-center bg-cice-ok"></td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.manTitle10}"></td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"></td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.manTitle10}"></td>
 									</c:otherwise>
 								</c:choose>
 								
 								<c:choose>
 									<c:when test="${horaDisponible.man11 == 1}">
-										<td class="align-middle text-center bg-cice-fail"></td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.manTitle11}"></td>
 									</c:when>
 									<c:when test="${horaDisponible.man11 == 2}">
-										<td class="align-middle text-center bg-cice-ok"></td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.manTitle11}"></td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"></td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.manTitle11}"></td>
 									</c:otherwise>
 								</c:choose>
 								
 								<c:choose>
 									<c:when test="${horaDisponible.man12 == 1}">
-										<td class="align-middle text-center bg-cice-fail"></td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.manTitle12}"></td>
 									</c:when>
 									<c:when test="${horaDisponible.man12 == 2}">
-										<td class="align-middle text-center bg-cice-ok"></td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.manTitle12}"></td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"></td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.manTitle12}"></td>
 									</c:otherwise>
 								</c:choose>
 								
 								<c:choose>
 									<c:when test="${horaDisponible.man13 == 1}">
-										<td class="align-middle text-center bg-cice-fail"></td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.manTitle13}"></td>
 									</c:when>
 									<c:when test="${horaDisponible.man13 == 2}">
-										<td class="align-middle text-center bg-cice-ok"></td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.manTitle13}"></td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"></td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.manTitle13}"></td>
 									</c:otherwise>
 								</c:choose>
 								
 								<c:choose>
 									<c:when test="${horaDisponible.man14 == 1}">
-										<td class="align-middle text-center bg-cice-fail"></td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.manTitle14}"></td>
 									</c:when>
 									<c:when test="${horaDisponible.man14 == 2}">
-										<td class="align-middle text-center bg-cice-ok"></td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.manTitle14}"></td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"></td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.manTitle14}"></td>
 									</c:otherwise>
 								</c:choose>
 							</c:when>
@@ -216,73 +216,73 @@
 							<c:when test="${turno != 1}">
 								<c:choose>
 									<c:when test="${horaDisponible.tar17 == 1}">
-										<td class="align-middle text-center bg-cice-fail"></td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.tarTitle17}"></td>
 									</c:when>
 									<c:when test="${horaDisponible.tar17 == 2}">
-										<td class="align-middle text-center bg-cice-ok"></td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.tarTitle17}"></td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"></td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.tarTitle17}"></td>
 									</c:otherwise>
 								</c:choose>
 								
 								<c:choose>
 									<c:when test="${horaDisponible.tar18 == 1}">
-										<td class="align-middle text-center bg-cice-fail"></td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.tarTitle18}"></td>
 									</c:when>
 									<c:when test="${horaDisponible.tar18 == 2}">
-										<td class="align-middle text-center bg-cice-ok"></td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.tarTitle18}"></td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"></td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.tarTitle18}"></td>
 									</c:otherwise>
 								</c:choose>
 								
 								<c:choose>
 									<c:when test="${horaDisponible.tar19 == 1}">
-										<td class="align-middle text-center bg-cice-fail"></td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.tarTitle19}"></td>
 									</c:when>
 									<c:when test="${horaDisponible.tar19 == 2}">
-										<td class="align-middle text-center bg-cice-ok"></td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.tarTitle19}"></td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"></td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.tarTitle19}"></td>
 									</c:otherwise>
 								</c:choose>
 								
 								<c:choose>
 									<c:when test="${horaDisponible.tar20 == 1}">
-										<td class="align-middle text-center bg-cice-fail"></td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.tarTitle20}"></td>
 									</c:when>
 									<c:when test="${horaDisponible.tar20 == 2}">
-										<td class="align-middle text-center bg-cice-ok"></td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.tarTitle20}"></td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"></td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.tarTitle20}"></td>
 									</c:otherwise>
 								</c:choose>
 								
 								<c:choose>
 									<c:when test="${horaDisponible.tar21 == 1}">
-										<td class="align-middle text-center bg-cice-fail"> </td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.tarTitle21}"> </td>
 									</c:when>
 									<c:when test="${horaDisponible.tar21 == 2}">
-										<td class="align-middle text-center bg-cice-ok"> </td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.tarTitle21}"> </td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"> </td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.tarTitle21}"> </td>
 									</c:otherwise>
 								</c:choose>
 								
 								<c:choose>
 									<c:when test="${horaDisponible.tar22 == 1}">
-										<td class="align-middle text-center bg-cice-fail"> </td>
+										<td class="align-middle text-center bg-cice-fail" title="${horaDisponible.tarTitle22}"> </td>
 									</c:when>
 									<c:when test="${horaDisponible.tar22 == 2}">
-										<td class="align-middle text-center bg-cice-ok"> </td>
+										<td class="align-middle text-center bg-cice-ok" title="${horaDisponible.tarTitle22}"> </td>
 									</c:when>
 									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"> </td>
+										<td class="align-middle text-center bg-secondary" title="${horaDisponible.tarTitle22}"> </td>
 									</c:otherwise>
 								</c:choose>
 							</c:when>
