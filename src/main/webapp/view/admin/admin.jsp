@@ -72,7 +72,7 @@
 		
 			
 		<h2 class="pt-3">
-			Reservation<span class="badge text-white bg-cice">ZONE</span>
+			Reservation <span class="badge text-white bg-cice">ZONE</span>
 		</h2>
 		
 		
@@ -83,7 +83,7 @@
 					<div class="card-header">
 						<h5 class="card-title">Reservar dia</h5>
 					</div>
-					<a title="Aulas" href="/aulas/reservas/crearReserva">
+					<a title="Reservar dia" href="/aulas/reservas/crearReserva">
 						<img class="card-img-top" src="/aulas/images/curso_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
@@ -92,7 +92,7 @@
 					<div class="card-header">
 						<h5 class="card-title">Reservar curso</h5>
 					</div>
-					<a title="Busqueda" href="/aulas/reservas/buscarReserva">
+					<a title="Reservar curso" href="/aulas/reservas/buscarReserva">
 						<img class="card-img-top" src="/aulas/images/buscar_800x600.png"  height="200" alt="Card image cap">
 					</a>				
 				</div>
@@ -101,7 +101,7 @@
 					<div class="card-header">
 						<h5 class="card-title">Crear Festivo</h5>
 					</div>
-					<a title="Equipos" href="/aulas/mantenimiento/crearFestivo">
+					<a title="Crear festivo" href="/aulas/mantenimiento/crearFestivo">
 						<img class="card-img-top" src="/aulas/images/festivo_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
@@ -110,7 +110,7 @@
 					<div class="card-header">
 						<h5 class="card-title">Consultar</h5>
 					</div>
-					<a title="Equipos" href="/aulas/consultas/consultarAulasDisponibles">
+					<a title="Consultar aulas disponibles" href="/aulas/consultas/consultarAulasDisponibles">
 						<img class="card-img-top" src="/aulas/images/consulta_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>

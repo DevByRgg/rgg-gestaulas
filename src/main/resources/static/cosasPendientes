@@ -1,4 +1,13 @@
 
 introducir el curso que hay en cada hora del cuadro consultas		
 		
+		
+Para el día 18 que Fernando hará la parte Android:
+	- Una funcionalidad: Selección de día y aula. Muestra la ocupación.
+	-Página independiente .jsp con una vista como la del usuario... buscador
+	y horario
 	
+Scripts de creación de BBDD... Tener en cuenta lo de los festivos (ya creados??)
+
+Creación de una guía de instalación: (Ver quien la hace)
+	- Incluyendo la configuración de la seguridad. (Arturo)
