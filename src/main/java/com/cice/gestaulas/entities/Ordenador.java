@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -27,6 +28,30 @@ import lombok.NonNull;
 @NoArgsConstructor
 public class Ordenador {
 
+	/**
+	 * Para indicar las pulgadas mínimas del monitor
+	 */
+	@Transient
+	final int MIN_PULGADAS = 10;
+	
+	/**
+	 * Para indicar la pulgadas máximas del monitor
+	 */
+	@Transient
+	final int MAX_PULGADAS = 1000;
+	
+	/**
+	 * Para indicar el mínimo de GB de Memoria RAM
+	 */
+	@Transient
+	final int MIN_RAM = 1;
+	
+	/**
+	 * Para indicar el máximo de GB de Memoria RAM
+	 */
+	@Transient
+	final int MAX_RAM = 1000;
+	
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,8 +79,8 @@ public class Ordenador {
 	 * Dimensión de la pantalla en pulgadas enteras
 	 */
 	@Column(name = "pantalla")
-	@Min(message="{ordenador.dimensionPantalla.min}", value = 10)
-	@Max(message="{ordenador.dimensionPantalla.max}", value=1000)
+	@Min(message="{ordenador.dimensionPantalla.min}", value = MIN_PULGADAS)
+	@Max(message="{ordenador.dimensionPantalla.max}", value= MAX_PULGADAS)
 	private int dimensionPantalla;
 	
 	/**
@@ -71,8 +96,8 @@ public class Ordenador {
 	 * Cantidad de memoria ram del ordenador en GigaBytes
 	 */
 	@Column(name = "ram")
-	@Min(message="{ordenador.ram.min}", value = 1)
-	@Max(message="{ordenador.ram.max}", value=1000)
+	@Min(message="{ordenador.ram.min}", value = MIN_RAM)
+	@Max(message="{ordenador.ram.max}", value= MAX_RAM)
 	private int ram;
 	
 	/**

@@ -66,8 +66,8 @@ public class Aula {
 	 * Número de puestos del Aula
 	 */
 	@Column(name = "capacidad")
-	@Min(value = MIN_CAPACIDAD_AULA, message="{aula.capacidad.min} " + MIN_CAPACIDAD_AULA)
-	@Max(value = MAX_CAPACIDAD_AULA, message="{aula.capacidad.max} " + MAX_CAPACIDAD_AULA)
+	@Min(value = MIN_CAPACIDAD_AULA, message="{aula.capacidad.min}")
+	@Max(value = MAX_CAPACIDAD_AULA, message="{aula.capacidad.max}")
 	private int capacidad;
 	
 	/**

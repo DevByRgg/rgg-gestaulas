@@ -25,7 +25,7 @@ public class Utilidades {
 	 * Método para validar una Entidad
 	 * 
 	 * @param a Objeto De tipo entidad a Validar
-	 * @throws ConstraintViolationException. Si hay algún dato ilegal.
+	 * @throws ConstraintViolationException. Si hay algún dato no valido.
 	 */
 	public static void validar(Object obj) {
 		ValidatorFactory factoryValidator = Validation.buildDefaultValidatorFactory();

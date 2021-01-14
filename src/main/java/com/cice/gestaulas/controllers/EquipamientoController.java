@@ -11,11 +11,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cice.gestaulas.entities.Equipamiento;
 import com.cice.gestaulas.services.interfaces.IEquipamientoService;
+import com.cice.gestaulas.utils.Utilidades;
 
 @Secured("ROLE_ADMIN")
 @Controller
 public class EquipamientoController {
 
+	/**
+	 * Servicios de Equipamiento
+	 */
 	@Autowired
 	IEquipamientoService equipamientoService;
 	
@@ -24,6 +28,10 @@ public class EquipamientoController {
 	//	CREATE
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Cargar y mostrar la página crearEquipamiento
+	 * @return ModelAndView admin/crearEquipamiento
+	 */
 	@GetMapping("/admin/crearEquipamiento")
 	public ModelAndView crearEquipamientoPage() {
 		
@@ -34,7 +42,12 @@ public class EquipamientoController {
 		return mav;
 	}
 	
-	
+	/**
+	 * Crear un Equipamiento en la BBDD
+	 * @param nombre del equipamiento
+	 * @param descripcion del equipamiento
+	 * @return "redirect:mostrarEquipamiento". Mostrar la lista con todos los equipamientos
+	 */
 	@GetMapping("/admin/crearEquipamientoControl")
 	public String crearEquipamiento(
 			@RequestParam (name = "nombre", required = true) String nombre,
@@ -42,6 +55,7 @@ public class EquipamientoController {
 		
 		Equipamiento e = new Equipamiento(0, nombre, descripcion);
 		
+		Utilidades.validar(e);
 		equipamientoService.create(e);
 		
 		return "redirect:mostrarEquipamiento";
@@ -51,7 +65,10 @@ public class EquipamientoController {
 	//-------------------------------------------------------------------------------------------------------
 	//	READ
 	//-------------------------------------------------------------------------------------------------------
-	
+	/**
+	 * Mostrar todas los equipamientos de la BBDD
+	 * @return ModelAndView /admin/mostrarEquipamiento
+	 */
 	@GetMapping("/admin/mostrarEquipamiento")
 	public ModelAndView findAllEquipamiento() {
 		
@@ -69,6 +86,11 @@ public class EquipamientoController {
 	//	UPDATE
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Mostrar Equipamiento a actualizar
+	 * @param id identificador del equipamiento
+	 * @return ModelAndView /admin/updateEquipamiento
+	 */
 	@GetMapping("/admin/updateEquipamiento")
 	public ModelAndView actualizaEquipamiento(
 			@RequestParam (name = "id") int id) {
@@ -83,7 +105,13 @@ public class EquipamientoController {
 		return mav;
 	}
 	
-	
+	/**
+	 * Actualizar Equipamiento en la BBDD
+	 * @param id identificador del Equipamiento
+	 * @param nombre del equipamiento
+	 * @param descripcion del equipamiento
+	 * @return "redirect:mostrarEquipamiento". Mostrar la lista con todos los equipamientos.
+	 */
 	@GetMapping("/admin/updateEquipamientoControl")
 	public String updateEquipamiento(
 			@RequestParam (name = "id", required = true) int id,
@@ -92,6 +120,7 @@ public class EquipamientoController {
 		
 		Equipamiento e = new Equipamiento(id, nombre, descripcion);
 		
+		Utilidades.validar(e);
 		equipamientoService.update(e);
 		
 		return "redirect:mostrarEquipamiento";
@@ -102,6 +131,11 @@ public class EquipamientoController {
 	//	DELETE
 	//-------------------------------------------------------------------------------------------------------
 		
+	/**
+	 * Borrar un Equipamiento de la BBDD
+	 * @param id identificador del Equipamiento
+	 * @return "redirect:mostrarEquipamiento". Mostrar la lista con todos los equipamientos.
+	 */
 	@GetMapping("admin/borrarEquipamiento")
 	public String borrarEquipamiento(
 			@RequestParam(required = true) int id){

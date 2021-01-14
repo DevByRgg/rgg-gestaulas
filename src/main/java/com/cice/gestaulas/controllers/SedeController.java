@@ -32,7 +32,7 @@ public class SedeController {
 	
 	/**
 	 * Cargar y mostrar la página crearSede
-	 * @return ModelAndView 
+	 * @return ModelAndView admin/crearSede
 	 */
 	@GetMapping("/admin/crearSede")
 	public ModelAndView crearSedePage() {
