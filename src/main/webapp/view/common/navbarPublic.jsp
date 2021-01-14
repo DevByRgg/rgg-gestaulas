@@ -9,17 +9,7 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
 
-<!--  <<<<<<< HEAD
-	<ul class="navbar-nav ml-auto mr-3">
-		<li class="nav-item"><a class="btn btn-primary float-right"
-			href="<c:url value="/logout" />">Logout</a></li>
-	</ul>
-
-	<a class="navbar-brand text-light" href="javascript:history.back()">
-		<img src="/aulas/images/logo_blanco_total.svg" height="25"
-		class="d-inline-block align-top" alt="">
-======= -->
-	<a class="btn btn-light font-weight-bold bg- text-cice text-cice-hover" href="#">
+	<a class="btn btn-light font-weight-bold bg- text-cice text-cice-hover" href="<c:url value="/logout" />">
 		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
 				fill="currentColor" class="bi bi-key" viewBox="0 0 20 20">
 			<path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 
@@ -29,8 +19,9 @@
 				7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 
 				0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 
 				0 1-.451-.285A3 3 0 0 0 4 5z" />
-  			<path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-		</svg>		
+  			<path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />  			
+		</svg>
+		Logout	
 	</a>
 
 </nav>
