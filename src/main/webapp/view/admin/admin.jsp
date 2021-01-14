@@ -72,7 +72,7 @@
 		
 			
 		<h2 class="pt-3">
-			Reservation<span class="badge text-white bg-cice">ZONE</span>
+			Reservation <span class="badge text-white bg-cice">ZONE</span>
 		</h2>
 		
 		
