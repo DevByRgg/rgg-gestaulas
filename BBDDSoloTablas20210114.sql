@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-12-2020 a las 10:21:24
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 8.0.0
+-- Tiempo de generación: 14-01-2021 a las 17:59:47
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,18 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bbdd_gestoraulas`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `administradores`
---
-
-CREATE TABLE `administradores` (
-  `id` int(11) NOT NULL,
-  `user` varchar(30) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `password` varchar(30) COLLATE utf8mb4_spanish2_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -61,10 +49,11 @@ INSERT INTO `aulas` (`id`, `nombre`, `tipo`, `sede`, `capacidad`, `equipo_profes
 (19, 'M004', 2, 1, 12, 7, 7, 4),
 (20, 'M005', 2, 1, 16, 8, 8, 3),
 (21, 'P001', 1, 2, 24, 3, 3, 5),
-(22, 'P002', 1, 2, 16, 3, 3, 4),
-(23, 'P003', 2, 2, 20, 6, 6, 5),
+(22, 'P002', 1, 2, 18, 3, 3, 4),
+(23, 'P003', 2, 2, 20, 6, 6, 2),
 (24, 'P004', 2, 2, 16, 7, 7, 2),
-(25, 'P005', 2, 2, 16, 4, 4, 5);
+(25, 'P005', 2, 2, 16, 4, 4, 5),
+(28, 'Pepperoni masa 2', 1, 1, 5, 3, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -91,6 +80,48 @@ INSERT INTO `equipamientos` (`id`, `nombre`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `festivos`
+--
+
+CREATE TABLE `festivos` (
+  `id` int(8) NOT NULL,
+  `nombre` varchar(128) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `festivos`
+--
+
+INSERT INTO `festivos` (`id`, `nombre`, `fecha`) VALUES
+(1, 'Año nuevo', '2021-01-01'),
+(3, 'Dia de Reyes', '2021-01-06'),
+(4, 'San Jose', '2021-03-19'),
+(5, 'Jueves santo', '2021-04-01'),
+(6, 'Fiesta del trabajo', '2021-05-01'),
+(7, 'Dia de la comunidad de Madrid', '2021-05-03'),
+(8, 'San Isidro', '2021-05-15'),
+(9, 'Fiesta nacional Española', '2021-10-12'),
+(10, 'Dia de todos los Santos', '2021-11-01'),
+(11, 'Dia de la Almudena', '2021-11-09'),
+(12, 'Dia de la Constitucion', '2021-12-06'),
+(13, 'Inmaculada Concepcion', '2021-12-08'),
+(14, 'Navidad', '2021-12-25'),
+(15, 'Viernes Santo', '2021-04-02'),
+(21, 'Atómica', '2021-01-13'),
+(22, 'Atómica', '2021-01-14'),
+(23, 'Atómica', '2021-01-15'),
+(24, 'Atómica', '2021-01-16'),
+(25, 'Atómica', '2021-01-17'),
+(26, 'Atómica', '2021-01-18'),
+(27, 'Atómica', '2021-01-19'),
+(28, 'Atómica', '2021-01-20'),
+(29, 'Atómica', '2021-01-21'),
+(30, 'Atómica', '2021-01-22');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `ordenadores`
 --
 
@@ -109,7 +140,7 @@ CREATE TABLE `ordenadores` (
 --
 
 INSERT INTO `ordenadores` (`id`, `nombre`, `sistema_operativo`, `pantalla`, `cpu`, `ram`, `tarjeta_grafica`) VALUES
-(3, 'Apple Mac Pro', 'Mac OS X', 27, ' Intel Core i5-9500', 32, 'AMD FirePro D500'),
+(3, 'Apple Mac Pro', 'Mac OS X', 27, ' Intel Core i5-10500', 32, 'AMD FirePro D500'),
 (4, 'HP Z2 Mini G5', 'Windows 10 Pro 64', 24, 'Intel Core i7-9700', 16, ' Intel UHD 630'),
 (5, 'PC HP ProDesk 400 G6', 'Windows 10 Pro 64', 24, ' Intel Core i5-9500', 16, ' Intel UHD 630'),
 (6, 'PC HP ProDesk 600 G5', 'Windows 10 Pro 64', 24, 'Intel Core i7-10700K', 32, 'AMD FirePro D500'),
@@ -134,7 +165,50 @@ CREATE TABLE `reservas` (
 --
 
 INSERT INTO `reservas` (`id`, `nombre_curso`, `id_aula`, `fecha_reserva`) VALUES
-(6, 'IFCT0609', 18, '2021-01-19 08:00:00');
+(569, 'Prueba', 16, '2021-02-01 08:00:00'),
+(570, 'Prueba', 16, '2021-02-01 09:00:00'),
+(571, 'Prueba', 16, '2021-02-01 10:00:00'),
+(572, 'Prueba', 16, '2021-02-01 11:00:00'),
+(575, 'patatin01', 17, '2021-01-04 08:00:00'),
+(576, 'patatin01', 17, '2021-01-04 09:00:00'),
+(577, 'patatin01', 17, '2021-01-05 08:00:00'),
+(578, 'patatin01', 17, '2021-01-05 09:00:00'),
+(579, 'patatin01', 17, '2021-01-11 08:00:00'),
+(580, 'patatin01', 17, '2021-01-11 09:00:00'),
+(581, 'patatin01', 17, '2021-01-12 08:00:00'),
+(582, 'patatin01', 17, '2021-01-12 09:00:00'),
+(583, 'patatin01', 17, '2021-01-25 08:00:00'),
+(584, 'patatin01', 17, '2021-01-25 09:00:00'),
+(585, 'patatin01', 17, '2021-01-26 08:00:00'),
+(586, 'patatin01', 17, '2021-01-26 09:00:00'),
+(587, 'patatin01', 17, '2021-02-01 08:00:00'),
+(588, 'patatin01', 17, '2021-02-01 09:00:00'),
+(589, 'patatin01', 17, '2021-02-02 08:00:00'),
+(590, 'patatin01', 17, '2021-02-02 09:00:00'),
+(591, 'patatin01', 17, '2021-02-08 08:00:00'),
+(592, 'patatin01', 17, '2021-02-08 09:00:00'),
+(593, 'patatin01', 17, '2021-02-09 08:00:00'),
+(594, 'patatin01', 17, '2021-02-09 09:00:00'),
+(595, 'patatin01', 17, '2021-02-15 08:00:00'),
+(596, 'patatin01', 17, '2021-02-15 09:00:00'),
+(597, 'patatin01', 17, '2021-02-16 08:00:00'),
+(598, 'patatin01', 17, '2021-02-16 09:00:00'),
+(599, 'patatin01', 17, '2021-02-22 08:00:00'),
+(600, 'patatin01', 17, '2021-02-22 09:00:00'),
+(601, 'patatin01', 17, '2021-02-23 08:00:00'),
+(602, 'patatin01', 17, '2021-02-23 09:00:00'),
+(603, 'patatin01', 17, '2021-03-01 08:00:00'),
+(604, 'patatin01', 17, '2021-03-01 09:00:00'),
+(605, 'patatin01', 17, '2021-03-02 08:00:00'),
+(606, 'patatin01', 17, '2021-03-02 09:00:00'),
+(607, 'patatin01', 17, '2021-03-08 08:00:00'),
+(608, 'patatin01', 17, '2021-03-08 09:00:00'),
+(609, 'patatin01', 17, '2021-03-09 08:00:00'),
+(610, 'patatin01', 17, '2021-03-09 09:00:00'),
+(611, 'patatin01', 17, '2021-03-15 08:00:00'),
+(612, 'patatin01', 17, '2021-03-15 09:00:00'),
+(613, 'patatin01', 17, '2021-03-16 08:00:00'),
+(614, 'patatin01', 17, '2021-03-16 09:00:00');
 
 -- --------------------------------------------------------
 
@@ -155,7 +229,7 @@ CREATE TABLE `sedes` (
 --
 
 INSERT INTO `sedes` (`id`, `nombre`, `direccion`, `cp`, `tlf`) VALUES
-(1, 'Maldonado', 'Calle de Maldonado, 48', '28006 Madrid', '914 01 07 02'),
+(1, 'Maldonado', 'Calle de Maldonado, 48', '28006 Madrid', '+34 914 01 07 02'),
 (2, 'Povedilla', 'Calle de la Povedilla, 4', '28009 Madrid', '+34 914 35 58 43');
 
 -- --------------------------------------------------------
@@ -177,27 +251,9 @@ INSERT INTO `tipo_aulas` (`id`, `nombre`) VALUES
 (1, 'Mac'),
 (2, 'Windows');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(70) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_spanish2_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `administradores`
---
-ALTER TABLE `administradores`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `aulas`
@@ -217,6 +273,13 @@ ALTER TABLE `equipamientos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `festivos`
+--
+ALTER TABLE `festivos`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `fecha` (`fecha`);
+
+--
 -- Indices de la tabla `ordenadores`
 --
 ALTER TABLE `ordenadores`
@@ -227,7 +290,7 @@ ALTER TABLE `ordenadores`
 --
 ALTER TABLE `reservas`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `unicos` (`nombre_curso`,`id_aula`,`fecha_reserva`),
+  ADD UNIQUE KEY `unicos` (`id_aula`,`fecha_reserva`) USING BTREE,
   ADD KEY `id_aula` (`id_aula`);
 
 --
@@ -243,32 +306,26 @@ ALTER TABLE `tipo_aulas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
-
---
--- AUTO_INCREMENT de la tabla `administradores`
---
-ALTER TABLE `administradores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `aulas`
 --
 ALTER TABLE `aulas`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `equipamientos`
 --
 ALTER TABLE `equipamientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `festivos`
+--
+ALTER TABLE `festivos`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `ordenadores`
@@ -280,7 +337,7 @@ ALTER TABLE `ordenadores`
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=615;
 
 --
 -- AUTO_INCREMENT de la tabla `sedes`
@@ -293,12 +350,6 @@ ALTER TABLE `sedes`
 --
 ALTER TABLE `tipo_aulas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

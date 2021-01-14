@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-01-2021 a las 17:15:44
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 8.0.0
+-- Tiempo de generación: 14-01-2021 a las 17:55:04
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,18 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bbdd_gestoraulas`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `administradores`
---
-
-CREATE TABLE `administradores` (
-  `id` int(11) NOT NULL,
-  `user` varchar(30) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `password` varchar(30) COLLATE utf8mb4_spanish2_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+CREATE DATABASE IF NOT EXISTS `bbdd_gestoraulas` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci;
+USE `bbdd_gestoraulas`;
 
 -- --------------------------------------------------------
 
@@ -50,22 +40,6 @@ CREATE TABLE `aulas` (
   `equipamiento` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
---
--- Volcado de datos para la tabla `aulas`
---
-
-INSERT INTO `aulas` (`id`, `nombre`, `tipo`, `sede`, `capacidad`, `equipo_profesor`, `equipo_alumno`, `equipamiento`) VALUES
-(16, 'M001', 1, 1, 16, 3, 3, 5),
-(17, 'M002', 2, 1, 20, 4, 4, 4),
-(18, 'M003', 1, 1, 24, 3, 3, 5),
-(19, 'M004', 2, 1, 12, 7, 7, 4),
-(20, 'M005', 2, 1, 16, 8, 8, 3),
-(21, 'P001', 1, 2, 24, 3, 3, 5),
-(22, 'P002', 1, 2, 18, 3, 3, 4),
-(23, 'P003', 2, 2, 20, 6, 6, 2),
-(24, 'P004', 2, 2, 16, 7, 7, 2),
-(25, 'P005', 2, 2, 16, 4, 4, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -78,16 +52,6 @@ CREATE TABLE `equipamientos` (
   `descripcion` varchar(256) COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
---
--- Volcado de datos para la tabla `equipamientos`
---
-
-INSERT INTO `equipamientos` (`id`, `nombre`, `descripcion`) VALUES
-(2, 'Impresora laser hp monocromo', 'Impresora en red para impresión de documentos'),
-(3, 'Proyector', 'Proyector para diapositivas '),
-(4, 'Impresora 3D', '3D Creality CR-10S PRO V2'),
-(5, 'Pantalla 65\"', 'Xiaomi MI TV 4S 4K-UHD Smart TV');
-
 -- --------------------------------------------------------
 
 --
@@ -99,26 +63,6 @@ CREATE TABLE `festivos` (
   `nombre` varchar(128) COLLATE utf8mb4_spanish_ci NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `festivos`
---
-
-INSERT INTO `festivos` (`id`, `nombre`, `fecha`) VALUES
-(1, 'Año nuevo', '2021-01-01'),
-(3, 'Dia de Reyes', '2021-01-06'),
-(4, 'San Jose', '2021-03-19'),
-(5, 'Jueves santo', '2021-04-01'),
-(6, 'Fiesta del trabajo', '2021-05-01'),
-(7, 'Dia de la comunidad de Madrid', '2021-05-03'),
-(8, 'San Isidro', '2021-05-15'),
-(9, 'Fiesta nacional Española', '2021-10-12'),
-(10, 'Dia de todos los Santos', '2021-11-01'),
-(11, 'Dia de la Almudena', '2021-11-09'),
-(12, 'Dia de la Constitucion', '2021-12-06'),
-(13, 'Inmaculada Concepcion', '2021-12-08'),
-(14, 'Navidad', '2021-12-25'),
-(15, 'Viernes Santo', '2021-04-02');
 
 -- --------------------------------------------------------
 
@@ -136,18 +80,6 @@ CREATE TABLE `ordenadores` (
   `tarjeta_grafica` varchar(64) COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
---
--- Volcado de datos para la tabla `ordenadores`
---
-
-INSERT INTO `ordenadores` (`id`, `nombre`, `sistema_operativo`, `pantalla`, `cpu`, `ram`, `tarjeta_grafica`) VALUES
-(3, 'Apple Mac Pro', 'Mac OS X', 27, ' Intel Core i5-10500', 32, 'AMD FirePro D500'),
-(4, 'HP Z2 Mini G5', 'Windows 10 Pro 64', 24, 'Intel Core i7-9700', 16, ' Intel UHD 630'),
-(5, 'PC HP ProDesk 400 G6', 'Windows 10 Pro 64', 24, ' Intel Core i5-9500', 16, ' Intel UHD 630'),
-(6, 'PC HP ProDesk 600 G5', 'Windows 10 Pro 64', 24, 'Intel Core i7-10700K', 32, 'AMD FirePro D500'),
-(7, 'PC HP Z4 G4', 'Windows 10 Pro 64', 27, 'Intel Core i9-9900', 64, 'nvidia Quadro Fx5500'),
-(8, 'PC OMEN 30L GT13-0017ns', 'Windows 10 Pro 64', 24, 'Intel Xeon E5-1650 v2', 64, 'NVIDIA GeForce RTX 2080');
-
 -- --------------------------------------------------------
 
 --
@@ -160,16 +92,6 @@ CREATE TABLE `reservas` (
   `id_aula` int(8) NOT NULL,
   `fecha_reserva` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `reservas`
---
-
-INSERT INTO `reservas` (`id`, `nombre_curso`, `id_aula`, `fecha_reserva`) VALUES
-(569, 'Prueba', 16, '2021-02-01 08:00:00'),
-(570, 'Prueba', 16, '2021-02-01 09:00:00'),
-(571, 'Prueba', 16, '2021-02-01 10:00:00'),
-(572, 'Prueba', 16, '2021-02-01 11:00:00');
 
 -- --------------------------------------------------------
 
@@ -185,14 +107,6 @@ CREATE TABLE `sedes` (
   `tlf` varchar(16) COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
---
--- Volcado de datos para la tabla `sedes`
---
-
-INSERT INTO `sedes` (`id`, `nombre`, `direccion`, `cp`, `tlf`) VALUES
-(1, 'Maldonado', 'Calle de Maldonado, 48', '28006 Madrid', '+34 914 01 07 02'),
-(2, 'Povedilla', 'Calle de la Povedilla, 4', '28009 Madrid', '+34 914 35 58 43');
-
 -- --------------------------------------------------------
 
 --
@@ -205,34 +119,8 @@ CREATE TABLE `tipo_aulas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
--- Volcado de datos para la tabla `tipo_aulas`
---
-
-INSERT INTO `tipo_aulas` (`id`, `nombre`) VALUES
-(1, 'Mac'),
-(2, 'Windows');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(70) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_spanish2_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `administradores`
---
-ALTER TABLE `administradores`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `aulas`
@@ -285,67 +173,49 @@ ALTER TABLE `tipo_aulas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
-
---
--- AUTO_INCREMENT de la tabla `administradores`
---
-ALTER TABLE `administradores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `aulas`
 --
 ALTER TABLE `aulas`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `equipamientos`
 --
 ALTER TABLE `equipamientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `festivos`
 --
 ALTER TABLE `festivos`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ordenadores`
 --
 ALTER TABLE `ordenadores`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=575;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `sedes`
 --
 ALTER TABLE `sedes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_aulas`
 --
 ALTER TABLE `tipo_aulas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
