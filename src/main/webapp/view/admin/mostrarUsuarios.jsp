@@ -16,7 +16,7 @@
 
 	<c:import url="../common/navbarAdmin.jsp" />
 
-	<div class="container-md w-75">
+	<div class="container-md w-50">
 		<!-- Titulo -->
 
 		<div class="pt-5"></div>
@@ -26,16 +26,17 @@
 		</h2>
 		
 		<c:if test="${msg != null}">
-			<p class="alert alert-success" role="alert">${msg}</p>
+			<p class="alert border border-${alert} alert-${alert} font-weight-bold" role="alert">${msg}</p>
 		</c:if>		
 
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr tr class="thead text-white bg-cice">
 					<th class="align-middle text-center" scope="col">Id</th>
-					<th class="align-middle text-left" scope="col">Activo</th>
+					<th class="align-middle text-center" scope="col">Activo</th>
 					<th class="align-middle text-left" scope="col">Usuario</th>
-					<th class="align-middle text-left" scope="col">Password</th>
+					<th class="align-middle text-center" scope="col">Lock</th>
+					<th class="align-middle text-center" scope="col">Update</th>
 					<th class="align-middle text-center" scope="col">Borrar</th>
 				</tr>
 			</thead>
@@ -44,9 +45,21 @@
 				<c:forEach items="${usuarios}" var="usuario">
 					<tr>
 						<th scope="row" class="align-middle text-center">${usuario.id}</th>
-						<td class="align-middle text-left">${usuario.enabled}</td>
+						<td class="align-middle text-center">${usuario.enabled}</td>
 						<td class="align-middle text-left">${usuario.username}</td>
-						<td class="align-middle text-left">${usuario.password}</td>
+						
+						<td class="align-middle text-center">
+							<button type="button" class="btn cice-hover bg-cice text-white"
+								data-toggle="modal" data-target="#divBorrado"
+								onclick="configurarBorrado('${usuario.id}')">Lock</button>
+						</td>
+						
+						<td class="align-middle text-center">
+							<button type="button" class="btn cice-hover bg-cice text-white"
+								data-toggle="modal" data-target="#divBorrado"
+								onclick="configurarBorrado('${usuario.id}')">Update</button>
+						</td>
+						
 						<td class="align-middle text-center">
 							<button type="button" class="btn cice-hover bg-cice text-white"
 								data-toggle="modal" data-target="#divBorrado"

@@ -1,18 +1,27 @@
 
-introducir el curso que hay en cada hora del cuadro consultas		
+introducir el curso que hay en cada hora del cuadro consultas		--Hecho
 		
 		
-Para el día 18 que Fernando hará la parte Android:
-	- Una funcionalidad: Selección de día y aula. Muestra la ocupación.
-	-Página independiente .jsp con una vista como la del usuario... buscador
-	y horario
+	Para el día 18 que Fernando hará la parte Android:
+		- Una funcionalidad: Selección de día y aula. Muestra la ocupación.					---Esto lo hace Rafa
+		-Página independiente .jsp con una vista como la del usuario... buscador
+		y horario
 	
-Scripts de creación de BBDD... Tener en cuenta lo de los festivos (ya creados??)
+	Scripts de creación de BBDD... Tener en cuenta lo de los festivos (ya creados??)
 
-Creación de una guía de instalación: (Ver quien la hace)
-	- Incluyendo la configuración de la seguridad. (Arturo)
+	Creación de una guía de instalación: (Ver quien la hace)								---Esto lo hace Diego
+	Incluyendo la configuración de la seguridad. (Arturo)
 	
-Permitir multiples equipamientos en una misma aula. Sino tenemos que indicarlo
-	en algun sitio.
+	//Permitir multiples equipamientos en una misma aula. Sino tenemos que indicarlo 		--- Pendiente de implementar
+		en algun sitio.
 	
-Preguntar a Arturo el tiempo del login...
+	//Preguntar a Arturo el tiempo del login... 										---- Pendiente
+
+
+--------------------------
+poner update en usuarios	--- pendiente
+quiero preguntar que pasa con el campo enabled y si es para bloquear users tendra que poder desbloquearse, si es cierto lock and unlock users  ---pendiente
+
+al crear festivos multiples tenemos que borrar los ya creados si da error If and delete?? 
+
+	

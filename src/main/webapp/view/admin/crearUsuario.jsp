@@ -9,7 +9,7 @@
 <c:import url="../common/head.jsp"/>
 
 		
-<title>Zona Administracion - Crear Usuario</title>
+<title>Zona Administracion</title>
 
 </head>
 <body>
@@ -24,7 +24,7 @@
 		
 		<!-- Titulo -->
 		<h2 class="pt-3">
-			Usuarios <span class="badge text-white bg-cice">CREAR</span>
+			Usuario <span class="badge text-white bg-cice">CREAR</span>
 		</h2>
 		
 		<!-- Forumulario -->
@@ -33,22 +33,22 @@
 			<!-- User -->
 			<div class="form-group mt-4">
 				<label class="text-secondary font-weight-bold" for="username">Username</label>
-				<input type="text" class="form-control" name="username" id="username" placeholder="User name" required>
+				<input type="text" class="form-control" name="username" id="username" required>
 			</div>
 			
 			<!-- Password -->
 			<div class="form-group mt-4">
 				<label class="text-secondary font-weight-bold" for="password">Password</label>
-				<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+				<input type="password" class="form-control" name="password" id="password" required>
+			</div>
+
+			<div class="form-group ml-4 mt-4">
+				<input class="form-check-input" type="radio" name="roleUser" id="roleUser" value=true>
+				<label class="text-secondary align-bottom font-weight-bold form-check-label" for="roleUser">Role user</label>
 			</div>
 			
-			<div class="form-group mt-4 form-check">
-				<input class="form-control form-check-input" type="radio" name="roleUser" id="roleUser" value=true disabled>
-				<label class="text-secondary font-weight-bold form-check-label" for="roleUser">Role user</label>
-			</div>
-			
-			<div class="form-group mt-4 form-check">
-				<input class="form-control form-check-input" type="radio" name="roleUser" id="roleUser" value=false checked>
+			<div class="form-group ml-4 mt-4">
+				<input class="form-check-input" type="radio" name="roleUser" id="roleUser" value=false checked>
 				<label class="text-secondary font-weight-bold form-check-label" for="roleUser">Role admin</label>
 			</div>
 			

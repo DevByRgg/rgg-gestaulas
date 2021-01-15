@@ -90,7 +90,7 @@
 
 	</div>
 
-	<a class="btn btn-light font-weight-bold bg- text-cice text-cice-hover" href="<c:url value="/logout" />">
+	<a class="btn btn-light font-weight-bold text-cice text-cice-hover" href="<c:url value="/logout" />">
 		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-door-open" viewBox="0 0 20 20">
   			<path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
 			<path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 

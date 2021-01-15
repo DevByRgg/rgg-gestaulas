@@ -9,7 +9,7 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
 
-	<a class="btn btn-light font-weight-bold bg- text-cice text-cice-hover" href="<c:url value="/logout" />">
+	<a class="btn btn-light font-weight-bold text-cice text-cice-hover" href="<c:url value="/logout" />">
 		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
 				fill="currentColor" class="bi bi-key" viewBox="0 0 20 20">
 			<path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 

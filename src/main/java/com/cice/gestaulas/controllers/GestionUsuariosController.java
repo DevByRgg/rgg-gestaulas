@@ -39,9 +39,9 @@ public class GestionUsuariosController {
 	
 	@RequestMapping(value = "/admin/altaUsuario/confirm", method = RequestMethod.POST)
 	public String createUsuario(
-			@RequestParam( required = true) String username,
-			@RequestParam( required = true) String password,
-			@RequestParam( required = true) boolean roleUser,			
+			@RequestParam(required = true) String username,
+			@RequestParam(required = true) String password,
+			@RequestParam(required = true) boolean roleUser,			
 			RedirectAttributes attributes) {
 		
 		List<Role> roles = new ArrayList<Role>();	
@@ -60,9 +60,11 @@ public class GestionUsuariosController {
 		
 		try {
 			service.addUsuario(user);
+			attributes.addFlashAttribute("alert", "success");
 			attributes.addFlashAttribute("msg", "Usuario dado de alta!");
 		} catch (DataIntegrityViolationException e) {
-			attributes.addFlashAttribute("msg", "este usuario ya existe!");			
+			attributes.addFlashAttribute("alert", "warning");
+			attributes.addFlashAttribute("msg", "Este usuario ya existe!");			
 			e.printStackTrace();
 		}
 		return "redirect:/admin/mostrarUsuarios";				
