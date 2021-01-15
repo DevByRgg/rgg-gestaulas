@@ -212,7 +212,7 @@ public class AulaController {
 
 		Aula a = new Aula(id, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
 
-		Utilidades.validar(a);
+		//Utilidades.validar(a);
 		aulaService.update(a);
 		return "redirect:mostrarAula";
 	}

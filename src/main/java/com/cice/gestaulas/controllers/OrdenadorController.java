@@ -61,7 +61,7 @@ public class OrdenadorController {
 		
 		Ordenador o = new Ordenador(0, nombre, sistemaOperativo, dimensionPantalla, cpu, ram, tarjetaGrafica);
 	
-		Utilidades.validar(o);
+		//Utilidades.validar(o);
 		ordenadorService.create(o);
 		
 		return "redirect:mostrarOrdenador";	
@@ -133,7 +133,7 @@ public class OrdenadorController {
 		
 		Ordenador o = new Ordenador(id, nombre, sistemaOperativo, dimensionPantalla, cpu, ram, tarjetaGrafica);
 		
-		Utilidades.validar(o);
+		//Utilidades.validar(o);
 		ordenadorService.update(o);
 		
 		return "redirect:mostrarOrdenador";
