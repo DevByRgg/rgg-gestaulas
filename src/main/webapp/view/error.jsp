@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<c:import url="../common/navbarLogin.jsp"/>
+<c:import url="./common/navbarLogin.jsp"/>
 
 	<div class="container-md w-75">
 

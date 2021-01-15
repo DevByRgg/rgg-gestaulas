@@ -55,7 +55,7 @@ public class EquipamientoController {
 		
 		Equipamiento e = new Equipamiento(0, nombre, descripcion);
 		
-		Utilidades.validar(e);
+		//Utilidades.validar(e);
 		equipamientoService.create(e);
 		
 		return "redirect:mostrarEquipamiento";
@@ -120,7 +120,7 @@ public class EquipamientoController {
 		
 		Equipamiento e = new Equipamiento(id, nombre, descripcion);
 		
-		Utilidades.validar(e);
+		//Utilidades.validar(e);
 		equipamientoService.update(e);
 		
 		return "redirect:mostrarEquipamiento";

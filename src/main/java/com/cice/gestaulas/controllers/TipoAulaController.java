@@ -59,7 +59,10 @@ public class TipoAulaController {
 	//	READ
 	//-------------------------------------------------------------------------------------------------------
 	
-	
+	/**
+	 * Mostrar todos los tipoAula de la BBDD
+	 * @return ModelAndView "/admin/mostrarTipoAula"
+	 */
 	@GetMapping("/admin/mostrarTipoAula")
 	public ModelAndView findAllTipoAula() {
 		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
@@ -74,6 +77,11 @@ public class TipoAulaController {
 	//	UPDATE
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Mostrar TipoAula a actualizar
+	 * @param id identificador del TipoAula
+	 * @return ModelAndView /admin/updateTipoAula
+	 */
 	@GetMapping("/admin/updateTipoAula")
 	public ModelAndView actualizaTipoAula(
 			@RequestParam (name = "id") int id) {
@@ -87,6 +95,12 @@ public class TipoAulaController {
 		return mav;
 	}
 	
+	/**
+	 * Actualizar TipoAula en la BBDD
+	 * @param id identificador del TipoAula
+	 * @param nombre del TipoAula
+	 * @return "redirect:mostrarTipoAula". Mostrar todos los TipoAula
+	 */
 	@GetMapping("/admin/updateTipoAulaControl")
 	public String updateTipoAula(
 			@RequestParam (name = "id", required = true) int id,
@@ -104,6 +118,11 @@ public class TipoAulaController {
 	//	DELETE
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Borrar un TipoAula de la BBDD
+	 * @param id identificador del TipoAula
+	 * @return "redirect:mostrarTipoAula". Mostrar todos los TipoAula
+	 */
 	@GetMapping("admin/borrarTipoAula")
 	public String borrarTipoAula(
 			@RequestParam(required = true) int id){

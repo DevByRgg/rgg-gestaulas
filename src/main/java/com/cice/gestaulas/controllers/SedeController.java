@@ -60,7 +60,7 @@ public class SedeController {
 		Sede s = new Sede(0, nombre, direccion, codigoPostal, telefono);
 		
 		
-		Utilidades.validar(s);
+		//Utilidades.validar(s);
 		sedeService.create(s);
 		
 		return "redirect:mostrarSede";
@@ -128,7 +128,7 @@ public class SedeController {
 		
 		Sede s = new Sede(id, nombre, direccion, codigoPostal, telefono);
 		
-		Utilidades.validar(s);
+		//Utilidades.validar(s);
 		sedeService.update(s);
 		
 		return "redirect:mostrarSede";
