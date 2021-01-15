@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,6 +34,8 @@ public class TipoAula {
 	 * Es la clase que especificara el tipo de cada Aula
 	 */
 	@Column(name = "nombre")
-	@NonNull
+	@NotBlank(message="{tipoAula.nombre.empty}")
+	@Size(min = 4, max = 128, message 
+    = "{tipoAula.nombre.size}")
 	private String nombre;
 }
