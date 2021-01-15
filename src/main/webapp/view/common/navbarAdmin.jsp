@@ -3,7 +3,7 @@
 
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-cice">
-	<a class="navbar-brand text-white" href="#"> 
+	<a class="navbar-brand text-white" href="/aulas/"> 
         <img src="/aulas/images/logo_blanco_total.svg" height="25"	class="d-inline-block align-top" alt="">
     </a>
 
@@ -14,15 +14,15 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav ml-auto mr-auto">
 			
-			<li class="nav-item active mr-3">
-        		<a class="nav-link text-white" href="/aulas">Public</a>
-      		</li>
+			<li class="nav-item dropdown mr-5">
+                <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/altaUsuario">Crear Usuario</a>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarUsuarios">Listado usuarios</a>
+                </div>
+            </li>
 			
-			<li class="nav-item active mr-5">
-        		<a class="nav-link text-white" href="/aulas/admin">Administration</a>
-      		</li>
-			
-			<li class="nav-item dropdown ml-3 mr-2">
+			<li class="nav-item dropdown ml-5 mr-2">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sede</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearSede">Crear</a>
@@ -49,19 +49,11 @@
                 </div>
             </li>
 
-            <li class="nav-item dropdown mr-3">
+            <li class="nav-item dropdown mr-5">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Equipamiento</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearEquipamiento">Crear Equipamiento</a>
                     <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarEquipamiento">Listado Equipamiento</a>
-                </div>
-            </li>
-            
-            <li class="nav-item dropdown mr-2">
-                <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
-				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/altaUsuario">Crear Usuario</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarUsuarios">Listado usuarios</a>
                 </div>
             </li>
             
@@ -85,7 +77,7 @@
                     <a class="dropdown-item cice-hover text-white" href="/aulas/mantenimiento/mostrarFestivo">Listado Festivo</a>
                 </div>
             </li>
-
+			
 		</ul>
 
 	</div>

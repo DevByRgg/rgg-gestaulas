@@ -71,19 +71,19 @@ public class ReservaShowController {
 		System.out.println(aula);
 		System.out.println(curso);
 		
-		if (aula != 0 && curso.equals("aaa")) {
+		if (aula != 0 && curso.equals("todos")) {
 			listaReservas.clear();
 			listaReservas = reservaService.findAllByAula(aula);
 			System.out.println("estamos llenando listaReservas aula");
 		}
 		
-		if (aula == 0 && !curso.equals("aaa")) {
+		if (aula == 0 && !curso.equals("todos")) {
 			listaReservas.clear();
 			listaReservas = reservaService.findAllByCurso(curso);
 			System.out.println("estamos llenando listaReservas curso");
 		}
 		
-		if (aula != 0 && !curso.equals("aaa")) {
+		if (aula != 0 && !curso.equals("todos")) {
 			listaReservas.clear();
 			listaReservas = reservaService.findAllByAulaAndCurso(aula, curso);
 			System.out.println("estamos llenando listaReservas aula y curso");
@@ -100,7 +100,7 @@ public class ReservaShowController {
 	@GetMapping("reservas/mostrarReserva")
 	public ModelAndView findAll(
 			@RequestParam (name = "idAula", defaultValue = "0", required = true) int idAula,
-			@RequestParam (name = "nombreCurso", defaultValue = "aaa", required = true) String nombreCurso) {	
+			@RequestParam (name = "nombreCurso", defaultValue = "todos", required = true) String nombreCurso) {	
 		
 		System.out.println("estamos en mostarReservas");	
 		
@@ -117,7 +117,7 @@ public class ReservaShowController {
 	@GetMapping("reservas/filtrarReserva")
 	public ModelAndView ApplyFilters(
 		@RequestParam (name = "idAula", defaultValue = "0", required = true) int idAula,
-		@RequestParam (name = "nombreCurso", defaultValue = "aaa", required = true) String nombreCurso) {		
+		@RequestParam (name = "nombreCurso", defaultValue = "todos", required = true) String nombreCurso) {		
 		
 		System.out.println("estamos en filtrarReservas");
 		
@@ -134,7 +134,7 @@ public class ReservaShowController {
 	@GetMapping("reservas/orderByIdDes")
 	public ModelAndView findAllOrderIdDes(
 			@RequestParam (name = "idAula", defaultValue = "0", required = true) int idAula,
-			@RequestParam (name = "nombreCurso", defaultValue = "aaa", required = true) String nombreCurso) {
+			@RequestParam (name = "nombreCurso", defaultValue = "todos", required = true) String nombreCurso) {
 		
 		System.out.println("estamos en Iddes");
 		listaReservas = generarListaReservas(idAula, nombreCurso);
@@ -154,7 +154,7 @@ public class ReservaShowController {
 	@GetMapping("reservas/orderByIdAsc")
 	public ModelAndView findAllOrderIdAsc(
 			@RequestParam (name = "idAula", defaultValue = "0", required = true) int idAula,
-			@RequestParam (name = "nombreCurso", defaultValue = "aaa", required = true) String nombreCurso) {
+			@RequestParam (name = "nombreCurso", defaultValue = "todos", required = true) String nombreCurso) {
 	
 		System.out.println("estamos en IdAsc");
 		listaReservas = generarListaReservas(idAula, nombreCurso);
@@ -177,7 +177,7 @@ public class ReservaShowController {
 	@GetMapping("reservas/orderByCursoDes")
 	public ModelAndView findAllOrderCursoDes(
 			@RequestParam (name = "idAula", defaultValue = "0", required = true) int idAula,
-			@RequestParam (name = "nombreCurso", defaultValue = "aaa", required = true) String nombreCurso) {
+			@RequestParam (name = "nombreCurso", defaultValue = "todos", required = true) String nombreCurso) {
 		
 		System.out.println("estamos en Cursodes");
 		listaReservas = generarListaReservas(idAula, nombreCurso);
@@ -197,7 +197,7 @@ public class ReservaShowController {
 	@GetMapping("reservas/orderByCursoAsc")
 	public ModelAndView findAllOrderCursoAsc(
 			@RequestParam (name = "idAula", defaultValue = "0", required = true) int idAula,
-			@RequestParam (name = "nombreCurso", defaultValue = "aaa", required = true) String nombreCurso) {
+			@RequestParam (name = "nombreCurso", defaultValue = "todos", required = true) String nombreCurso) {
 		
 		System.out.println("estamos en CursoAsc");
 		listaReservas = generarListaReservas(idAula, nombreCurso);
@@ -220,7 +220,7 @@ public class ReservaShowController {
 	@GetMapping("reservas/orderByAulaDes")
 	public ModelAndView findAllOrderAulaDes(
 			@RequestParam (name = "idAula", defaultValue = "0", required = true) int idAula,
-			@RequestParam (name = "nombreCurso", defaultValue = "aaa", required = true) String nombreCurso) {
+			@RequestParam (name = "nombreCurso", defaultValue = "todos", required = true) String nombreCurso) {
 	
 		System.out.println("estamos en Aulades");
 		listaReservas = generarListaReservas(idAula, nombreCurso);
@@ -240,7 +240,7 @@ public class ReservaShowController {
 	@GetMapping("reservas/orderByAulaAsc")
 	public ModelAndView findAllOrderAulaAsc(
 			@RequestParam (name = "idAula", defaultValue = "0", required = true) int idAula,
-			@RequestParam (name = "nombreCurso", defaultValue = "aaa", required = true) String nombreCurso) {
+			@RequestParam (name = "nombreCurso", defaultValue = "todos", required = true) String nombreCurso) {
 	
 		System.out.println("estamos en AulaAsc");
 		listaReservas = generarListaReservas(idAula, nombreCurso);
@@ -263,7 +263,7 @@ public class ReservaShowController {
 	@GetMapping("reservas/orderByFechaDes")
 	public ModelAndView findAllOrderFechaDes(
 			@RequestParam (name = "idAula", defaultValue = "0", required = true) int idAula,
-			@RequestParam (name = "nombreCurso", defaultValue = "aaa", required = true) String nombreCurso) {
+			@RequestParam (name = "nombreCurso", defaultValue = "todos", required = true) String nombreCurso) {
 	
 		System.out.println("estamos en fechades");
 		listaReservas = generarListaReservas(idAula, nombreCurso);
@@ -283,7 +283,7 @@ public class ReservaShowController {
 	@GetMapping("reservas/orderByFechaAsc")
 	public ModelAndView findAllOrderFechaAsc(
 			@RequestParam (name = "idAula", defaultValue = "0", required = true) int idAula,
-			@RequestParam (name = "nombreCurso", defaultValue = "aaa", required = true) String nombreCurso) {
+			@RequestParam (name = "nombreCurso", defaultValue = "todos", required = true) String nombreCurso) {
 	
 		System.out.println("estamos en fechaAsc");
 		listaReservas = generarListaReservas(idAula, nombreCurso);

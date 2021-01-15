@@ -28,11 +28,11 @@
 			
 		<div class="container-md mt-4">
 		
-			<div class="card-deck">
+			<div class="card-deck text-center">
 					
 				<div class="card">
-					<div class="card-header">
-						<h5 class="card-title">Sedes</h5>
+					<div class="card-header bg-cice text-white">
+						<h5 class="card-title align">Sedes</h5>
 					</div>
 					<a title="Sedes" href="/aulas/admin/mostrarSede">
 						<img class="card-img-top" src="/aulas/images/sede_800x600.png"  height="200" alt="Card image cap">
@@ -40,7 +40,7 @@
 				</div>
 				
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Aulas</h5>
 					</div>
 					<a title="Aulas" href="/aulas/admin/mostrarAula">
@@ -49,7 +49,7 @@
 				</div>
 				
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Equipos</h5>
 					</div>
 					<a title="Equipos" href="/aulas/admin/mostrarOrdenador">
@@ -58,7 +58,7 @@
 				</div>
 				
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Equipamientos</h5>
 					</div>
 					<a title="Equipamiento" href="/aulas/admin/mostrarEquipamiento">
@@ -78,9 +78,9 @@
 		
 		<div class="container-md mt-4">
 	
-			<div class="card-deck">
+			<div class="card-deck text-center">
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Reservar dia</h5>
 					</div>
 					<a title="Reservar dia" href="/aulas/reservas/crearReserva">
@@ -89,7 +89,7 @@
 				</div>
 				
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Reservar curso</h5>
 					</div>
 					<a title="Reservar curso" href="/aulas/reservas/buscarReserva">
@@ -98,7 +98,7 @@
 				</div>
 				
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Crear Festivo</h5>
 					</div>
 					<a title="Crear festivo" href="/aulas/mantenimiento/crearFestivo">
@@ -107,7 +107,7 @@
 				</div>
 				
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Consultar</h5>
 					</div>
 					<a title="Consultar aulas disponibles" href="/aulas/consultas/consultarAulasDisponibles">

@@ -49,7 +49,7 @@
 				<div class="form-inline col-sm-5">
   					<label class="col-sm-1 font-weight-bold align-middle ml-5 mr-3" for="nombreCurso">Curso</label>
   					<select	class="form-control-sm col-sm-6" id="nombreCurso" name="nombreCurso" required>
-							<option value="aaa" selected>Todos</option>
+							<option value="todos" selected>Todos</option>
 						<c:forEach items="${cursos}" var="curso">
 							<c:choose>
 								<c:when test="${curso == cursoSeleccionado}">
