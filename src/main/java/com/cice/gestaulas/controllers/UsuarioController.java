@@ -21,7 +21,7 @@ import com.cice.gestaulas.services.interfaces.IUsuarioService;
 
 @Controller
 @Secured("ROLE_ADMIN")
-public class GestionUsuariosController {
+public class UsuarioController {
 	
 	private static final String USER = "ROLE_USER";
 	private static final String ADMIN = "ROLE_ADMIN";

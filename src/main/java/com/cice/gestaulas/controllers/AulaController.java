@@ -115,8 +115,7 @@ public class AulaController {
 		Aula a = new Aula(0, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
 
 		//Comprobar que los campos son correctos
-		Utilidades.validar(a);
-		//validar(a);
+		//Utilidades.validar(a);
 		aulaService.create(a);
 		return "redirect:mostrarAula";
 	}

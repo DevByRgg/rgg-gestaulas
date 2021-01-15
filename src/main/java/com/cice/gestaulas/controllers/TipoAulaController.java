@@ -16,6 +16,9 @@ import com.cice.gestaulas.services.interfaces.ITipoAulaService;
 @Controller
 public class TipoAulaController {
 	
+	/**
+	 * SErvicios de TipoAula
+	 */
 	@Autowired
 	ITipoAulaService tipoAulaService;
 	
@@ -24,6 +27,10 @@ public class TipoAulaController {
 	//	CREATE
 	//-------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Cargar y mostrar la página crearTipoAula
+	 * @return ModelAndView
+	 */
 	@GetMapping("/admin/crearTipoAula")
 	public ModelAndView crearTipoAulaPage() {
 		ModelAndView mav = new ModelAndView();
@@ -31,7 +38,11 @@ public class TipoAulaController {
 		return mav;
 	}
 	
-	
+	/**
+	 * Crear un TipoAula en la BBDD
+	 * @param nombre del TipoAula
+	 * @return "redirect:mostrarTipoAula". Mostrar los TipoAulas
+	 */
 	@GetMapping("/admin/crearTipoAulaControl")
 	public String crearTipoAulaControl(
 			@RequestParam (name = "nombre", required = true) String nombre) {
@@ -47,6 +58,7 @@ public class TipoAulaController {
 	//-------------------------------------------------------------------------------------------------------
 	//	READ
 	//-------------------------------------------------------------------------------------------------------
+	
 	
 	@GetMapping("/admin/mostrarTipoAula")
 	public ModelAndView findAllTipoAula() {
