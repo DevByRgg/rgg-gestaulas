@@ -37,7 +37,7 @@ public class CustomErrorController implements ErrorController {
 		
         if (HttpStatus.NOT_FOUND
                 .value() == (int) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE)) {
-            return "/error/404";
+            return "error/404";
         }
             
         return "error";
