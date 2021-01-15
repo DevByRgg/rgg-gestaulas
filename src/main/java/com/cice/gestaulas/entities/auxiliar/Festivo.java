@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,7 +37,9 @@ public class Festivo {
 	 * Nombre del festivo
 	 */
 	@Column(name = "nombre")
-	@NotBlank(message="El nombre es obligatorio")
+	@NotBlank(message="{festivo.nombre.empty")
+	@Size(min = 4, max = 128, message 
+    = "{festivo.nombre.size}")
 	private String nombre;
 	
 	/**

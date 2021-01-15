@@ -25,4 +25,6 @@ quiero preguntar que pasa con el campo enabled y si es para bloquear users tendr
 al crear festivos multiples tenemos que borrar los ya creados si da error If and delete??  ---Pendiente
 podemos sobreescribir los existentes
 
+Mensajes de error CustomHandlerException... Captura los errores de festivos pero pone la ruta completa:
+	- CrearFestivo.Festivo.Nombre:Tiene que tener entre 4 y 128 caracteres
 	

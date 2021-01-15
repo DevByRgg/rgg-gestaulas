@@ -1,10 +1,7 @@
 package com.cice.gestaulas.controllers;
 
-import org.hibernate.exception.ConstraintViolationException;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 import javax.validation.Valid;
@@ -12,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +48,7 @@ public class FestivoController {
 	}
 
 	/**
-	 * Guardar el Festivo en la BBDD
+	 * Guardar un solo Festivo en la BBDD
 	 * 
 	 * @param nombre especifico del festivo
 	 * @param fecha  del festivo
@@ -83,6 +78,10 @@ public class FestivoController {
 
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Cargar y mostrar la página crearPeriodoFestivo
+	 * @return ModelAndView
+	 */
 	@GetMapping(value = "/mantenimiento/crearPeriodoFestivo")
 	public ModelAndView crearPeriodoFestivoPage() {
 		ModelAndView mav = new ModelAndView();
@@ -91,6 +90,14 @@ public class FestivoController {
 		return mav;
 	}
 	
+	/**
+	 * Guardar un periodo Festivo o Cerrado en la BBDD
+	 * @param nombre del periodo Festivo
+	 * @param fechaInicio inicio del periodo festivo
+	 * @param fechaFin fin del periodo festivo
+	 * @return "redirect:mostrarFestivo". Mostrar todos los Festivos
+	 * @throws FestivoExisteException
+	 */
 	@GetMapping(value = "/mantenimiento/crearPeridoFestivoControl")
 	public String crearPeriodoFestivo(
 			@RequestParam (name = "nombre", required = true) String nombre,
@@ -237,7 +244,7 @@ public class FestivoController {
 	 * Borrar día festivo
 	 * 
 	 * @param id del día festivo
-	 * @return redireccion a mostrarFestivo
+	 * @return "redirect:mostrarFestivo". Mostrar todos los festivos
 	 */
 	@GetMapping("mantenimiento/borrarFestivo")
 	public String borrarFestivo(@RequestParam(name = "id", required = true) int id) {
@@ -252,16 +259,15 @@ public class FestivoController {
 	////// EXCEPTION_HANDLER ///////////////////////
 	// ----------------------------------------------------------------------------------------------------------
 
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-		Map<String, String> errors = new HashMap<>();
-		ex.getBindingResult().getAllErrors().forEach((error) -> {
-			String fieldName = ((FieldError) error).getField();
-			String errorMessage = error.getDefaultMessage();
-			errors.put(fieldName, errorMessage);
-		});
-		return errors;
-	}
+	/*
+	 * @ExceptionHandler(MethodArgumentNotValidException.class) public Map<String,
+	 * String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+	 * Map<String, String> errors = new HashMap<>();
+	 * ex.getBindingResult().getAllErrors().forEach((error) -> { String fieldName =
+	 * ((FieldError) error).getField(); String errorMessage =
+	 * error.getDefaultMessage(); errors.put(fieldName, errorMessage); }); return
+	 * errors; }
+	 */
 
 		
 	/**
@@ -269,20 +275,21 @@ public class FestivoController {
 	 * festivos con la misma fecha
 	 * 
 	 * @param ex
-	 * @return
+	 * @return ModelAndView a la página de error.jsp
 	 */
-	@ExceptionHandler(FestivoExisteException.class)
-	public ModelAndView gestionarErrorReservaOcupada(FestivoExisteException ex) {
-		System.out.println("LLEGA A FESTIVO EXISTE HANDLER..localizedMessage" + ex.getLocalizedMessage());
-		System.out.println("LLEGA A FESTIVO EXISTE HANDLER..ex.getMessage" + ex.getMessage());
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("error");
-
-		// introducimos el mensaje que queremos que se muestre en error.jsp
-		mav.addObject("mensaje", ex.getLocalizedMessage());
-		mav.addObject("titulo", "Festivo no válido");
-
-		return mav;
-	}
-
+	/*
+	 * @ExceptionHandler(FestivoExisteException.class) public ModelAndView
+	 * gestionarErrorReservaOcupada(FestivoExisteException ex) {
+	 * System.out.println("LLEGA A FESTIVO EXISTE HANDLER..localizedMessage" +
+	 * ex.getLocalizedMessage());
+	 * System.out.println("LLEGA A FESTIVO EXISTE HANDLER..ex.getMessage" +
+	 * ex.getMessage()); ModelAndView mav = new ModelAndView();
+	 * mav.setViewName("error");
+	 * 
+	 * // introducimos el mensaje que queremos que se muestre en error.jsp
+	 * mav.addObject("mensaje", ex.getMessage()); mav.addObject("titulo",
+	 * "Festivo no válido");
+	 * 
+	 * return mav; }
+	 */
 }
