@@ -84,12 +84,10 @@ public class UsuarioController {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		usuarios = usuarioService.findAll();
 		
-		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/mostrarUsuarios");
 		mav.addObject("usuarios", usuarios);
 		return mav;		
-		
 	}
 
 	// -------------------------------------------------------------------------------------------------------

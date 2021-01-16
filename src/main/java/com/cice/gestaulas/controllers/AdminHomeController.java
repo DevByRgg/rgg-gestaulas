@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cice.gestaulas.entities.Usuario;
 import com.cice.gestaulas.services.interfaces.IUsuarioService;
 
 @Secured("ROLE_ADMIN")
