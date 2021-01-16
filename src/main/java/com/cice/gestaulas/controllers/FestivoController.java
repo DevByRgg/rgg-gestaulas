@@ -29,7 +29,6 @@ import com.cice.gestaulas.utils.Utilidades;
  *
  */
 @Secured("ROLE_ADMIN")
-@Validated
 @Controller
 public class FestivoController {
 
@@ -40,49 +39,51 @@ public class FestivoController {
 	// CREATE
 	//-------------------------------------------------------------------------------------------------------
 	/**
-	 * Mostrar la vista de mantenimiento/crearFestivo.jsp
-	 * 
+	 * Cargar y mostrar la página crearFestivo
+	 * @return ModelAndView mantenimiento/crearFestivo
 	 */
-	@RequestMapping(value = "/mantenimiento/crearFestivo", method = RequestMethod.GET)
-	public @ResponseBody ModelAndView crearFestivoPage() {
-		return new ModelAndView("mantenimiento/crearFestivo", "festivo", new Festivo());
+	@RequestMapping("/mantenimiento/crearFestivo")
+	public ModelAndView crearFestivoPage() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("mantenimiento/crearFestivo");
+		return mav;
 	}
-
+	
+	
 	/**
-	 * Guardar un solo Festivo en la BBDD
+	 * Guardar el Festivo en la BBDD
 	 * 
 	 * @param nombre especifico del festivo
 	 * @param fecha  del festivo
 	 * @return
-	 * @throws FestivoExisteException
+	 * @throws FestivoExisteException 
 	 */
-	@RequestMapping(value = "/mantenimiento/crearFestivoControl", method = RequestMethod.POST)
-	public String crearFestivo(@Valid Festivo festivo, BindingResult bindingResult) throws FestivoExisteException {
-
-		/*
-		 * if (bindingResult.hasErrors()) {
-		 * System.out.println("ERROR DE VALIDACION TEST"); //
-		 * bindingResult.getFieldError().getDefaultMessage(); return
-		 * "/mantenimiento/crearFestivo"; }
-		 */
-
-		// comprobar si existe
-		if (festivoService.findAllFechas().contains(festivo.getFecha())) {
-			System.out.println("LA FECHA YA EXISTE");
-			throw new FestivoExisteException("La fecha ya tiene un festivo asignado");
-
-		} else {
-			System.out.println("CREAR FESTIVO ---- " + festivo.getNombre());
-			Utilidades.validar(festivo);
-			festivoService.create(festivo);
-			return "redirect:mostrarFestivo";
-		}
-	}
-
-	//-------------------------------------------------------------------------------------------------------
 	
+	 @GetMapping("/mantenimiento/crearFestivoControl") public String crearFestivo(
+		  @RequestParam (name = "nombre", required = true) String nombre,
+		  @RequestParam (name = "fecha", required = true) String fecha) throws FestivoExisteException {
+		  
+		  LocalDate fechaFestivo = LocalDate.parse(fecha);
+		  
+		  Festivo festivo = new Festivo(0, nombre, fechaFestivo); 
+		  
+		// comprobar si existe
+			if (festivoService.findAllFechas().contains(festivo.getFecha())) {
+				System.out.println("LA FECHA YA EXISTE");
+				throw new FestivoExisteException("La fecha ya tiene un festivo asignado");
+
+			} else {
+				System.out.println("CREAR FESTIVO ---- " + festivo.getNombre());
+				//Utilidades.validar(festivo);
+				festivoService.create(festivo);
+				return "redirect:mostrarFestivo";
+			}  
+	 }
+		 
+
 	/**
-	 * Cargar y mostrar la página crearPeriodoFestivo
+	 * Cargar y mostrar la página /mantenimiento/crearPeriodoFestivo
 	 * @return ModelAndView
 	 */
 	@GetMapping(value = "/mantenimiento/crearPeriodoFestivo")
@@ -135,28 +136,7 @@ public class FestivoController {
 	}
 	
 	
-	/**
-	 * Guardar el Festivo en la BBDD
-	 * 
-	 * @param nombre especifico del festivo
-	 * @param fecha  del festivo
-	 * @return
-	 *//*
-		 * @GetMapping("/mantenimiento/crearFestivoControl") public String crearFestivo(
-		 * 
-		 * @RequestParam (name = "nombre", required = true) String nombre,
-		 * 
-		 * @RequestParam (name = "fecha", required = true) String fecha) {
-		 * 
-		 * ModelAndView mav = new ModelAndView();
-		 * 
-		 * LocalDate fechaFestivo = LocalDate.parse(fecha);
-		 * 
-		 * Festivo f = new Festivo(0, nombre, fechaFestivo); festivoService.create(f);
-		 * 
-		 * return "redirect:crearFestivo"; }
-		 */
-
+	
 	
 	
 	// -------------------------------------------------------------------------------------------------------
@@ -232,6 +212,7 @@ public class FestivoController {
 			throw new FestivoExisteException("La fecha ya tiene un festivo asignado. Puede modificarlo");
 		} else {
 			System.out.println("CREAR FESTIVO ---- " + f.getNombre());
+			Utilidades.validar(f);
 			festivoService.update(f);
 			return "redirect:mostrarFestivo";
 		}

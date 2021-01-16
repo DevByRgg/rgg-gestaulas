@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 /**
  * Clase Entidad TipoAula que se corresponde con la tabla tipo_aulas de la BBDD

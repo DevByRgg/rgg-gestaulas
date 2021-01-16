@@ -15,7 +15,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 /**
  * Clase Entidad Festivo que se corresponde con la tabla festivos de la BBDD
