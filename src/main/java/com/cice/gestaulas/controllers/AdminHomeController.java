@@ -3,10 +3,14 @@ package com.cice.gestaulas.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cice.gestaulas.entities.Usuario;
 import com.cice.gestaulas.services.interfaces.IUsuarioService;
 
 @Secured("ROLE_ADMIN")
@@ -19,9 +23,15 @@ public class AdminHomeController {
 	@GetMapping("/admin")
 	public ModelAndView mostrarAdminPage() {
 	
+		String nombreUsuario = "";
 		
+		Authentication auth = SecurityContextHolder
+				.getContext().getAuthentication();
+		UserDetails  userDetail = (UserDetails) auth.getPrincipal();
+		nombreUsuario = userDetail.getUsername();
 		ModelAndView mav = new ModelAndView();
 		
+		mav.addObject("username", nombreUsuario);
 		mav.setViewName("admin/admin");
 		
 		return mav;
