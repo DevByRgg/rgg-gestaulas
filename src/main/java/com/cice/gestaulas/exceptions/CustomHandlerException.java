@@ -16,48 +16,50 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class CustomHandlerException extends ResponseEntityExceptionHandler{
+public class CustomHandlerException extends ResponseEntityExceptionHandler {
 
-	//Parece no ser necesario probar a quitarlo
+	// Parece no ser necesario probar a quitarlo
 	@ExceptionHandler(CommunicationException.class)
 	public ModelAndView CommunicationsException(CommunicationException ex) {
 		System.out.println("EXCEPTION HANDLER CommunicationException EXCEPTION");
 		String mensaje = "Fallo en la bbdd, compruebe si esta encendida";
-		
-		/*Esto no funciona
-			String mensaje = ex.getMessage() != null ? ex.getMessage().split(":")[0] : "Constraint en BBDD no admitido";
-		*/
-		
+
+		/*
+		 * Esto no funciona String mensaje = ex.getMessage() != null ?
+		 * ex.getMessage().split(":")[0] : "Constraint en BBDD no admitido";
+		 */
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("error");
 		mav.addObject("mensajesError", mensaje);
 		mav.addObject("titulo", "Datos no válidos");
 		return mav;
 	}
-	
-	//Parece no ser necesario probar a quitarlo
+
+	// Parece no ser necesario probar a quitarlo
 	@ExceptionHandler(ConnectException.class)
 	public ModelAndView ConnectException(ConnectException ex) {
 		System.out.println("EXCEPTION HANDLER ConnectException EXCEPTION");
 		String mensaje = "Fallo en la bbdd!! Compruebe si esta encendida";
-		
+
 		System.out.println("--" + ex.fillInStackTrace());
 		System.out.println("--" + ex.getLocalizedMessage());
 		System.out.println("--" + ex.getMessage());
 		System.out.println("--" + ex.fillInStackTrace());
 		System.out.println("--" + ex.getCause());
-		
-		/*Esto no funciona
-			String mensaje = ex.getMessage() != null ? ex.getMessage().split(":")[0] : "Constraint en BBDD no admitido";
-		*/
-		
+
+		/*
+		 * Esto no funciona String mensaje = ex.getMessage() != null ?
+		 * ex.getMessage().split(":")[0] : "Constraint en BBDD no admitido";
+		 */
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("error");
 		mav.addObject("mensajesError", mensaje);
 		mav.addObject("titulo", "Datos no válidos");
 		return mav;
 	}
-	
+
 	/**
 	 * Capturar y gestionar las excepciones de JDBCConnectionException de la base de
 	 * datos.
@@ -70,18 +72,18 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 		System.out.println("EXCEPTION HANDLER JDBCConnectionException EXCEPTION");
 		final String TITULO_ERROR = "Bbdd";
 		Map<String, String> msnError = new HashMap<String, String>();
-		
+
 		msnError.put("Bbdd", "Communications link failure");
 		msnError.put("Error", ex.getMessage());
 		msnError.put("Problema", "Es posible que la bbdd este apagada");
-		
+
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msnError", msnError);
 		mav.addObject("titulo", TITULO_ERROR);
 		mav.setViewName("error");
 		return mav;
 	}
-	
+
 	/**
 	 * Capturar y gestionar las excepciones de constraint violation de la base de
 	 * datos.
@@ -95,22 +97,43 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler{
 		final String TITULO_ERROR = "Datos no validos";
 		Map<String, String> msnError = new HashMap<String, String>();
 		Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
-		
+
 		for (ConstraintViolation<?> constraintViolation : violations) {
 			String atributo = constraintViolation.getPropertyPath().toString();
 			String mensaje = constraintViolation.getMessage().trim();
-			
+
 			msnError.put(atributo, mensaje);
 		}
-		
+
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msnError", msnError);
 		mav.addObject("titulo", TITULO_ERROR);
 		mav.setViewName("error");
 		return mav;
 	}
-	
-	
-	
-	
+
+	/**
+	 * Capturar y gestionar FestivoExisteException. Para que no se pueda grabar
+	 * festivos con la misma fecha
+	 * 
+	 * @param ex
+	 * @return ModelAndView a la página de error.jsp
+	 */
+	@ExceptionHandler(FestivoExisteException.class)
+	public ModelAndView gestionarErrorReservaOcupada(FestivoExisteException ex) {
+		System.out.println("LLEGA A FESTIVO EXISTE HANDLER..localizedMessage" + ex.getLocalizedMessage());
+		
+		final String TITULO_ERROR = "Fecha no valida";
+		String mensaje = ex.getMessage();
+		
+		Map<String, String> msnError = new HashMap<String, String>();
+		msnError.put("fecha", mensaje);
+			
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msnError", msnError);
+		mav.addObject("titulo", TITULO_ERROR);
+		mav.setViewName("error");
+		return mav;
+	}
+
 }

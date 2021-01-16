@@ -30,5 +30,5 @@ podemos sobreescribir los existentes????
 poner los mensajes alert al crear y actualizar sede, aula, equipo, equipamiento, reservas   ---pendiente 
 
 Mensajes de error CustomHandlerException... Captura los errores de festivos pero pone la ruta completa:
-	- CrearFestivo.Festivo.Nombre:Tiene que tener entre 4 y 128 caracteres
+	- CrearFestivo.Festivo.Nombre:Tiene que tener entre 4 y 128 caracteres.
 	

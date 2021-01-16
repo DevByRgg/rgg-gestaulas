@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cice.gestaulas.entities.auxiliar.Festivo;
 import com.cice.gestaulas.exceptions.FestivoExisteException;
 import com.cice.gestaulas.services.interfaces.IFestivoService;
+import com.cice.gestaulas.utils.Utilidades;
 
 
 /**
@@ -58,19 +59,21 @@ public class FestivoController {
 	@RequestMapping(value = "/mantenimiento/crearFestivoControl", method = RequestMethod.POST)
 	public String crearFestivo(@Valid Festivo festivo, BindingResult bindingResult) throws FestivoExisteException {
 
-		if (bindingResult.hasErrors()) {
-			System.out.println("ERROR DE VALIDACION TEST");
-			// bindingResult.getFieldError().getDefaultMessage();
-			return "/mantenimiento/crearFestivo";
-		}
+		/*
+		 * if (bindingResult.hasErrors()) {
+		 * System.out.println("ERROR DE VALIDACION TEST"); //
+		 * bindingResult.getFieldError().getDefaultMessage(); return
+		 * "/mantenimiento/crearFestivo"; }
+		 */
 
 		// comprobar si existe
 		if (festivoService.findAllFechas().contains(festivo.getFecha())) {
 			System.out.println("LA FECHA YA EXISTE");
-			throw new FestivoExisteException("La fecha ya tiene un festivo asignado. Puede modificarlo");
+			throw new FestivoExisteException("La fecha ya tiene un festivo asignado");
 
 		} else {
 			System.out.println("CREAR FESTIVO ---- " + festivo.getNombre());
+			Utilidades.validar(festivo);
 			festivoService.create(festivo);
 			return "redirect:mostrarFestivo";
 		}
@@ -123,12 +126,11 @@ public class FestivoController {
 			
 			//Comprobar si ese festivo ya existe
 			if (festivoService.findAllFechas().contains(f.getFecha())) {
-				throw new FestivoExisteException("La fecha " + fecha + " ya tiene un festivo asignado. Puede modificarlo");
+				throw new FestivoExisteException("La fecha " + fecha + " ya tiene un festivo asignado");
 			} else {
 				festivoService.create(f);
 			}	
-		}
-		
+		}		
 		return "redirect:mostrarFestivo";
 	}
 	
@@ -186,7 +188,7 @@ public class FestivoController {
 	 * Mostrar la vista de mantenimiento/updateFestivo.jsp
 	 * 
 	 * @param id del festivo a mostrar
-	 * @return Modelo
+	 * @return ModelAndView
 	 */
 	@GetMapping("/mantenimiento/updateFestivo")
 	public ModelAndView actualizarFestivo(
@@ -208,7 +210,7 @@ public class FestivoController {
 	 * @param id     identificador del festivo
 	 * @param nombre del día festivo
 	 * @param fecha  del día festivo
-	 * @return
+	 * @return "redirect:mostrarFestivo". Mostrar lista de Festivos
 	 * @throws FestivoExisteException
 	 */
 	@GetMapping("/mantenimiento/updateFestivoControl")

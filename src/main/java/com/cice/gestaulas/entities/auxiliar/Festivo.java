@@ -37,7 +37,7 @@ public class Festivo {
 	 * Nombre del festivo
 	 */
 	@Column(name = "nombre")
-	@NotBlank(message="{festivo.nombre.empty")
+	@NotBlank(message="{festivo.nombre.empty}")
 	@Size(min = 4, max = 128, message 
     = "{festivo.nombre.size}")
 	private String nombre;
