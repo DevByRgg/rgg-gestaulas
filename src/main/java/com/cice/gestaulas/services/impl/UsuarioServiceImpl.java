@@ -29,7 +29,19 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	}
 
 	@Override
+	public Usuario findById(long id) {
+		return usuarioRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public void updateUsuario(Usuario u) {
+		usuarioRepository.save(u);
+	}
+	
+	@Override
 	public void deleteUsuario(long numero) {
 		usuarioRepository.deleteById(numero);		
 	}
+
+	
 }

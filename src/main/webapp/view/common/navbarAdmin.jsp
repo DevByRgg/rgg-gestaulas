@@ -17,7 +17,7 @@
 			<li class="nav-item dropdown mr-5">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/altaUsuario">Crear Usuario</a>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearUsuario">Crear Usuario</a>
                     <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarUsuario">Listado usuarios</a>
                 </div>
             </li>

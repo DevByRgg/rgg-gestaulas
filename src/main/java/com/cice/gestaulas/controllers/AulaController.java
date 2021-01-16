@@ -2,20 +2,10 @@ package com.cice.gestaulas.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import javax.validation.ConstraintDefinitionException;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.Path;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,7 +21,6 @@ import com.cice.gestaulas.services.interfaces.IEquipamientoService;
 import com.cice.gestaulas.services.interfaces.IOrdenadorService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
-import com.cice.gestaulas.utils.Utilidades;
 
 @Secured("ROLE_ADMIN")
 @Controller
@@ -119,8 +108,6 @@ public class AulaController {
 		aulaService.create(a);
 		return "redirect:mostrarAula";
 	}
-
-	
 
 	// -------------------------------------------------------------------------------------------------------
 	// READ

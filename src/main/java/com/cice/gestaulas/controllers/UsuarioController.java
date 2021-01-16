@@ -30,36 +30,41 @@ public class UsuarioController {
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private IUsuarioService service;
+	private IUsuarioService usuarioService;
 	
-	@RequestMapping(value = "/admin/altaUsuario", method = RequestMethod.GET)
+
+	// -------------------------------------------------------------------------------------------------------
+	// CREATE
+	// -------------------------------------------------------------------------------------------------------
+
+	@RequestMapping(value = "/admin/crearUsuario", method = RequestMethod.GET)
 	public String mostrarForm() {
 		return "admin/crearUsuario";
 	}
 	
-	@RequestMapping(value = "/admin/altaUsuario/confirm", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/crearUsuarioControl", method = RequestMethod.POST)
 	public String createUsuario(
 			@RequestParam(required = true) String username,
 			@RequestParam(required = true) String password,
-			@RequestParam(required = true) boolean roleUser,			
+			@RequestParam(required = true) int role,			
 			RedirectAttributes attributes) {
 		
 		List<Role> roles = new ArrayList<Role>();	
 		String bcryptPassword = passwordEncoder.encode(password);
 		
-		Usuario user = new Usuario(username, bcryptPassword, true);
+		Usuario u = new Usuario(username, bcryptPassword, true);
 		
-		if(roleUser == true) {
-			roles.add(new Role(USER, user.getId()));
-		}else if(roleUser == false) {
-			roles.add(new Role(USER, user.getId()));
-			roles.add(new Role(ADMIN, user.getId()));
+		if(role == 1) {
+			roles.add(new Role(USER, u.getId()));
+		} else if(role == 2) {
+			roles.add(new Role(USER, u.getId()));
+			roles.add(new Role(ADMIN, u.getId()));
 		}
 		
-		user.setRoles(roles);
+		u.setRoles(roles);
 		
 		try {
-			service.addUsuario(user);
+			usuarioService.addUsuario(u);
 			attributes.addFlashAttribute("alert", "success");
 			attributes.addFlashAttribute("msg", "Usuario dado de alta!");
 		} catch (DataIntegrityViolationException e) {
@@ -67,13 +72,18 @@ public class UsuarioController {
 			attributes.addFlashAttribute("msg", "Este usuario ya existe!");			
 			e.printStackTrace();
 		}
-		return "redirect:/admin/mostrarUsuarios";				
+		return "redirect:/admin/mostrarUsuario";				
 	}
-	
-	@GetMapping("/admin/mostrarUsuarios")
+
+	// -------------------------------------------------------------------------------------------------------
+	// READ
+	// -------------------------------------------------------------------------------------------------------
+
+	@GetMapping("/admin/mostrarUsuario")
 	public ModelAndView consultaUsuarios( ) {	
 		List<Usuario> usuarios = new ArrayList<Usuario>();
-		usuarios = service.findAll();
+		usuarios = usuarioService.findAll();
+		
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/mostrarUsuarios");
@@ -81,15 +91,98 @@ public class UsuarioController {
 		return mav;		
 		
 	}
+
+	// -------------------------------------------------------------------------------------------------------
+	// UPDATE
+	// -------------------------------------------------------------------------------------------------------
 	
+	@GetMapping("/admin/updateUsuario")
+	public ModelAndView actualizaUsuario(
+			@RequestParam(required = true) long id,		
+			RedirectAttributes attributes) {
+		Usuario u = usuarioService.findById(id);
+		List<Role> roles = usuarioService.findById(id).getRoles();
+		int role = 1;
+		
+		for (int i = 0; i < roles.size(); i++) {
+			String auth = roles.get(i).getAuthority();
+			if (auth.equals(ADMIN)) {
+				role = 2;
+			}
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("usuario", u);
+		mav.addObject("role", role);
+		mav.setViewName("admin/updateUsuario");
+		return mav;
+	}
+	
+	@GetMapping("/admin/updateUsuarioControl")
+	public String updateUsuario(
+			@RequestParam(required = true) Long id,
+			@RequestParam(required = true) String username,
+			@RequestParam(required = true) String password,
+			RedirectAttributes attributes) {
+		String bcryptPassword = passwordEncoder.encode(password);
+		Usuario u = usuarioService.findById(id);
+		u.setUsername(username);
+		u.setPassword(bcryptPassword);
+		
+		try {
+			usuarioService.addUsuario(u);
+			attributes.addFlashAttribute("alert", "success");
+			attributes.addFlashAttribute("msg", "Usuario actualizado con exito!");
+		} catch (DataIntegrityViolationException e) {
+			attributes.addFlashAttribute("alert", "warning");
+			attributes.addFlashAttribute("msg", "Error, Contacte con el desarrollador!");			
+			e.printStackTrace();
+		}
+		return "redirect:/admin/mostrarUsuario";	
+	}
+	
+	@GetMapping("/admin/unlockUsuario")
+	public String desbloquearUsuario(
+			@RequestParam(required = true) long id,		
+			RedirectAttributes attributes) {
+		Usuario u = usuarioService.findById(id);
+		boolean locker = u.getEnabled();
+		
+		if(locker) {
+			u.setEnabled(false);
+		} else {
+			u.setEnabled(true);
+		}
+		
+		try {
+			usuarioService.updateUsuario(u);
+			if (!locker) {
+				attributes.addFlashAttribute("alert", "success");
+				attributes.addFlashAttribute("msg", "¡¡ Usuario " + u.getUsername() + " desbloqueado !!");	
+			} else {
+				attributes.addFlashAttribute("alert", "warning");
+				attributes.addFlashAttribute("msg", "¡¡ Usuario " + u.getUsername() + " bloqueado !!");
+			}
+			
+		} catch (DataIntegrityViolationException e) {
+			attributes.addFlashAttribute("alert", "warning");
+			attributes.addFlashAttribute("msg", "Error, Contacte con el desarrollador!");			
+			e.printStackTrace();
+		}
+		return "redirect:/admin/mostrarUsuario";	
+	}
+	// -------------------------------------------------------------------------------------------------------
+	// DELETE
+	// -------------------------------------------------------------------------------------------------------
+
 	@GetMapping("/admin/borrarUsuario")
 	public String borrarUsuario(@RequestParam( required = true) long id,
 									RedirectAttributes attributes) {		
 		
-		service.deleteUsuario(id);
+		usuarioService.deleteUsuario(id);
 		attributes.addFlashAttribute("msg", "usuario borrado!");
 		
-		return "redirect:/admin/mostrarUsuarios";
+		return "redirect:/admin/mostrarUsuario";
 		
 	}
 

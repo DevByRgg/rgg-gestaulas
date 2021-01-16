@@ -47,17 +47,23 @@
 						<th scope="row" class="align-middle text-center">${usuario.id}</th>
 						<td class="align-middle text-center">${usuario.enabled}</td>
 						<td class="align-middle text-left">${usuario.username}</td>
-						
 						<td class="align-middle text-center">
-							<button type="button" class="btn cice-hover bg-cice text-white"
-								data-toggle="modal" data-target="#divBorrado"
-								onclick="configurarBorrado('${usuario.id}')">Lock</button>
+						<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/admin/unlockUsuario?id=${usuario.id}">
+								<c:choose>
+									<c:when test="${usuario.enabled == true}">
+										Lock
+									</c:when>    
+    								<c:otherwise>
+										Unlock
+									</c:otherwise>
+								</c:choose>
+							</a>
 						</td>
 						
 						<td class="align-middle text-center">
-							<button type="button" class="btn cice-hover bg-cice text-white"
-								data-toggle="modal" data-target="#divBorrado"
-								onclick="configurarBorrado('${usuario.id}')">Update</button>
+							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/admin/updateUsuario?id=${usuario.id}">
+								Update
+							</a>
 						</td>
 						
 						<td class="align-middle text-center">
