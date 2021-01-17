@@ -4,7 +4,7 @@
 		-Página independiente .jsp con una vista como la del usuario... buscador
 		y horario
 	
-	Scripts de creación de BBDD... Tener en cuenta lo de los festivos (ya creados??)
+	Scripts de creación de BBDD... Tener en cuenta lo de los festivos (ya creados??)		---
 
 	Creación de una guía de instalación: (Ver quien la hace)								---Esto lo hace Diego
 
@@ -22,8 +22,8 @@
 
 poner los mensajes alert al crear y actualizar sede, aula, equipo, equipamiento, reservas   ---pendiente 
 
-Mensajes de error CustomHandlerException... Captura los errores de festivos pero pone la ruta completa:
+Mensajes de error CustomHandlerException... Captura los errores de festivos pero pone la ruta completa:   ---Para Diego
 
 
-SI SE BORRA UN AULA..... QUE PASA CON LAS RESERVAS???? 		Para Diego
+SI SE BORRA UN AULA..... QUE PASA CON LAS RESERVAS???? 		---Para Diego
 
