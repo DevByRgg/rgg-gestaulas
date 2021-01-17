@@ -27,7 +27,7 @@
 		
 		<c:if test="${msg != null}">
 			<p class="alert border border-${alert} alert-${alert} font-weight-bold" role="alert">${msg}</p>
-		</c:if>		
+		</c:if>
 
 		<table class="table table-bordered table-hover">
 			<thead>

@@ -23,6 +23,13 @@ public interface IFestivoService {
 	 * @return Festivo encontrado
 	 */
 	public Festivo findById(int id);
+	
+	/**
+	 * Método del service para buscar un Festivo por su fecha en la BBDD
+	 * @param LocalDate fecha del Festivo
+	 * @return Festivo encontrado
+	 */
+	public Festivo findByFecha(LocalDate fecha);
 		
 	/**
 	 * Método para obtener una lista con todos los Festivos de la BBDD

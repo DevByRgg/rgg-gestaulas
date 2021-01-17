@@ -27,6 +27,11 @@ public class FestivoServiceImpl implements IFestivoService{
 	}
 
 	@Override
+	public Festivo findByFecha(LocalDate fecha) {
+		return festivoRepository.findByFecha(fecha);
+	}
+	
+	@Override
 	public List<Festivo> findAll() {
 		return festivoRepository.findAll();
 	}
@@ -57,7 +62,5 @@ public class FestivoServiceImpl implements IFestivoService{
 	}
 
 	
-
-
 	
 }
