@@ -1,6 +1,3 @@
-
-introducir el curso que hay en cada hora del cuadro consultas		--Hecho
-		
 		
 	Para el día 18 que Fernando hará la parte Android:
 		- Una funcionalidad: Selección de día y aula. Muestra la ocupación.					---Esto lo hace Rafa
@@ -10,7 +7,7 @@ introducir el curso que hay en cada hora del cuadro consultas		--Hecho
 	Scripts de creación de BBDD... Tener en cuenta lo de los festivos (ya creados??)
 
 	Creación de una guía de instalación: (Ver quien la hace)								---Esto lo hace Diego
-	Incluyendo la configuración de la seguridad. (Arturo)									---Hecho
+
 	corregir la parte de seguridad para adaptarla a lo nuestro
 	
 	//Permitir multiples equipamientos en una misma aula. Sino tenemos que indicarlo 		--- Pendiente de implementar
@@ -20,9 +17,8 @@ introducir el curso que hay en cada hora del cuadro consultas		--Hecho
 
 
 --------------------------
-poner update en usuarios	 --- HECHO
-quiero preguntar que pasa con el campo enabled y si es para bloquear users		---HECHO
-tendra que poder desbloquearse, si es cierto lock and unlock users  --- pendiente ---HECHO
+
+
 mostrar usuarios ver donde porner los permisos columna permisos?? ---pendiente
 
 al crear festivos multiples tenemos que borrar los ya creados si da error If and delete??  ---Pendiente		---Hecho
@@ -31,11 +27,7 @@ podemos sobreescribir los existentes????
 poner los mensajes alert al crear y actualizar sede, aula, equipo, equipamiento, reservas   ---pendiente 
 
 Mensajes de error CustomHandlerException... Captura los errores de festivos pero pone la ruta completa:
-	- CrearFestivo.Festivo.Nombre:Tiene que tener entre 4 y 128 caracteres.... EN ELLO. DIEGO
-	- SOLUCIONADO.... 
-	Puesto Festivos como los otros (GET)... Fallan mensajes ... Pendiente Diego
-	
-Que aparezce el nombre de usuario logueado... HECHO.... podriamos poner el roll también. ¿?¿?
-    - Colocar el método en un sitio global para que aparezca en todas las vistas de Admin HECHO DIEGO
-	
-SI SE BORRA UN AULA..... QUE PASA CON LAS RESERVAS????
+
+
+SI SE BORRA UN AULA..... QUE PASA CON LAS RESERVAS???? 		Para Diego
+
