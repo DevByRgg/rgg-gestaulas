@@ -36,6 +36,6 @@ Mensajes de error CustomHandlerException... Captura los errores de festivos pero
 	Puesto Festivos como los otros (GET)... Fallan mensajes ... Pendiente Diego
 	
 Que aparezce el nombre de usuario logueado... HECHO.... podriamos poner el roll también. ¿?¿?
-    - Colocar el método en un sitio global para que aparezca en todas las vistas de Admin PREGUNTAR A ARTURO ???
+    - Colocar el método en un sitio global para que aparezca en todas las vistas de Admin HECHO DIEGO
 	
 SI SE BORRA UN AULA..... QUE PASA CON LAS RESERVAS????

@@ -32,8 +32,15 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
 		SessionFlashMapManager flashMapManager = new SessionFlashMapManager();		
 		FlashMap flashMap = new FlashMap();		
-		String mensaje = String.format("Hola %s, has iniciado sesión con éxito!", authentication.getName());		
+		String mensaje = String.format("Hola %s, has iniciado sesión con éxito!", authentication.getName());
+		
 		flashMap.put("success", mensaje);
+		
+		//guardar nombre de usuario en la sesion para mostrarlo en cualquier jsp (username)
+		String userName = authentication.getName();
+		HttpSession miSession= request.getSession(true);
+		miSession.setAttribute("username", userName);
+		
 		
 		flashMapManager.saveOutputFlashMap(flashMap, request, response);
 		

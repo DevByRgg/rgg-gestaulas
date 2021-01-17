@@ -22,15 +22,16 @@ public class AdminHomeController {
 	@GetMapping("/admin")
 	public ModelAndView mostrarAdminPage() {
 	
-		String nombreUsuario = "";
-		
-		Authentication auth = SecurityContextHolder
-				.getContext().getAuthentication();
-		UserDetails  userDetail = (UserDetails) auth.getPrincipal();
-		nombreUsuario = userDetail.getUsername();
+		/*
+		 * String nombreUsuario = "";
+		 * 
+		 * Authentication auth = SecurityContextHolder
+		 * .getContext().getAuthentication(); UserDetails userDetail = (UserDetails)
+		 * auth.getPrincipal(); nombreUsuario = userDetail.getUsername();
+		 */
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("username", nombreUsuario);
+		//mav.addObject("username", nombreUsuario);
 		mav.setViewName("admin/admin");
 		
 		return mav;

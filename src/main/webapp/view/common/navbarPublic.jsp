@@ -21,7 +21,7 @@
 				0 1-.451-.285A3 3 0 0 0 4 5z" />
   			<path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />  			
 		</svg>
-		Logout	
+		Logout (Usuario: ${username})
 	</a>
 
 </nav>
