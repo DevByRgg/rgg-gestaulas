@@ -96,6 +96,15 @@
 						<img class="card-img-top" src="/aulas/images/buscar_800x600.png"  height="200" alt="Card image cap">
 					</a>				
 				</div>
+							
+				<div class="card">
+					<div class="card-header bg-cice text-white">
+						<h5 class="card-title">Consultar</h5>
+					</div>
+					<a title="Consultar aulas disponibles" href="/aulas/consultas/consultarAulasDisponibles">
+						<img class="card-img-top" src="/aulas/images/consulta_800x600.png"  height="200" alt="Card image cap">
+					</a>
+				</div>
 				
 				<div class="card">
 					<div class="card-header bg-cice text-white">
@@ -103,15 +112,6 @@
 					</div>
 					<a title="Crear festivo" href="/aulas/mantenimiento/crearFestivo">
 						<img class="card-img-top" src="/aulas/images/festivo_800x600.png"  height="200" alt="Card image cap">
-					</a>
-				</div>
-				
-				<div class="card">
-					<div class="card-header bg-cice text-white">
-						<h5 class="card-title">Consultar</h5>
-					</div>
-					<a title="Consultar aulas disponibles" href="/aulas/consultas/consultarAulasDisponibles">
-						<img class="card-img-top" src="/aulas/images/consulta_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
 			
