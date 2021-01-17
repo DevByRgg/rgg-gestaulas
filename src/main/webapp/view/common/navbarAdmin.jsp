@@ -25,8 +25,8 @@
 			<li class="nav-item dropdown ml-5 mr-2">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sede</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearSede">Crear</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarSede">Listado</a>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearSede">Crear Sede</a>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarSede">Listado Sede</a>
                 </div>
             </li>
 
