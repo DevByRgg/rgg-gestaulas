@@ -1,12 +1,8 @@
 package com.cice.gestaulas.exceptions;
 
-import javax.naming.CommunicationException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
-import java.net.ConnectException;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -19,23 +15,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class CustomHandlerException extends ResponseEntityExceptionHandler {
-
-	@ExceptionHandler(ReservaOcupadaException.class)
-	public ModelAndView gestionarErrorReservaOcupada(ReservaOcupadaException ex) {
-		System.out.println("LLEGA A EXCEPTION HANDLER...");
-		final String TITULO_ERROR = "Reserva";
-		
-		Map<String, String> msnError = new HashMap<String, String>();
-		msnError.put("Reserva", "La hora que intentas reservar esta ya ocupada");
-		msnError.put("Error", ex.getMessage());
-		msnError.put("Problema", "Ese aula ya tiene un cuso previsto para esa hora");
-
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("msnError", msnError);
-		mav.addObject("titulo", TITULO_ERROR);
-		mav.setViewName("error");
-		return mav;
-	}
 
 	/**
 	 * Capturar y gestionar las excepciones de JDBCConnectionException de la base de
@@ -61,6 +40,7 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler {
 		return mav;
 	}
 	
+	
 	@ExceptionHandler(org.hibernate.exception.ConstraintViolationException.class)
 	public ModelAndView errorCadenaDeBorrado(org.hibernate.exception.ConstraintViolationException ex) {
 		System.out.println("EXCEPTION HANDLER CASCADDAAAAAAAAAAA");
@@ -85,25 +65,7 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler {
 		return mav;
 	}
 	
-	/*
-	 * @ExceptionHandler(org.hibernate.exception.ConstraintViolationException.class)
-	 * public ModelAndView
-	 * errorCadenaDeBorrado(org.hibernate.exception.ConstraintViolationException ex)
-	 * { System.out.
-	 * println("EXCEPTION HANDLER SQLIntegrityConstraintViolationException"); final
-	 * String TITULO_ERROR = "No se puede eliminar porque contiene datos";
-	 * 
-	 * String mensaje = ex.getMessage();
-	 * 
-	 * Map<String, String> msnError = new HashMap<String, String>();
-	 * msnError.put("mensaje", mensaje);
-	 * 
-	 * 
-	 * ModelAndView mav = new ModelAndView(); mav.addObject("msnError", msnError);
-	 * mav.addObject("titulo", TITULO_ERROR); mav.setViewName("error"); return mav;
-	 * }
-	 */
-
+	
 	/**
 	 * Capturar y gestionar las excepciones de constraint violation de la base de
 	 * datos.
@@ -132,6 +94,32 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler {
 		return mav;
 	}
 
+	
+	/**
+	 * Capturar y gestionar las excepciones de ReservaOcupadaException de la base de
+	 * datos.
+	 * 
+	 * @param ex del tipo ReservaOcupadaException
+	 * @return ModelAndView para mostrar el error
+	 */
+	@ExceptionHandler(ReservaOcupadaException.class)
+	public ModelAndView gestionarErrorReservaOcupada(ReservaOcupadaException ex) {
+		System.out.println("LLEGA A EXCEPTION HANDLER...");
+		final String TITULO_ERROR = "Reserva";
+		
+		Map<String, String> msnError = new HashMap<String, String>();
+		msnError.put("Reserva", "La hora que intentas reservar esta ya ocupada");
+		msnError.put("Error", ex.getMessage());
+		msnError.put("Problema", "Ese aula ya tiene un cuso previsto para esa hora");
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msnError", msnError);
+		mav.addObject("titulo", TITULO_ERROR);
+		mav.setViewName("error");
+		return mav;
+	}
+	
+	
 	/**
 	 * Capturar y gestionar FestivoExisteException. Para que no se pueda grabar
 	 * festivos con la misma fecha
@@ -156,4 +144,6 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler {
 		return mav;
 	}
 
+	
+	
 }
