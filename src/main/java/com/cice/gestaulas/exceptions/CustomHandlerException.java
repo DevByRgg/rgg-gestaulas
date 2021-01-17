@@ -5,6 +5,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
 import java.net.ConnectException;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -83,6 +85,49 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler {
 		mav.setViewName("error");
 		return mav;
 	}
+	
+	@ExceptionHandler(org.hibernate.exception.ConstraintViolationException.class)
+	public ModelAndView errorCadenaDeBorrado(org.hibernate.exception.ConstraintViolationException ex) {
+		System.out.println("EXCEPTION HANDLER CASCADDAAAAAAAAAAA");
+		
+		System.out.println("getSQL-----------------------------------" + ex.getSQL());		
+		System.out.println("getSQLState---------------------------- " + ex.getSQLState());		
+		System.out.println("getconstrain nama---------------------------- " + ex.getConstraintName());		
+		final String TITULO_ERROR = "Borrado cascada";
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + ex.getSQLException().getClass().toString());
+		String mensaje = ex.getSQLException().getClass().toString();;
+		
+		Map<String, String> msnError = new HashMap<String, String>();
+		
+		msnError.put("Bbdd", "Fallo por borrado en cascada no permitido");
+		msnError.put("Error", mensaje);
+		msnError.put("Problema", "Estas intentando borrar un objeto con datos asociados");
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msnError", msnError);
+		mav.addObject("titulo", TITULO_ERROR);
+		mav.setViewName("error");
+		return mav;
+	}
+	
+	/*
+	 * @ExceptionHandler(org.hibernate.exception.ConstraintViolationException.class)
+	 * public ModelAndView
+	 * errorCadenaDeBorrado(org.hibernate.exception.ConstraintViolationException ex)
+	 * { System.out.
+	 * println("EXCEPTION HANDLER SQLIntegrityConstraintViolationException"); final
+	 * String TITULO_ERROR = "No se puede eliminar porque contiene datos";
+	 * 
+	 * String mensaje = ex.getMessage();
+	 * 
+	 * Map<String, String> msnError = new HashMap<String, String>();
+	 * msnError.put("mensaje", mensaje);
+	 * 
+	 * 
+	 * ModelAndView mav = new ModelAndView(); mav.addObject("msnError", msnError);
+	 * mav.addObject("titulo", TITULO_ERROR); mav.setViewName("error"); return mav;
+	 * }
+	 */
 
 	/**
 	 * Capturar y gestionar las excepciones de constraint violation de la base de
