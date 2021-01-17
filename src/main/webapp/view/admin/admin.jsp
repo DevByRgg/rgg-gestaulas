@@ -71,7 +71,7 @@
 		</div>
 		
 			
-		<h2 class="pt-3">
+		<h2 class="pt-5">
 			Reservation <span class="badge text-white bg-cice">ZONE</span>
 		</h2>
 		
