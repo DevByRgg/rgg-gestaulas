@@ -8,6 +8,10 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
 /**
  * Clase con utilidades para la aplicación
  * 
@@ -15,12 +19,7 @@ import javax.validation.ValidatorFactory;
  *
  */
 public class Utilidades {
-	
-	
-	// -------------------------------------------------------------------------------------------------------
-	// VALIDACIONES
-	// -------------------------------------------------------------------------------------------------------
-	
+		
 	/**
 	 * Método para validar una Entidad
 	 * 
@@ -35,6 +34,21 @@ public class Utilidades {
 		if (!violations.isEmpty()) {
 			System.out.println("ERRORES EN LA VALIDACIÓN");
 			throw new ConstraintViolationException(violations);
-		}
+		}	
+	}
+	
+	/**
+	 * Metodo para obtener el nombre del usuario logueado
+	 * @return
+	 */
+	public String getUserNameAuthenticated() {
+		
+		  String nombreUsuario = "";
+		  
+		  Authentication auth = SecurityContextHolder
+		  .getContext().getAuthentication(); UserDetails userDetail = (UserDetails)
+		  auth.getPrincipal(); nombreUsuario = userDetail.getUsername();
+		 
+		return nombreUsuario;
 	}
 }
