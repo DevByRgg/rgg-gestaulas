@@ -31,7 +31,7 @@ public class Aula {
 	 * Para indicar la capacidad mínima de las aulas
 	 */
 	@Transient
-	final int MIN_CAPACIDAD_AULA = 1;
+	final int MIN_CAPACIDAD_AULA = 2;
 	
 	/**
 	 * Para indicar la capacidad máxima de las aulas
