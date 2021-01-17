@@ -34,9 +34,9 @@
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aula</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearAula">Crear Aula</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarAula">Listado Aula</a>
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearTipoAula">Crear Tipo Aula</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarAula">Listado Aula</a>
                     <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarTipoAula">Listado Tipo Aula</a>
                 </div>
             </li>
@@ -62,6 +62,7 @@
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/crearReserva">Reservar Dia</a>
                     <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/buscarReserva">Reservar Curso</a>
+                    <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/borrarCursoReserva">Borrar Dia / Curso</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/mostrarReserva">Listado Reserva</a>
 				</div>

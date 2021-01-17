@@ -20,45 +20,20 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class CustomHandlerException extends ResponseEntityExceptionHandler {
 
-	// Parece no ser necesario probar a quitarlo
-	@ExceptionHandler(CommunicationException.class)
-	public ModelAndView CommunicationsException(CommunicationException ex) {
-		System.out.println("EXCEPTION HANDLER CommunicationException EXCEPTION");
-		String mensaje = "Fallo en la bbdd, compruebe si esta encendida";
-
-		/*
-		 * Esto no funciona String mensaje = ex.getMessage() != null ?
-		 * ex.getMessage().split(":")[0] : "Constraint en BBDD no admitido";
-		 */
-
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("error");
-		mav.addObject("mensajesError", mensaje);
-		mav.addObject("titulo", "Datos no válidos");
-		return mav;
-	}
-
-	// Parece no ser necesario probar a quitarlo
-	@ExceptionHandler(ConnectException.class)
-	public ModelAndView ConnectException(ConnectException ex) {
-		System.out.println("EXCEPTION HANDLER ConnectException EXCEPTION");
-		String mensaje = "Fallo en la bbdd!! Compruebe si esta encendida";
-
-		System.out.println("--" + ex.fillInStackTrace());
-		System.out.println("--" + ex.getLocalizedMessage());
-		System.out.println("--" + ex.getMessage());
-		System.out.println("--" + ex.fillInStackTrace());
-		System.out.println("--" + ex.getCause());
-
-		/*
-		 * Esto no funciona String mensaje = ex.getMessage() != null ?
-		 * ex.getMessage().split(":")[0] : "Constraint en BBDD no admitido";
-		 */
+	@ExceptionHandler(ReservaOcupadaException.class)
+	public ModelAndView gestionarErrorReservaOcupada(ReservaOcupadaException ex) {
+		System.out.println("LLEGA A EXCEPTION HANDLER...");
+		final String TITULO_ERROR = "Reserva";
+		
+		Map<String, String> msnError = new HashMap<String, String>();
+		msnError.put("Reserva", "La hora que intentas reservar esta ya ocupada");
+		msnError.put("Error", ex.getMessage());
+		msnError.put("Problema", "Ese aula ya tiene un cuso previsto para esa hora");
 
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("msnError", msnError);
+		mav.addObject("titulo", TITULO_ERROR);
 		mav.setViewName("error");
-		mav.addObject("mensajesError", mensaje);
-		mav.addObject("titulo", "Datos no válidos");
 		return mav;
 	}
 
@@ -73,8 +48,8 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler {
 	public ModelAndView JDBCConnectionException(JDBCConnectionException ex) {
 		System.out.println("EXCEPTION HANDLER JDBCConnectionException EXCEPTION");
 		final String TITULO_ERROR = "Bbdd";
+		
 		Map<String, String> msnError = new HashMap<String, String>();
-
 		msnError.put("Bbdd", "Communications link failure");
 		msnError.put("Error", ex.getMessage());
 		msnError.put("Problema", "Es posible que la bbdd este apagada");
