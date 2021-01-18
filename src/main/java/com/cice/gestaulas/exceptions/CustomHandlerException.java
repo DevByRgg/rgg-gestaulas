@@ -66,6 +66,8 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler {
 			msnError.put("Error", "Tipo de aula no borrado porque aun existen aulas que lo contienen");
 		} else if(ex.getMostSpecificCause().toString().contains("reservas")) {
 			msnError.put("Error", "Aula no borrada porque existen reservas asociadas a ella");
+		} else if(ex.getMostSpecificCause().toString().contains("unicos")) {
+			msnError.put("Error", "En este aula esa fecha esta ya reservada para otro curso");	
 		} else {	
 			msnError.put("Error", "Fatal Error! Contacte con el desarrollador");
 		}
