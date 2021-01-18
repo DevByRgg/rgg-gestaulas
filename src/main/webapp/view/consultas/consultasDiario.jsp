@@ -25,65 +25,69 @@
 		<h3 class="pt-2">Consultar <span class="badge text-white bg-cice">DIARIO</span></h3>
 		
 		<!-- Aqui  va el formulario para los filtros -->
-		<form class="form-group" action="filtrarAulasDisponibles" method="GET">
+		<div class="container-md w-100">	
+			<form class="form-group" action="horarioPortatil" method="GET">
 			
-			<div class="form-group mt-2">
-				<label class="font-weight-bold mr-3" for="fecha">Fecha</label>
-				<input type="date" class="form-control-sm mr-4" name="fecha" id="fecha" required>
-			</div>
+				<div class="form-group mt-2">
+					<label class="font-weight-bold mr-3" for="fecha">Fecha</label>
+					<input type="date" class="form-control-sm mr-4" name="fecha" id="fecha" value="${fechaSel}" required>
+				</div>
 			
-			<div class="form-group float-left">
-				<label class="font-weight-bold mr-3" for="aula">Aula</label>
-	  			<select	class="form-control-sm mr-4" id="aula" name="aula" required>
+				<div class="form-group float-left">
+					<label class="font-weight-bold mr-3" for="aula">Aula</label>
+	  				<select	class="form-control-sm mr-4" id="aula" name="aula" required>
 					<option value="-1" disabled></option>
 				<c:forEach items="${aulas}" var="aula">
-					<option value="${aula.id}">${aula.nombre}</option>
+					<c:choose>
+						<c:when test="${aula.id == aulaSel}">
+							<option value="${aula.id}" selected>${aula.nombre}</option>
+						</c:when>    
+	    				<c:otherwise>
+							<option value="${aula.id}">${aula.nombre}</option>
+						</c:otherwise>
+					</c:choose>		
 				</c:forEach>
 				</select>
-	  		</div>
+	  			</div>
 	  		
-	  		<div class="form-group float-right">
-				<button type="submit" class="btn btn-sm font-weight-bold text-white cice-hover bg-cice float-right mr-5">Filtrar</button>
-			</div>
+	  			<div class="form-group float-right">
+					<button type="submit" class="btn btn-sm font-weight-bold text-white cice-hover bg-cice float-right">Filtrar</button>
+				</div>
 	  		
-		</form>
+			</form>
+		</div>
+		
 		
 		<!-- Aqui  va la tabla -->
-			<div class="container-md w-100">	
+			<div class="container-md w-75">	
 				<table class="table table-sm table-striped">
   					<thead class="bg-cice text-white">
     					<tr>
-      						<th scope="col">Hora</th>
-      						<th scope="col">Fecha</th>
+						<c:if test="${fechaSel != null}">
+      						<th scope="col" class="align-middle text-center">Hora</th>
+      						<th scope="col" class="align-middle text-center">${diaReserva}</th>
+						</c:if>
       					</tr>
 					</thead>
   					
   					<tbody>
-    				<c:forEach items="${horasDisponibles}" var="horaDisponible">
+    				<c:forEach items="${objetos}" var="objeto">
 						<tr>
-	      					<td class="align-middle text-left">
-								<label class="form-check-label" for="${horaDisponible.key}">
-    								${horaDisponible.key}
-								</label>
-							</td>
+	      					<th scope="row" class="align-middle text-center">
+								${objeto.hora}
+							</th>
 							
-							<td class="align-middle text-left">
-								<label class="form-check-label" for="${horaDisponible.value}">
-    								${horaDisponible.value}
-    							</label>
-    							
-    							<c:choose>
-									<c:when test="${horaDisponible.value == 1}">
-										<td class="align-middle text-center bg-cice-fail"></td>
-									</c:when>
-									<c:when test="${horaDisponible.value == 2}">
-										<td class="align-middle text-center bg-cice-ok"></td>
-									</c:when>
-									<c:otherwise>
-										<td class="align-middle text-center bg-secondary"></td>
-									</c:otherwise>
-								</c:choose>
-    						</td>
+							<c:choose>
+								<c:when test="${objeto.color == 1}">
+									<td class="align-middle text-center bg-cice-fail" title="${objeto.nombreCurso}"></td>
+								</c:when>
+								<c:when test="${objeto.color == 2}">
+									<td class="align-middle text-center bg-cice-ok" title="${objeto.nombreCurso}"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="align-middle text-center bg-secondary" title="${objeto.nombreCurso}"></td>
+								</c:otherwise>
+							</c:choose>
     					</tr>	
 					</c:forEach>
 					</tbody>
