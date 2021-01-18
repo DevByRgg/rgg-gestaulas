@@ -27,3 +27,19 @@ Mensajes de error CustomHandlerException... Captura los errores de festivos pero
 
 SI SE BORRA UN AULA..... QUE PASA CON LAS RESERVAS???? 		---Para Diego
 
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+NUEVOS METODOS
+borrar dia, 
+borrar curso
+Validar que la reserva no sea un dia festivo
+Validar los festivos que no haya ninguna reserva ese dia
+
+
+
+
+
+
+
+
+

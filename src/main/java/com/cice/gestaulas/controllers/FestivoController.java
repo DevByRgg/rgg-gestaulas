@@ -15,8 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cice.gestaulas.entities.auxiliar.Festivo;
 import com.cice.gestaulas.exceptions.FestivoExisteException;
+import com.cice.gestaulas.exceptions.ReservaOcupadaException;
 import com.cice.gestaulas.services.interfaces.IFestivoService;
 import com.cice.gestaulas.utils.Utilidades;
+
 
 
 /**
@@ -25,8 +27,8 @@ import com.cice.gestaulas.utils.Utilidades;
  */
 @Secured("ROLE_ADMIN")
 @Controller
-public class FestivoController {
-
+public class FestivoController extends FestivoAuxiliarController{
+	
 	@Autowired
 	IFestivoService festivoService;
 
@@ -53,6 +55,7 @@ public class FestivoController {
 	* @param fecha  del festivo
 	* @return
 	* @throws FestivoExisteException 
+	* @throws ReservaOcupadaException 
 	*/
 	@GetMapping("/mantenimiento/crearFestivoControl") public String crearFestivo(
 			@RequestParam (name = "nombre", required = true) String nombre,
@@ -60,21 +63,23 @@ public class FestivoController {
 			RedirectAttributes attributes) throws FestivoExisteException {
 		  
 		LocalDate fechaFestivo = LocalDate.parse(fecha);
-		  
+		
+		validarReservas(fechaFestivo);
+		
 		Festivo f = new Festivo(0, nombre, fechaFestivo); 
 
 		// comprobar si existe
 		if (festivoService.findAllFechas().contains(f.getFecha())) {
 			System.out.println("LA FECHA YA EXISTE");
 			throw new FestivoExisteException("La fecha ya tiene un festivo asignado");
-		} else {
-			System.out.println("CREAR FESTIVO ---- " + f.getNombre());
-			festivoService.create(f);
-			attributes.addFlashAttribute("alert", "success");
-			attributes.addFlashAttribute("msg", "El festivo " + f.getNombre() + " creado con exito!");
-			
-			return "redirect:mostrarFestivo";
-		}
+		} 
+		
+		System.out.println("CREAR FESTIVO ---- " + f.getNombre());
+		festivoService.create(f);
+		
+		String mensaje = f.getNombre() + " creado con exito!"; 
+		Utilidades.atributos(1, mensaje, attributes);
+		return "redirect:mostrarFestivo";
 	}
 
 	/**
@@ -116,6 +121,10 @@ public class FestivoController {
 			throw new FestivoExisteException("La fecha fin no puede ser anterior a la fecha inicio");	
 		}
 		
+		for (int i = 0; i < numDias; i++) {
+			LocalDate fechaVal = ldInicio.plusDays(i);
+			validarReservas(fechaVal);
+		}
 		//Graba todas las fechas anteriores al error y eso se tiene que evitar
 		for (int i = 0; i < numDias; i++) {
 			LocalDate fecha = ldInicio.plusDays(i);
@@ -129,8 +138,8 @@ public class FestivoController {
 			festivoService.create(f);
 		}	
 		
-		attributes.addFlashAttribute("alert", "success");
-		attributes.addFlashAttribute("msg", "Nombre del festivo: " + nombre + " - Numero de festivos: " + numDias);
+		String mensaje = "Creados " + numDias + " festivos con exito!"; 
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarFestivo";
 	}
 	
@@ -176,7 +185,6 @@ public class FestivoController {
 
 		mav.addObject("festivo", f);
 		mav.setViewName("/mantenimiento/updateFestivo");
-
 		return mav;
 	}
 
@@ -192,27 +200,27 @@ public class FestivoController {
 	@GetMapping("/mantenimiento/updateFestivoControl")
 	public String updateFestivo(
 			@RequestParam(name = "id") int id, @RequestParam(name = "nombre") String nombre,
-			@RequestParam(name = "fecha") String fecha) throws FestivoExisteException {
+			@RequestParam(name = "fecha") String fecha,
+			RedirectAttributes attributes) throws FestivoExisteException {
 		LocalDate fechaFestivo = LocalDate.parse(fecha);
 		Festivo f = new Festivo(id, nombre, fechaFestivo);
 		
+		validarReservas(fechaFestivo);
+		
 		//Comprobar si es el mismo festivo
-		if (festivoService.findById(id).getId() == f.getId()) {
-			System.out.println("ES LA MISMA");
-			festivoService.update(f);
-			return "redirect:mostrarFestivo";
+		if (festivoService.findById(id).equals(f)) {
+			String mensaje = "No se ha modificado ningun dato!"; 
+			Utilidades.atributos(2, mensaje, attributes);
+		} else if (!festivoService.findById(id).getNombre().equals(f.getNombre())) {
+			String mensaje = "Se ha actualizado el nombre!"; 
+			Utilidades.atributos(1, mensaje, attributes);
+		} else if (!festivoService.findById(id).getFecha().equals(f.getFecha())) {
+			String mensaje = "Se ha actualizado la fecha!"; 
+			Utilidades.atributos(1, mensaje, attributes);
 		}
-		//Comprobar si ese festivo ya existe
-		if (festivoService.findAllFechas().contains(f.getFecha())) {
-			System.out.println("LA FECHA YA EXISTE");
-			throw new FestivoExisteException("La fecha ya tiene un festivo asignado. Puede modificarlo");
-		} else {
-			System.out.println("CREAR FESTIVO ---- " + f.getNombre());
-			Utilidades.validar(f);
-			festivoService.update(f);
-			return "redirect:mostrarFestivo";
-		}
-
+		
+		festivoService.update(f);
+		return "redirect:mostrarFestivo";
 	}
 
 	// -------------------------------------------------------------------------------------------------------
@@ -226,49 +234,14 @@ public class FestivoController {
 	 * @return "redirect:mostrarFestivo". Mostrar todos los festivos
 	 */
 	@GetMapping("mantenimiento/borrarFestivo")
-	public String borrarFestivo(@RequestParam(name = "id", required = true) int id) {
-
+	public String borrarFestivo(@RequestParam(name = "id", required = true) int id,
+			RedirectAttributes attributes){
 		festivoService.delete(id);
 
+		String mensaje = "El festivo se ha borrado con exito!"; 
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarFestivo";
 	}
+	
 
-	// ----------------------------------------------------------------------------------------------------------
-	// MÉTODOS PARA MANEJO DE EXCEPCIONES
-	////// EXCEPTION_HANDLER ///////////////////////
-	// ----------------------------------------------------------------------------------------------------------
-
-	/*
-	 * @ExceptionHandler(MethodArgumentNotValidException.class) public Map<String,
-	 * String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-	 * Map<String, String> errors = new HashMap<>();
-	 * ex.getBindingResult().getAllErrors().forEach((error) -> { String fieldName =
-	 * ((FieldError) error).getField(); String errorMessage =
-	 * error.getDefaultMessage(); errors.put(fieldName, errorMessage); }); return
-	 * errors; }
-	 */
-
-		
-	/**
-	 * Capturar y gestionar FestivoExisteException. Para que no se pueda grabar
-	 * festivos con la misma fecha
-	 * 
-	 * @param ex
-	 * @return ModelAndView a la página de error.jsp
-	 */
-	/*
-	 * @ExceptionHandler(FestivoExisteException.class) public ModelAndView
-	 * gestionarErrorReservaOcupada(FestivoExisteException ex) {
-	 * System.out.println("LLEGA A FESTIVO EXISTE HANDLER..localizedMessage" +
-	 * ex.getLocalizedMessage());
-	 * System.out.println("LLEGA A FESTIVO EXISTE HANDLER..ex.getMessage" +
-	 * ex.getMessage()); ModelAndView mav = new ModelAndView();
-	 * mav.setViewName("error");
-	 * 
-	 * // introducimos el mensaje que queremos que se muestre en error.jsp
-	 * mav.addObject("mensaje", ex.getMessage()); mav.addObject("titulo",
-	 * "Festivo no válido");
-	 * 
-	 * return mav; }
-	 */
 }

@@ -31,7 +31,7 @@
 
 		<table class="table table-bordered table-hover">
 			<thead>
-				<tr tr class="thead text-white bg-cice">
+				<tr class="thead text-white bg-cice">
 					<th class="align-middle text-center" scope="col">Id</th>
 					<th class="align-middle text-center" scope="col">Activo</th>
 					<th class="align-middle text-left" scope="col">Usuario</th>

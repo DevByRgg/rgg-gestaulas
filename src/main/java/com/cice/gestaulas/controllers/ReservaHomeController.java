@@ -3,28 +3,33 @@ package com.cice.gestaulas.controllers;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cice.gestaulas.entities.Aula;
 import com.cice.gestaulas.entities.Reserva;
 import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.entities.auxiliar.ObjetoPresentacion;
 import com.cice.gestaulas.entities.auxiliar.TipoAula;
+import com.cice.gestaulas.exceptions.FestivoExisteException;
 import com.cice.gestaulas.exceptions.ReservaOcupadaException;
 import com.cice.gestaulas.services.interfaces.IAulaService;
 import com.cice.gestaulas.services.interfaces.IReservaService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
+import com.cice.gestaulas.utils.Utilidades;
 
 @Secured("ROLE_USER")
 @Controller
@@ -76,10 +81,13 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 			@RequestParam(name = "tar19", defaultValue = "false", required = true) boolean tar19,
 			@RequestParam(name = "tar20", defaultValue = "false", required = true) boolean tar20,
 			@RequestParam(name = "tar21", defaultValue = "false", required = true) boolean tar21,
-			@RequestParam(name = "tar22", defaultValue = "false", required = true) boolean tar22) throws ReservaOcupadaException {
+			@RequestParam(name = "tar22", defaultValue = "false", required = true) boolean tar22,
+			RedirectAttributes attributes) throws FestivoExisteException {
 
 		LocalDate dia = LocalDate.parse(diaReserva);
-
+		
+		validarFestivos(dia);
+		
 		List<LocalTime> listaHoras = generarHorasLectivas(man09, man10, man11, man12, man13, man14, tar17, tar18, tar19,
 				tar20, tar21, tar22);
 
@@ -90,14 +98,11 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 
 		List<Reserva> listaReservas = generarReservas(nombreCurso, idAula, listaFechasHoras);
 
-		//comprobar si se pueden reservar
-		if (comprobarReservasLibres(listaReservas)) {
-			hacerReservas(listaReservas);
-		} else {
-			System.out.println("LA RESERVA YA EXISTE");
-			throw new ReservaOcupadaException("No se puede reservar, ya reservada");
-		}
+		//Error capturado por lo que no tenemos que meter throw ni try catch
+		hacerReservas(listaReservas);
 
+		String mensaje = "Reserva creada con exito!"; 
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarReserva";
 	}
 
@@ -267,27 +272,26 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 			@RequestParam(name = "tar21", defaultValue = "false", required = true) boolean tar21,
 			@RequestParam(name = "tar22", defaultValue = "false", required = true) boolean tar22,
 			@RequestParam(name = "tipoAula", defaultValue = "0", required = true) int tipoAula,
-			@RequestParam(name = "capacidadAula", required = true) int capacidadAula) throws ReservaOcupadaException {
+			@RequestParam(name = "capacidadAula", required = true) int capacidadAula) throws FestivoExisteException {
 
 		List<LocalTime> listaHorasLectivas = generarHorasLectivas(man09, man10, man11, man12, man13, man14, tar17,
 				tar18, tar19, tar20, tar21, tar22);
 		List<Boolean> diasLectivos = listaDiasBoleano(lunes, martes, miercoles, jueves, viernes, sabado);
 
+		
 		List<LocalDateTime> listaFechasHoras = generarNecesidades(fechaInicio, cantidadHorasCurso, listaHorasLectivas,
 				diasLectivos);
 
+		for (int i = 0; i < listaFechasHoras.size(); i++) {
+			validarFestivos(listaFechasHoras.get(i).toLocalDate());
+		}
 		List<Reserva> listaReservas = generarReservas(nombreCurso, aulaSeleccionada, listaFechasHoras);
 		int numeroReservas = listaFechasHoras.size();
 		LocalDate fechaFinal = listaFechasHoras.get(listaFechasHoras.size() - 1).toLocalDate();
 
-		//comprobar si se pueden reservar
-				if (comprobarReservasLibres(listaReservas)) {
-					hacerReservas(listaReservas);
-				} else {
-					System.out.println("LA RESERVA YA EXISTE");
-					throw new ReservaOcupadaException("No se puede reservar, ya reservada");
-				}
 		
+		//comprobar si se pueden reservar
+		hacerReservas(listaReservas);
 		
 		//hacerReservas(listaReservas);
 
@@ -351,27 +355,26 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 			@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
 			@RequestParam(name = "aulaReserva", required = true) int idAula,
 			@RequestParam(name = "diaReserva", required = true) String diaReserva,
-			@RequestParam(name = "hora", required = true) int horaReserva) throws ReservaOcupadaException {
+			@RequestParam(name = "hora", required = true) int horaReserva,
+			RedirectAttributes attributes) throws FestivoExisteException {
 
 		LocalDate dia = LocalDate.parse(diaReserva);
 		LocalTime hora = LocalTime.of(horaReserva, 0);
+		
+		validarFestivos(dia);
 
 		LocalDateTime fechaReserva = LocalDateTime.of(dia, hora);
 
 		Reserva r = new Reserva(id, nombreCurso, idAula, fechaReserva);
 		
-		// comprobar que no se ha cambiado nada
 		if (reservaService.findById(id).equals(r)) {
-			System.out.println("NO SE HA MODIFICADO NADA");
-			// comprobar si existe
-		} else if (null == reservaService.findByIdAulaAndFechaReserva(idAula, fechaReserva)) {
-			System.out.println("LA RESERVA ESTÁ LIBRE... ACTUALIZADO");
-			reservaService.update(r);
+			String mensaje = "No se ha modificado ningun dato!"; 
+			Utilidades.atributos(2, mensaje, attributes);
 		} else {
-			System.out.println("LA RESERVA YA EXISTE");
-			throw new ReservaOcupadaException("No se puede reservar, ya reservada");
+			reservaService.update(r);
+			String mensaje = "Se ha actualizado la reserva con exito!"; 
+			Utilidades.atributos(1, mensaje, attributes);
 		}
-
 		return "redirect:mostrarReserva";
 	}
 
@@ -380,13 +383,95 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	// -------------------------------------------------------------------------------------------------------
 
 	@GetMapping("reservas/borrarReserva")
-	public String borrarReserva(@RequestParam(required = true) int id) {
+	public String borrarReserva(
+			@RequestParam(required = true) int id,
+			RedirectAttributes attributes) {
+		
 		reservaService.delete(id);
-
+		String mensaje = "La reserva ha sido borrada!"; 
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarReserva";
+	}
+
+	
+	@GetMapping("reservas/borrarCursoReserva")
+	public ModelAndView borrarDiaCursoReserva() {
+		ModelAndView mav = new ModelAndView();
+		List<Aula> listaAulas = aulaService.findAll();
+		List<String> listaCursos = reservaService.findAllListaCursos();
+		
+		mav.addObject("cursos", listaCursos);
+		mav.addObject("aulas", listaAulas);
+		mav.setViewName("/reservas/borrarDiaCurso");
+		return mav;
+	}
+	
+	
+	@GetMapping("reservas/borrarDiaControl")	
+	public String borrarDiaReserva(
+			@RequestParam(name = "fechaDia", required = true) String fecha,
+			@RequestParam(name = "idAula", required = true) int idAula,
+			RedirectAttributes attributes) {
+		LocalDate fechaReserva = LocalDate.parse(fecha);
+		List<Reserva> listaReservas = new ArrayList<Reserva>();
+		List<Reserva> listaBorrar = new ArrayList<Reserva>();
+		
+		if (idAula == -1) {
+			listaReservas = reservaService.findAll();
+		} else {
+			listaReservas = reservaService.findAllByAula(idAula);
+		}
+		
+		for (int i = 0; i < listaReservas.size(); i++) {
+			LocalDate f = listaReservas.get(i).getFechaReserva().toLocalDate();
+			if(f.equals(fechaReserva)) {
+				listaBorrar.add(listaReservas.get(i));	
+			}
+		}
+
+		for (int i = 0; i < listaBorrar.size(); i++) {
+			reservaService.delete(listaBorrar.get(i));
+		}
+		
+		String mensaje = listaBorrar.size() + " reservas han sido borradas!"; 
+		Utilidades.atributos(1, mensaje, attributes);
+		return "redirect:mostrarReserva";	
+	}
+	
+	
+	@GetMapping("reservas/borrarCursoControl")	
+	public String borrarCursoReserva(
+			@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
+			RedirectAttributes attributes) {
+		List<Reserva> listaReservas = reservaService.findAllByCurso(nombreCurso);
+		
+		for (int i = 0; i < listaReservas.size(); i++) {
+			reservaService.delete(listaReservas.get(i));
+		}
+		
+		String mensaje = listaReservas.size() + " reservas han sido borradas!"; 
+		Utilidades.atributos(1, mensaje, attributes);
+		return "redirect:mostrarReserva";		
 	}
 
 	
 	
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}	

@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cice.gestaulas.entities.auxiliar.TipoAula;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
+import com.cice.gestaulas.utils.Utilidades;
 
 @Secured("ROLE_ADMIN")
 @Controller
@@ -45,12 +47,13 @@ public class TipoAulaController {
 	 */
 	@GetMapping("/admin/crearTipoAulaControl")
 	public String crearTipoAulaControl(
-			@RequestParam (name = "nombre", required = true) String nombre) {
-		
+			@RequestParam (name = "nombre", required = true) String nombre,
+			RedirectAttributes attributes) {
 		TipoAula t = new TipoAula(0, nombre);
 		
 		tipoAulaService.create(t);
-		
+		String mensaje = "TipoAula creada con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarTipoAula";
 	}
 	
@@ -104,12 +107,14 @@ public class TipoAulaController {
 	@GetMapping("/admin/updateTipoAulaControl")
 	public String updateTipoAula(
 			@RequestParam (name = "id", required = true) int id,
-			@RequestParam (name = "nombre", required = true) String nombre ) {
+			@RequestParam (name = "nombre", required = true) String nombre,
+			RedirectAttributes attributes) {
 		
 		TipoAula t = new TipoAula(id, nombre);
 		
 		tipoAulaService.create(t);
-		
+		String mensaje = "TipoAula actualizada con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarTipoAula";
 	}
 	
@@ -125,9 +130,12 @@ public class TipoAulaController {
 	 */
 	@GetMapping("admin/borrarTipoAula")
 	public String borrarTipoAula(
-			@RequestParam(required = true) int id){
+			@RequestParam(required = true) int id,
+			RedirectAttributes attributes) {
 		tipoAulaService.delete(id);
 		
+		String mensaje = "TipoAula borrada con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarTipoAula";
 	}
 	

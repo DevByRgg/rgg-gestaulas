@@ -11,6 +11,7 @@ import javax.validation.ValidatorFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Clase con utilidades para la aplicación
@@ -50,5 +51,18 @@ public class Utilidades {
 		  auth.getPrincipal(); nombreUsuario = userDetail.getUsername();
 		 
 		return nombreUsuario;
+	}
+	
+	public static RedirectAttributes atributos(int tipoAlerta, String mensaje,
+			RedirectAttributes attributes){
+		String alerta = null;
+		if (tipoAlerta == 1) { alerta = "success";}
+		else if (tipoAlerta == 2) { alerta = "warning";}
+		else if (tipoAlerta == 3) { alerta = "danger";}
+		
+		attributes.addFlashAttribute("alert", alerta);
+		attributes.addFlashAttribute("msg", mensaje);
+		
+		return attributes;
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cice.gestaulas.entities.Equipamiento;
 import com.cice.gestaulas.services.interfaces.IEquipamientoService;
@@ -51,13 +52,14 @@ public class EquipamientoController {
 	@GetMapping("/admin/crearEquipamientoControl")
 	public String crearEquipamiento(
 			@RequestParam (name = "nombre", required = true) String nombre,
-			@RequestParam (name = "descripcion", required = true) String descripcion) {
+			@RequestParam (name = "descripcion", required = true) String descripcion,
+			RedirectAttributes attributes) {
 		
 		Equipamiento e = new Equipamiento(0, nombre, descripcion);
 		
-		//Utilidades.validar(e);
 		equipamientoService.create(e);
-		
+		String mensaje = "Equipamiento creado con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarEquipamiento";
 	}
 	
@@ -116,13 +118,14 @@ public class EquipamientoController {
 	public String updateEquipamiento(
 			@RequestParam (name = "id", required = true) int id,
 			@RequestParam (name = "nombre", required = true) String nombre,
-			@RequestParam (name = "descripcion", required = true) String descripcion) {
+			@RequestParam (name = "descripcion", required = true) String descripcion,
+			RedirectAttributes attributes) {
 		
 		Equipamiento e = new Equipamiento(id, nombre, descripcion);
-		
-		//Utilidades.validar(e);
+
 		equipamientoService.update(e);
-		
+		String mensaje = "Equipamiento actualizado con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarEquipamiento";
 	}
 	
@@ -138,10 +141,12 @@ public class EquipamientoController {
 	 */
 	@GetMapping("admin/borrarEquipamiento")
 	public String borrarEquipamiento(
-			@RequestParam(required = true) int id){
+			@RequestParam(required = true) int id,
+			RedirectAttributes attributes) {
 		
 		equipamientoService.delete(id);
-		
+		String mensaje = "Equipamiento borrado con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarEquipamiento";
 	}
 	

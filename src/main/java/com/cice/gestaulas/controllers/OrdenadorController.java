@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cice.gestaulas.entities.Ordenador;
 import com.cice.gestaulas.services.interfaces.IOrdenadorService;
@@ -57,13 +58,14 @@ public class OrdenadorController {
 			@RequestParam (name = "dimensionPantalla", required = true) int dimensionPantalla,
 			@RequestParam (name = "cpu", required = true) String cpu,
 			@RequestParam (name = "ram", required = true) int ram,
-			@RequestParam (name = "tarjetaGrafica", required = true) String tarjetaGrafica) {
+			@RequestParam (name = "tarjetaGrafica", required = true) String tarjetaGrafica,
+			RedirectAttributes attributes) {
 		
 		Ordenador o = new Ordenador(0, nombre, sistemaOperativo, dimensionPantalla, cpu, ram, tarjetaGrafica);
 	
-		//Utilidades.validar(o);
 		ordenadorService.create(o);
-		
+		String mensaje = "Equipo creado con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarOrdenador";	
 	}
 	
@@ -79,11 +81,10 @@ public class OrdenadorController {
 	@GetMapping("/admin/mostrarOrdenador")
 	public ModelAndView findAllOrdenador() {
 		List<Ordenador> listaOrdenadores = ordenadorService.findAll();
-		ModelAndView mav = new ModelAndView();
 		
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("ordenadores", listaOrdenadores);
 		mav.setViewName("/admin/mostrarOrdenador");
-		
 		return mav;
 	}
 	
@@ -129,13 +130,13 @@ public class OrdenadorController {
 			@RequestParam (name = "dimensionPantalla", required = true) int dimensionPantalla,
 			@RequestParam (name = "cpu", required = true) String cpu,
 			@RequestParam (name = "ram", required = true) int ram,
-			@RequestParam (name = "tarjetaGrafica", required = true) String tarjetaGrafica) {
-		
+			@RequestParam (name = "tarjetaGrafica", required = true) String tarjetaGrafica,
+			RedirectAttributes attributes) {
 		Ordenador o = new Ordenador(id, nombre, sistemaOperativo, dimensionPantalla, cpu, ram, tarjetaGrafica);
 		
-		//Utilidades.validar(o);
 		ordenadorService.update(o);
-		
+		String mensaje = "Equipo actualizado con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarOrdenador";
 	}
 	
@@ -151,10 +152,12 @@ public class OrdenadorController {
 	 */
 	@GetMapping("admin/borrarOrdenador")
 	public String borrarOrdenador(
-			@RequestParam(required = true) int id){
+			@RequestParam(required = true) int id,
+			RedirectAttributes attributes) {
 		
 		ordenadorService.delete(id);
-		
+		String mensaje = "Equipo borrado con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarOrdenador";
 	}
 	

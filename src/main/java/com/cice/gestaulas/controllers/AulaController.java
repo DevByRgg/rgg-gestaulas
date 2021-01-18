@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cice.gestaulas.entities.Aula;
 import com.cice.gestaulas.entities.Equipamiento;
@@ -21,6 +22,7 @@ import com.cice.gestaulas.services.interfaces.IEquipamientoService;
 import com.cice.gestaulas.services.interfaces.IOrdenadorService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
 import com.cice.gestaulas.services.interfaces.ITipoAulaService;
+import com.cice.gestaulas.utils.Utilidades;
 
 @Secured("ROLE_ADMIN")
 @Controller
@@ -99,13 +101,14 @@ public class AulaController {
 			@RequestParam(name = "capacidad", required = true) int capacidad,
 			@RequestParam(name = "equipoProfesor", required = true) int equipoProfesor,
 			@RequestParam(name = "equipoAlumno", required = true) int equipoAlumno,
-			@RequestParam(name = "equipamiento", required = true) int equipamiento) {
+			@RequestParam(name = "equipamiento", required = true) int equipamiento,
+			RedirectAttributes attributes) {
 
 		Aula a = new Aula(0, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
 
-		//Comprobar que los campos son correctos
-		//Utilidades.validar(a);
 		aulaService.create(a);
+		String mensaje = "Aula creada con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarAula";
 	}
 
@@ -121,9 +124,7 @@ public class AulaController {
 	@GetMapping("/admin/mostrarAula")
 	public ModelAndView findAllAula() {
 		ModelAndView mav = new ModelAndView();
-
 		List<Aula> listaAulas = aulaService.findAll();
-
 		List<ObjetoPresentacion> listaPresentacion = new ArrayList<ObjetoPresentacion>();
 
 		for (int i = 0; i < listaAulas.size(); i++) {
@@ -141,7 +142,6 @@ public class AulaController {
 
 		mav.addObject("aulas", listaPresentacion);
 		mav.setViewName("/admin/mostrarAula");
-
 		return mav;
 	}
 
@@ -195,12 +195,14 @@ public class AulaController {
 			@RequestParam(name = "capacidad", required = true) int capacidad,
 			@RequestParam(name = "equipoProfesor", required = true) int equipoProfesor,
 			@RequestParam(name = "equipoAlumno", required = true) int equipoAlumno,
-			@RequestParam(name = "equipamiento", required = true) int equipamiento) {
+			@RequestParam(name = "equipamiento", required = true) int equipamiento,
+			RedirectAttributes attributes) {
 
 		Aula a = new Aula(id, nombre, tipo, sede, capacidad, equipoProfesor, equipoAlumno, equipamiento);
-
-		//Utilidades.validar(a);
+		
 		aulaService.update(a);
+		String mensaje = "Aula actualizada con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarAula";
 	}
 
@@ -214,9 +216,13 @@ public class AulaController {
 	 * @return "redirect:mostrarAula". Mostrar todas las Aulas
 	 */
 	@GetMapping("admin/borrarAula")
-	public String borrarAula(@RequestParam(required = true) int id) {
+	public String borrarAula(
+			@RequestParam(required = true) int id,
+			RedirectAttributes attributes) {
+		
 		aulaService.delete(id);
-
+		String mensaje = "Aula borrada con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarAula";
 	}
 }

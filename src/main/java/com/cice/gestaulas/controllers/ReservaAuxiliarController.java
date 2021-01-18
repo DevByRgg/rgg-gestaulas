@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 
 import com.cice.gestaulas.entities.Reserva;
+import com.cice.gestaulas.entities.auxiliar.Festivo;
+import com.cice.gestaulas.exceptions.FestivoExisteException;
+import com.cice.gestaulas.exceptions.ReservaOcupadaException;
 import com.cice.gestaulas.services.interfaces.IAulaService;
 import com.cice.gestaulas.services.interfaces.IFestivoService;
 import com.cice.gestaulas.services.interfaces.IReservaService;
@@ -36,6 +39,20 @@ public class ReservaAuxiliarController {
 	
 	@Autowired
 	IFestivoService festivoService;
+	
+	//-------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
+
+	protected void validarFestivos(LocalDate fecha) throws FestivoExisteException{
+		List<LocalDate> listaFestivos = festivoService.findAllFechas();
+		boolean existe = listaFestivos.contains(fecha);
+		
+		if (existe) {
+			throw new FestivoExisteException("No se puede reservar, es un dia festivo");
+		} else if(fecha.getDayOfWeek().getValue() == 7) {
+			throw new FestivoExisteException("No se puede reservar, es domingo");
+		}
+	}
 	
 	//-------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------
@@ -434,4 +451,6 @@ public class ReservaAuxiliarController {
 		 
 	}
 
+	
+	
 }

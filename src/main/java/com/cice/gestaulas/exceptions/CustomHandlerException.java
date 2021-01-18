@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.exception.JDBCConnectionException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,27 +41,70 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler {
 		return mav;
 	}
 	
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ModelAndView errorforeignKey(DataIntegrityViolationException ex) {
+		String tituloError = "Foreign Key";
+		Map<String, String> msnError = new HashMap<String, String>();
+			msnError.put("Bbdd", "Foreign key constraint fails");
+			msnError.put("Problema", "Estas intentando borrar un objeto con datos asociados");
+			
+		System.out.println("EXCEPTION HANDLER SPINGGGGGGGGGGGGGGGGGGG");
+		System.out.println("getSQL-----------------------------------" + ex.getCause());		
+		System.out.println("getSQLState---------------------------- " + ex.getMessage());		
+		System.out.println("getconstrain nama---------------------------- " + ex.getMostSpecificCause());
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + ex.getLocalizedMessage());
+			
+		if (ex.getMostSpecificCause().toString().contains("sede")) {
+			msnError.put("Error", "Sede no borrada porque aun contiene aulas");
+		} else if(ex.getMostSpecificCause().toString().contains("alumno")) {
+			msnError.put("Error", "Equipo no borrado porque hay aulas que lo contienen");
+		} else if(ex.getMostSpecificCause().toString().contains("profesor")) {
+			msnError.put("Error", "Equipo no borrado porque hay aulas que lo contienen");
+		} else if(ex.getMostSpecificCause().toString().contains("equipamiento")) {	
+			msnError.put("Error", "Equipamiento no borrado porque hay aulas que lo contienen");
+		} else if(ex.getMostSpecificCause().toString().contains("tipo")) {
+			msnError.put("Error", "Tipo de aula no borrado porque aun existen aulas que lo contienen");
+		} else if(ex.getMostSpecificCause().toString().contains("reservas")) {
+			msnError.put("Error", "Aula no borrada porque existen reservas asociadas a ella");
+		} else {	
+			msnError.put("Error", "Fatal Error! Contacte con el desarrollador");
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msnError", msnError);
+		mav.addObject("titulo", tituloError);
+		mav.setViewName("error");
+		return mav;
+	}
 	
 	@ExceptionHandler(org.hibernate.exception.ConstraintViolationException.class)
 	public ModelAndView errorCadenaDeBorrado(org.hibernate.exception.ConstraintViolationException ex) {
-		System.out.println("EXCEPTION HANDLER CASCADDAAAAAAAAAAA");
+		String tituloError = "Borrado cascada";
+		Map<String, String> msnError = new HashMap<String, String>();
+		String mensaje = ex.getSQLException().getClass().toString();
 		
+		System.out.println("EXCEPTION HANDLER CASCADDAAAAAAAAAAA");
 		System.out.println("getSQL-----------------------------------" + ex.getSQL());		
 		System.out.println("getSQLState---------------------------- " + ex.getSQLState());		
-		System.out.println("getconstrain nama---------------------------- " + ex.getConstraintName());		
-		final String TITULO_ERROR = "Borrado cascada";
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + ex.getSQLException().getClass().toString());
-		String mensaje = ex.getSQLException().getClass().toString();;
+		System.out.println("getconstrain nama---------------------------- " + ex.getConstraintName());
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + ex.getSQLException().getClass().toString());
 		
-		Map<String, String> msnError = new HashMap<String, String>();
+		if (ex.getConstraintName().equals("fecha")) {
+			tituloError = "Fecha Festivo";
+			msnError.put("Error", "El festivo que has seleccionado ya existe!");
+		} else if(ex.getConstraintName().equals("unicos")) {
+			tituloError = "Reserva";
+			msnError.put("Error", "En ese aula esa fecha esta ya reservada para otro curso!");
+		} else if(ex.getConstraintName() == null) {
 		
-		msnError.put("Bbdd", "Fallo por borrado en cascada no permitido");
-		msnError.put("Error", mensaje);
-		msnError.put("Problema", "Estas intentando borrar un objeto con datos asociados");
-
+			msnError.put("Bbdd", "Fallo por borrado en cascada no permitido");
+			msnError.put("Error", mensaje);
+			msnError.put("Problema", "Estas intentando borrar un objeto con datos asociados");
+		}
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msnError", msnError);
-		mav.addObject("titulo", TITULO_ERROR);
+		mav.addObject("titulo", tituloError);
 		mav.setViewName("error");
 		return mav;
 	}

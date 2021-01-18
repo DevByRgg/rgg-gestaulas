@@ -25,10 +25,14 @@
 			Sede <span class="badge text-white bg-cice">LISTADO</span>
 		</h2>
 
+		<c:if test="${msg != null}">
+			<p class="alert border border-${alert} alert-${alert} font-weight-bold" role="alert">${msg}</p>
+		</c:if>
+		
 		<!-- Forumulario -->
 		<table class="table table-bordered table-hover">
 				<thead>
-					<tr tr class="thead text-white bg-cice">
+					<tr class="thead text-white bg-cice">
 						<th class="align-middle text-center" scope="col">Id</th>
 						<th class="align-middle text-left" scope="col">Nombre</th>
 						<th class="align-middle text-left" scope="col">Direccion</th>

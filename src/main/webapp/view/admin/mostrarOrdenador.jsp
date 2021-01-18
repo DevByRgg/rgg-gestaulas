@@ -24,6 +24,10 @@
 		<h2 class="pt-3 pb-2">
 			Equipo <span class="badge text-white bg-cice">LISTADO</span>
 		</h2>
+		
+		<c:if test="${msg != null}">
+			<p class="alert border border-${alert} alert-${alert} font-weight-bold" role="alert">${msg}</p>
+		</c:if>
 
 		<!-- Forumulario -->
 		<table class="table table-bordered table-hover">

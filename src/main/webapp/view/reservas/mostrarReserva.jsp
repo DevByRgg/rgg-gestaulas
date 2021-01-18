@@ -25,6 +25,10 @@
 			Reserva <span class="badge text-white bg-cice">LISTADO</span>
 		</h2>
 
+		<c:if test="${msg != null}">
+			<p class="alert border border-${alert} alert-${alert} font-weight-bold" role="alert">${msg}</p>
+		</c:if>
+		
 		<!-- Aqui  va el formulario para los filtros -->
 		<form action="filtrarReserva" method="GET">
 			<div class="form-row mt-2">

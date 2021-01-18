@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.services.interfaces.ISedeService;
@@ -55,14 +56,16 @@ public class SedeController {
 			@RequestParam (name = "nombre") String nombre,
 			@RequestParam (name = "direccion", required = true) String direccion,
 			@RequestParam (name = "codigoPostal", required = true) String codigoPostal,
-			@RequestParam (name = "telefono", required = true) String telefono) {
+			@RequestParam (name = "telefono", required = true) String telefono,
+			RedirectAttributes attributes) {
 		
 		Sede s = new Sede(0, nombre, direccion, codigoPostal, telefono);
 		
 		
-		//Utilidades.validar(s);
-		sedeService.create(s);
 		
+		sedeService.create(s);
+		String mensaje = "Sede dada de alta con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarSede";
 	}
 		
@@ -124,13 +127,14 @@ public class SedeController {
 			@RequestParam (name = "nombre") String nombre,
 			@RequestParam (name = "direccion", required = true) String direccion,
 			@RequestParam (name = "codigoPostal", required = true) String codigoPostal,
-			@RequestParam (name = "telefono", required = true) String telefono) {
+			@RequestParam (name = "telefono", required = true) String telefono,
+			RedirectAttributes attributes) {
 		
 		Sede s = new Sede(id, nombre, direccion, codigoPostal, telefono);
 		
-		//Utilidades.validar(s);
 		sedeService.update(s);
-		
+		String mensaje = "Sede actualizada con exito!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarSede";
 	}
 	
@@ -145,10 +149,13 @@ public class SedeController {
 	 */
 	@GetMapping("admin/borrarSede")
 	public String borrarSede(
-			@RequestParam(required = true) int id){
+			@RequestParam(required = true) int id,
+			RedirectAttributes attributes) {
 		
 		sedeService.delete(id);
-		
+		String mensaje = "Sede borrada!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarSede";
 	}
+	
 }

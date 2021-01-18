@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cice.gestaulas.entities.Role;
 import com.cice.gestaulas.entities.Usuario;
 import com.cice.gestaulas.services.interfaces.IUsuarioService;
+import com.cice.gestaulas.utils.Utilidades;
 
 @Controller
 @Secured("ROLE_ADMIN")
@@ -65,11 +66,11 @@ public class UsuarioController {
 		
 		try {
 			usuarioService.addUsuario(u);
-			attributes.addFlashAttribute("alert", "success");
-			attributes.addFlashAttribute("msg", "Usuario dado de alta!");
+			String mensaje = "Usuario dado de alta!";
+			Utilidades.atributos(1, mensaje, attributes);
 		} catch (DataIntegrityViolationException e) {
-			attributes.addFlashAttribute("alert", "warning");
-			attributes.addFlashAttribute("msg", "Este usuario ya existe!");			
+			String mensaje = "Este usuario ya existe!";
+			Utilidades.atributos(2, mensaje, attributes);
 			e.printStackTrace();
 		}
 		return "redirect:/admin/mostrarUsuario";				
@@ -129,11 +130,11 @@ public class UsuarioController {
 		
 		try {
 			usuarioService.addUsuario(u);
-			attributes.addFlashAttribute("alert", "success");
-			attributes.addFlashAttribute("msg", "Usuario actualizado con exito!");
+			String mensaje = "Usuario actualizado con exito!";
+			Utilidades.atributos(1, mensaje, attributes);
 		} catch (DataIntegrityViolationException e) {
-			attributes.addFlashAttribute("alert", "warning");
-			attributes.addFlashAttribute("msg", "Error, Contacte con el desarrollador!");			
+			String mensaje = "Error, Contacte con el desarrollador!";
+			Utilidades.atributos(1, mensaje, attributes);
 			e.printStackTrace();
 		}
 		return "redirect:/admin/mostrarUsuario";	
@@ -155,31 +156,33 @@ public class UsuarioController {
 		try {
 			usuarioService.updateUsuario(u);
 			if (!locker) {
-				attributes.addFlashAttribute("alert", "success");
-				attributes.addFlashAttribute("msg", "¡¡ Usuario " + u.getUsername() + " desbloqueado !!");	
+				String mensaje = "¡Usuario " + u.getUsername() + " desbloqueado!";
+				Utilidades.atributos(1, mensaje, attributes);	
 			} else {
-				attributes.addFlashAttribute("alert", "warning");
-				attributes.addFlashAttribute("msg", "¡¡ Usuario " + u.getUsername() + " bloqueado !!");
+				String mensaje = "¡Usuario " + u.getUsername() + " bloqueado!";
+				Utilidades.atributos(2, mensaje, attributes);
 			}
-			
 		} catch (DataIntegrityViolationException e) {
-			attributes.addFlashAttribute("alert", "warning");
-			attributes.addFlashAttribute("msg", "Error, Contacte con el desarrollador!");			
+			String mensaje = "Error, Contacte con el desarrollador!";
+			Utilidades.atributos(3, mensaje, attributes);
 			e.printStackTrace();
 		}
 		return "redirect:/admin/mostrarUsuario";	
 	}
+	
+
 	// -------------------------------------------------------------------------------------------------------
 	// DELETE
 	// -------------------------------------------------------------------------------------------------------
 
 	@GetMapping("/admin/borrarUsuario")
-	public String borrarUsuario(@RequestParam( required = true) long id,
-									RedirectAttributes attributes) {		
-		
+	public String borrarUsuario(
+			@RequestParam( required = true) long id,
+			RedirectAttributes attributes) {		
 		usuarioService.deleteUsuario(id);
-		attributes.addFlashAttribute("msg", "usuario borrado!");
 		
+		String mensaje = "Usuario borrado!";
+		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:/admin/mostrarUsuario";
 		
 	}
