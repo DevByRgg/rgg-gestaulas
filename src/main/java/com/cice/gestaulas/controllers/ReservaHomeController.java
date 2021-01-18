@@ -3,16 +3,13 @@ package com.cice.gestaulas.controllers;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +21,6 @@ import com.cice.gestaulas.entities.Sede;
 import com.cice.gestaulas.entities.auxiliar.ObjetoPresentacion;
 import com.cice.gestaulas.entities.auxiliar.TipoAula;
 import com.cice.gestaulas.exceptions.FestivoExisteException;
-import com.cice.gestaulas.exceptions.ReservaOcupadaException;
 import com.cice.gestaulas.services.interfaces.IAulaService;
 import com.cice.gestaulas.services.interfaces.IReservaService;
 import com.cice.gestaulas.services.interfaces.ISedeService;
@@ -83,22 +79,22 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	// -------------------------------------------------------------------------------------------------------
 
 	/**
-	 * Crear una Reserva en la BBDD
-	 * @param nombreCurso
-	 * @param idAula
-	 * @param diaReserva
-	 * @param man09
-	 * @param man10
-	 * @param man11
-	 * @param man12
-	 * @param man13
-	 * @param man14
-	 * @param tar17
-	 * @param tar18
-	 * @param tar19
-	 * @param tar20
-	 * @param tar21
-	 * @param tar22
+	 * Crear una Reserva en la BBDD (Entre las 9 y las 22 horas)
+	 * @param nombreCurso nombre del curso
+	 * @param idAula identificador del Aula
+	 * @param diaReserva String con el dia de la reserva
+	 * @param man09 boolean true si queremos reservar la hora 9 y false si no
+	 * @param man10 boolean true si queremos reservar la hora 10 y false si no
+	 * @param man11 boolean true si queremos reservar la hora 11 y false si no
+	 * @param man12 boolean true si queremos reservar la hora 12 y false si no
+	 * @param man13 boolean true si queremos reservar la hora 13 y false si no
+	 * @param man14 boolean true si queremos reservar la hora 14 y false si no
+	 * @param tar17 boolean true si queremos reservar la hora 17 y false si no
+	 * @param tar18 boolean true si queremos reservar la hora 18 y false si no
+	 * @param tar19 boolean true si queremos reservar la hora 19 y false si no
+	 * @param tar20 boolean true si queremos reservar la hora 20 y false si no
+	 * @param tar21 boolean true si queremos reservar la hora 21 y false si no
+	 * @param tar22 boolean true si queremos reservar la hora 22 y false si no
 	 * @param attributes
 	 * @return
 	 * @throws FestivoExisteException
@@ -148,6 +144,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	// RESERVAS--------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------------------
 
+	//TODO ELIMINAR MÉTODO NO UTILIZADO 
 	/**
 	 * Método para comprobar que todas las reservas solicitadas están libres
 	 * @param listaReservas lista con todas las reservas de horas
@@ -163,6 +160,10 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		return reservasLibres;
 	}
 
+	/**
+	 * Mostrar Formulario de búsqueda de aulas libres para reservas
+	 * @return ModelAndView 
+	 */
 	@GetMapping("reservas/buscarReserva")
 	public ModelAndView buscarReservaPage() {
 
@@ -178,6 +179,33 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 
 	// -------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Buscador de Aulas libres para hacer reservas
+	 * @param nombreCurso a buscar
+	 * @param fechaInicio de la reserva
+	 * @param cantidadHorasCurso reserva
+	 * @param lunes 
+	 * @param martes
+	 * @param miercoles
+	 * @param jueves
+	 * @param viernes
+	 * @param sabado
+	 * @param man09
+	 * @param man10
+	 * @param man11
+	 * @param man12
+	 * @param man13
+	 * @param man14
+	 * @param tar17
+	 * @param tar18
+	 * @param tar19
+	 * @param tar20
+	 * @param tar21
+	 * @param tar22
+	 * @param tipoAula identificador del TipoAula
+	 * @param capacidadAula capacidad del aula
+	 * @return
+	 */
 	@GetMapping("reservas/buscarReservaControl")
 	public ModelAndView buscarReserva(@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
 			@RequestParam(name = "fechaInicio", required = true) String fechaInicio,
@@ -285,6 +313,35 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 
 	// -------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Realizar la reserva
+	 * @param nombreCurso nombre del curso
+	 * @param fechaInicio fecha de inicio del curso
+	 * @param cantidadHorasCurso numero de horas del curso
+	 * @param aulaSeleccionada identificador del aula seleccionada
+	 * @param lunes
+	 * @param martes
+	 * @param miercoles
+	 * @param jueves
+	 * @param viernes
+	 * @param sabado
+	 * @param man09
+	 * @param man10
+	 * @param man11
+	 * @param man12
+	 * @param man13
+	 * @param man14
+	 * @param tar17
+	 * @param tar18
+	 * @param tar19
+	 * @param tar20
+	 * @param tar21
+	 * @param tar22
+	 * @param tipoAula identificador del tipo de aula
+	 * @param capacidadAula capacidad del aula
+	 * @return ModelAndView "reservas/buscarReserva"
+	 * @throws FestivoExisteException
+	 */
 	@GetMapping("reservas/realizarReservas")
 	public ModelAndView realizarReservaCurso(@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
 			@RequestParam(name = "fechaInicio", required = true) String fechaInicio,
@@ -364,6 +421,11 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	// UPDATE
 	// -------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Cargar y mostrar la vista de updateReserva
+	 * @param id identificador de la reserva
+	 * @return ModelAndView /reservas/updateReserva
+	 */
 	@GetMapping("/reservas/updateReserva")
 	public ModelAndView actualizaReserva(@RequestParam(name = "id") int id) {
 		ModelAndView mav = new ModelAndView();
@@ -387,6 +449,17 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		return mav;
 	}
 
+	/**
+	 * Actualizar reserva en la BBDD
+	 * @param id identificador de la reserva
+	 * @param nombreCurso nombre del curso
+	 * @param idAula identificador del aula
+	 * @param diaReserva día de la reserva
+	 * @param horaReserva hora de la reserva
+	 * @param attributes RedirectAttributes
+	 * @return String "redirect:mostrarReserva". Mostrar todas las reservas
+	 * @throws FestivoExisteException
+	 */
 	@GetMapping("reservas/updateReservaControl")
 	public String updateReserva(@RequestParam(name = "id", required = true) int id,
 			@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
@@ -419,6 +492,12 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	// DELETE
 	// -------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Borrar Reservas de la BBDD
+	 * @param id identificador de la reserva
+	 * @param attributes RedirectAttributes
+	 * @return String "redirect:mostrarReserva". Mostrar todas las reservas
+	 */
 	@GetMapping("reservas/borrarReserva")
 	public String borrarReserva(
 			@RequestParam(required = true) int id,
@@ -430,7 +509,11 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		return "redirect:mostrarReserva";
 	}
 
-	
+	/**
+	 * Cargar y mostrar vista /reservas/borrarDiaCurso
+	 * Formularios para poder borrar las reservas de días y/o cursos enteros
+	 * @return ModelAndView con el formulario /reservas/borrarDiaCurso
+	 */
 	@GetMapping("reservas/borrarCursoReserva")
 	public ModelAndView borrarDiaCursoReserva() {
 		ModelAndView mav = new ModelAndView();
@@ -443,7 +526,13 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		return mav;
 	}
 	
-	
+	/**
+	 * Borrar Dia entero en la tabla Reservas de la BBDD
+	 * @param fecha Fecha a borrar
+	 * @param idAula identificador del Aula
+	 * @param attributes RedirectAttributes
+	 * @return String "redirect:mostrarReserva". Mostrar lista de reservas
+	 */
 	@GetMapping("reservas/borrarDiaControl")	
 	public String borrarDiaReserva(
 			@RequestParam(name = "fechaDia", required = true) String fecha,
@@ -475,7 +564,12 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		return "redirect:mostrarReserva";	
 	}
 	
-	
+	/**
+	 * Borrar curso entero
+	 * @param nombreCurso nombre del curso a borrar
+	 * @param attributes RedirectAttributes
+	 * @return String "redirect:mostrarReserva". Mostrar lista de reservas
+	 */
 	@GetMapping("reservas/borrarCursoControl")	
 	public String borrarCursoReserva(
 			@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
@@ -490,25 +584,4 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarReserva";		
 	}
-
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }	

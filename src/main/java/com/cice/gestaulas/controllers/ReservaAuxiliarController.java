@@ -43,6 +43,11 @@ public class ReservaAuxiliarController {
 	//-------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Comprobar que una fecha no sea un dia festivo ni un domingo
+	 * @param fecha a validar
+	 * @throws FestivoExisteException Excepcion informando del error
+	 */
 	protected void validarFestivos(LocalDate fecha) throws FestivoExisteException{
 		List<LocalDate> listaFestivos = festivoService.findAllFechas();
 		boolean existe = listaFestivos.contains(fecha);
@@ -57,6 +62,16 @@ public class ReservaAuxiliarController {
 	//-------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Obtener la lista de días válidos de la semana
+	 * @param lunes
+	 * @param martes
+	 * @param miercoles
+	 * @param jueves
+	 * @param viernes
+	 * @param sabado
+	 * @return Lista con la semana válida
+	 */
 	protected List<Boolean> listaDiasBoleano(boolean lunes, boolean martes, boolean miercoles, 
 			boolean jueves, boolean viernes, boolean sabado){
 		List<Boolean> diasSemana = new ArrayList<Boolean>();
@@ -72,6 +87,22 @@ public class ReservaAuxiliarController {
 
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Obtener la lista con las horas válidas del día
+	 * @param man09
+	 * @param man10
+	 * @param man11
+	 * @param man12
+	 * @param man13
+	 * @param man14
+	 * @param tar17
+	 * @param tar18
+	 * @param tar19
+	 * @param tar20
+	 * @param tar21
+	 * @param tar22
+	 * @return Lista con las horas válidas del día
+	 */
 	protected List<Boolean> listaHorasBoleano(boolean man09, boolean man10, boolean man11,
 			boolean man12, boolean man13, boolean man14, boolean tar17, boolean tar18, 
 			boolean tar19, boolean tar20, boolean tar21, boolean tar22){
@@ -248,6 +279,22 @@ public class ReservaAuxiliarController {
 
 	//-------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Generar horas lectivas del día
+	 * @param man09
+	 * @param man10
+	 * @param man11
+	 * @param man12
+	 * @param man13
+	 * @param man14
+	 * @param tar17
+	 * @param tar18
+	 * @param tar19
+	 * @param tar20
+	 * @param tar21
+	 * @param tar22
+	 * @return List de horas en formato LocalTime
+	 */
 	protected List<LocalTime> generarHorasLectivas(boolean man09, boolean man10, boolean man11,
 			boolean man12, boolean man13, boolean man14, boolean tar17, boolean tar18, 
 			boolean tar19, boolean tar20, boolean tar21, boolean tar22){
@@ -359,8 +406,7 @@ public class ReservaAuxiliarController {
 				System.out.println(listaFechasHorasResto);
 				System.out.println(listaFechasHorasResto.size());
 		//-------------------------------------------------------------------------
-		
-		
+				
 		return listaFechasHoras;
 	}
 
@@ -441,16 +487,7 @@ public class ReservaAuxiliarController {
 	protected void hacerReservas(
 			List<Reserva> listaReservas) {
 		
-		/*
-		 * for (Reserva reserva : listaReservas) { reservaService.create(reserva); }
-		 */
-		
-		
 		  for (int i = 0; i < listaReservas.size(); i++) {
 		  reservaService.create(listaReservas.get(i)); }
-		 
 	}
-
-	
-	
 }

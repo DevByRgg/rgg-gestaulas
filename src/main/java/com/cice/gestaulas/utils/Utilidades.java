@@ -16,7 +16,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 /**
  * Clase con utilidades para la aplicación
  * 
- * @author Diego
  *
  */
 public class Utilidades {
@@ -53,6 +52,13 @@ public class Utilidades {
 		return nombreUsuario;
 	}
 	
+	/**
+	 * Generar atributos para mostrar los distintos mensajes
+	 * @param tipoAlerta 1="success" 2="warning" 3="danger"
+	 * @param mensaje String con el mensaje a mostrar
+	 * @param attributes atributos para redireccionar
+	 * @return RedirectAttributes con los atributos a redireccionar
+	 */
 	public static RedirectAttributes atributos(int tipoAlerta, String mensaje,
 			RedirectAttributes attributes){
 		String alerta = null;
