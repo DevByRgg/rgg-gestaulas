@@ -1,5 +1,6 @@
 package com.cice.gestaulas.controllers;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -38,15 +39,16 @@ public class ReservaShowController {
 		
 		List<Aula> listaAulas = aulaService.findAll();
 		List<String> listaCursos = reservaService.findAllListaCursos();
-
+		
 		System.out.println("estamos creando la presentacion");
 		
 		for (int i = 0; i < listaReservas.size(); i++) {
 			Reserva r = listaReservas.get(i);
 			Aula a = aulaService.findById(r.getIdAula());
+			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy - HH:mm");
 			
 			ObjetoPresentacion o = new ObjetoPresentacion(r.getId(), r.getNombreCurso(), 
-					a.getId(), a.getNombre(), r.getFechaReserva());
+					a.getId(), a.getNombre(), r.getFechaReserva().format(formato));
 		
 			listaPresentacion.add(o);
 		}

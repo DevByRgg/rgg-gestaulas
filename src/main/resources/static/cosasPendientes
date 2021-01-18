@@ -1,6 +1,6 @@
 		
 	Para el día 18 que Fernando hará la parte Android:
-		- Una funcionalidad: Selección de día y aula. Muestra la ocupación.					---Esto lo hace Rafa
+		- Una funcionalidad: Selección de día y aula. Muestra la ocupación.					---Hecho
 		-Página independiente .jsp con una vista como la del usuario... buscador
 		y horario
 	
@@ -13,16 +13,16 @@
 	//Permitir multiples equipamientos en una misma aula. Sino tenemos que indicarlo 		--- Pendiente de implementar
 		en algun sitio.
 	
-	//Preguntar a Arturo el tiempo del login... 										---- Pendiente
+	//Preguntar a Arturo el tiempo del login... 										---- Pendiente 
 
 
 --------------------------
 
 
 
-poner los mensajes alert al crear y actualizar sede, aula, equipo, equipamiento, reservas   ---pendiente 
+poner los mensajes alert al crear y actualizar sede, aula, equipo, equipamiento, reservas   --- Hecho
 
-Mensajes de error CustomHandlerException... Captura los errores de festivos pero pone la ruta completa:   ---Para Diego
+Mensajes de error CustomHandlerException... Captura los errores de festivos pero pone la ruta completa:   ---Hecho
 
 
 SI SE BORRA UN AULA..... QUE PASA CON LAS RESERVAS???? 		---Para Diego
@@ -30,10 +30,12 @@ SI SE BORRA UN AULA..... QUE PASA CON LAS RESERVAS???? 		---Para Diego
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
 NUEVOS METODOS
-borrar dia, 
+borrar dia, 					
 borrar curso
 Validar que la reserva no sea un dia festivo
 Validar los festivos que no haya ninguna reserva ese dia
+
+corregidas las fechas de los listados para que se vean en formato dia/mes/año - hora
 
 PARA FERNANDO
 como hacer el title en android

@@ -31,13 +31,16 @@ public class ObjetoPresentacion {
 	private String nombreCurso;
 	private LocalDateTime fechaReserva;
 	
+	private int idFestivo;
+	private String nombreFestivo;
+	
 	//--------------------------------------------------------------------
 	//--------------------------------------------------------------------
 
 	//Auxiliares----------------------------------------------------------
 	private int coincidencias;
 	
-	private String diaReserva;
+	private String fecha;
 	
 	private int man09;	private int man10;	private int man11;
 	private int man12;	private int man13;	private int man14;
@@ -68,12 +71,12 @@ public class ObjetoPresentacion {
 	}
 	
 	//HorarioAula---------------------------------------------------------
-	public ObjetoPresentacion(String diaReserva, int man09, String manTitle09,int man10, String manTitle10,
+	public ObjetoPresentacion(String fecha, int man09, String manTitle09,int man10, String manTitle10,
 			int man11, String manTitle11, int man12, String manTitle12, int man13, String manTitle13,
 			int man14, String manTitle14, int tar17, String tarTitle17, int tar18, String tarTitle18,
 			int tar19, String tarTitle19, int tar20, String tarTitle20, int tar21, String tarTitle21,
 			int tar22, String tarTitle22) {
-		this.diaReserva = diaReserva;
+		this.fecha = fecha;
 		this.man09 = man09;		this.man10 = man10;		this.man11 = man11;
 		this.man12 = man12;		this.man13 = man13;		this.man14 = man14;
 		
@@ -87,6 +90,12 @@ public class ObjetoPresentacion {
 		this.tarTitle20 = tarTitle20;		this.tarTitle21 = tarTitle21;		this.tarTitle22 = tarTitle22;
 	}
 	
+	//MostrarFestivo------------------------------------------------------
+	public ObjetoPresentacion(int idFestivo, String nombreFestivo, String fecha) {
+		this.idFestivo = idFestivo;
+		this.nombreFestivo = nombreFestivo;
+		this.fecha = fecha;
+	}
 	
 	//ListadoAula---------------------------------------------------------
 	public ObjetoPresentacion(int idAula, String nombreAula, int idTipoAula, String nombreTipoAula, 
@@ -107,12 +116,12 @@ public class ObjetoPresentacion {
 	
 	//ListadoReserva------------------------------------------------------
 	public ObjetoPresentacion(int idReserva, String nombreCurso,  int idAula, String nombreAula,
-			LocalDateTime fechaReserva) {
+			String fecha) {
 		this.idReserva = idReserva;
 		this.nombreCurso = nombreCurso;
 		this.idAula = idAula;
 		this.nombreAula = nombreAula;
-		this.fechaReserva = fechaReserva;
+		this.fecha = fecha;
 	}
 		
 	//Consultas-------------------------------------------------------------

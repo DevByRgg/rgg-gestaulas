@@ -121,7 +121,7 @@
 				<tbody>
 					<c:forEach items="${horasDisponibles}" var="horaDisponible">
 					<tr>
-						<th scope="row" class="align-middle text-center">${horaDisponible.diaReserva}</th>
+						<th scope="row" class="align-middle text-center">${horaDisponible.fecha}</th>
 						
 						<!-- Turno de Mañana -->
 						<c:choose>

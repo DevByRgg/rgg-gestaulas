@@ -148,7 +148,7 @@
 	      				<th scope="row" class="align-middle text-center">${reserva.idReserva}</th>
 						<td class="align-middle text-left">${reserva.nombreCurso}</td>
 						<td class="align-middle text-center">${reserva.nombreAula}</td>
-						<td class="align-middle text-center">${reserva.fechaReserva}</td>
+						<td class="align-middle text-center">${reserva.fecha}</td>
 						
 						<td class="align-middle text-center">
 							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/reservas/updateReserva?id=${reserva.idReserva}">

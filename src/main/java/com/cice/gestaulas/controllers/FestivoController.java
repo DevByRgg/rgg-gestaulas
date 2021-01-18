@@ -1,6 +1,8 @@
 package com.cice.gestaulas.controllers;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cice.gestaulas.entities.auxiliar.Festivo;
+import com.cice.gestaulas.entities.auxiliar.ObjetoPresentacion;
 import com.cice.gestaulas.exceptions.FestivoExisteException;
 import com.cice.gestaulas.exceptions.ReservaOcupadaException;
 import com.cice.gestaulas.services.interfaces.IFestivoService;
@@ -155,12 +158,18 @@ public class FestivoController extends FestivoAuxiliarController{
 	 */
 	@GetMapping("/mantenimiento/mostrarFestivo")
 	public ModelAndView findAllFestivo() {
-
 		ModelAndView mav = new ModelAndView();
-
 		List<Festivo> listaFestivos = festivoService.findAll();
-
-		mav.addObject("festivos", listaFestivos);
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		List<ObjetoPresentacion> listaobj = new ArrayList<ObjetoPresentacion>();
+		
+		for (int i = 0; i < listaFestivos.size(); i++) {
+			ObjetoPresentacion obj = new ObjetoPresentacion(listaFestivos.get(i).getId(),
+					listaFestivos.get(i).getNombre(), listaFestivos.get(i).getFecha().format(formato));
+			listaobj.add(obj);
+		}
+		
+		mav.addObject("festivos", listaobj);
 		mav.setViewName("/mantenimiento/mostrarFestivo");
 		return mav;
 	}

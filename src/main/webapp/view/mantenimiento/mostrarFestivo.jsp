@@ -45,19 +45,19 @@
 				<tbody>
 					<c:forEach items="${festivos}" var="festivo">
 					<tr>
-	      				<th scope="row" class="align-middle text-center">${festivo.id}</th>
-						<td class="align-middle text-left">${festivo.nombre}</td>
+	      				<th scope="row" class="align-middle text-center">${festivo.idFestivo}</th>
+						<td class="align-middle text-left">${festivo.nombreFestivo}</td>
 						<td class="align-middle text-center">${festivo.fecha}</td>
 						
 						<td class="align-middle text-center">
-							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/mantenimiento/updateFestivo?id=${festivo.id}">
+							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/mantenimiento/updateFestivo?id=${festivo.idFestivo}">
 								Update
 							</a>
 						</td>
 						
 						<td class="align-middle text-center">
 							<button type="button" class="btn cice-hover bg-cice text-white" data-toggle="modal" data-target="#divBorrado"
-							onclick="configurarBorrado('${festivo.id}')">
+							onclick="configurarBorrado('${festivo.idFestivo}')">
 								Borrar
 							</button>
 						</td>
