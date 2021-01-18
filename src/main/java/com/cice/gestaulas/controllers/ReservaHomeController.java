@@ -35,15 +35,27 @@ import com.cice.gestaulas.utils.Utilidades;
 @Controller
 public class ReservaHomeController extends ReservaAuxiliarController {
 
+	/**
+	 * Servicios de Sede
+	 */
 	@Autowired
 	ISedeService sedeService;
 
+	/**
+	 * Servicios de Aula
+	 */
 	@Autowired
 	IAulaService aulaService;
 
+	/**
+	 * Servicios de TipoAula
+	 */
 	@Autowired
 	ITipoAulaService tipoAulaService;
 
+	/**
+	 * Servicios de Reserva
+	 */
 	@Autowired
 	IReservaService reservaService;
 
@@ -51,6 +63,10 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	// CREATE
 	// -------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Cargar y mostrar la pagina crearReserva
+	 * @return ModelAndView
+	 */
 	@GetMapping("reservas/crearReserva")
 	public ModelAndView crearReservaPage() {
 
@@ -66,6 +82,27 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 
 	// -------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Crear una Reserva en la BBDD
+	 * @param nombreCurso
+	 * @param idAula
+	 * @param diaReserva
+	 * @param man09
+	 * @param man10
+	 * @param man11
+	 * @param man12
+	 * @param man13
+	 * @param man14
+	 * @param tar17
+	 * @param tar18
+	 * @param tar19
+	 * @param tar20
+	 * @param tar21
+	 * @param tar22
+	 * @param attributes
+	 * @return
+	 * @throws FestivoExisteException
+	 */
 	@GetMapping("reservas/crearReservaControl")
 	public String crearReserva(@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
 			@RequestParam(name = "aulaReserva", required = true) int idAula,

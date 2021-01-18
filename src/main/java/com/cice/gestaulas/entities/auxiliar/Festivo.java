@@ -42,12 +42,9 @@ public class Festivo {
 	private String nombre;
 	
 	/**
-	 * Fecha del festivo
+	 * Fecha del festivo día
 	 */
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	@Column(name = "fecha")
 	private LocalDate fecha;
-	
-	
-	
 }
