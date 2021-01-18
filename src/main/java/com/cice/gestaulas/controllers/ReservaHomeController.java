@@ -96,7 +96,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	 * @param tar21 boolean true si queremos reservar la hora 21 y false si no
 	 * @param tar22 boolean true si queremos reservar la hora 22 y false si no
 	 * @param attributes
-	 * @return
+	 * @return String "redirect:mostrarReserva". Mostrar lista de reservas
 	 * @throws FestivoExisteException
 	 */
 	@GetMapping("reservas/crearReservaControl")
@@ -204,7 +204,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	 * @param tar22
 	 * @param tipoAula identificador del TipoAula
 	 * @param capacidadAula capacidad del aula
-	 * @return
+	 * @return ModelAndView "reservas/buscarReserva". Aulas y su disponibilidad
 	 */
 	@GetMapping("reservas/buscarReservaControl")
 	public ModelAndView buscarReserva(@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
