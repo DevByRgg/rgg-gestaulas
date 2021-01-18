@@ -1,6 +1,7 @@
 package com.cice.gestaulas.entities.auxiliar;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,12 +50,22 @@ public class ObjetoPresentacion {
 	
 	private String tarTitle17;	private String tarTitle18;	private String tarTitle19;
 	private String tarTitle20;	private String tarTitle21;	private String tarTitle22;
-
+	
+	private LocalTime hora;
+	private int color;
+	
 	
 	//--------------------------------------------------------------------
 	//--------------------------------------------------------------------
 
 	//Constructores-------------------------------------------------------
+	
+	//HorarioPortatil---------------------------------------------------------
+	public ObjetoPresentacion(LocalTime hora, int color, String nombreCurso) {
+		this.hora = hora;
+		this.color = color;
+		this.nombreCurso = nombreCurso;
+	}
 	
 	//HorarioAula---------------------------------------------------------
 	public ObjetoPresentacion(String diaReserva, int man09, String manTitle09,int man10, String manTitle10,
