@@ -150,19 +150,19 @@
 	      					</th>
 						
 							<td class="align-middle text-left">
-								<label class="form-check-label" for="${aulaDisponible.nombreAula}">
+								<label class="form-check-label" for="${aulaDisponible.idAula}">
     								${aulaDisponible.nombreAula}
 								</label>
 							</td>
 							
 							<td class="align-middle text-left">
-								<label class="form-check-label" for="${aulaDisponible.nombreSede}">
+								<label class="form-check-label" for="${aulaDisponible.idAula}">
     								${aulaDisponible.nombreSede}
     							</label>
 							</td>
 							
 							<td class="align-middle text-left">
-								<label class="form-check-label" for="${aulaDisponible.nombreTipoAula}">
+								<label class="form-check-label" for="${aulaDisponible.idAula}">
     								${aulaDisponible.nombreTipoAula}
 								</label>
 							</td>
