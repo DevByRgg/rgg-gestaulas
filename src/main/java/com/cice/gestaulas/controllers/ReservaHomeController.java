@@ -343,7 +343,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	 * @throws FestivoExisteException
 	 */
 	@GetMapping("reservas/realizarReservas")
-	public ModelAndView realizarReservaCurso(@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
+	public String realizarReservaCurso(@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
 			@RequestParam(name = "fechaInicio", required = true) String fechaInicio,
 			@RequestParam(name = "horasCurso", required = true) int cantidadHorasCurso,
 			@RequestParam(name = "aulaSeleccionada", required = true) int aulaSeleccionada,
@@ -366,7 +366,8 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 			@RequestParam(name = "tar21", defaultValue = "false", required = true) boolean tar21,
 			@RequestParam(name = "tar22", defaultValue = "false", required = true) boolean tar22,
 			@RequestParam(name = "tipoAula", defaultValue = "0", required = true) int tipoAula,
-			@RequestParam(name = "capacidadAula", required = true) int capacidadAula) throws FestivoExisteException {
+			@RequestParam(name = "capacidadAula", required = true) int capacidadAula,
+			RedirectAttributes attributes) throws FestivoExisteException {
 
 		List<LocalTime> listaHorasLectivas = generarHorasLectivas(man09, man10, man11, man12, man13, man14, tar17,
 				tar18, tar19, tar20, tar21, tar22);
@@ -401,20 +402,23 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		System.out.println(horas);
 		System.out.println(numeroReservas);
 
-		mav.addObject("nombreCurso", nombreCurso);
-		mav.addObject("fechaInicio", fechaInicio);
-		mav.addObject("cantidadHorasCurso", cantidadHorasCurso);
-		mav.addObject("tipo", tipoAula);
-		mav.addObject("capacidadAula", capacidadAula);
-		mav.addObject("semana", diasLectivos);
-		mav.addObject("horas", horas);
-		mav.addObject("numeroReservas", numeroReservas);
-		mav.addObject("fechaFinal", fechaFinal);
+		/*
+		 * mav.addObject("nombreCurso", nombreCurso); mav.addObject("fechaInicio",
+		 * fechaInicio); mav.addObject("cantidadHorasCurso", cantidadHorasCurso);
+		 * mav.addObject("tipo", tipoAula); mav.addObject("capacidadAula",
+		 * capacidadAula); mav.addObject("semana", diasLectivos); mav.addObject("horas",
+		 * horas); mav.addObject("numeroReservas", numeroReservas);
+		 * mav.addObject("fechaFinal", fechaFinal);
+		 * 
+		 * mav.addObject("tipoAulas", listaTipoAulas);
+		 * mav.setViewName("reservas/buscarReserva");
+		 */
 
-		mav.addObject("tipoAulas", listaTipoAulas);
-		mav.setViewName("reservas/buscarReserva");
-
-		return mav;
+		String mensaje = "Reserva realizada. El Curso '" + nombreCurso + "' finaliza " + fechaFinal.toString(); 
+		Utilidades.atributos(1, mensaje, attributes);
+		return "redirect:mostrarReserva";
+		
+		//return mav;
 	}
 
 	// -------------------------------------------------------------------------------------------------------
