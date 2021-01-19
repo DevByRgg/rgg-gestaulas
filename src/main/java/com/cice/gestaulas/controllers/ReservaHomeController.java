@@ -240,8 +240,9 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 
 		List<LocalDateTime> listaFechasHoras = generarNecesidades(fechaInicio, cantidadHorasCurso, listaHorasLectivas,
 				diasLectivos);
-		LocalDate fechaFinal = listaFechasHoras.get(listaFechasHoras.size() - 1).toLocalDate();
-
+		LocalDate UltimaFecha = listaFechasHoras.get(listaFechasHoras.size() - 1).toLocalDate();
+		String fechaFinal = UltimaFecha.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+				
 		Map<Integer, Integer> listaAulas = generarMapaAulas(tipoAula, capacidadAula, listaFechasHoras);
 		List<Integer> aulasBusqueda = new ArrayList<Integer>(listaAulas.keySet());
 

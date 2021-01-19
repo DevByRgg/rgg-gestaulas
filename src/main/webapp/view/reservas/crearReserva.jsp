@@ -58,7 +58,7 @@
 				
 				<div class="form-group">
 					<div class="form-check form-check-inline mr-5">
-	  					<input class="form-check-input" type="checkbox" id="man09" name="man09" value="true">
+	  					<input class="form-check-input" type="checkbox" id="man09" name="man09" value="true" required>
 	  					<label class="form-check-label" for="man09">09:00</label>
 					</div>
 					<div class="form-check form-check-inline mr-5">
@@ -114,10 +114,12 @@
 			
 			<!-- Boton enviar formulario -->
 			<div class="botonEnviar mt-4">
-				<button type="submit" class="btn btn-outline-default btn-lg font-weight-bold text-white cice-hover bg-cice">Reservar</button>
+				<button type="submit" class="btn btn-outline-default btn-lg font-weight-bold text-white cice-hover bg-cice" onclick="validarHoras()">Reservar</button>
 			</div>
 		</form>
 	</div>
+	
+	<script src="/aulas/js/validarCheckbox.js"></script>
 
 </body>
 </html>

@@ -27,7 +27,7 @@
 		</h2>
 		
 		<!-- Forumulario BUSCAR-->
-		<form action="buscarReservaControl" method="GET">
+		<form action="buscarReservaControl" method="GET" id="formBuscarReservaControl">
 			<div class="form-row mt-2">
 				<!-- Nombre del curso -->
 				<div class="form-group w-50 mr-5">
@@ -402,8 +402,8 @@
 	</div>
 
 	
-	
-<script src="/aulas/js/validarCheckbox.js"></script>
+	<script src="/aulas/js/validarCheckbox.js"></script>
+
 
 </body>
 </html>

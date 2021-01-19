@@ -63,8 +63,7 @@ public class ReservaAuxiliarController {
 	//-------------------------------------------------------------------------------------------------------
 
 	/**
-	 * Obtener la lista de días válidos de la semana
-	 * @param lunes
+	 * Obtener la lista de días seleccionados en el buscador
 	 * @param martes
 	 * @param miercoles
 	 * @param jueves
@@ -88,7 +87,7 @@ public class ReservaAuxiliarController {
 	//-------------------------------------------------------------------------------------------------------
 	
 	/**
-	 * Obtener la lista con las horas válidas del día
+	 * Obtener la lista con las horas seleccionadas del buscador
 	 * @param man09
 	 * @param man10
 	 * @param man11
@@ -127,6 +126,11 @@ public class ReservaAuxiliarController {
 	
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Genera una lista con las horas 
+	 * @param hora entero con la hora a poner en true
+	 * @return Lista con todo en false menos el int recibido por parámetro
+	 */
 	protected List<Boolean> generarListaHoras(int hora) {
 		boolean man09 = false;
 		boolean man10 = false;
@@ -162,6 +166,13 @@ public class ReservaAuxiliarController {
 	
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Generar fechas validas para dar el curso
+	 * @param fechainicioCurso
+	 * @param diasLectivos
+	 * @param duracionCurso
+	 * @return Lista de fechas validas
+	 */
 	protected List<LocalDate> generarFechasCurso(
 			LocalDate fechainicioCurso,
 			List<Boolean> diasLectivos,
@@ -280,7 +291,7 @@ public class ReservaAuxiliarController {
 	//-------------------------------------------------------------------------------------------------------
 
 	/**
-	 * Generar horas lectivas del día
+	 * Relaccionar las horas lectivas con las horas seleccionadas
 	 * @param man09
 	 * @param man10
 	 * @param man11
@@ -321,6 +332,12 @@ public class ReservaAuxiliarController {
 
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Para reservar las horas de cada día 
+	 * @param listaHorasDiarias
+	 * @param listaFechasCurso
+	 * @return Lista con las fechas y las horas a reservar
+	 */
 	protected List<LocalDateTime> generarFechasHoras(
 			List<LocalTime> listaHorasDiarias,
 			List<LocalDate> listaFechasCurso) {
@@ -340,6 +357,13 @@ public class ReservaAuxiliarController {
 	
 	//-------------------------------------------------------------------------------------------------------
 	
+	/**
+	 * Para meter las horas restantes en el ultimo día
+	 * @param duracionCursoResto
+	 * @param fechaResto
+	 * @param listaHorasDiarias
+	 * @return Lista con las horas restantes para completar el curso
+	 */
 	protected List<LocalDateTime> generarResto(
 			int duracionCursoResto,
 			LocalDate fechaResto,
@@ -358,6 +382,14 @@ public class ReservaAuxiliarController {
 	
 	//-------------------------------------------------------------------------------------------------------
 
+	/**
+	 * Calcular dias y horas de las reservas
+	 * @param fechaInicio
+	 * @param cantidadHorasCurso
+	 * @param listaHorasLectivas
+	 * @param diasLectivos
+	 * @return Lista de fechas y las horas a reservar
+	 */
 	protected List<LocalDateTime> generarNecesidades(
 			String fechaInicio,
 			int cantidadHorasCurso,
@@ -412,6 +444,7 @@ public class ReservaAuxiliarController {
 
 	//-------------------------------------------------------------------------------------------------------
 
+	
 	protected Map<Integer, Integer> generarMapaAulas(
 			int tipoAula,
 			int capacidadAula,
