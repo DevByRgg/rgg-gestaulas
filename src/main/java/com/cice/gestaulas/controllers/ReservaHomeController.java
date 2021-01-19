@@ -3,6 +3,7 @@ package com.cice.gestaulas.controllers;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -392,9 +393,9 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 
 		// Realizar
 		// Presentacion----------------------------------------------------------------------------------
-		ModelAndView mav = new ModelAndView();
+		//ModelAndView mav = new ModelAndView();
 
-		List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
+		//List<TipoAula> listaTipoAulas = tipoAulaService.findAll();
 		List<Boolean> horas = listaHorasBoleano(man09, man10, man11, man12, man13, man14, tar17, tar18, tar19, tar20,
 				tar21, tar22);
 
@@ -413,8 +414,9 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 		 * mav.addObject("tipoAulas", listaTipoAulas);
 		 * mav.setViewName("reservas/buscarReserva");
 		 */
-
-		String mensaje = "Reserva realizada. El Curso '" + nombreCurso + "' finaliza " + fechaFinal.toString(); 
+	
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String mensaje = "Se han realizado " + cantidadHorasCurso + " reservas. El Curso '" + nombreCurso + "' finaliza " + fechaFinal.format(formato); 
 		Utilidades.atributos(1, mensaje, attributes);
 		return "redirect:mostrarReserva";
 		
