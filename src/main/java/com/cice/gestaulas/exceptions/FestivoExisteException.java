@@ -8,7 +8,7 @@ public class FestivoExisteException extends Exception{
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @param mensaje
+	 * @param mensaje Mensaje a mostrar en la excepción
 	 */
 	public FestivoExisteException(String mensaje) {
 		super(mensaje);

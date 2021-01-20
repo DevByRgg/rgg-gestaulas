@@ -49,6 +49,7 @@ public class SedeController {
 	 * @param direccion de la Sede
 	 * @param codigoPostal de la Sede
 	 * @param telefono de la Sede
+	 * @param attributes atributos de retorno
 	 * @return "redirect:mostrarSede". Mostrar la lista con todas las sedes
 	 */
 	@GetMapping("/admin/crearSedeControl")
@@ -119,6 +120,7 @@ public class SedeController {
 	 * @param direccion de la sede
 	 * @param codigoPostal de la sede
 	 * @param telefono de la sede
+	 * @param attributes atributos de retorno
 	 * @return "redirect:mostrarSede". Mostrar la lista con todas la sedes
 	 */
 	@GetMapping("/admin/updateSedeControl")
@@ -145,6 +147,7 @@ public class SedeController {
 	/**
 	 * Borrar una Sede de la BBDD
 	 * @param id identificador de la sede
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarSede". Mostrar la lista con todas las sedes
 	 */
 	@GetMapping("admin/borrarSede")

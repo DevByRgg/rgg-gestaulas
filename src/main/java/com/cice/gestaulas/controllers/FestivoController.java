@@ -56,9 +56,9 @@ public class FestivoController extends FestivoAuxiliarController{
 	* 
 	* @param nombre especifico del festivo
 	* @param fecha  del festivo
-	* @return
-	* @throws FestivoExisteException 
-	* @throws ReservaOcupadaException 
+	* @param attributes redireccion de atributos
+	* @return String "redirect:mostrarFestivo". Mostrar lista de festivos
+	* @throws FestivoExisteException error de festivo
 	*/
 	@GetMapping("/mantenimiento/crearFestivoControl") public String crearFestivo(
 			@RequestParam (name = "nombre", required = true) String nombre,
@@ -102,8 +102,9 @@ public class FestivoController extends FestivoAuxiliarController{
 	 * @param nombre del periodo Festivo
 	 * @param fechaInicio inicio del periodo festivo
 	 * @param fechaFin fin del periodo festivo
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarFestivo". Mostrar todos los Festivos
-	 * @throws FestivoExisteException
+	 * @throws FestivoExisteException error de festivo
 	 */
 	@GetMapping(value = "/mantenimiento/crearPeridoFestivoControl")
 	public String crearPeriodoFestivo(
@@ -200,11 +201,12 @@ public class FestivoController extends FestivoAuxiliarController{
 	/**
 	 * Actualizar/Modificar día festivo
 	 * 
-	 * @param id     identificador del festivo
+	 * @param id identificador del festivo
 	 * @param nombre del día festivo
-	 * @param fecha  del día festivo
+	 * @param fecha del día festivo
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarFestivo". Mostrar lista de Festivos
-	 * @throws FestivoExisteException
+	 * @throws FestivoExisteException error de festivo
 	 */
 	@GetMapping("/mantenimiento/updateFestivoControl")
 	public String updateFestivo(
@@ -240,6 +242,7 @@ public class FestivoController extends FestivoAuxiliarController{
 	 * Borrar día festivo
 	 * 
 	 * @param id del día festivo
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarFestivo". Mostrar todos los festivos
 	 */
 	@GetMapping("mantenimiento/borrarFestivo")

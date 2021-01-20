@@ -49,6 +49,7 @@ public class OrdenadorController {
 	 * @param cpu del ordenador
 	 * @param ram del ordenador en GibaBytes (entre 1 y 1000)
 	 * @param tarjetaGrafica del ordenador
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarOrdenador". Mostrar la lista con todos los ordenadores
 	 */
 	@GetMapping("/admin/crearOrdenadorControl")
@@ -120,6 +121,7 @@ public class OrdenadorController {
 	 * @param cpu del ordenador
 	 * @param ram del ordenador en GibaBytes (entre 1 y 1000)
 	 * @param tarjetaGrafica del ordenador
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarOrdenador". Mostrar la lista con todos los ordenadores
 	 */
 	@GetMapping("/admin/updateOrdenadorControl")
@@ -148,6 +150,7 @@ public class OrdenadorController {
 	/**
 	 * Borrar un Ordenador de la BBDD
 	 * @param id identificador del ordenador
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarOrdenador". Mostrar la lista con todos los ordenadores
 	 */
 	@GetMapping("admin/borrarOrdenador")

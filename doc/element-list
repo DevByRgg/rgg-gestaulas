@@ -1,0 +1,11 @@
+com.cice.gestaulas
+com.cice.gestaulas.auth.handler
+com.cice.gestaulas.controllers
+com.cice.gestaulas.entities
+com.cice.gestaulas.entities.auxiliar
+com.cice.gestaulas.errorcontroller
+com.cice.gestaulas.exceptions
+com.cice.gestaulas.repositories
+com.cice.gestaulas.services.impl
+com.cice.gestaulas.services.interfaces
+com.cice.gestaulas.utils

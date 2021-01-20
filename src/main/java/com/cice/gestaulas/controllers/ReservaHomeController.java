@@ -96,9 +96,9 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	 * @param tar20 boolean true si queremos reservar la hora 20 y false si no
 	 * @param tar21 boolean true si queremos reservar la hora 21 y false si no
 	 * @param tar22 boolean true si queremos reservar la hora 22 y false si no
-	 * @param attributes
+	 * @param attributes atributos de retorno
 	 * @return String "redirect:mostrarReserva". Mostrar lista de reservas
-	 * @throws FestivoExisteException
+	 * @throws FestivoExisteException excepcion de control de excepciones de festivos
 	 */
 	@GetMapping("reservas/crearReservaControl")
 	public String crearReserva(@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
@@ -185,24 +185,24 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	 * @param nombreCurso a buscar
 	 * @param fechaInicio de la reserva
 	 * @param cantidadHorasCurso reserva
-	 * @param lunes 
-	 * @param martes
-	 * @param miercoles
-	 * @param jueves
-	 * @param viernes
-	 * @param sabado
-	 * @param man09
-	 * @param man10
-	 * @param man11
-	 * @param man12
-	 * @param man13
-	 * @param man14
-	 * @param tar17
-	 * @param tar18
-	 * @param tar19
-	 * @param tar20
-	 * @param tar21
-	 * @param tar22
+	 * @param lunes true reservar false no reservar
+	 * @param martes true reservar false no reservar
+	 * @param miercoles true reservar false no reservar
+	 * @param jueves true reservar false no reservar
+	 * @param viernes true reservar false no reservar
+	 * @param sabado true reservar false no reservar
+	 * @param man09 true reservar false no reservar
+	 * @param man10 true reservar false no reservar
+	 * @param man11 true reservar false no reservar
+	 * @param man12 true reservar false no reservar
+	 * @param man13 true reservar false no reservar
+	 * @param man14 true reservar false no reservar
+	 * @param tar17 true reservar false no reservar
+	 * @param tar18 true reservar false no reservar
+	 * @param tar19 true reservar false no reservar
+	 * @param tar20 true reservar false no reservar
+	 * @param tar21 true reservar false no reservar
+	 * @param tar22 true reservar false no reservar
 	 * @param tipoAula identificador del TipoAula
 	 * @param capacidadAula capacidad del aula
 	 * @return ModelAndView "reservas/buscarReserva". Aulas y su disponibilidad
@@ -321,28 +321,29 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	 * @param fechaInicio fecha de inicio del curso
 	 * @param cantidadHorasCurso numero de horas del curso
 	 * @param aulaSeleccionada identificador del aula seleccionada
-	 * @param lunes
-	 * @param martes
-	 * @param miercoles
-	 * @param jueves
-	 * @param viernes
-	 * @param sabado
-	 * @param man09
-	 * @param man10
-	 * @param man11
-	 * @param man12
-	 * @param man13
-	 * @param man14
-	 * @param tar17
-	 * @param tar18
-	 * @param tar19
-	 * @param tar20
-	 * @param tar21
-	 * @param tar22
+	 * @param lunes true reservar false no reservar
+	 * @param martes true reservar false no reservar
+	 * @param miercoles true reservar false no reservar
+	 * @param jueves true reservar false no reservar
+	 * @param viernes true reservar false no reservar
+	 * @param sabado true reservar false no reservar
+	 * @param man09 true reservar false no reservar
+	 * @param man10 true reservar false no reservar
+	 * @param man11 true reservar false no reservar
+	 * @param man12 true reservar false no reservar
+	 * @param man13 true reservar false no reservar
+	 * @param man14 true reservar false no reservar
+	 * @param tar17 true reservar false no reservar
+	 * @param tar18 true reservar false no reservar
+	 * @param tar19 true reservar false no reservar
+	 * @param tar20 true reservar false no reservar
+	 * @param tar21 true reservar false no reservar
+	 * @param tar22 true reservar false no reservar
 	 * @param tipoAula identificador del tipo de aula
 	 * @param capacidadAula capacidad del aula
+	 * @param attributes atributos de retorno
 	 * @return ModelAndView "reservas/buscarReserva"
-	 * @throws FestivoExisteException
+	 * @throws FestivoExisteException error de festivo
 	 */
 	@GetMapping("reservas/realizarReservas")
 	public String realizarReservaCurso(@RequestParam(name = "nombreCurso", required = true) String nombreCurso,
@@ -465,7 +466,7 @@ public class ReservaHomeController extends ReservaAuxiliarController {
 	 * @param horaReserva hora de la reserva
 	 * @param attributes RedirectAttributes
 	 * @return String "redirect:mostrarReserva". Mostrar todas las reservas
-	 * @throws FestivoExisteException
+	 * @throws FestivoExisteException si existe una excepcion en la actualizacion del festivo
 	 */
 	@GetMapping("reservas/updateReservaControl")
 	public String updateReserva(@RequestParam(name = "id", required = true) int id,
