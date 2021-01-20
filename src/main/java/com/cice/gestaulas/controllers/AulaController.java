@@ -92,6 +92,7 @@ public class AulaController {
 	 * @param equipoProfesor identificador Ordenador
 	 * @param equipoAlumno identificador Ordenador
 	 * @param equipamiento identificador Equipamiento
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarAula". Mostrar las Aulas
 	 */
 	@GetMapping("/admin/crearAulaControl")
@@ -185,6 +186,7 @@ public class AulaController {
 	 * @param equipoProfesor identificador Ordenador del profesor
 	 * @param equipoAlumno identificador Ordenador de los alumnos
 	 * @param equipamiento del aula
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarAula". Mostrar todas las Aulas
 	 */
 	@GetMapping("/admin/updateAulaControl")
@@ -213,6 +215,7 @@ public class AulaController {
 	/**
 	 * Borrar un Aula de la BBDD
 	 * @param id identificador del Aula
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarAula". Mostrar todas las Aulas
 	 */
 	@GetMapping("admin/borrarAula")

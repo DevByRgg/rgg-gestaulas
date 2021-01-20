@@ -26,7 +26,7 @@ public interface IFestivoService {
 	
 	/**
 	 * Método del service para buscar un Festivo por su fecha en la BBDD
-	 * @param LocalDate fecha del Festivo
+	 * @param fecha del Festivo
 	 * @return Festivo encontrado
 	 */
 	public Festivo findByFecha(LocalDate fecha);
@@ -45,7 +45,8 @@ public interface IFestivoService {
 	
 	/**
 	 * Método para obtener el nombre de un Festivo de la BBDD
-	 * @return String
+	 * @param fecha a buscar
+	 * @return String nombre del festivo
 	 */
 	public String findNombreByFecha(LocalDate fecha);
 	

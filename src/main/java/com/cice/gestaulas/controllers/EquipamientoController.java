@@ -47,6 +47,7 @@ public class EquipamientoController {
 	 * Crear un Equipamiento en la BBDD
 	 * @param nombre del equipamiento
 	 * @param descripcion del equipamiento
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarEquipamiento". Mostrar la lista con todos los equipamientos
 	 */
 	@GetMapping("/admin/crearEquipamientoControl")
@@ -112,6 +113,7 @@ public class EquipamientoController {
 	 * @param id identificador del Equipamiento
 	 * @param nombre del equipamiento
 	 * @param descripcion del equipamiento
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarEquipamiento". Mostrar la lista con todos los equipamientos.
 	 */
 	@GetMapping("/admin/updateEquipamientoControl")
@@ -137,6 +139,7 @@ public class EquipamientoController {
 	/**
 	 * Borrar un Equipamiento de la BBDD
 	 * @param id identificador del Equipamiento
+	 * @param attributes redireccion de atributos
 	 * @return "redirect:mostrarEquipamiento". Mostrar la lista con todos los equipamientos.
 	 */
 	@GetMapping("admin/borrarEquipamiento")

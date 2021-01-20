@@ -23,8 +23,8 @@ public class Utilidades {
 	/**
 	 * Método para validar una Entidad
 	 * 
-	 * @param a Objeto De tipo entidad a Validar
-	 * @throws ConstraintViolationException. Si hay algún dato no valido.
+	 * @param obj Objeto De tipo entidad a Validar
+	 * @throws ConstraintViolationException errores de validacion
 	 */
 	public static void validar(Object obj) {
 		ValidatorFactory factoryValidator = Validation.buildDefaultValidatorFactory();
@@ -39,7 +39,7 @@ public class Utilidades {
 	
 	/**
 	 * Metodo para obtener el nombre del usuario logueado
-	 * @return
+	 * @return String con el nombre del usuario autenticado
 	 */
 	public String getUserNameAuthenticated() {
 		

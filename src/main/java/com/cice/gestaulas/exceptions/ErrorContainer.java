@@ -9,8 +9,8 @@ public class ErrorContainer {
 	private int id;
 	private String message;
 	/**
-	 * @param id
-	 * @param message
+	 * @param id identificador
+	 * @param message descripcion del error
 	 */
 	public ErrorContainer(int id, String message) {
 		this.id = id;

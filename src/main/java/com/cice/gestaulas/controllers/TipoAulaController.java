@@ -43,6 +43,7 @@ public class TipoAulaController {
 	/**
 	 * Crear un TipoAula en la BBDD
 	 * @param nombre del TipoAula
+	 * @param attributes atributos de retorno
 	 * @return "redirect:mostrarTipoAula". Mostrar los TipoAulas
 	 */
 	@GetMapping("/admin/crearTipoAulaControl")
@@ -102,6 +103,7 @@ public class TipoAulaController {
 	 * Actualizar TipoAula en la BBDD
 	 * @param id identificador del TipoAula
 	 * @param nombre del TipoAula
+	 * @param attributes atributos de retorno
 	 * @return "redirect:mostrarTipoAula". Mostrar todos los TipoAula
 	 */
 	@GetMapping("/admin/updateTipoAulaControl")
@@ -126,6 +128,7 @@ public class TipoAulaController {
 	/**
 	 * Borrar un TipoAula de la BBDD
 	 * @param id identificador del TipoAula
+	 * @param attributes RedirectAttributes
 	 * @return "redirect:mostrarTipoAula". Mostrar todos los TipoAula
 	 */
 	@GetMapping("admin/borrarTipoAula")

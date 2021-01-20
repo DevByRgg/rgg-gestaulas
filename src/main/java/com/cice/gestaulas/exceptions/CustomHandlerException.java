@@ -170,7 +170,7 @@ public class CustomHandlerException extends ResponseEntityExceptionHandler {
 	 * Capturar y gestionar FestivoExisteException. Para que no se pueda grabar
 	 * festivos con la misma fecha
 	 * 
-	 * @param ex
+	 * @param ex excepcion de tipo FestivoExisteException
 	 * @return ModelAndView a la página de error.jsp
 	 */
 	@ExceptionHandler(FestivoExisteException.class)
