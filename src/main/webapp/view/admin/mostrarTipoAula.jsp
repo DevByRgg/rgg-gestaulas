@@ -6,7 +6,7 @@
 
 <c:import url="../common/head.jsp"/>
 
-<script src="/aulas/js/borrarTipoAula.js"></script>
+<script src="/js/borrarTipoAula.js"></script>
 
 <title>Zona Administracion</title>
 
@@ -47,7 +47,7 @@
 						<td class="align-middle text-left">${tipoAula.nombre}</td>
 						
 						<td class="align-middle text-center">
-							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/admin/updateTipoAula?id=${tipoAula.id}">
+							<a type="button" class="btn cice-hover bg-cice text-white" href="/admin/updateTipoAula?id=${tipoAula.id}">
 								Update
 							</a>
 						</td>

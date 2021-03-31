@@ -6,7 +6,7 @@
 
 <c:import url="../common/head.jsp"/>
 
-<script src="/aulas/js/borrarOrdenador.js"></script>
+<script src="/js/borrarOrdenador.js"></script>
 
 <title>Zona Administracion</title>
 
@@ -57,7 +57,7 @@
 						<td class="align-middle text-center">${ordenador.tarjetaGrafica}</td>
 						
 						<td class="align-middle text-center">
-							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/admin/updateOrdenador?id=${ordenador.id}">
+							<a type="button" class="btn cice-hover bg-cice text-white" href="/admin/updateOrdenador?id=${ordenador.id}">
 								Update
 							</a>
 						</td>

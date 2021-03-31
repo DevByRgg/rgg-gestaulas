@@ -6,7 +6,7 @@
 
 <c:import url="../common/head.jsp" />
 
-<script src="/aulas/js/borrarUsuario.js"></script>
+<script src="/js/borrarUsuario.js"></script>
 
 <title>Zona Administracion</title>
 
@@ -48,7 +48,7 @@
 						<td class="align-middle text-center">${usuario.enabled}</td>
 						<td class="align-middle text-left">${usuario.username}</td>
 						<td class="align-middle text-center">
-						<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/admin/unlockUsuario?id=${usuario.id}">
+						<a type="button" class="btn cice-hover bg-cice text-white" href="/admin/unlockUsuario?id=${usuario.id}">
 								<c:choose>
 									<c:when test="${usuario.enabled == true}">
 										Lock
@@ -61,7 +61,7 @@
 						</td>
 						
 						<td class="align-middle text-center">
-							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/admin/updateUsuario?id=${usuario.id}">
+							<a type="button" class="btn cice-hover bg-cice text-white" href="/admin/updateUsuario?id=${usuario.id}">
 								Update
 							</a>
 						</td>

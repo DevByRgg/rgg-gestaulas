@@ -6,7 +6,7 @@
 
 <c:import url="../common/head.jsp"/>
 
-<script src="/aulas/js/borrarEquipamiento.js"></script>
+<script src="/js/borrarEquipamiento.js"></script>
 
 <title>Zona Administracion</title>
 
@@ -49,7 +49,7 @@
 						<td class="align-middle text-left">${equipamiento.descripcion}</td>
 						
 						<td class="align-middle text-center">
-							<a type="button" class="btn cice-hover bg-cice text-white" href="/aulas/admin/updateEquipamiento?id=${equipamiento.id}">
+							<a type="button" class="btn cice-hover bg-cice text-white" href="/admin/updateEquipamiento?id=${equipamiento.id}">
 								Update
 							</a>
 						</td>
