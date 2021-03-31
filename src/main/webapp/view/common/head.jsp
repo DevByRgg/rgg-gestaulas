@@ -6,7 +6,7 @@
 
 
 <!-- APP.JS PARA INICIO DE APLICACION -->
-<script type="text/javascript" src="/aulas/js/app.js"></script>
+<script type="text/javascript" src="/js/app.js"></script>
 
 	<!-- POPPER -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -34,7 +34,7 @@
 
 
 <!-- ESTILOS NO BOOTSTRAP CSS -->
-<link rel="stylesheet" type="text/css" href="/aulas/css/styleCice.css" />
+<link rel="stylesheet" type="text/css" href="/css/styleCice.css" />
 
 <!-- ESTILO CSS FULLCALENDAR -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet"/>

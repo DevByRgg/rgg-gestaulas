@@ -34,8 +34,8 @@
 					<div class="card-header bg-cice text-white">
 						<h5 class="card-title align">Sedes</h5>
 					</div>
-					<a title="Sedes" href="/aulas/admin/mostrarSede">
-						<img class="card-img-top" src="/aulas/images/sede_800x600.png"  height="200" alt="Card image cap">
+					<a title="Sedes" href="/admin/mostrarSede">
+						<img class="card-img-top" src="/images/sede_800x600.png"  height="200" alt="Card image cap">
 					</a>				
 				</div>
 				
@@ -43,8 +43,8 @@
 					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Aulas</h5>
 					</div>
-					<a title="Aulas" href="/aulas/admin/mostrarAula">
-						<img class="card-img-top" src="/aulas/images/aula_800x600.png"  height="200" alt="Card image cap">
+					<a title="Aulas" href="/admin/mostrarAula">
+						<img class="card-img-top" src="/images/aula_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
 				
@@ -52,8 +52,8 @@
 					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Equipos</h5>
 					</div>
-					<a title="Equipos" href="/aulas/admin/mostrarOrdenador">
-						<img class="card-img-top" src="/aulas/images/ordenador_800x600.png"  height="200" alt="Card image cap">
+					<a title="Equipos" href="/admin/mostrarOrdenador">
+						<img class="card-img-top" src="/images/ordenador_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
 				
@@ -61,8 +61,8 @@
 					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Equipamientos</h5>
 					</div>
-					<a title="Equipamiento" href="/aulas/admin/mostrarEquipamiento">
-						<img class="card-img-top" src="/aulas/images/equipamiento_800x600.png"  height="200" alt="Card image cap">
+					<a title="Equipamiento" href="/admin/mostrarEquipamiento">
+						<img class="card-img-top" src="/images/equipamiento_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
 			
@@ -83,8 +83,8 @@
 					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Reservar Dia</h5>
 					</div>
-					<a title="Reservar dia" href="/aulas/reservas/crearReserva">
-						<img class="card-img-top" src="/aulas/images/curso_800x600.png"  height="200" alt="Card image cap">
+					<a title="Reservar dia" href="/reservas/crearReserva">
+						<img class="card-img-top" src="/images/curso_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
 				
@@ -92,8 +92,8 @@
 					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Reservar Curso</h5>
 					</div>
-					<a title="Reservar curso" href="/aulas/reservas/buscarReserva">
-						<img class="card-img-top" src="/aulas/images/buscar_800x600.png"  height="200" alt="Card image cap">
+					<a title="Reservar curso" href="/reservas/buscarReserva">
+						<img class="card-img-top" src="/images/buscar_800x600.png"  height="200" alt="Card image cap">
 					</a>				
 				</div>
 							
@@ -101,8 +101,8 @@
 					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Consultar</h5>
 					</div>
-					<a title="Consultar aulas disponibles" href="/aulas/consultas/consultarAulasDisponibles">
-						<img class="card-img-top" src="/aulas/images/consulta_800x600.png"  height="200" alt="Card image cap">
+					<a title="Consultar aulas disponibles" href="/consultas/consultarAulasDisponibles">
+						<img class="card-img-top" src="/images/consulta_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
 				
@@ -110,8 +110,8 @@
 					<div class="card-header bg-cice text-white">
 						<h5 class="card-title">Crear Festivo</h5>
 					</div>
-					<a title="Crear festivo" href="/aulas/mantenimiento/crearFestivo">
-						<img class="card-img-top" src="/aulas/images/festivo_800x600.png"  height="200" alt="Card image cap">
+					<a title="Crear festivo" href="/mantenimiento/crearFestivo">
+						<img class="card-img-top" src="/images/festivo_800x600.png"  height="200" alt="Card image cap">
 					</a>
 				</div>
 			
