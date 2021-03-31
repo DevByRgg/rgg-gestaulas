@@ -38,35 +38,35 @@
 
 		<div class="mb-2">
 			<a href="restarMes?mes=${mes}&anio=${anio}&turno=${turno}&aula=${aula}">
-				<img class="ml-5" alt="mes anterior" src="/aulas/icons/flecha2-black-izq-fill.svg" height="20px">
+				<img class="ml-5" alt="mes anterior" src="/icons/flecha2-black-izq-fill.svg" height="20px">
 			</a>
 			<span class="ml-2 mr-2 text-center text-capitalize">${mesTexto}</span>
 			<a href="anadirMes?mes=${mes}&anio=${anio}&turno=${turno}&aula=${aula}">
-				<img class="mr-2" alt="mes siguiente" src="/aulas/icons/flecha2-black-der-fill.svg" height="20px">
+				<img class="mr-2" alt="mes siguiente" src="/icons/flecha2-black-der-fill.svg" height="20px">
 			</a>
 			
 			<a href="restarAnio?mes=${mes}&anio=${anio}&turno=${turno}&aula=${aula}">
-				<img class="ml-2" alt="mes anterior" src="/aulas/icons/flecha2-black-izq-fill.svg" height="20px">
+				<img class="ml-2" alt="mes anterior" src="/icons/flecha2-black-izq-fill.svg" height="20px">
 			</a>
 			<span class="ml-2 mr-2 text-capitalize">${anio}</span>
 			<a href="anadirAnio?mes=${mes}&anio=${anio}&turno=${turno}&aula=${aula}">
-				<img class="mr-5" alt="mes siguiente" src="/aulas/icons/flecha2-black-der-fill.svg" height="20px">
+				<img class="mr-5" alt="mes siguiente" src="/icons/flecha2-black-der-fill.svg" height="20px">
 			</a>
 			
 			<a href="restarAula?mes=${mes}&anio=${anio}&turno=${turno}&aula=${aula}">
-				<img class="ml-5" alt="mes anterior" src="/aulas/icons/flecha2-black-izq-fill.svg" height="20px">
+				<img class="ml-5" alt="mes anterior" src="/icons/flecha2-black-izq-fill.svg" height="20px">
 			</a>
 			<span class="ml-2 mr-2 text-capitalize">${aulaTexto}</span>
 			<a href="anadirAula?mes=${mes}&anio=${anio}&turno=${turno}&aula=${aula}">
-				<img class="mr-5" alt="mes siguiente" src="/aulas/icons/flecha2-black-der-fill.svg" height="20px">
+				<img class="mr-5" alt="mes siguiente" src="/icons/flecha2-black-der-fill.svg" height="20px">
 			</a>
 			
 			<a href="restarTurno?mes=${mes}&anio=${anio}&turno=${turno}&aula=${aula}">
-				<img class="ml-5" alt="mes anterior" src="/aulas/icons/flecha2-black-izq-fill.svg" height="20px">
+				<img class="ml-5" alt="mes anterior" src="/icons/flecha2-black-izq-fill.svg" height="20px">
 			</a>
 			<span class="ml-2 mr-2 text-capitalize">${turnoTexto}</span>
 			<a href="anadirTurno?mes=${mes}&anio=${anio}&turno=${turno}&aula=${aula}">
-				<img class="mr-5" alt="mes siguiente" src="/aulas/icons/flecha2-black-der-fill.svg" height="20px">
+				<img class="mr-5" alt="mes siguiente" src="/icons/flecha2-black-der-fill.svg" height="20px">
 			</a>
 			
 		</div>
