@@ -3,8 +3,8 @@
 
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-cice">
-	<a class="navbar-brand text-white" href="/aulas/"> 
-        <img src="/aulas/images/logo_blanco_total.svg" height="25"	class="d-inline-block align-top" alt="">
+	<a class="navbar-brand text-white" href="/"> 
+        <img src="/images/logo_blanco_total.svg" height="25"	class="d-inline-block align-top" alt="">
     </a>
 
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,72 +17,72 @@
 			<li class="nav-item dropdown mr-5">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuario</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearUsuario">Crear Usuario</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarUsuario">Listado Usuario</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/crearUsuario">Crear Usuario</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/mostrarUsuario">Listado Usuario</a>
                 </div>
             </li>
 			
 			<li class="nav-item dropdown ml-5 mr-2">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sede</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearSede">Crear Sede</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarSede">Listado Sede</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/crearSede">Crear Sede</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/mostrarSede">Listado Sede</a>
                 </div>
             </li>
 
 			<li class="nav-item dropdown mr-2">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aula</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearAula">Crear Aula</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearTipoAula">Crear Tipo Aula</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/crearAula">Crear Aula</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/crearTipoAula">Crear Tipo Aula</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarAula">Listado Aula</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarTipoAula">Listado Tipo Aula</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/mostrarAula">Listado Aula</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/mostrarTipoAula">Listado Tipo Aula</a>
                 </div>
             </li>
 
             <li class="nav-item dropdown mr-2">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Equipo</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearOrdenador">Crear Equipo</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarOrdenador">Listado Equipo</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/crearOrdenador">Crear Equipo</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/mostrarOrdenador">Listado Equipo</a>
                 </div>
             </li>
 
             <li class="nav-item dropdown mr-5">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Equipamiento</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/crearEquipamiento">Crear Equipamiento</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/admin/mostrarEquipamiento">Listado Equipamiento</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/crearEquipamiento">Crear Equipamiento</a>
+                    <a class="dropdown-item cice-hover text-white" href="/admin/mostrarEquipamiento">Listado Equipamiento</a>
                 </div>
             </li>
             
             <li class="nav-item dropdown ml-5">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reserva</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/crearReserva">Reservar Dia</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/buscarReserva">Reservar Curso</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/borrarCursoReserva">Borrar Dia / Curso</a>
+                    <a class="dropdown-item cice-hover text-white" href="/reservas/crearReserva">Reservar Dia</a>
+                    <a class="dropdown-item cice-hover text-white" href="/reservas/buscarReserva">Reservar Curso</a>
+                    <a class="dropdown-item cice-hover text-white" href="/reservas/borrarCursoReserva">Borrar Dia / Curso</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/reservas/mostrarReserva">Listado Reserva</a>
+                    <a class="dropdown-item cice-hover text-white" href="/reservas/mostrarReserva">Listado Reserva</a>
 				</div>
             </li>
             
             <li class="nav-item dropdown ml-2">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Consulta</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/consultas/consultarAulasDisponibles">Buscar Aulas Disponibles</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/consultas/consultarPortatil">Buscardor Portatil</a>
+                    <a class="dropdown-item cice-hover text-white" href="/consultas/consultarAulasDisponibles">Buscar Aulas Disponibles</a>
+                    <a class="dropdown-item cice-hover text-white" href="/consultas/consultarPortatil">Buscardor Portatil</a>
                 </div>
             </li>
             
             <li class="nav-item dropdown ml-2">
                 <a class="nav-link dropdown-toggle text-white" href="#"	id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Festivo</a>
 				<div class="dropdown-menu bg-cice" aria-labelledby="navbarDropdown">  
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/mantenimiento/crearFestivo">Crear Festivo</a>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/mantenimiento/crearPeriodoFestivo">Crear Periodo festivo</a>
+                    <a class="dropdown-item cice-hover text-white" href="/mantenimiento/crearFestivo">Crear Festivo</a>
+                    <a class="dropdown-item cice-hover text-white" href="/mantenimiento/crearPeriodoFestivo">Crear Periodo festivo</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item cice-hover text-white" href="/aulas/mantenimiento/mostrarFestivo">Listado Festivo</a>
+                    <a class="dropdown-item cice-hover text-white" href="/mantenimiento/mostrarFestivo">Listado Festivo</a>
                 </div>
             </li>
 			
