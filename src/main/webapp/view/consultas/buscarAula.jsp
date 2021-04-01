@@ -175,13 +175,8 @@
 				<div class="form-group float-right">
 					<button type="submit" class="btn btn-sm font-weight-bold text-white cice-hover bg-cice float-right mr-5">Seleccionar</button>
 				</div>
-			
-			</div>
-						
-				
 									
-  			
-			</form>
+  			</form>
 
 		</div>
 		
